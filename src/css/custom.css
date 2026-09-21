@@ -71,6 +71,7 @@
   --ifm-font-family-monospace: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --ifm-color-content: #2f2f2f;
+  --ifm-font-color-base: #2f2f2f;
   --ifm-heading-color: #2f2f2f;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(39, 174, 96, 0.12);
@@ -85,7 +86,12 @@
   --ifm-color-primary-lighter: #61c68a;
   --ifm-color-primary-lightest: #83d3a4;
 
+  /* Keep body text readable on the dark background */
+  --ifm-color-content: #e6e6e6;
+  --ifm-color-content-secondary: #b8b8b8;
+  --ifm-font-color-base: #e6e6e6;
   --ifm-heading-color: #ffffff;
+  --ifm-code-color: #e6e6e6;
   --docusaurus-highlighted-code-line-bg: rgba(63, 185, 111, 0.2);
 }
 
