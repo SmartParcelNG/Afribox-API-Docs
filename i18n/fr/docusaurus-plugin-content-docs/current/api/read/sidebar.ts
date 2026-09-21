@@ -106,12 +106,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-nipost",
-          label: "Frais NIPOST",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-selfstorage",
           label: "Frais de self-stockage",
           className: "api-method post",
@@ -436,12 +430,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-search",
           label: "Rechercher un colis à payer",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-search-nipost",
-          label: "Rechercher un colis à payer (NIPOST)",
           className: "api-method post",
         },
         {

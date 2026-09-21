@@ -32,111 +32,294 @@
     "admin": "Administration"
   },
   "operations": {
-    "post_admin_businesses_list": { "summary": "Lister les entreprises" },
-    "post_admin_businesses_wallettransaction_new": { "summary": "Créer une transaction de portefeuille (entreprise)" },
-
-    "post_business_availableboxes_all": { "summary": "Casiers disponibles (tous)" },
-    "post_business_availableboxes_city": { "summary": "Casiers disponibles par ville" },
-    "post_business_availableboxes_state": { "summary": "Casiers disponibles par État" },
-    "post_business_balance": { "summary": "Solde du portefeuille" },
-    "post_business_boxes_all": { "summary": "Casiers de l'entreprise (tous)" },
-    "post_business_boxes_assigned": { "summary": "Casiers attribués" },
-    "post_business_boxes_city": { "summary": "Casiers par ville" },
-    "post_business_boxes_info": { "summary": "Détails d'un casier" },
-    "post_business_boxes_state": { "summary": "Casiers par État" },
-    "post_business_cancelledparcels": { "summary": "Colis annulés" },
-    "post_business_cities_all": { "summary": "Villes (toutes)" },
-    "post_business_cities_state": { "summary": "Villes par État" },
-    "post_business_dashboard": { "summary": "Tableau de bord de l'entreprise" },
-    "post_business_draft_deliveryareas": { "summary": "Zones de livraison (brouillon)" },
-    "post_business_draft_parceltypes": { "summary": "Types de colis (brouillon)" },
-    "post_business_parcels_cancel": { "summary": "Annuler un colis" },
-    "post_business_parcels_create": { "summary": "Créer un colis" },
-    "post_business_parcels_info": { "summary": "Détails d'un colis" },
-    "post_business_parcels_info_all": { "summary": "Détails de tous les colis" },
-    "post_business_parcels_reports": { "summary": "Rapports de colis" },
-    "post_business_parcels_retrieve": { "summary": "Récupérer un colis" },
-    "post_business_parcels_timeline": { "summary": "Chronologie d'un colis" },
-    "post_business_pendingdropoffs": { "summary": "Dépôts en attente" },
-    "post_business_pendingpickups": { "summary": "Retraits en attente" },
-    "post_business_pickedupparcels": { "summary": "Colis retirés" },
-    "post_business_retrievedparcels": { "summary": "Colis récupérés" },
-    "post_business_sizes": { "summary": "Tailles disponibles" },
-    "post_business_states": { "summary": "États" },
-    "post_business_transactionhistory": { "summary": "Historique des transactions" },
-    "post_business_wallettransaction_new": { "summary": "Créer une transaction de portefeuille" },
-
-    "post_core_boxes_availability": { "summary": "Disponibilité des casiers" },
-    "post_core_boxes_available_bycity": { "summary": "Casiers disponibles par ville" },
-    "post_core_boxes_available_bystate": { "summary": "Casiers disponibles par État" },
-    "post_core_boxes_available_list": { "summary": "Lister les casiers disponibles" },
-    "post_core_boxes_bycity": { "summary": "Casiers par ville" },
-    "post_core_boxes_bystate": { "summary": "Casiers par État" },
-    "post_core_boxes_info": { "summary": "Détails d'un casier" },
-    "post_core_boxes_list": { "summary": "Lister les casiers" },
-    "post_core_cities_bystate": { "summary": "Villes par État" },
-    "post_core_cities_info": { "summary": "Détails d'une ville" },
-    "post_core_cities_list": { "summary": "Lister les villes" },
-    "post_core_couriers_list": { "summary": "Lister les coursiers" },
-    "post_core_deliveryareas_list": { "summary": "Lister les zones de livraison" },
-    "post_core_fees_appless": { "summary": "Frais appless" },
-    "post_core_fees_compute": { "summary": "Calculer les frais" },
-    "post_core_fees_nipost": { "summary": "Frais NIPOST" },
-    "post_core_fees_selfstorage": { "summary": "Frais de self-stockage" },
-    "post_core_fees_service": { "summary": "Frais de service" },
-    "post_core_parcels_search": { "summary": "Rechercher un colis" },
-    "post_core_requesttypes_list": { "summary": "Lister les types de demande" },
-    "post_core_sizes_fees": { "summary": "Frais par taille" },
-    "post_core_sizes_info": { "summary": "Détails d'une taille" },
-    "post_core_sizes_list": { "summary": "Lister les tailles" },
-    "post_core_states_info": { "summary": "Détails d'un État" },
-    "post_core_states_list": { "summary": "Lister les États" },
-
-    "get_customer_cards_add_complete": { "summary": "Retour d'ajout de carte (navigateur)" },
-    "post_customer_cards_add": { "summary": "Ajouter une carte" },
-    "post_customer_cards_delete": { "summary": "Supprimer une carte" },
-    "post_customer_cards_info": { "summary": "Détails d'une carte" },
-    "post_customer_cards_list": { "summary": "Lister les cartes" },
-    "post_customer_cards_setdefault": { "summary": "Définir la carte par défaut" },
-    "post_customer_changepassword": { "summary": "Changer le mot de passe" },
-    "post_customer_dashboard": { "summary": "Tableau de bord client" },
-    "post_customer_edit": { "summary": "Modifier le profil" },
-    "post_customer_forgotpassword": { "summary": "Mot de passe oublié" },
-    "post_customer_info": { "summary": "Informations client" },
-    "post_customer_login": { "summary": "Connexion" },
-    "post_customer_otp_resend": { "summary": "Renvoyer l'OTP" },
-    "post_customer_otp_verify": { "summary": "Vérifier l'OTP" },
-    "post_customer_parcels_all": { "summary": "Tous les colis" },
-    "post_customer_parcels_archived": { "summary": "Colis archivés" },
-    "post_customer_parcels_cancelled": { "summary": "Colis annulés" },
-    "post_customer_parcels_delivered": { "summary": "Colis livrés" },
-    "post_customer_parcels_enroutetorecipient": { "summary": "Colis en route vers le destinataire" },
-    "post_customer_parcels_hold": { "summary": "Mettre un colis en attente" },
-    "post_customer_parcels_hold_release": { "summary": "Lever la mise en attente" },
-    "post_customer_parcels_info": { "summary": "Détails d'un colis" },
-    "post_customer_parcels_info_all": { "summary": "Détails de tous les colis" },
-    "post_customer_parcels_inlocker": { "summary": "Colis en casier" },
-    "post_customer_parcels_new": { "summary": "Créer un colis" },
-    "post_customer_parcels_newrequests": { "summary": "Nouvelles demandes de colis" },
-    "post_customer_parcels_reports": { "summary": "Rapports de colis" },
-    "post_customer_parcels_timeline": { "summary": "Chronologie d'un colis" },
-    "post_customer_resetpassword": { "summary": "Réinitialiser le mot de passe" },
-    "post_customer_signup": { "summary": "Inscription" },
-    "post_customer_support": { "summary": "Assistance" },
-
-    "post_kiosk_parcel_appless_reserve": { "summary": "Réserver un casier (appless)" },
-    "post_kiosk_parcel_appless_verify": { "summary": "Vérifier une réservation (appless)" },
-    "post_kiosk_parcel_collect": { "summary": "Retrait de colis" },
-    "post_kiosk_parcel_drop": { "summary": "Dépôt de colis" },
-    "post_kiosk_parcel_nipost_reserve": { "summary": "Réserver un casier (NIPOST)" },
-    "post_kiosk_parcel_nipost_verify": { "summary": "Vérifier une réservation (NIPOST)" },
-    "post_kiosk_parcel_snapshot": { "summary": "Téléverser un instantané de colis" },
-    "post_kiosk_ping": { "summary": "Ping du casier" },
-    "post_kiosk_setup": { "summary": "Configuration du casier" },
-
-    "get_parcel_snapshot_image": { "summary": "Image d'instantané de colis" },
-    "post_parcel_snapshots": { "summary": "Lister les instantanés de colis" },
-
+    "post_admin_businesses_list": {
+      "summary": "Lister les entreprises"
+    },
+    "post_admin_businesses_wallettransaction_new": {
+      "summary": "Créer une transaction de portefeuille (entreprise)"
+    },
+    "post_business_availableboxes_all": {
+      "summary": "Casiers disponibles (tous)"
+    },
+    "post_business_availableboxes_city": {
+      "summary": "Casiers disponibles par ville"
+    },
+    "post_business_availableboxes_state": {
+      "summary": "Casiers disponibles par État"
+    },
+    "post_business_balance": {
+      "summary": "Solde du portefeuille"
+    },
+    "post_business_boxes_all": {
+      "summary": "Casiers de l'entreprise (tous)"
+    },
+    "post_business_boxes_assigned": {
+      "summary": "Casiers attribués"
+    },
+    "post_business_boxes_city": {
+      "summary": "Casiers par ville"
+    },
+    "post_business_boxes_info": {
+      "summary": "Détails d'un casier"
+    },
+    "post_business_boxes_state": {
+      "summary": "Casiers par État"
+    },
+    "post_business_cancelledparcels": {
+      "summary": "Colis annulés"
+    },
+    "post_business_cities_all": {
+      "summary": "Villes (toutes)"
+    },
+    "post_business_cities_state": {
+      "summary": "Villes par État"
+    },
+    "post_business_dashboard": {
+      "summary": "Tableau de bord de l'entreprise"
+    },
+    "post_business_draft_deliveryareas": {
+      "summary": "Zones de livraison (brouillon)"
+    },
+    "post_business_draft_parceltypes": {
+      "summary": "Types de colis (brouillon)"
+    },
+    "post_business_parcels_cancel": {
+      "summary": "Annuler un colis"
+    },
+    "post_business_parcels_create": {
+      "summary": "Créer un colis"
+    },
+    "post_business_parcels_info": {
+      "summary": "Détails d'un colis"
+    },
+    "post_business_parcels_info_all": {
+      "summary": "Détails de tous les colis"
+    },
+    "post_business_parcels_reports": {
+      "summary": "Rapports de colis"
+    },
+    "post_business_parcels_retrieve": {
+      "summary": "Récupérer un colis"
+    },
+    "post_business_parcels_timeline": {
+      "summary": "Chronologie d'un colis"
+    },
+    "post_business_pendingdropoffs": {
+      "summary": "Dépôts en attente"
+    },
+    "post_business_pendingpickups": {
+      "summary": "Retraits en attente"
+    },
+    "post_business_pickedupparcels": {
+      "summary": "Colis retirés"
+    },
+    "post_business_retrievedparcels": {
+      "summary": "Colis récupérés"
+    },
+    "post_business_sizes": {
+      "summary": "Tailles disponibles"
+    },
+    "post_business_states": {
+      "summary": "États"
+    },
+    "post_business_transactionhistory": {
+      "summary": "Historique des transactions"
+    },
+    "post_business_wallettransaction_new": {
+      "summary": "Créer une transaction de portefeuille"
+    },
+    "post_core_boxes_availability": {
+      "summary": "Disponibilité des casiers"
+    },
+    "post_core_boxes_available_bycity": {
+      "summary": "Casiers disponibles par ville"
+    },
+    "post_core_boxes_available_bystate": {
+      "summary": "Casiers disponibles par État"
+    },
+    "post_core_boxes_available_list": {
+      "summary": "Lister les casiers disponibles"
+    },
+    "post_core_boxes_bycity": {
+      "summary": "Casiers par ville"
+    },
+    "post_core_boxes_bystate": {
+      "summary": "Casiers par État"
+    },
+    "post_core_boxes_info": {
+      "summary": "Détails d'un casier"
+    },
+    "post_core_boxes_list": {
+      "summary": "Lister les casiers"
+    },
+    "post_core_cities_bystate": {
+      "summary": "Villes par État"
+    },
+    "post_core_cities_info": {
+      "summary": "Détails d'une ville"
+    },
+    "post_core_cities_list": {
+      "summary": "Lister les villes"
+    },
+    "post_core_couriers_list": {
+      "summary": "Lister les coursiers"
+    },
+    "post_core_deliveryareas_list": {
+      "summary": "Lister les zones de livraison"
+    },
+    "post_core_fees_appless": {
+      "summary": "Frais appless"
+    },
+    "post_core_fees_compute": {
+      "summary": "Calculer les frais"
+    },
+    "post_core_fees_selfstorage": {
+      "summary": "Frais de self-stockage"
+    },
+    "post_core_fees_service": {
+      "summary": "Frais de service"
+    },
+    "post_core_parcels_search": {
+      "summary": "Rechercher un colis"
+    },
+    "post_core_requesttypes_list": {
+      "summary": "Lister les types de demande"
+    },
+    "post_core_sizes_fees": {
+      "summary": "Frais par taille"
+    },
+    "post_core_sizes_info": {
+      "summary": "Détails d'une taille"
+    },
+    "post_core_sizes_list": {
+      "summary": "Lister les tailles"
+    },
+    "post_core_states_info": {
+      "summary": "Détails d'un État"
+    },
+    "post_core_states_list": {
+      "summary": "Lister les États"
+    },
+    "get_customer_cards_add_complete": {
+      "summary": "Retour d'ajout de carte (navigateur)"
+    },
+    "post_customer_cards_add": {
+      "summary": "Ajouter une carte"
+    },
+    "post_customer_cards_delete": {
+      "summary": "Supprimer une carte"
+    },
+    "post_customer_cards_info": {
+      "summary": "Détails d'une carte"
+    },
+    "post_customer_cards_list": {
+      "summary": "Lister les cartes"
+    },
+    "post_customer_cards_setdefault": {
+      "summary": "Définir la carte par défaut"
+    },
+    "post_customer_changepassword": {
+      "summary": "Changer le mot de passe"
+    },
+    "post_customer_dashboard": {
+      "summary": "Tableau de bord client"
+    },
+    "post_customer_edit": {
+      "summary": "Modifier le profil"
+    },
+    "post_customer_forgotpassword": {
+      "summary": "Mot de passe oublié"
+    },
+    "post_customer_info": {
+      "summary": "Informations client"
+    },
+    "post_customer_login": {
+      "summary": "Connexion"
+    },
+    "post_customer_otp_resend": {
+      "summary": "Renvoyer l'OTP"
+    },
+    "post_customer_otp_verify": {
+      "summary": "Vérifier l'OTP"
+    },
+    "post_customer_parcels_all": {
+      "summary": "Tous les colis"
+    },
+    "post_customer_parcels_archived": {
+      "summary": "Colis archivés"
+    },
+    "post_customer_parcels_cancelled": {
+      "summary": "Colis annulés"
+    },
+    "post_customer_parcels_delivered": {
+      "summary": "Colis livrés"
+    },
+    "post_customer_parcels_enroutetorecipient": {
+      "summary": "Colis en route vers le destinataire"
+    },
+    "post_customer_parcels_hold": {
+      "summary": "Mettre un colis en attente"
+    },
+    "post_customer_parcels_hold_release": {
+      "summary": "Lever la mise en attente"
+    },
+    "post_customer_parcels_info": {
+      "summary": "Détails d'un colis"
+    },
+    "post_customer_parcels_info_all": {
+      "summary": "Détails de tous les colis"
+    },
+    "post_customer_parcels_inlocker": {
+      "summary": "Colis en casier"
+    },
+    "post_customer_parcels_new": {
+      "summary": "Créer un colis"
+    },
+    "post_customer_parcels_newrequests": {
+      "summary": "Nouvelles demandes de colis"
+    },
+    "post_customer_parcels_reports": {
+      "summary": "Rapports de colis"
+    },
+    "post_customer_parcels_timeline": {
+      "summary": "Chronologie d'un colis"
+    },
+    "post_customer_resetpassword": {
+      "summary": "Réinitialiser le mot de passe"
+    },
+    "post_customer_signup": {
+      "summary": "Inscription"
+    },
+    "post_customer_support": {
+      "summary": "Assistance"
+    },
+    "post_kiosk_parcel_appless_reserve": {
+      "summary": "Réserver un casier (appless)"
+    },
+    "post_kiosk_parcel_appless_verify": {
+      "summary": "Vérifier une réservation (appless)"
+    },
+    "post_kiosk_parcel_collect": {
+      "summary": "Retrait de colis"
+    },
+    "post_kiosk_parcel_drop": {
+      "summary": "Dépôt de colis"
+    },
+    "post_kiosk_parcel_snapshot": {
+      "summary": "Téléverser un instantané de colis"
+    },
+    "post_kiosk_ping": {
+      "summary": "Ping du casier"
+    },
+    "post_kiosk_setup": {
+      "summary": "Configuration du casier"
+    },
+    "get_parcel_snapshot_image": {
+      "summary": "Image d'instantané de colis"
+    },
+    "post_parcel_snapshots": {
+      "summary": "Lister les instantanés de colis"
+    },
     "get_pay_return": {
       "summary": "Page de retour de paiement",
       "description": "Page de retour hébergée. Vérifie le paiement, exécute le traitement, puis redirige vers `metadata.returnurl` si présent. Renvoie une page HTML (pas de JSON). Paramètres : `reference` (ou `trxref`)."
@@ -153,17 +336,23 @@
       "summary": "Statut du paiement par référence",
       "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp."
     },
-    "post_pay_search": { "summary": "Rechercher un colis à payer" },
-    "post_pay_search_nipost": { "summary": "Rechercher un colis à payer (NIPOST)" },
-    "post_pay_success": { "summary": "Confirmer le paiement d'un colis" },
-    "post_pay_success_nipost": { "summary": "Confirmer le paiement d'un colis (NIPOST)" },
+    "post_pay_search": {
+      "summary": "Rechercher un colis à payer"
+    },
+    "post_pay_success": {
+      "summary": "Confirmer le paiement d'un colis"
+    },
     "post_pay_webhook_paystack": {
       "summary": "Webhook Paystack",
       "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients."
     }
   },
   "schemas": {
-    "PaystackInitializeResponse": { "description": "Résultat de l'initialisation Paystack." },
-    "PaystackVerifyResponse": { "description": "Détails de la transaction vérifiée, y compris le code de retrait du colis le cas échéant." }
+    "PaystackInitializeResponse": {
+      "description": "Résultat de l'initialisation Paystack."
+    },
+    "PaystackVerifyResponse": {
+      "description": "Détails de la transaction vérifiée, y compris le code de retrait du colis le cas échéant."
+    }
   }
 }

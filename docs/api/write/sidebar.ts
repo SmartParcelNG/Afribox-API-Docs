@@ -204,18 +204,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "api/write/post-kiosk-parcel-nipost-reserve",
-          label: "Parcel nipost reserve",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "api/write/post-kiosk-parcel-nipost-verify",
-          label: "Parcel nipost verify",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "api/write/post-kiosk-parcel-snapshot",
           label: "Kiosk parcel snapshot",
           className: "api-method post",
@@ -246,12 +234,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/write/post-pay-success",
           label: "Pay success",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "api/write/post-pay-success-nipost",
-          label: "Pay success nipost",
           className: "api-method post",
         },
         {

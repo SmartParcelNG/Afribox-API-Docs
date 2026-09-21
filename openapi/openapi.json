@@ -1640,40 +1640,6 @@
         }
       }
     },
-    "/core/fees/nipost/": {
-      "post": {
-        "operationId": "post_core_fees_nipost",
-        "summary": "Core fees nipost",
-        "tags": [
-          "core"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-auth": "app_key",
-        "x-readonly": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FeesNIPOST"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FeesNIPOSTResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/core/fees/selfstorage/": {
       "post": {
         "operationId": "post_core_fees_selfstorage",
@@ -3136,74 +3102,6 @@
         }
       }
     },
-    "/kiosk/parcel/nipost/reserve/": {
-      "post": {
-        "operationId": "post_kiosk_parcel_nipost_reserve",
-        "summary": "Parcel nipost reserve",
-        "tags": [
-          "kiosk"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-auth": "app_key",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NIPOSTReserve"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NIPOSTReserveResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/kiosk/parcel/nipost/verify/": {
-      "post": {
-        "operationId": "post_kiosk_parcel_nipost_verify",
-        "summary": "Parcel nipost verify",
-        "tags": [
-          "kiosk"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-auth": "app_key",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NIPOSTVerify"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NIPOSTVerifyResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/kiosk/parcel/snapshot/": {
       "post": {
         "operationId": "post_kiosk_parcel_snapshot",
@@ -3432,40 +3330,6 @@
         }
       }
     },
-    "/pay/search/nipost/": {
-      "post": {
-        "operationId": "post_pay_search_nipost",
-        "summary": "Pay search nipost",
-        "tags": [
-          "pay"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-auth": "app_key",
-        "x-readonly": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaySearchParcel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaySearchParcelResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/pay/status/": {
       "post": {
         "operationId": "post_pay_status",
@@ -3504,40 +3368,6 @@
       "post": {
         "operationId": "post_pay_success",
         "summary": "Pay success",
-        "tags": [
-          "pay"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-auth": "app_key",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaySuccess"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaySuccessResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pay/success/nipost/": {
-      "post": {
-        "operationId": "post_pay_success_nipost",
-        "summary": "Pay success nipost",
         "tags": [
           "pay"
         ],
@@ -4327,171 +4157,6 @@
             "type": "string"
           },
           "imagedatetime": {
-            "type": "string"
-          }
-        }
-      },
-      "NIPOSTVerifyResponse": {
-        "type": "object",
-        "properties": {
-          "statuscode": {
-            "type": "string"
-          },
-          "statusmessage": {
-            "type": "string"
-          },
-          "parcel": {
-            "$ref": "#/components/schemas/NIPOSTVerifyParcelData"
-          }
-        }
-      },
-      "NIPOSTVerifyParcelData": {
-        "type": "object",
-        "properties": {
-          "sizeid": {
-            "type": "string"
-          },
-          "sizename": {
-            "type": "string"
-          },
-          "boxname": {
-            "type": "string"
-          },
-          "boxaddress": {
-            "type": "string"
-          },
-          "parcelamount": {
-            "type": "string"
-          },
-          "boxlockerid": {
-            "type": "string"
-          },
-          "boxlockernumber": {
-            "type": "string"
-          }
-        }
-      },
-      "NIPOSTVerify": {
-        "type": "object",
-        "properties": {
-          "apikey": {
-            "type": "string"
-          },
-          "boxid": {
-            "type": "string"
-          },
-          "sizename": {
-            "type": "string"
-          }
-        }
-      },
-      "NIPOSTReserveResponse": {
-        "type": "object",
-        "properties": {
-          "statuscode": {
-            "type": "string"
-          },
-          "statusmessage": {
-            "type": "string"
-          },
-          "parcel": {
-            "$ref": "#/components/schemas/NIPOSTReserveParcelData"
-          }
-        }
-      },
-      "NIPOSTReserveParcelData": {
-        "type": "object",
-        "properties": {
-          "parcelid": {
-            "type": "string"
-          },
-          "parceldetailid": {
-            "type": "string"
-          },
-          "datecreated": {
-            "type": "string"
-          },
-          "parcelreferencenumber": {
-            "type": "string"
-          },
-          "parcelrequesttypeid": {
-            "type": "string"
-          },
-          "parcelrequesttype": {
-            "type": "string"
-          },
-          "parcelstatusid": {
-            "type": "string"
-          },
-          "parcelstatus": {
-            "type": "string"
-          },
-          "sizename": {
-            "type": "string"
-          },
-          "boxname": {
-            "type": "string"
-          },
-          "boxaddress": {
-            "type": "string"
-          },
-          "boxstatename": {
-            "type": "string"
-          },
-          "cityname": {
-            "type": "string"
-          },
-          "recipientname": {
-            "type": "string"
-          },
-          "recipientphone": {
-            "type": "string"
-          },
-          "recipientemail": {
-            "type": "string"
-          },
-          "parcelamount": {
-            "type": "string"
-          },
-          "itemcount": {
-            "type": "string"
-          },
-          "dropcode": {
-            "type": "string"
-          },
-          "collectcode": {
-            "type": "string"
-          },
-          "boxlockernumber": {
-            "type": "string"
-          }
-        }
-      },
-      "NIPOSTReserve": {
-        "type": "object",
-        "properties": {
-          "apikey": {
-            "type": "string"
-          },
-          "boxid": {
-            "type": "string"
-          },
-          "sizeid": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "string"
-          },
-          "boxlockernumber": {
-            "type": "string"
-          },
-          "recipientname": {
-            "type": "string"
-          },
-          "recipientphone": {
-            "type": "string"
-          },
-          "recipientemail": {
             "type": "string"
           }
         }
@@ -6364,48 +6029,6 @@
         }
       },
       "FeesSelfStorage": {
-        "type": "object",
-        "properties": {
-          "apikey": {
-            "type": "string"
-          }
-        }
-      },
-      "FeesNIPOSTResponse": {
-        "type": "object",
-        "properties": {
-          "statuscode": {
-            "type": "string"
-          },
-          "statusmessage": {
-            "type": "string"
-          },
-          "fees": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FeesNIPOSTData"
-            }
-          }
-        }
-      },
-      "FeesNIPOSTData": {
-        "type": "object",
-        "properties": {
-          "nipostfeeid": {
-            "type": "string"
-          },
-          "sizeid": {
-            "type": "string"
-          },
-          "sizename": {
-            "type": "string"
-          },
-          "nipostfee": {
-            "type": "string"
-          }
-        }
-      },
-      "FeesNIPOST": {
         "type": "object",
         "properties": {
           "apikey": {

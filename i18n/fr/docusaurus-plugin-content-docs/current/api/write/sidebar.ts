@@ -204,18 +204,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-kiosk-parcel-nipost-reserve",
-          label: "Réserver un casier (NIPOST)",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-kiosk-parcel-nipost-verify",
-          label: "Vérifier une réservation (NIPOST)",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-kiosk-parcel-snapshot",
           label: "Téléverser un instantané de colis",
           className: "api-method post",
@@ -246,12 +234,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-pay-success",
           label: "Confirmer le paiement d'un colis",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-pay-success-nipost",
-          label: "Confirmer le paiement d'un colis (NIPOST)",
           className: "api-method post",
         },
         {

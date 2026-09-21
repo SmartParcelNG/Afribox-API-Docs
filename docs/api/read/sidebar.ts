@@ -106,12 +106,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "api/read/post-core-fees-nipost",
-          label: "Core fees nipost",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "api/read/post-core-fees-selfstorage",
           label: "Core fees selfstorage",
           className: "api-method post",
@@ -436,12 +430,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/read/post-pay-search",
           label: "Pay search",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "api/read/post-pay-search-nipost",
-          label: "Pay search nipost",
           className: "api-method post",
         },
         {
