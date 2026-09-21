@@ -1,30 +1,100 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Afribox brand theme for Docusaurus (Infima overrides).
+ * Colors and typography mirror the Afribox web app.
  */
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+/* ---- Fonts (bundled via webpack) ---- */
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../fonts/SpaceGrotesk-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../fonts/SpaceGrotesk-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Mono';
+  src: url('../fonts/DMMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* ---- Colors + typography ---- */
+:root {
+  /* Afribox green (#27AE60) */
+  --ifm-color-primary: #27ae60;
+  --ifm-color-primary-dark: #239d56;
+  --ifm-color-primary-darker: #219451;
+  --ifm-color-primary-darkest: #1b5e20;
+  --ifm-color-primary-light: #3fb96f;
+  --ifm-color-primary-lighter: #47bd75;
+  --ifm-color-primary-lightest: #63c78b;
+
+  /* Typography */
+  --ifm-font-family-base: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ifm-heading-font-family: 'Space Grotesk', var(--ifm-font-family-base);
+  --ifm-font-family-monospace: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ifm-color-content: #2f2f2f;
+  --ifm-heading-color: #2f2f2f;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(39, 174, 96, 0.12);
+}
+
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #3fb96f;
+  --ifm-color-primary-dark: #2fa763;
+  --ifm-color-primary-darker: #2c9d5d;
+  --ifm-color-primary-darkest: #24814d;
+  --ifm-color-primary-light: #55c281;
+  --ifm-color-primary-lighter: #61c68a;
+  --ifm-color-primary-lightest: #83d3a4;
+
+  --ifm-heading-color: #ffffff;
+  --docusaurus-highlighted-code-line-bg: rgba(63, 185, 111, 0.2);
+}
+
+/* Navbar logo: the horizontal lockup is wide; give it a sensible height. */
+.navbar__logo {
+  height: 32px;
+}
+
+/* Use brand heading font for the hero title on the homepage. */
+.hero__title {
+  font-family: var(--ifm-heading-font-family);
 }

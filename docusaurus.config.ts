@@ -129,7 +129,7 @@ const config: Config = {
   themes: ['docusaurus-theme-openapi-docs'],
 
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/afribox-social-card.png',
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -137,7 +137,8 @@ const config: Config = {
       title: 'Afribox API',
       logo: {
         alt: 'Afribox',
-        src: 'img/logo.svg',
+        src: 'img/afribox-logo.svg',
+        srcDark: 'img/afribox-logo-dark.svg',
       },
       items: [
         {
