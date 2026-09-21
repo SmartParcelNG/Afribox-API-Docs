@@ -1,0 +1,95 @@
+{
+  "info": {
+    "title": "Afribox API",
+    "version": "2.0.0",
+    "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, or a Business secret key. The HTTP status is always 200; the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`."
+  },
+  "tags": {
+    "core": "Public reference data: states, cities, boxes, sizes, fees, couriers, delivery areas.",
+    "customer": "End-user accounts: signup/login/OTP, profile, saved cards, parcels, support.",
+    "business": "Business/partner accounts: dashboard, boxes, parcels, wallet, transaction history.",
+    "kiosk": "Locker/device operations: setup, ping, parcel drop/collect, appless reserve/verify, snapshots.",
+    "pay": "Payments: parcel payment search/success, and the Paystack initialize/verify/status/return/webhook endpoints.",
+    "parcel": "Parcel proof-of-delivery snapshots (list, fetch, image).",
+    "admin": "Administrative operations: businesses list and wallet transactions."
+  },
+  "operations": {
+    "POST /pay/initialize/": {
+      "readonly": false,
+      "summary": "Initialize a Paystack payment",
+      "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup)."
+    },
+    "POST /pay/verify/": {
+      "readonly": false,
+      "summary": "Verify a Paystack payment",
+      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments."
+    },
+    "POST /pay/status/": {
+      "readonly": true,
+      "summary": "Get payment status by reference",
+      "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot."
+    }
+  },
+  "manualOperations": {
+    "/pay/return/": {
+      "get": {
+        "operationId": "get_pay_return",
+        "summary": "Payment return / landing page",
+        "description": "Hosted callback page. Verifies the payment, fulfils it, then redirects to `metadata.returnurl` when present. Returns an HTML page (not JSON). Query parameters: `reference` (or `trxref`).",
+        "tags": ["pay"],
+        "x-readonly": true,
+        "parameters": [
+          { "name": "reference", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "trxref", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "HTML landing page (Payment successful / not completed)." }
+        }
+      }
+    },
+    "/pay/webhook/paystack/": {
+      "post": {
+        "operationId": "post_pay_webhook_paystack",
+        "summary": "Paystack webhook",
+        "description": "Server-to-server webhook. Paystack signs the raw body with HMAC-SHA512 using the secret key; the signature is sent in the `x-paystack-signature` header and validated. Handles `charge.success` and `charge.failed`. Returns HTTP 200 on success, 403 on invalid signature. Not called by clients.",
+        "tags": ["pay"],
+        "x-readonly": true,
+        "parameters": [
+          { "name": "x-paystack-signature", "in": "header", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object", "description": "Paystack event payload." } } }
+        },
+        "responses": {
+          "200": { "description": "Acknowledged" },
+          "403": { "description": "Invalid signature" }
+        }
+      }
+    },
+    "/customer/cards/add/complete/": {
+      "get": {
+        "operationId": "get_customer_cards_add_complete",
+        "summary": "Card add callback (browser)",
+        "description": "Browser landing page used as the Paystack `callback_url` after adding a card. Reads `reference`/`trxref`, verifies the transaction, and stores the card authorization code. Returns an HTML page with the outcome.",
+        "tags": ["customer"],
+        "x-readonly": true,
+        "parameters": [
+          { "name": "reference", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "trxref", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "HTML page (Add Card Successful / Failed)." }
+        }
+      }
+    }
+  },
+  "schemas": {
+    "PaystackInitializeResponse": {
+      "description": "Paystack initialization result."
+    },
+    "PaystackVerifyResponse": {
+      "description": "Verified transaction details, including parcel collectcode when applicable."
+    }
+  }
+}

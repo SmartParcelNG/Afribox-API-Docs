@@ -1,0 +1,69 @@
+---
+id: post-business-parcels-cancel
+title: "Business parcels cancel"
+description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Business parcels cancel"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1vIzcM/SuCTk7geIwcXfTgbRdoimI3SNxTEMSaGdrWrkZSJY3X7sD/vaQ04w/YY1/20BxiWyRF8onkY8ONBSeCNPqp5BNujQ8fee2lBu8/rHAFKP9RCI2ffMiDWHo+eeOdBn8f8hJ84aSlK/CCaR1WoIMs4p0Tdn/f6TJb50oW9/ds4AEYqrFTZbasZQl3IzZDkQNvjfbApGd/zGbP7HE8/iUaoaRWgc6ljge5Kbds7oMItS9MCXO2kKDKEca7eXAgSqPVlk8WQnkYcgf/1ODDJzTikyb+lA4w9+BqFBdGBwyJRMJa1YaWffOUXcN9sYJK0LewtYD5mvwbFAFdWUdIBgk+2crvsD3S88FJveQ7VIyglhCEVLK8oII6QQZFR3+ZpfSIj3+ORk96YVBOGh0+0RtiQx+nL/GScAK9BoWhIep7hLL0tcJXEUtC/IvRD/PxeM4OOohuSdmDZ0IzcM44QvQn4XPwcxGjk/iuoHjb0U20sYAxyQLrJMBlebrCwQIcYB/ousrBXdTsSr3HUSfWorqWVFuhJO256EzvilaC8upFSeXyQ8h/+4IgUW8mudn0gWA216xEWToaLD3iQoZt/8UkvXY5JdqXTifutXdQSCux9m9r2JXRN1SwS6S6jCvoElyvkyTuNy+x/Hv7qjBKYZf0yhEEZYrv6L6/yMkBtcw1B73yVHCiMnWaIWcKKLT+YiP2j8XfRRC3xuZLOy/j+CQ/G3xqj6OL+KzhcVgf08WQr4WqoaWNHfJcBWFlOo6kOSPCCn9lXVdnbTNliS0zTm/l1uCSh9rhe/FVCNZPskwsnKRqt3LkK+FCsh3pZbZ+5GecmpQZTrayLiJVDtaPd5yiosH7cqC0zxtRWQXHFNQBeM48R7BLYhbCvEWwczl9fiIoMIkUyuNoPBr3BpgLrB1dkhUbvFJe6QGQYaZKIRWV1kgdkFGKAmxgf75+/cIM3s6ev77O2KDWihYFbXAUk83peoCMv5aC2Giecpt3G0A7CeMmMCGF6YGaYjCoPGSCfTpdRdKxcccST1QQSJL2kLh7pAFJAQj1Q2z9YRkxNTZTFbcUB9Y4DPxkLaGAT1aTQaTZX5mvEQLv7zDastNo+W4+ip2CVVaJSKppFvBD9KnQ2H4tO3mN5sDR/7NtrG3ogL2XWSWkpjxjXzRtNx1tlntyoqWjS5T2zRW1H2o2TS48/O3UbkfHWAEOq/3tnTrXSZFTHb+9o4cV9jTNsn2b/5bweZhRPPtGP99ndsPOYhrr9aru8YSgauY0TdOOWcVxy534gYf0f8Lxi4nvFZkunjVcCb2s48LD05309x++/BZ8
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Business parcels cancel"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/parcels/cancel/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"LogisticsParcelInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}},"title":"LogisticsParcelInfoResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

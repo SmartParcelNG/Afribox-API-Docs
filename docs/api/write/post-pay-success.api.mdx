@@ -1,0 +1,69 @@
+---
+id: post-pay-success
+title: "Pay success"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Pay success"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVktvGzcQ/isET7IhS4KPKnpQ0gBND4lgqyfDiEa7I4kJl2RJrmJV0H/vDLmrR62VA6SH+iBLnI/DeXzz2Enr0ENU1nws5Vg6G+IXB9svoS4KDEH2ZYRVkOMnSafyuS9LDIVXjm8QflLHNZqoiqRiLG5vwTnxDbe3t6IXEAWJxTlIrGpV4s1AzEjkMThrAgoVxO+z2VTcj0a/pEskqXXkc2XSwcKWWzEPEWIdClviXCwV6nJAJr7ceYTSGr2V4yXogH3p8a8aQ3xHl+R4l34qj+Ri9DWJC2simcQiMlg3pg2/BvZqJ0Oxxgr4W9w6JD/t4isWkZ5yngMWFYZ8V5GvJ7gQvTIruScg+AK1xyV6NAWaulqgv4iMHkyAgg04wC8AGami5qMpbB+b/Oz3LGjDmIyiEPK/80Q95HCi2aAmDyg5h0AO89eK1MGKE/PJmrv5aDQXRwwloeQgYRBgBHpvPQf+Pwrj8Z2LATqz72dC2GblbYsyTpVXlJQYQXVBSgpVQaSMeE3Fj7CjRSY6s/SqUSe4K6gc0KuKMuRyOtTfaKC6/MDCvlyTQVl6pm2HmF/t1l2ouO0UeiyUU0TGtxFubc0bEKKt0pe9R1Oi73wki7tfyPJu9Tn6UNk6l9VrZhEtN+i3VyArqoYy2gjXngj14qxDXIq31ZqKo7MuW1Ma0nVQvUU56CDcIejXyHFwm4rqR5vjbxChQ/TQNMzUPwmBL8S7QIHgUbeTqamfjpW+3ICusRkve5qDFca1bUcm9w+Ia/o1pDE5bIbnUHK+PZmdtdaeEiLXMbowHg5h6RVXhFODUIGPOS0Dsxpu7uWrOZvBgrpUWac+J3qb+xvJlnC3fTiOuw8vUDmNp+OpDVNn3zkCLnfSk0Qos7QpAU1MW8sm048cJfI1W3w/GA1GnX4soPhGlcC3RO+R3Z8my2j6TLSmMVU6q0ykaUORdFH88fj5k7CkXUw/P85ErzaaAiyMJdbxnfMNg5aGjQKeVPMcgnm7RDRUTcvEmAGT49hKxhC4L0C8o/Zo+AVXL0iej60/lQRu8JEleZVJ60tum2wA6O+wDcd9xtZUSFVadDw668nws82GDT7bbnppBP8qGjLdkLVli2hm4XyQ6pkIWEEq4dyWmOfiuMD9q8wPM/t/srw1lRypBIdOgzLsUyqVXVNUefekWjq4xIvomuuOZLvdAgL+6fV+z8eUX0+Uf3rmkvUKFszSp2fSuaZiZrIf6vt9jsTdjC04VPjrTWbfb29MEhuvYk9bA3NV8mDLS2iVGqn08J0O+XMs6YtNmUldL53tpAazqtOqI7NO/vsH6M4aow==
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Pay success"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/success/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"},"transactionreference":{"type":"string"}},"title":"PaySuccess"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"transactionreference":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"collectcode":{"type":"string"},"deliveryrequested":{"type":"string"},"deliverypaid":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"}},"title":"PaySuccessData"}},"title":"PaySuccessResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

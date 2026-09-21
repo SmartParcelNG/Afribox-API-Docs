@@ -1,0 +1,68 @@
+---
+id: post-core-fees-nipost
+title: "Core fees nipost"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core fees nipost"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFy2jAQ/RWNToRxMMPRnR5I2k7TQ8Ik9JTJBNleQIksuZJMQj38e3dlG8yEpj30UA4gdler3ad9TzU3JVjhpdFXOU94aZx/zIyFxyWAe9SSDDziXqwcT+45ufhDxHNwmZUl7cNd08qvQXuZhUQJGw5FWbJn2A6HbOAAGLrZcRBbVTKHsxGbo8uCK412wKRjX+fzGZuMxx/CJvRUypNd6mBITb5lC+eFr1xmcliwpQSVj7DG13MLIjdabXnibQURt/CjAucvcA9P6vBXWsg7d2a0x4rIhfWqtrL4yVFTNXfZGgpBK78tAds06RNkhEZpCTUvwTV7Jbbai3PeSr3iux3iJr0i0xdE8/pqdnM3RzM5upZDBmyXfo5BvW1aB70BhcchkPum42ZZgHNiRSBeG32+GI8X7BCDgOXUETgmNANrjSWQ/lHPh3NO9B3xo/pORtB49RzCWrHFU6SHwv35+GYuMYfMT58vf77n0qI4XdU+79/e5ifhBd+d9t22VxxuHCPgFZF3iDYxqeZhZvpDG/GNUBU007lDkhXg16ZjJWEg/Br/xUTCmACMm3pj9DmwG7BN5soqDFt7X7okjsXSytS84pSOXCGsL4XNQI30Kt5M+BsmN8EM4c6rLBB1sJmccSqHZuT2wKjPr6IoFfQZ0ENS6qUJILawdImnsytqFEttDpyMxqPxb8tIRfYMOqddbHBH1c9C9TjyU6WQG3lppPY44lkGpWff7m6umcHsjC6ADSqtcAaZNh5y2nMsQagqGymIHoumg0WnMq1wBLVJKGB64EooBoMjJthF5aSmE8oqRX9jNrbvcZBZ8ORptC7oW8MPKkCoF7F1B8Ezlc9MEZTQQmksFn4kfVTwkfwNAu8/MlchBM6dYbV5F9EScDGiG6FJKURgeTP//BLniNEcsb3OH11DfVCL/0TiW0p6pFJcKiE1NRbGvW7Z0T5RrcB0jMYFvVprWmJIXafCwXerdjsy411bnN77B2KglSKlib1/wNRr5CbYHl0vG0DO51TInrBvpXQXdTumYTLfje1TPTwREU/bJ6sICsuteEEjfSccFyZcUFDCYKu5EnpVBa3lTU76/AJ8R7kM
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core fees nipost"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/fees/nipost/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"FeesNIPOST"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"array","items":{"type":"object","properties":{"nipostfeeid":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"nipostfee":{"type":"string"}},"title":"FeesNIPOSTData"}}},"title":"FeesNIPOSTResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

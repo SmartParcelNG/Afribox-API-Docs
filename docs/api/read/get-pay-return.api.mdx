@@ -1,0 +1,69 @@
+---
+id: get-pay-return
+title: "Payment return / landing page"
+description: "Hosted callback page. Verifies the payment, fulfils it, then redirects to `metadata.returnurl` when present. Returns an HTML page (not JSON). Query parameters: `reference` (or `trxref`)."
+sidebar_label: "Payment return / landing page"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVMFuGjEQ/ZWRTyDRBXGk6oFKVZOqbWhDe6lQ1uwOYMXYju2lQYh/75tdSFCqnHrqCXbmefz85s0clA8cdTbeXddqotac74Le30XOTXRqoGpOVTRBAEhf+ZS5pkpbu9TVPQW95oJ+cjQrw4nyhhHab9nlAa0auzI2kcF/JBxFrk3kKgPnqdxy1rXOuuiuaqIt6bfAQuSEAgV9bxOJtKOr+ZfP7WXUcz7Tp9ubr/2CvjUc9whHjWIc04TKyCuO7CouqecjlTk+IlT2Czwl63VSk18KDNVioB7fRNa1d3avJjk2PFDPlQA7KIcPvPmpJEoYEeFBrsVH5IcGD4JsK20Tzqdqw1utJgeV90GOphyNW6vjcfBUrSP0D6UWgk7Bu8RJ8uPRSH5e9En0strVOHPSbdb1hVJTVZwSukNDEjErvw0Wr64hEpgqfszsEup0Ktwz9LkUa6B22jbciSZ0INnGn8yjRMW8wccQMg+73g4RTRx3Z2HRawA2OYc0GQ71Kpqlf9TBFGmrY0YXKraFWw93478MOO3AMImvm0qC1NuN+0p4GLfyrWImW77ATmfXQhq3dzXGxagYvVpZfM2ullPUuxVCs5YQ/Da1lpAK3jiYWEPH0HmRPKrT7OZ2Tr3GWcgryoqiNG3E+9lU7YyRSbQzWixd4sHQtiTj2rkRC3DKtPT1fiKAaQj2fEzIADwgTe+bZJzcEJol8l0YVr/IJK4gvGQKmqP01Xw+o5R1bpIQ0Pa33ieCcd62N/smwwMsqcjBR5nwEykh0xIuu+OVr2WyytGopHdnK/XBtj4jtgjAbyW8BCtgXWy1k6ac7H92YWcMOPDSpC97clCVdzBj/u83TzfDGaM1DFZj9CFOOwWH07h0W0lG+7R3ZUNt8GZJHQ5LnfhHtMejhLulIYNUm6SX9mJtdMN6ubFOs6qU7KBX8E876Rm8kI9oBI2bFseLKf/4YY498QdDRSYP
+sidebar_class_name: "get api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Payment return / landing page"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/pay/return/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Hosted callback page. Verifies the payment, fulfils it, then redirects to `metadata.returnurl` when present. Returns an HTML page (not JSON). Query parameters: `reference` (or `trxref`).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"reference","in":"query","required":false,"schema":{"type":"string"}},{"name":"trxref","in":"query","required":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"HTML landing page (Payment successful / not completed)."}}}
+>
+  
+</StatusCodes>
+
+
+      

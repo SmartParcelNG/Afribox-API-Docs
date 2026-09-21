@@ -1,0 +1,69 @@
+---
+id: post-business-pendingdropoffs
+title: "Business pendingdropoffs"
+description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Business pendingdropoffs"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1zGjkQ/SsqnbALA+UjW3sgyVZttrYSl82eXK4gRg0o0UhaSUNgp/jv2y3NGFhm8B5yiA8Y1K3+eOru1zW3DryIypqPkk+5syF+WVZBGQjhiwMjlVlLb51drQIf8ijWgU+feavCX4ZcQii8cmQDLcyquAETVZGMTtntbavLXLXUqri9ZYMAwFCNnSuzdaUk3IzYHEUegrMmAFOB/T6fP7D7yeSXdAkllY50rkw6WFq5Z4sQRaxCYSUs2EqBliOMd3fnQUhr9J5PV0IHGHIPf1cQ4ju8xKd1+qk8YPLRVygurIkYEomEc7oJbfw1UHY1D8UGSkHf4t4B5muXX6GI6Mp5gjIqCPmu+gb7E70QPULJDwcEUUVNR3/atQqYfHjIOH9ocT4cSK1FINnD7OnfOdaPGQkwW9DoHHF9xWCcv5aIu1gTpp+suVtMJgt21EH8JOUHgQnDwHvrCbMfhMDRTwcKQ34WX6eGE74AHU5kwnuxR0cqQhnejiAbkBCF0kp2+pCYfYElEqFbnk14WIEHU4CpyiX4Ts22ynsctWIjymvZNsVJ0h5DF3rXsEsYXzWUVbpfSP3TFwSJejNZ2l0fCHZ37ZaQ0tNM6REXKu77DZP0mnFKtC+dVtx730OhnMKmeFvDbax5QwXbR+luXHEQgO91ksX912lQ9zZcYbXGLumVIwjaFt/QfX+RkwNqmWsOeuW54ERpqzxcLhRQ6EJnI3YOzWTug4iCH/7PVH1sxmmaruRthw8ecLIRodU8TetTvhjyrdAVNLxxQKIrIW5sy5I0bUTc4K9x29vj//DlmNOT+S347KLy+Gx8E6ML0/FYrLyiondqFErhY4ZnZNbj7T2/YNWszHDAyapIZDnY3t9wCosG8+OR1H7bidJpOCWhE4yVWdkEcINWa3j28JEyxlCzw/vRZDTpDWMpsFCMpFts8ETR59dAnplpjYQknVUmIq8UBbjI/nj6/IlZtM4ePj/N2aAymhYCY3Hu0p3zNQCZfasEcdIiZ7Bomb4Ze4nxp6QwOxJUCgaVh0ywd+crRz62/lQSaO5HkuR9I+0YeRpSAEJ/F/twXDpshZ1Tpm3Eg7MeAz9bPyjgsxVkkMj2VxYqhCCEG4xWthoN6y1GqS2wmEqRqDU3Pj9Gf7F/nT1HfaTqn2ztato3Yo+NnRbKUKKp/Ouma05WSITgIk/aKzfUZahY10sR4C+vDwc6xgrwWNPPL9SgXokl1fHzCzrYYOvS4Hrt5vcZnrs5hfPaz5dbzWHY3piler2qezoIqJo5jc68S5ZptnIvvuMhfU45frHpuRKtpbOaa2HWVVp7eLZJf/8Cq+4Qsg==
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Business pendingdropoffs"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/pendingdropoffs/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsPendingDropoffs"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}}},"title":"LogisticsPendingDropoffsResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

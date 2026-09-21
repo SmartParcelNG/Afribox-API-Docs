@@ -1,0 +1,68 @@
+---
+id: post-customer-parcels-timeline
+title: "Customer parcels timeline"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer parcels timeline"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFuEzEQ/RXLp7RKs1GPQRxSQAIOULXhVFWNd3eaGLz2Ys+GRqv8OzP2brKBlEqIAz20W8+zPX7z3kwrXQ1eoXb2QylnsnYBH4omoKvAP9TKF2DCA+oKjLYgxxLVKsjZnewx8n4sSwiF1zUfQkfMG1yDRV3EU2fi/FzVtfgG2/NzMQoAgsLiGCRWjS7hbCIWFPIQamcDCB3E+8XiWlxOp6/iJoo0Bnld27iQu3IrlgEVNqFwJSzFowZTTijPpwsPqnTWbOUMfQNj6eF7AwGvaI+ctfFf7aHsw4WzSBlxiPI1XWbZ18CPamUo1lAp/sJtDfRMl3+FAumm2jOFqCGkvZqeOsAF9Nqu5G68p0yXJ8OJ7BJQaXMSQhjUaHjpTXfUddyz6Muz2zGoJzDmQ+Txn+MS3SQiwW7AUPJUlj2FWfqsIAS14pJ8cvZiOZ0uxQFD9JfMDwShrADvnWfK/xGDh3tO0nSU30lEr9YwiCrv1Zau0ghVeDmHVAv0qvhGh/5twXqIh0fwYAuwTZWTZZ5Hpsf98bAEOQmw/MpU4hPRkgpWkCkQ/kpcbxUquXsZd9OpL4qR0PBEogiUFLeNVkZzDN05lhtlGkg23FE3qQDXru9FXBmFa/ov6+2TdTxkfZ0zAgXwG/DpisYbwq8R6zDLMvXode6eyJeTUCmPaffErrLNpfytdyWwIDWUTRFb02hzeSY5L9bxzaGHvHtSVW1g6PmezGOrH1Z/FcygONo+uliVjts+kfn1B2aInpYSvJxMJ9Nn085Jr2BL3iVGt/zaVBuy8dwY8ntZO22RbFsUUKP4ePv5k3B0urj+fLsQo8Ya8pWwjjTCe46bNPXdjVZs+WV68bLvw11rjf14xoD5wf8xGQKPhRJXpG3LN9RNTvG07PwwElijyJE0DeIESJrnBJT5obbhMBJcgwURzSEPtfOU+NFw4ISPBsQo9rLXIjREQQhnlG3ZI7qmspxEt5H6KhWtZFU11LvoBCgGY/GoHu2hFf4n07AzO5IZs9oobfmF0Sdt56/BRN93GnnopfTJk37NliRs2+YqwBdvdjtepup70v/dPZvZa5Wzhu/u6Y412Zw73t75bxIzFwvOaO/93wfGbtzvmEet/hE77BqsZALn3Ziv4hyRXv2gRf49k/ThYqViF41rrTTKrpo4UWQ6k39+AtA9M1M=
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer parcels timeline"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/timeline/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"CustomerParcelTimeline"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"timelines":{"type":"array","items":{"type":"object","properties":{"parceltrackingid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"narration":{"type":"string"},"datecreated":{"type":"string"}},"title":"CustomerParcelTimelineData"}}},"title":"CustomerParcelTimelineResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

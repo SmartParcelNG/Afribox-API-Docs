@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-collect
+title: "Kiosk parcel collect"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Kiosk parcel collect"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVktvGzcQ/isET7IhawUfVfSgpAWaFkgMWz0ZhsXljiTGXJLlQ7Eq6L93htQz1so95BAf7DW/ITn85vHNmlsHXkRlzaeGj7izIT6/KBtenp3wEvSztFqDjLzPo5gHPnrkGeZPfd5AkF452oxbxykuwEQl82kjdn0tnGMvsLq+Zr0AwBBmp0ZsnlQDVwM2QchDcNYEYCqwPyaTO3Y7HP6SNyGSdKR1ZfJCbZsVm4YoYgrSNjBlMwW6GaCTrzceRGONXvHRTOgAfe7hnwQhfsBNfLTO/yoP+NroE8LSmoguEYQO661r1ddAr1rzIBfQCvqKKwf4Tlt/LXw4T9xFBaHsVfjWI7sQvTJzvunz2r6q5iySjLbyhZ5wBkY8qqhp6WMJwl0OCSKE7fjKtyNX9Oc0IveFNzBL0OgqRmHPWFU+WwhBzCkCn625mQ6HU3awQbYbYgMCE4aB99YTwz+Ir8M9Z5k58e+sRcnP9y8qdh0BKGADUagukwYZkJhUES4d4WEGHowEk9oa/EXLnI4F/T9WHX5Jm7wCb0R76ZzC43mK1b/QuRtz9hImmgbz7/y5CNOt3WdLFVedoAepnMIEe9/CLax5xwRTUenzrwfTXGCvwN03FLz7eJlCtC34i3knWptKJb0xUOi67ES3sU31ScGfTZLcODrLDGNFHajTzz1+Ia2LQWeidbWx30QU3ej9trvlZodG8IoJFfCZJEFrnlvtcbPv86XQCbZNf4Pq1EJc2J2mUVcQcYH/VVm+qsJgteWn4hRRv8Rn5OOTx6jyRYwujKpKzLyinHdqEFrhY9k7MPNqecvfyGAxZtiEmiSzyvWWt1ecXKIeeX9Qo99fRes0HKvHjrW9aBwWjrXiOFHMzGbWtyzu7h/ffSJS8EXFr9vBcDDs9LYWGEPT0C7We6BHljCgMoy1RglpnFUmohJICS6yPx++fGYWT2d3Xx4mrIfOYTtgxmKXpD2nMo/KvVSCVGRaHjrdKfm2zWVFH5HB+CAp2Rk07jPBPqSgDN3gUo14Wbb+GAnUpSMhZZ7IM0TJSnJA6G9iFQ5DhU1YFW2eNjw469Hxk/GCHD4ZMXpZHn9lISEFIVyht83OYqtT00EuTsy3VuR6LO2F/0Upx0rasMNA9V3x7oX1JxmltnUcsfQqp4UyeWLxuogqFdNuFtyL8b7h4BdNiAsqPTRbr2sR4G+vNxtaxph7TPbHJ6par0RNmfv4hMcvsJ6pzexL/GMh5WZCzuyL/O3ksenvdoxzhl60Pe4OlL+53Mp02Jb68uIbLtLvEccPm4OUu1teW3MtzDzl0YSXM+nnP7pM9jU=
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Kiosk parcel collect"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/collect/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"unlockcode":{"type":"string"}},"title":"CollectParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"couriername":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"collectcode":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"},"lockerstatus":{"type":"string"}},"title":"CollectParcelData"}},"title":"CollectParcelResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

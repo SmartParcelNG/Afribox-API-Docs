@@ -1,0 +1,68 @@
+---
+id: post-business-dashboard
+title: "Business dashboard"
+description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Business dashboard"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1vIjkQ/SuWTyQiNMqR1R6YmZV2VquZKGFPUTS47QI8cdtefzBBiP++VW4aGiXp2cMelgM0rudyVbneq95z5yGIpJ39rPiMexfTtzpHbSHGb0rETe1EUHzMk1hHPnvknZE/jbmCKIP2tBv3znPagE1aFnczdn3dYZnPtdHy+pqNIgBDGLsEs3XWCq4mbIGmANE7G4HpyH5fLO7Y7XT6S9mElmwSrWtbFmqndmwZk0g5SqdgyVYajJpgvC83AYRy1uz4LIUMYx7g7wwxfcA9fLYvf3UA1ZmlswkjIpPw3hwjq75HSm7Po9xAI+gp7Txguq7+DjLhST5QDZOG2O7Vz7Dr4WIK2q754YA11MnQ0p9urSPmHj+dCnw4EKBLvXjCtOnnssj3bQnAbsHgsVjQU/JV+9hgwcWaivnF2ZvldLpkZwwWTlFmEJmwDEJwgYr1H+V+PueN/Mf8Ir43EeeG++lZtXtpH145MU4+Q3jbluN7Fi+CBBM9YIHsWuFZbrX6N1Cv5XP2w0iEgMp+CBMAV2ALaggkhcUfMwxKLgkzVJmtQD9pCIF9COG9WI4YJ2X2ehjzXiiDXPgkkvgJ5P7Ik0IbRMILtm/EliWJ2vNCwL4CjPlWmAwt1Q+oXA2kjesEj3pLpA3+qzrFqk6dWKG1FCO0vnPAhPgmJR9nVSVWQWMnIuknsREhtVcwsetqe8tfCWQLZtjIKsuie6Pt7RWngIhq92eB+u1FNN5AX1B61dV25UpVjwXqHM/vPlOqGGp74O1kOpm+G0Yt8I6sol1s9EDR35XoUTnmxqDEKO+0TagUUoJP7I+Hr1+YQ+/s7uvDgo2yNaTt1iVQtOdS0VGkt1qQyizbDJadaB91uIj3jADzs+SUYBA8ZoJ9uJwe7bILfUsEibwhSzs6yrhoZYYCEOaH2MXz/HA5SdeUwRLAu4CBX0wSCvhimoyKfP7KYsYSxHiF0aoOcdSx5aRQD9uoEUUsrWjoTk4x9ofoxUXsz7L7P5udR7YmpFXljdC2SGcoTG6Z0nsP6Kv2mNNrwYY4hZD9vhYR/grmcKBlvPWAffz4RGwMWtTUu49P6HqDPIXQo+7HtjA3CwrkRN7Xs+kw7nbMS48OYvu0pw5GcH18F2jKyOJB/MBF+p5xfHDlooqyl7U9N8KucxlevPVJn38ApRRBlg==
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Business dashboard"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/dashboard/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsDashboard"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"dashboard":{"type":"object","properties":{"boxes":{"type":"string"},"lockers":{"type":"string"},"users":{"type":"string"},"parcelspendingdropoffs":{"type":"string"},"parcelspendingpickups":{"type":"string"},"parcelspickedup":{"type":"string"},"parcelsretrieved":{"type":"string"},"parcelscancelled":{"type":"string"},"parcelstotal":{"type":"string"},"lockersvacant":{"type":"string"},"lockersreserved":{"type":"string"},"lockersoccupied":{"type":"string"},"lockerstotal":{"type":"string"}},"title":"LogisticsDashboardData"}},"title":"LogisticsDashboardResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

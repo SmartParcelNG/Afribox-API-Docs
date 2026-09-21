@@ -1,0 +1,68 @@
+---
+id: post-customer-dashboard
+title: "Customer dashboard"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer dashboard"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1v2zAM/SuCTmmRxkGOGXbIPoB1h65os1NRNLLFJmplSZPktIGR/z5SthMbzTYM2GE5JI5ISeTje881tw68iMqaS8nn3NkQH4oqRFuCf5AibHIrvORjHsU68Pkd74L8fswlhMIrR7tx76KKGzBRFem4OTs/F86xZ9idn7NRAGAYZsMktq6UhLMJW2LIQ3DWBGAqsC/L5TWbTafv0iaMVDrSujJpIbdyx1YhiliFwkpYsUcFWk6wztcLD0Jao3d8Hn0FY+7hRwUhfsA9fF6nv8qD7MKFNRErohDWq9vKsqdATdU8FBsoBT3FnQNs0+ZPUES8yXnCLioIzV6FrfbyQvTKrPl+fIBMyRNhjEcVNS19bPM+HWDf7yneAZPuQVDoZwj9TQMQmC1oLArhPkCTNY8lhCDWBPWVNRer6XTFjjkIq6S+ITBhGHhvPUH5j5A53nMSnUF9JzOONPzjXQZe2nGHk0cpo23xjOw9FQTjbRUhWg+Fcqpt/W05oNUWEoP+apqfRBS/z7hpB53mTgW9Iv4BMSfl1Tzxq0/wMd8KXUHD5D0KsoS4sZ2OCRwRN/gv6xiYHaDMMBrAYx/N2ZXXmLiJ0YV5lolHr3L7ipyehFL46IQvQE/MOtvO+BvdN8kMJyGrIsl6tJ2dcSqIuHJz1N/nV1E6DX29dNANZTIY2aNNSLeoddctri8JAGygKWM2mU6mvywuFzh2I2kXG91ST9epJxTEQmtUjnRWmYgCKApwkX29/XbFLJ7Orr/dLtmoMhoZyoyNIGnP0MbQmbZKkHhWTV+rzqlaNibHmlPC4qikVAwmj5lgH6qgDN3gqhzjzbL1/UiAwkOkSOOXySMb9VABQr+IXTiaJlK5QDgp5MFZj4UP7JMKHljoKLnCexYqhCCEM6xWdhmtPFcTmgiRqxTJA4wo+0xm/TfGYBD10U3+kxdFq9yIIsucFspQa0kGdaub3suub0JjTu++DSkMU+o6FwG+e73f0zJO2yOr7+5Jm16JnDh7d49Hb1C1ZDwHIX9sALlYUiEHKb+12v2427FI3Pxtbt8EiLmYnLcvvjI5MPfiBRfpe87xwaYBJbdMazXXwqyr5MW8OZM+PwHJcdp1
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer dashboard"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/dashboard/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"}},"title":"CustomerDashboard"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"dashboard":{"type":"object","properties":{"newrequests":{"type":"string"},"inlocker":{"type":"string"},"enroutetorecipient":{"type":"string"},"delivered":{"type":"string"}},"title":"CustomerDashboardData"}},"title":"CustomerDashboardResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

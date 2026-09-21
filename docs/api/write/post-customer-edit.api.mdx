@@ -1,0 +1,69 @@
+---
+id: post-customer-edit
+title: "Customer edit"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer edit"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFu4jAQ/RXLJ4ooQRyz2gOtKm330KKWPVVVcZIpuHVsr+1QUMS/74yTNETtrvawh+UAwTO237x5b1JzY8GJII2+LnjKrfHhKa98MCW4Jyhk4BMexMbz9IF36/xxwgvwuZOWNuK2RRW2oIPM40kpG4+FtewVDuMxG3kAhmE2TGKbShZwNmUrDDnw1mgPTHr2bbVasvls9iVuwkilAq1LHRcyUxzY2gcRKp+bAtbsWYIqpohzf+5AFEarA0+fhfIw4Q5+VuDDBW7iaR3/SgdYaXAVhnOjA0KiEAJWLbTkxVNVNff5FkpBT+FgAes02QvkRIl1xFuQ4Ju9Ems9yfPBSb3hx8k7Z7L4NKxFCZ8EMBJkULR02R5wRb04HinUsRXvRqboZ9iPu4Y10DtQCBR78M5X0jyW4L3YEP83Rp+vZ7M163OQ64K4AM+EZuCcccTvP2Krv+dTSgb4/p6bu5aUyBHmwB6xesRH0q157M+pQiZ8J1QFrVKOKOkSwtZ0JiDUImzxX9K1MCE7JBjw4HbgmnMrpzBnG4L1aZKIZyczs0c9TH0pXLDC5aCmepPs5vyDaZpkhuwUVR49MdrNzzhhIU7veu1e7UVpFZxqreNjKLF+tVHWCa9SP5tIZ0ted/1ieU1kYEENrPl0Np39Fmwm8lfQBe1io3uqcRlrRCEtlELFFdZIHVA4eQ42sO/3tzfM4OlseXu/YqNKK+ws0yZAQXuGMwFtvpOCRLdu6lx3tm+NHO2fUsKiV2AEg8kTJthF5aWmG2yVYbxZNu404iF3ECjSDJ84cBrVEQCh3sTB9xPIVCFHeinkwBqHwAeziAAP5tEouukr8xVS4P0Zoi26jFbW6yl1hHRWiuidtludoFk7eQc9qHsD/icDt3VmQK8lVgmpqaroiLp1z8lLAy3ZFEWvjy1ZDKN1nQkPP5w6HmkZe+xQ2w+P5E4nRUZKfXjEU7foWzykt/Jlw8X5ijC8m/njYDpOuh2LqMg/5p5OAdIrJmftq6OM84o78YaL9J1yfDCxN3GsxbWaK6E3VZxcvDmTPr8Af8WSqg==
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer edit"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/edit/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"name":{"type":"string"}},"title":"CustomerEdit"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"CustomerEditResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

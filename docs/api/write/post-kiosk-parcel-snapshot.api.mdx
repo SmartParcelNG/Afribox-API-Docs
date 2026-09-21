@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-snapshot
+title: "Kiosk parcel snapshot"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Kiosk parcel snapshot"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1vGjEQ/SuWTyQiLMqRqgdSVWpaqY0SeoqiYNYDOPHaru2lQYj/3hl7N7vkA6lSD+UAZmbsnY/3nnfHrQMvorLmUvIJdzbE+0dlw+O9E74EfR+McGFtIx/yKFaBT2558vO7IZcQSq8c7ca90zquwURVpuMm7PRUOMceYXt6ygYBgKGbHQaxVa0knIzYDF0egrMmAFOBfZnNrtj5ePwhbUJPrSPZlUmGhZVbNg9RxDqUVsKcLRVoOcIkn848CGmN3vLJUugAQ+7hVw0hXuAmPtmlv8oDlht9je7SmogpkQsT1k1qxUOgqnY8lGuoBK3i1gHWaRcPUFI/nKfmRQUh71VYay8uRK/Miu+HfGGflHzTk5t81CkhCnU8xMMSPJgSTF0twL+Xg7blI/gjMe2sYdP0492IQC3FB74ZpCqxOuKRIkJU1VsRGBJV1GS6aZ7002krJLrI2UIkNRzhQT+HILzOUAGzAY3TQeA9g6TIywpCwCwQdN+tOZuPx3PWxSDAJAEAAhOGgffWE6j+EUS657zd3H5+R9v/Dhpad+313zT3uulqajJGwRMWG7BAYvuOJ1T3eTXkG6FraPi1RyGoIK5tqx9Utohr/FckpSgySIs2uwIDAvgN+Hx+ypavY3RhUhRi6RViFdk0CpXwMW8emVWxOeevJCcHM2yzrMukKIPN+QmnnGg41x3zPz+JymnoM7XtzDNBO0PHy5e2jo4vPa9YeHD+Ifk61wvOvXZ0VOt8DcNeGDpi9SlnljaBoRl927Lp1SUNEoeQW3k+Go/G7zZ4ITB7I2kXG9zQXK5SzciiqdZIN+msMhFZU5bgIvt68+M7s3g6u/pxM2OD2miENTNYp6Q9h7cACvtGCWLcPM9m3gp9I91J8CcUMO3ol5LB4CET7KIOytATXL1AfzZb3/cEKD1E8uTrJl0xmXKUgNC/xTZ0d46tY2mrdBl5cNZj4ge3DyV8cAMNkpR8ZKHGFoRwgtnKNqLh9HyUNBs5UokkHEakaX0jmrCMIta7cA9msetU6D+5aht9iagXhdNCGaqu0Z6sAO27QkuRHqxxSa8QaxIMjNvtFiLAT6/3ezLj1D0y9PaOtMYrsSDs3t7h+WtUIWLQszB9yl05m1E2z9L0Wqf3w3bHNGH0aGxf0wjBicP59aFK8s29+I1G+p5wXNg0paTyybbjWphVnWmaz6TPHw3kTgg=
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Kiosk parcel snapshot"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/snapshot/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"boxlockernumber":{"type":"string"},"snapshotevent":{"type":"string"},"snapshotsequence":{"type":"string"},"image":{"type":"string"},"imagedatetime":{"type":"string"}},"title":"SnapshotUpload"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

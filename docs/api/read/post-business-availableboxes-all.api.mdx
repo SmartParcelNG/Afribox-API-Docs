@@ -1,0 +1,68 @@
+---
+id: post-business-availableboxes-all
+title: "Business availableboxes all"
+description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Business availableboxes all"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1v2zgQ/SsET06gWEaOLnpwugs0xaINEu8pCOqxOLGZUiSXpNwYhv/7zlCWbbVRe9nD5uBI88WZ4bw32knnMUDSzt4qOZXexfR12URtMcavsAFtYGlw6V6RXo2RhUywinL6KDsr+VRIhbEK2nMYCjJr0hpt0lWOOxWXl52t8M3S6OryUowioiAz0TcWq0YrvBiLOakCRu9sRKGj+Dif34nryeRddiJNYxLLtc2CpVNbsYgJUhMrp3AhnjUaNaZ8X68CgnLWbOU0hQYLGfCfBmO6IR853eVXHVB16srZRBmxCrw3h8zKl8jF7WSs1lgDP6WtRyrXLV+wSnSSD9zMpDG2vvobbs/sYgraruR+Tz3UybDohvv6l46JpCzvKs4BqFr+1+/tfVs52g0aOo36eKy5bB9r6jOsuIefnb1aTCYLcbKhfikuCKMAKzAEF7hH/1HJp3PeKLuQvfzetMhzdqaBEGBLx+iEdfz9+eSu1VDgwbRIZ6Ee1FXgodLprZsspHHVNwzxCJShIKBUYKwMqI2zK52a4QQNXcignrMbqJtVg8XxfeCAY9YNeh7K1raJvzR4DjhYUm+ufwOSPyCB3L+JnPsDZDKCyABfKe9IQZmkdjJD8JwDCrkB02AL9j1xV41p7Tru45GCtKa3suOsss+CJbFgSWYRw4YqzIc0wZDHOiUfp2UJz0HzlXs9jjWE5CFUaMZ2VW6u5U9c2RoLGmTVVJkCR5vrC8mZMfzuT1z15yvUvh2xjlvOOqrts8t9PDSoCzy7u+Wa+bbygdfjyXgymMYS6N6sYi8xeuDs73L2xCYzY4h2lHfaJmKPqkKfxKeHL5+Fo+ji7svDXIwaa5jmrUuo2KdP7sTXGw3MPIu2gkXH3wdKzjw+ZYPZiYZyMmRcCBA3/UXSil0410SsAibWtFskb46WejgBMN9hG0+rxDWpcnXeMQG9C5R4b6lwwr3FMsqU+l7EhloQ4wVlqzqLA7ctxnwjPE815OFugSSPOfZHSrSL9QdAHDn5f7ZPD0BNBLTSG9CWa80I2B2wc/ZtUMh+qSzIxfJXw5oBR9a73RIi/h3Mfs9imoRAs/34xFANuqXVxyc6ZU0gxnCG6w9tj67mnNMR2T/vsH3Reczy3P7S9pwTeKol01X7qVDnHSIDfCch/04lPbh8Z5ncs2wnDdhVk5ecbGPy37+ybktN
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Business availableboxes all"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/availableboxes/all/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"BoxesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"boxes":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}}},"title":"BoxesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

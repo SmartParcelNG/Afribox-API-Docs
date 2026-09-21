@@ -1,0 +1,69 @@
+---
+id: post-customer-support
+title: "Customer support"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer support"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1vGjEQ/SuWTwQRFnGk6oFElZoeEhToKULF7A7gxNiuPwhoxX/vjHeXBYVWqtRDcyC782HPvHlvtuTGghNBGv1Q8BG3xocfefTBbMH98NFa4wLv8SDWno9eeOPi8x4vwOdOWsrFzHEMG9BB5umwEet2hbXsDQ7dLut4AIZudhnE1lEWcNNnM3Q58NZoD0x69nU2m7DhYPApJaEnqkB2qZNhaYoDW/ggQvS5KWDBVhJU0cc697cORGG0OvDRSigPPe7gZwQf7jCJj8r0Kh1gs8FFdOdGByyJXFiwqkvLXj11VXKfb2Ar6CkcLGCfZvkKOUFiHUEXJPgqV2KvZ3E+OKnX/NjjWmzhqsNujL7uwSuluurxsbr/mm8L3ov1tRPRGWRQZLqvJzitZ3s8krdBP/WCyNO/y/k+V1MAvQOFjeNMT/hn1WN9Pc7z0ejbxWCwYG0Mzq4gbMEzoRk4ZxzN6x+h395zHbTz+v4KnucalwQTDWaP5XoskdRQ8jTyc9L1+E6oCDX5jnMaStiYRlpUuAgbfMsaJWW1yDL0eXA7cNXR0SEB+CYE60dZJlZOLs0eWdb3W+GCFS4H1dfrbDfkH6RYBTPEqIh5UlpnN7zhVA4h+9wq4stebK2CcwY3qDTEbd9rvraGmqat4cTO1nRC/WweUq9MGkMNelPwePJACCIEVSPD/qA/+G17S5G/gS4oi3WmhMokoYIEHCuFTC2skTog4fIcbGDfpk+PzODpbPI0nbFO1AprY9oEKCjncjfhutlJQWRdVMgsmvVTL5S0hkYUMG6Zm4rB4B4T7C56qekGG5for8zGnXs85A4CeaolmBZfxVYqQKh3cfDtJjQx5MgZcjkg0kBxsROp4Iu92Ekq/Mx8RAi8v8FqiyaiHsyin1YRknMrkubqqTdCYO1H4GIMZavd/2T316IOqNHMKiE1NZZkVNaqO/t+EVebvuhjtiF1YkBZLoWH704dj2TGSTvUxMuchO2kWBJfX+Z48AYlj+e0W+C+guN2RmWc9sDHtXbsNRnjxMs/xp4vEGItBi/rD9k2bTvuxDsa6XfE8cGk8aSlmGwlV0KvY6XA6kz6+wVj3sWq
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer support"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/support/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"subject":{"type":"string"},"message":{"type":"string"}},"title":"CustomerSupport"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"CustomerSupportResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

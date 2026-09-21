@@ -1,0 +1,68 @@
+---
+id: post-core-cities-info
+title: "Core cities info"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core cities info"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFy2jAQ/RWNToQhmOHoTg8k7UzTQ8Ik9JTJBNnegBJZUiWZwjD8e3clO0ATmksP5QBGuyvtPr33vOXGghNBGn1V8Zxb48NjaRw8ljJI8I9SPxk+4EEsPM/vOYX4w4BX4EsnLdVh1aQJS9BBlnGjnPX7wlr2Apt+n/U8AMMwO05ii0ZWcDZkMww58NZoD0x69m02m7LxaPQpFmGkUYHWpY4Lhak2bO6DCI0vTQVz9iRBVUPscX3uQFRGqw3Pg2tgwB38bMCHC6zh+Tb+lQ6qLlwaHbAjCmG/qu0se/Y01Jb7cgm1oKewsYBjmuIZyoAnWUeoET6pVuKoB3k+OKkXfIcnyLCR1TshjAUZFC1dRqCvCOfdjgIdGnFzRIJ+jvG+TaiAXoHCThDjVzyy9FiD92JB+F4bfT4fjeZsn4NYVjQseCY0A+eMI/z+ERz7c96F5Ki/k6B9fMxJaNMGWtSnz4cThTF2srI0jQ6FWafz3z316Jo+uPTNFxHECSbcthSIjMAMWGNfHnclEW55pNsh3wd8JVQDidg71GcNYWk6QRN2IizxX0b6zZK0M5J2hjEPbgUu7dw4hWnLEKzPs0w8OYkDI8GHvhYuWOFKUEO9yFZj/sYEUjLDa6qaMmq8txqfcWqHOHS7F+PXtaitgkPxdCDtNXMAbTQhwrMFqjtqMr2i0bH51MJ4OBqOTjZWiPIFdEVVrHdH80zjPCiSiVKopsoaqQOKoizBBvb97uaaGdydTW/uZqzXaIWsZdoEqKjm2M/QolZSkKDmaaZ5Z1mtC0XryilhsldXbAaTB0ywi8ZLTSfYpsB4WjbuMOKhdBAokowzmmVSFDUg1C+x8Xv3NE0oTR1t1YE1Dhs/8lFq+MhLe9EpPjPfIATen2G3VZfRSnY+pBshWtUikjzphV8is1hiFmtfGn+o4dVf/pP3RavOgOLKrBJS02BRANtWL+37LnKSbKdl4oDTK3BJysKU7bYQHn44tdvRMt61Qz7fP5AmnRQFMfb+AbdeolrBHQj4MgFyPqNGXiX81nx3g65iEpn519xD8RNvMblo33919GTuxC9cpO+c44OJFxQ9La5tuRJ60UR35mlP+vwGVI3Vdg==
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core cities info"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/cities/info/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"cityid":{"type":"string"}},"title":"CitiesInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"city":{"type":"object","properties":{"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"countboxes":{"type":"string"},"citydescription":{"type":"string"}},"title":"CityData"}},"title":"CitiesInfoResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

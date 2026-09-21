@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-nipost-verify
+title: "Parcel nipost verify"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Parcel nipost verify"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1PGzEQ/SuWTwGFbJRjqh5CW6n0AAjSXhAizu4kMXht1x8p6Sr/vTP25ksERKUemsNmd2Zsz7yZ99xwY8GJII2+qPiQW+PDw5M0/unBCleCetAy2Zbg5GzFuzyIuefDO56C+H2XV+BLJy1tgRuMYliADrJMew7Z6amwlj3B6vSUdTwAQzc7DGLzKCs46bExuhx4a7QHJj37Oh5fs0G//yEtQk9UgexSJ8PUVCs28UGE6EtTwYTNJKiqh0k+nzkQldFqxYczoTx0uYOfEXw4x0V82KRP6QBrDi6iuzQ6YErkwoRVm1rx6KmqhvtyAbWgt7CygHWa6SOUAY+yjhAMEnxeK7HWvTgfnNRzvu7yqXmW1VGPl79BixqOONEbZFBkury4vrod/8h9WK/JtQErHY1A0d9hO24yaKCXoDBPbMEWriK/1uC9mBP8l0afTfr9CdvFINQVQQGeCc3AOeMI3n8E1u6c47Ds53c0Io/oOw5CgP8e+9Syt3yiqrAD/o3URG1ixunYemXKJ2zn8cS2fh3rKbj3z8Z1OvmzCOLVkJt2btIYYQw8Yzs9tpCY3fA0wfsc6vKlUBFaLq2R9DWEhdkIBuEtwgK/iqQKRS6+yNJRZOkoMMqDw498SHTYOL4IwfphUYiZk4SolT1fCxfyDj09L5YD/kJjcjDDJlexTBLSWQ5OOCVGM3izo/qXZ1FbBfvU3OC3ZeTOsBuGvUZIPTMJ/RbIzemj6wsCBuvJWQ16/V7/1VynAnupK1rFOrdUYu4T8m6kFBK0skbqgDwrS7CBfbu9umQGd2fUNtaJWuGoMW0CVLTmUEFRFJdSEEcnuczJRiRb2UtiOaSA0Y6wKRkM7jLBzqOXmk6wcYr+bDZu3+OhdBDIk6U6yXMmKSUg1C+x8ju9NjGUpk5C7sAah4kfKDclfKDenSQ+H5mPCIH3J5httYloVWDSS9zCqapFkpq2WxlLlgeObe+qg1Y0O9n6T26pls8B6VdYJaSm4hIvmpZQm2t2K3VdnmvMk5erpEt4QTYMb5qp8PDdqfWazNh7hyN/d08MdlJMaYLv7vGYBXKbVGVL908ZnLMxJbUl/Et9X3c3K0ZpUt+M3VcKmuNEunwB10n2uRO/0EjPIccXk5qVJDXZGq6Ensd0AfC8J/3+AKnqCGg=
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Parcel nipost verify"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/nipost/verify/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizename":{"type":"string"}},"title":"NIPOSTVerify"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"parcelamount":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"NIPOSTVerifyParcelData"}},"title":"NIPOSTVerifyResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

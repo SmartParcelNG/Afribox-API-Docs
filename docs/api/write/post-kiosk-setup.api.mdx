@@ -1,0 +1,69 @@
+---
+id: post-kiosk-setup
+title: "Kiosk setup"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Kiosk setup"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVlFvGjkQ/iuWn0hEWJRHqj6QXqXLndRGCX2KomJ2B3DitX0em4IQ/70z3t0A12yrSvdwPMDimbFnPs/3ze6l8xBU1M7eVnIivcP49UU7fPmKEJOXQxnVCuXkUeZV+TSUFWAZtOcYipimuAYbdZk3mYjLS+W9eIHd5aUYIIAgszh3EqukK7gYiRmZAqB3FkFoFH/OZnfiejx+l4PIkkzkdW3zwsJVOzHHqGLC0lUwF0sNphpRkturAKpy1uzkZKkMwlAG+CcBxhsKkpN9/qsDUJExJDKXzkZKiU2UsGlTK56Rq9pLLNdQK36KOw9Up1s8QxnpKB8YsqgBm1hNtZ74YQzaruRhKBduy1m+YSNj1NHw0o3bAj5kqA8HNnR45N0JC/45R/y+wQXsBgylQii/IlI0jzUgqhUj/MnZq/l4PBdHH0Kz4moBhbICQnCBEfyP8Die8yYmZ/n1ofbrU8hJV78JerZZVffaSuVVqePbl2lc+QIB1UZpoxamdxNVVXSD2Gc2zq50TP0JGoK9187Z9dTNpt7iGHXoCcy23si2bG0T/tRhGaC3pLPu/QUX/lBR9fDjviVG5gl5wJbyRtqU1WkvMwtPdWAoN8okaPXgQMJVQ1y7TuW4p1Rc078iK1uR9a6gZYSwoZLyrikY8ljH6HFSFGoZNN+x1yOsVYhehRLMyK6KzbX8QRgbZ0GdW6Uy695gc30hORNm1f1Rnz5uVe2bnur0pMPnpKNPUNV26TKWLUrdWdO7W66bbyzncD0aj8a9mS0U3Z2tOEoMHrigu1wQ6cbUGBKYyjttI+lEWYKP4q+Hz5+Eo93F3eeHmRgka6jVhXURKo45F3nS7Y1WrDHzpqh5p+OtMmc9n7DD9Cg4ORlyHgolbhI1Hp/g04LszbILpxaEMkBkSzNN8gRpRIYTUOab2uFxpLgUS1fnWRPAu0CJnw0XTvhswAyyeL4XmAgCxAvKtuo8WhWbj/hGuKVqlRu8IZP8m7tKdFP0XyR4Vdv/yfxsSRmJVIU3SluuKTf/vqVJ9wLA/GhK4neBNTOJbPv9QiF8CeZw4GW630BN/PjEJAy6EczHJ9pzTfSEcMLYDw0SVzPO4JWzP86gw7CLmOZu/KnvKdm5VzONmveAuuFSUN9okb8nkh5cvpks23ltL42yq5SHlGz25M93PGsyGQ==
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Kiosk setup"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/setup/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxcode":{"type":"string"}},"title":"BoxesSetup"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}},"title":"BoxesSetupResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

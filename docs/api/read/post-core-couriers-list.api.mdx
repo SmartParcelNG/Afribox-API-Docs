@@ -1,0 +1,68 @@
+---
+id: post-core-couriers-list
+title: "Core couriers list"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core couriers list"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1v2zAM/SuCTmmQxkGOHnZIuwHrMLRBm52KopFtNlErS5okZw0M//eRst046McuOyyHxBEpinx677nmxoITQRp9UfCUW+PDfW4c4FflJDh/r6QPfMKD2Hie3nIK8rsJL8DnTlraifsWVdiCDjKPpVI2Hgtr2RPsx2M28gAMw+w4iW0qWcDJlK0w5MBboz0w6dm31WrJ5rPZp7gJI5UKtC51XMhMsWdrH0SofG4KWLMHCaqYYo/Ppw5EYbTa8zS4Cibcwa8KfDjDPTyt41/poOjDudEBO6IQ9qu6zpJHT0PV3OdbKAU9hb0FHNNkj5ATGtYRbkGCb/dKHHWQ54OTesObBnGTQdHSeYfnD4KzaSjUDx1r4MD0cwzrdTs86B0oPBChfBk7aR9L8F5sCMZLo0/Xs9maHXIQsoJmAs+EZuCccQTTP5r6cM4bk0/4UX9vZvQUGwSFc2KPJ8kApf97C10FWXxUX4vyrfNf380XEQRv3ru06+624uVhDjwjiB6BI1nUPBJgyMAJ3wlVQUu1BhVTQtiaXmQ0ighb/JeQopIei4TklmDUg9tFbLB25RQmbkOwPk0S8eBkZp6RdFNfChescDmoqd4kuzl/Jcw2mSFuRZVH3Y128xNODdGFXx8E8vVZlFbBkNADMKV+MBHFDpq+8GJ5QaNiq+2B8+lsOnu3jUzkT6AL2sVGN9T9MnaP/F0ohUQvrJE6IF/zHGxg32+uLpnB6mx5dbNio0orJBTTJkBBe44dBU1iJwVxfd1OsO5No/OBaB4pJSwOxI/NYPKECXZWeanpBFtlGG+XjRtGPOQOAkVa64p21ZKdGhDqt9j7g3+ZKuSmjMbmwBqHjR85GTV85GajKOLPzFcIgfcn2G3RZ3RqWk/pRohGpYiSbSmOdHXAeiaxzriPLqI+iP8/8exOlQHllFglpKbRIuHrTiHdO2fgFxPezUYvoi2pCZPqOhMefjrVNLSM9+2Qwbd3pEMnRUasvb3D4ltUKLiBaM9bSE5X1MqLbF97YzPpdywiOz/MHQqeuIvJWfcWKqNlcid+4yJ9pxwfTLyiaGtxreZK6E0VzZO3NenzB3rurZk=
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core couriers list"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/couriers/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"CouriersList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"couriers":{"type":"array","items":{"type":"object","properties":{"courierid":{"type":"string"},"couriername":{"type":"string"}},"title":"CourierData"}}},"title":"CouriersListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

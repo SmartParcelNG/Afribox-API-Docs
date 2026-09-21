@@ -1,0 +1,68 @@
+---
+id: post-pay-search-nipost
+title: "Pay search nipost"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Pay search nipost"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1vIzcM/SuCTk7geIwcXfTgbQt0e9g1EvcUBDFnxHi0OyOpksYb1/B/Lyn5s7Enlx7qgz0WnyjyDcmnjbQOPURtzWclJ9LZEF8crF8Cgq/qF6N5RQ5lhGWQkydJNvk8lApD5bXjfbRr2sUaTdRVcjQRt7fgnPiO69tbMQiIgsziHCSWnVZ4MxJzMnkMzpqAQgfx+3w+E/fj8U9pE1m6JvK6NmmhtGotFiFC7EJlFS7Eq8ZGjSjEtzuPoKxp1nISfYdD6fGvDkP8RHvkZJP+ao9qb66siRQRmyjeZhdZ8S1wUhsZqhpb4Ke4dkhp2vIbVkyG88xa1BjyXk2pnuBC9Nos5ZaARCI2Hl/Ro6nQdG2J/gKSoFHHhpdmsH5M3M/SXrKxdc9QOpDY4Z/zd/CQmUKzwoaiI94PHBX5scUQYMmcf7HmbjEeL8QRQ/wqJgCDACPQe+uZ0/+IouM5F2k6i6+HyI8PyjitepwojKCvQRQxUFEZRexz8fELPSJTBbK1N6gTXA8q89TrKEMus6z/RgPt5QNK+9ZnA6WoBC/7JTOfet13peP6qtFjpZ2mGvsY4WprPoBQNermcvZoFPqrh2Tz9ROy/br7zD60tsvd8r6yqCxX6Nc9kKUHo6KN0HdE6Mqzxr8KdHCxUE5Gzemc+RUi9M2hh90ASvOIYPhGLzxQBKwKG5kG4OkEHsoVNB3mUbslxWgx1nYvMdy3EGv6V5CgFFlsiiw2hWS2PXGVXXee6JB1jC5MigJeveZ6dHoUWvAx5zoyy2J1L9/pUgYLmhGqq5LsDFb3N5Lj4RH2cNSH396gdQ2ezvM9ZVe7/oRybV5tInvH3v7k6ewzU0G55IjuR+PR+GqcJVTfqc54lxg8cnqZfBrZ06ah2a6c1SbSiK4qdFH88fj1i7DkXcy+Ps7FoDMNNakwlsYX7zlXXBLRlQYe74uc4mIvqrvpk8R1woDpcdanYAg8FCA+0fAxfILrSrLnZetPLYHHZ2RLlvYk53kocQDQ/IB1OOq77WJl2yT8Hp31FPiZ0nPAZ2o/SLr1swgdURDCDUWr9oidgCxGqQmolFpIDZKbnita5EoTh2vNv1rpIHf/kyvNrncjdVvhGtCGM0sNsdk1UL6RccdwYvRwSI2vaTU/EmazKSHgn77ZbnmZ3ranAn965i71Gkqu2adn8l1T/3JpH1r6l8zI3ZwjOTT1+8vAdrjfMU212Ys9HQdcuZJFJN/R2nRHkB5+0CJ/TyQ92PSGkvyktY1swCy7dFuQ2Sd//gH5lsqa
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Pay search nipost"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/search/nipost/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"}},"title":"PaySearchParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"parcelpaid":{"type":"string"}},"title":"SearchParcelData"}},"title":"PaySearchParcelResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

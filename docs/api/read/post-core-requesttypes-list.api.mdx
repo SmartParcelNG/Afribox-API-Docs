@@ -1,0 +1,68 @@
+---
+id: post-core-requesttypes-list
+title: "Core requesttypes list"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core requesttypes list"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFy2jAQ/RWNToRxMMPRnR5I2pmm00kYQk+ZTJDtDSiRJVeSCYzH/95d2QSTpEkPPZQDGO1Ku/v03nPNTQlWeGn0Rc4TXhrn7zJj4c7Crwqc97sS3J2SzvOIe7FyPLnhlMBvI56Dy6wsaTfunVZ+DdrLLByXsOFQlCV7hN1wyAYOgGGYHSexVSVzOBmxBYYsuNJoB0w69m2xmLHJePwpbMJIpTytSx0WUpPv2NJ54SuXmRyW7F6CykfY4/bUgsiNVjueeFtBxLtJznAPT+rwV1rI9+HMaI8dUQj7VV1n8YOjoWrusjUUgp4IChzTpA+QERqlJey8BNfulThqL895K/WKNw3iJr2ipXnbyYIw/UGQNg2F94OHc3Bo+jmGdt4CAHoDCosinM+jx+1jAc6JFUF5afTpcjxeskMOwpbTXOCY0AysNZag+keTH+q8MX3Ej/p7M6NPtV6CsFbssJr0ULiP2+idIvOP6nwUP4L/L6/0i/CCN+/d97y76HDvmAdbxN9hDVJVzQN/+gSO+EaoClqmNii4Avza7HVKCAi/xn8xCTLuwxiTYmPMcGA3YNvzK6swee196ZI4FvdWpmaLvB25QlhfCpuBGulVvJnwV9pukxlCnldZkO5gMznh1BTxZX7Q2NetKEoFfU30MJb63gREO4j2B09nFzQuttoWnIzGo/Ef20hF9gg6p11scE3dz0L3SP+pUqiTvDRSe6R7lkHp2ffrq0tm8HQ2u7pesEGlFfKRaeMhpz3HpoQ+s5GCpLJsJ1jufaeDOPhPQgnTg25CM5gcMcHOKic1VSirFOPtsrH9iIPMgqdI637B8VqtUANCPYmdO1igqXxmiuCNFkpjsfEjM6SGjwxxEDzgM3MVQuDcCXab7zM6MS5HdCNEpUIEmmtR0J2cI5tYn02s8/8Xqnj2j//E+juVepRVXCohNY0XSF93SuleXS8sJ+LdfPROW5OyMLGuU+Hgp1VNQ8uYbpHJN7ekSStFSuy9ucUCa1Qr2J6Az1tYTkn2Bwm/ttgm2u+YBpa+m9sXP3EYk9PuhVYE5+VWPNFg+J1wfDDhmlpnpLWaK6FXVfBg3p5Jn99ZUM34
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core requesttypes list"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/requesttypes/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"RequestTypesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"requesttypes":{"type":"array","items":{"type":"object","properties":{"requesttypeid":{"type":"string"},"requesttype":{"type":"string"},"requesttypedescription":{"type":"string"}},"title":"RequestTypeData"}}},"title":"RequestTypesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

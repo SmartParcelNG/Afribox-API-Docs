@@ -1,0 +1,408 @@
+#!/usr/bin/env python3
+"""
+Generate OpenAPI 3.1 specs for the Afribox backend from its VB.NET source.
+
+Usage:
+    python3 tools/generate_openapi.py [path-to-backend]
+
+Inputs (relative to this repo):
+    tools/overrides.json   manual descriptions / examples / manual operations
+    tools/i18n/fr.json     French translations (applied to build openapi.fr.json)
+
+Outputs:
+    openapi/openapi.json         English spec
+    openapi/openapi.fr.json      French spec (English fallback for missing strings)
+    tools/endpoint-classification.json   read/write classification for review
+"""
+import os
+import re
+import json
+import glob
+from collections import OrderedDict
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TOOLS = os.path.join(REPO, "tools")
+OUT = os.path.join(REPO, "openapi")
+
+API_HOST = "https://afriboxapi.smartparcel.ng/v2"
+EXCLUDE_TOP = {"dispatch"}
+
+
+def find_backend():
+    if len(os.sys.argv) > 1:
+        return os.path.abspath(os.sys.argv[1])
+    # sibling repos: ../Backend API or ../Afribox-Backend
+    for cand in ("Backend API", "Afribox-Backend"):
+        p = os.path.normpath(os.path.join(REPO, "..", cand))
+        if os.path.isdir(os.path.join(p, "v2")):
+            return p
+    raise SystemExit("Backend path not found; pass it as the first argument.")
+
+
+def load_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except FileNotFoundError:
+        return default
+
+
+CLASS_RE = re.compile(r"Public\s+Class\s+([A-Za-z0-9_]+)")
+PROP_RE = re.compile(
+    r"Public\s+Property\s+([A-Za-z0-9_]+)(?:\(\))?\s+As\s+([A-Za-z0-9_\.]+(?:\(Of[^)]*\))?)"
+)
+LIST_RE = re.compile(r"List\(Of\s+([A-Za-z0-9_\.]+)\)")
+DICT_RE = re.compile(r"Dictionary\(Of\s+([A-Za-z0-9_\.]+)\s*,\s*([A-Za-z0-9_\.]+)\)")
+
+PRIMITIVES = {
+    "String": {"type": "string"},
+    "Char": {"type": "string"},
+    "Integer": {"type": "integer", "format": "int32"},
+    "Long": {"type": "integer", "format": "int64"},
+    "Short": {"type": "integer", "format": "int32"},
+    "Double": {"type": "number", "format": "double"},
+    "Single": {"type": "number", "format": "float"},
+    "Decimal": {"type": "number", "format": "double"},
+    "Boolean": {"type": "boolean"},
+    "Date": {"type": "string", "format": "date-time"},
+    "DateTime": {"type": "string", "format": "date-time"},
+    "Object": {"type": "object"},
+}
+
+
+def parse_classes(app_code):
+    classes = {}
+    for path in glob.glob(os.path.join(app_code, "OBJ_*.vb")):
+        txt = open(path, encoding="utf-8", errors="ignore").read()
+        marks = [(m.start(), m.group(1)) for m in CLASS_RE.finditer(txt)]
+        for i, (start, name) in enumerate(marks):
+            end = marks[i + 1][0] if i + 1 < len(marks) else len(txt)
+            body = txt[start:end]
+            props = []
+            seen = set()
+            for pm in PROP_RE.finditer(body):
+                pname, ptype = pm.group(1), pm.group(2)
+                if pname in seen:
+                    continue
+                seen.add(pname)
+                props.append((pname, ptype))
+            if name not in classes:
+                classes[name] = props
+    return classes
+
+
+def strip_prefix(name):
+    return name[5:] if name.startswith("JSON_") else name
+
+
+def build_name_map(class_names):
+    """full class name -> component name (strip JSON_), de-dup collisions."""
+    stripped = {}
+    for n in class_names:
+        stripped.setdefault(strip_prefix(n), []).append(n)
+    name_map = {}
+    for n in class_names:
+        s = strip_prefix(n)
+        name_map[n] = n if len(stripped[s]) > 1 else s
+    return name_map
+
+
+def ref_name(full, name_map):
+    return name_map.get(full, strip_prefix(full))
+
+
+def type_to_schema(vbtype, name_map):
+    t = vbtype.strip()
+    m = LIST_RE.match(t)
+    if m:
+        inner = m.group(1)
+        return {"type": "array", "items": type_to_schema(inner, name_map)}
+    d = DICT_RE.match(t)
+    if d:
+        return {"type": "object", "additionalProperties": type_to_schema(d.group(2), name_map)}
+    base = t.split(".")[-1]
+    if base in PRIMITIVES:
+        return dict(PRIMITIVES[base])
+    # class reference
+    return {"$ref": f"#/components/schemas/{ref_name(base, name_map)}"}
+
+
+def _inner_class(ptype):
+    m = LIST_RE.match(ptype.strip())
+    if m:
+        return m.group(1).split(".")[-1]
+    d = DICT_RE.match(ptype.strip())
+    if d:
+        return d.group(2).split(".")[-1]
+    return ptype.strip().split(".")[-1]
+
+
+def collect_reachable(roots, classes):
+    """All classes transitively referenced from roots."""
+    seen = OrderedDict()
+    stack = list(roots)
+    while stack:
+        name = stack.pop()
+        if name in seen or name not in classes:
+            continue
+        seen[name] = True
+        for _, ptype in classes[name]:
+            base = _inner_class(ptype)
+            if base not in PRIMITIVES and base in classes:
+                stack.append(base)
+    return list(seen.keys())
+
+
+# ---------------------------------------------------------------- endpoints
+
+REQ_RE = re.compile(r"Dim\s+RequestObject\s+As\s+New\s+([A-Za-z0-9_]+)")
+RES_RE = re.compile(r"Dim\s+ResponseObject\s+As\s+New\s+([A-Za-z0-9_]+)")
+
+
+def detect_auth(txt):
+    if "ResolvePaystackAuth" in txt:
+        return "paystack_dual"
+    if "WS_API_Authenticate_Business_APISecretKey" in txt:
+        return "business_secret"
+    if "Authenticate_Business_APIPublicKey" in txt:
+        return "business_public"
+    if "Authenticate_APIKey(" in txt:
+        return "app_key"
+    return "none"
+
+
+WRITE_HINTS = (
+    "/new", "/create", "/add", "/delete", "setdefault", "cancel", "retrieve",
+    "edit", "changepassword", "resetpassword", "signup", "login", "otp",
+    "forgotpassword", "reserve", "drop", "collect", "initialize", "verify",
+    "success", "webhook", "support", "wallettransaction", "hold", "release",
+    "snapshot", "setup",
+)
+
+
+def discover_endpoints(backend):
+    endpoints = []
+    pattern = os.path.join(backend, "v2", "**", "default.aspx")
+    for f in sorted(glob.glob(pattern, recursive=True)):
+        rel = os.path.relpath(f, os.path.join(backend, "v2"))
+        parts = rel.split(os.sep)
+        if parts[0] in EXCLUDE_TOP:
+            continue
+        if parts[-1] != "default.aspx":
+            continue
+        path = "/" + "/".join(parts[:-1]) + "/"
+        txt = open(f, encoding="utf-8", errors="ignore").read()
+        method = "get" if 'HttpMethod = "GET"' in txt else "post"
+        req = REQ_RE.search(txt)
+        res = RES_RE.search(txt)
+        endpoints.append({
+            "path": path,
+            "method": method,
+            "tag": parts[0],
+            "request": req.group(1) if req else None,
+            "response": res.group(1) if res else None,
+            "auth": detect_auth(txt),
+        })
+    return endpoints
+
+
+def derive_summary(path):
+    segs = [s for s in path.strip("/").split("/") if s]
+    words = segs[-3:] if len(segs) > 3 else segs
+    title = " ".join(words).replace("-", " ")
+    return title[:1].upper() + title[1:]
+
+
+def classify_readonly(ep, overrides):
+    key = f'{ep["method"].upper()} {ep["path"]}'
+    o = overrides.get("operations", {}).get(key, {})
+    if "readonly" in o:
+        return o["readonly"]
+    if ep["method"] == "get":
+        return True
+    low = ep["path"].lower()
+    return not any(h in low for h in WRITE_HINTS)
+
+
+def build_operation(ep, classes, name_map, overrides):
+    key = f'{ep["method"].upper()} {ep["path"]}'
+    o = dict(overrides.get("operations", {}).get(key, {}))
+    readonly = classify_readonly(ep, overrides)
+
+    op = OrderedDict()
+    segs = [s for s in ep["path"].strip("/").split("/") if s]
+    op["operationId"] = ep["method"] + "_" + "_".join(segs)
+    op["summary"] = o.get("summary") or derive_summary(ep["path"])
+    op["tags"] = [ep["tag"]]
+    desc = o.get("description")
+    if not desc:
+        desc = (
+            "Authentication: **" + ep["auth"].replace("_", " ") + "** (see the Authentication guide). "
+            "The response is HTTP 200; the result is in the body `statuscode` field."
+        )
+    op["description"] = desc
+    op["x-readonly"] = bool(readonly)
+    if o.get("deprecated"):
+        op["deprecated"] = True
+
+    if ep["method"] == "post" and ep["request"]:
+        op["requestBody"] = {
+            "required": True,
+            "content": {"application/json": {"schema": {"$ref": f'#/components/schemas/{ref_name(ep["request"], name_map)}'}}},
+        }
+
+    resp_schema = None
+    if ep["response"]:
+        resp_schema = {"$ref": f'#/components/schemas/{ref_name(ep["response"], name_map)}'}
+    op["responses"] = {
+        "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            **({"content": {"application/json": {"schema": resp_schema}}} if resp_schema else {}),
+        }
+    }
+    return op
+
+
+def apply_i18n(spec, fr):
+    """Return a French copy of spec with fr.json strings applied."""
+    import copy
+    out = copy.deepcopy(spec)
+    if "info" in fr:
+        for k, v in fr["info"].items():
+            if v:
+                out["info"][k] = v
+    for tag in out.get("tags", []):
+        tv = fr.get("tags", {}).get(tag["name"])
+        if tv:
+            tag["description"] = tv
+    for path, methods in out.get("paths", {}).items():
+        for method, op in methods.items():
+            oid = op.get("operationId")
+            t = fr.get("operations", {}).get(oid, {})
+            if t.get("summary"):
+                op["summary"] = t["summary"]
+            if t.get("description"):
+                op["description"] = t["description"]
+    for sname, schema in out.get("components", {}).get("schemas", {}).items():
+        t = fr.get("schemas", {}).get(sname, {})
+        if t.get("description"):
+            schema["description"] = t["description"]
+        for pname, pv in (t.get("properties") or {}).items():
+            if pv and "properties" in schema and pname in schema["properties"]:
+                schema["properties"][pname]["description"] = pv
+    return out
+
+
+def main():
+    backend = find_backend()
+    overrides = load_json(os.path.join(TOOLS, "overrides.json"), {})
+    fr = load_json(os.path.join(TOOLS, "i18n", "fr.json"), {})
+
+    classes = parse_classes(os.path.join(backend, "App_Code"))
+    endpoints = discover_endpoints(backend)
+    name_map = build_name_map(classes.keys())
+
+    roots = [c for ep in endpoints for c in (ep["request"], ep["response"]) if c]
+    reachable = collect_reachable(roots, classes)
+
+    schemas = OrderedDict()
+    ov_schemas = overrides.get("schemas", {})
+    for cname in reachable:
+        props = OrderedDict()
+        for pname, ptype in classes[cname]:
+            props[pname] = type_to_schema(ptype, name_map)
+        schema = OrderedDict()
+        schema["type"] = "object"
+        schema["properties"] = props
+        sname = ref_name(cname, name_map)
+        if sname in ov_schemas and ov_schemas[sname].get("description"):
+            schema["description"] = ov_schemas[sname]["description"]
+        schemas[sname] = schema
+
+    # tag order
+    tag_order = ["core", "customer", "business", "kiosk", "pay", "parcel", "admin"]
+    present_tags = []
+    for ep in endpoints:
+        if ep["tag"] not in present_tags:
+            present_tags.append(ep["tag"])
+    present_tags.sort(key=lambda t: tag_order.index(t) if t in tag_order else 99)
+
+    info = overrides.get("info") or {
+        "title": "Afribox API",
+        "version": "2.0.0",
+        "description": "Afribox backend API (SmartParcel). Response envelope: HTTP 200 with `statuscode`/`statusmessage`.",
+    }
+
+    paths = OrderedDict()
+    for ep in endpoints:
+        paths.setdefault(ep["path"], OrderedDict())[ep["method"]] = build_operation(
+            ep, classes, name_map, overrides
+        )
+
+    # manual operations (edge endpoints)
+    for path, methods in overrides.get("manualOperations", {}).items():
+        for method, op in methods.items():
+            paths.setdefault(path, OrderedDict())[method] = op
+
+    spec = OrderedDict()
+    spec["openapi"] = "3.1.0"
+    spec["info"] = info
+    spec["servers"] = [{"url": API_HOST, "description": "Afribox production (v2)"}]
+    spec["tags"] = [
+        {"name": t, "description": (overrides.get("tags", {}).get(t) or f"{t.capitalize()} endpoints")}
+        for t in present_tags
+    ]
+    spec["paths"] = paths
+    spec["components"] = {"schemas": schemas}
+
+    os.makedirs(OUT, exist_ok=True)
+    with open(os.path.join(OUT, "openapi.json"), "w", encoding="utf-8") as fh:
+        json.dump(spec, fh, indent=2, ensure_ascii=False)
+
+    spec_fr = apply_i18n(spec, fr)
+    with open(os.path.join(OUT, "openapi.fr.json"), "w", encoding="utf-8") as fh:
+        json.dump(spec_fr, fh, indent=2, ensure_ascii=False)
+
+    # Split specs: read (interactive "Try it") vs write (reference only)
+    for kind, predicate in (("read", True), ("write", False)):
+        sub = dict(spec)
+        sub["paths"] = OrderedDict(
+            (p, OrderedDict((m, op) for m, op in methods.items() if bool(op.get("x-readonly")) == predicate))
+            for p, methods in spec["paths"].items()
+            if any(bool(op.get("x-readonly")) == predicate for op in methods.values())
+        )
+        used_tags = []
+        for methods in sub["paths"].values():
+            for op in methods.values():
+                for t in op.get("tags", []):
+                    if t not in used_tags:
+                        used_tags.append(t)
+        sub["tags"] = [t for t in spec["tags"] if t["name"] in used_tags]
+        with open(os.path.join(OUT, f"openapi.{kind}.json"), "w", encoding="utf-8") as fh:
+            json.dump(sub, fh, indent=2, ensure_ascii=False)
+
+    classification = [
+        {
+            "method": ep["method"].upper(),
+            "path": ep["path"],
+            "tag": ep["tag"],
+            "auth": ep["auth"],
+            "readonly": classify_readonly(ep, overrides),
+            "request": ep["request"],
+            "response": ep["response"],
+        }
+        for ep in endpoints
+    ]
+    with open(os.path.join(TOOLS, "endpoint-classification.json"), "w", encoding="utf-8") as fh:
+        json.dump(classification, fh, indent=2, ensure_ascii=False)
+
+    warns = [c for c in roots if c and c not in classes]
+    print(f"backend: {backend}")
+    print(f"endpoints: {len(endpoints)}  paths: {len(paths)}  schemas: {len(schemas)}")
+    print(f"read-only: {sum(1 for c in classification if c['readonly'])}  write: {sum(1 for c in classification if not c['readonly'])}")
+    if warns:
+        print(f"WARNING: referenced classes not found: {sorted(set(warns))}")
+
+
+if __name__ == "__main__":
+    main()

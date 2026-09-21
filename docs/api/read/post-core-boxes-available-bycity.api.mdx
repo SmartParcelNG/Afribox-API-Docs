@@ -1,0 +1,68 @@
+---
+id: post-core-boxes-available-bycity
+title: "Boxes available bycity"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Boxes available bycity"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1vGzkM/SuCTk7geIwcvdiD0y3QFIs2SLynIIjpGcZWq5G0ksaNYfi/LynN+KP1JJc9NAdnRiRF8pF8nK20Dj1EZc1tJSfS2RCfS+vxeWFfMTzDGpSGhab3TaniRg5lhGWQk0fJWvJpKCsMpVeOr6ALpk1coYmqTHdOxOUlOCe+4+byUgwCoiCxOFUSy0ZVeDESMxJ5DM6agEIF8Wk2uxPX4/EfyYgkjY58rkw6WNhqI+YhQmxCaSucixeFuhpRjK9XHqGyRm/kJPoGh9Ljvw2GeEM2crJNr8pj1YlLayJFxCKKV7eRFd8CJ7WVoVxhDfwUNw4pTbv4hmUkT84zgFFhyLaKUj3SC9Ers5Q78kDoqeqMiGRRRc1HN4z534rC3HxgsHc7lnaQJA8EB/87Bf0+Q4NmjZrCIaD3oBT5scYQYMkgf7Hmaj4ez8VBhwCtOGMMAoxA761nEP8nTA5+zuJyEt9ZjdSJRxLwHrgRVcQ6vO+fzM/ini7uDYtkBupeWQkO0jyck2tbfkcf9rPTdwlUFdU29Im1NUsVm/4ANRWkV97bb1nUmxzXA3sMk6zXsk1bmSa8qfDisTelk75+Z1T+gghy98b83LeDk+aI1PCVog90NfPXVqZJPaaKoVyDbjBzwo6orca4sh0tcmNBXNFbwdRXpLYs9kUuMkEWpBbQrynP5KTxmixWMbowKQp48YoL79Qo1OCjA1+iHpllsb6Wv1BpVhbUzlVTJqYcrK8vJEfGQ3h/oLSPr1C73GgdBXWgHTrhCGllXmzCtwWuczW9u2UUuIophOvReDTuDWwBVE9TsZUYPHA+dykfYpmp1kRHlbPKRGKVskQXxeeHr1+EpdvF3deHmRg0RlP7C2MjVmxzuhWI6NcKmJHmOad5R/wtl6cFMGGF6YGeUjCkPBQgbhpqRvbgmgXJ87H1x5KApcfIkrx+0srJlMQBgP4Bm3DYQbaJpa3TcvLorKfAT7YRB3yykQaJav8UoSEIQrigaKtOo+W8+Ygrwh1WQ2r6PGC5mcW+v8R+Af80I3ua/k12bzuzkaatcBqU4fTSGGzbAWq/HTpmH8oDU9JZlyZ/W6x47kh/u11AwH+83u34mMrvqcUfn3hivcoc+/hEflY0y+iPxvtDRudqxlHtB/zXhbYbdhbT1Kxv6h5TA7dySiV/WNRpoUgPP+iQfyeSHmyqVmL6dLaVGsyySRtP5jv57z9V+lRz
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Boxes available bycity"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/boxes/available/bycity/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"cityid":{"type":"string"}},"title":"BoxesListByCity"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"boxes":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}}},"title":"BoxesListByCityResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

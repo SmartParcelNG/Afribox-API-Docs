@@ -1,0 +1,69 @@
+---
+id: post-customer-parcels-hold
+title: "Customer parcels hold"
+description: "Authentication: **paystack dual** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer parcels hold"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNls1vGjsQwP8VyycSERblyFMPtHpS20MbJbxTFAWzO4Abr731Bw1F/O+dsXfZBZa8HnpoDgE8M57xfPzsHTcVWOGl0Z8KPuGVcf45D86bEuxzJWwOyj2vjSr4kHuxcnzyyBs5fxryAlxuZUUboPk0+DVoL/O444RdX1di67zIX1gRhLq+ZgMHwFCJHauyVZAFXI3YDEUWXGW0AyYd+zib3bHb8fifaISSoDytSx0XFqbYsjl68MHlpoA5W0pQxQijfb2xIAqj1ZZPlkI5GHIL3wM4/x6N+GQXf0oLeG5vA4pzoz2GRCJRVaoOLfvm6Gw77vI1lIK++W0FeFqz+Aa5R1eVpSx6CS7ZyhfYdvSct1Kv+H54yJwsesV1fLR+QWNhXi9InPz5hpEy+QtYHcoFlq1PpwAlN2C3ApN2YRs8vFS9kmptNPRHBbpAv6J8S/x/5pcdW8hlJbFmFz0cNC47Oaj8hh9RFNiDrj8LcVqOBuJMC9W89IqW7qL6Rxqt/X4fnaS2j7tjy9PH8Xjdp/YHvQGFHYfDdGj8LH0tMTixokH6YvTNfDyes1YHh6agpgbHhGZgrbE0KH+o7Vs//aXsxterQZTx5gX68kbZWWIn6LzfViBNjJU/Y+jB9ldR5Dm6vxihKE1Iafidot3X1YrFo+l4xSQ69E6I3PFIgC6DhnwjVICaRXtEZwkYcwNdSqfwa/yVNZDIavxmlJiM0zRYHNG0fzwjX3tfuUmWiaWVOOVInpErhfXJcqRX2eaWn0E6KTMsXxHySN/B5vaKU0xU9PuWkv++irJS0KVak5VjmLWrJwxrBTW62oWGWEcqx6BqRad8aiX11LYL9aR3HHUgdLp6Qfls0xPS9AjOdjrlSo/kgJNO9OcU6fSo1EsTO7Tux6aW07tP1GHYHcnidjQejS9WfoEXMh6TrNjggRom9TViY6oU8qWojNQeMYETU3n2+eHrF2Zwd3b39WHGBkErjJpp46Egm+OrHG/njRSEmHlqmnlzW9e9EW/tCSlMW97EYFB5yAR7H5zU5KEKC5SnZWO7Ege5BU+S9GaI74TEGApAqB/48GgfDib4HHuVRBYqYzHwoycEBXz0jBhEdr5jLkRoXGG0RaNRQ2w+itTH4S1FZFbdGh/quWD1/LL6+XRyMxyw+1e9mmr0ecRZVikhNZ2xBmoCVOf913Sr44ne+EFvwjXxDPV2u4Vw8J9V+z0tY+0tAuTxiVBopVhQBz8+EfkRkjTuB25+SLm5mVE0B3KeX0/7YWMxjZ36pm4XudTHETjpJVjGO4Fb8YOmE/9POH4xsVbxcotrO66EXoV4f/G0J/39Aq5Q8qI=
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer parcels hold"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/hold/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **paystack dual** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"requesttypeid":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"boxlockernumber":{"type":"string"},"deliveryareaid":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"parceldescription":{"type":"string"}},"title":"ParcelHold"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"holdtoken":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"},"amount":{"type":"string"}},"title":"ParcelHoldResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

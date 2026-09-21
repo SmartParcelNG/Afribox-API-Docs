@@ -1,0 +1,68 @@
+---
+id: post-customer-info
+title: "Customer info"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer info"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1vGjEQ/SuWTyQiLMqRqgf6ITVV1UYJPUVR8a4n4MZru/4gQSv+e2e8u8CqJL30UA6weGbsN8/z3jbcOvAiKmuuJJ9xZ0P8UaUQbQ3+hzIPlo95FKvAZ3e8X+f3Yy4hVF45KsSyeYprMFFVeacZOz8XzrFH2J6fs1EAYBhmwyS2SkrC2YQtMOQhOGsCMBXYp8Ximl1Op29yEUaSjrSuTF4ordyyZYgiplBZCUv2oEDLCeJ8vvAgpDV6y2fRJxhzD78ShPgOa/isyX+VB9mHK2siIqIQ4tUdsuJnoKYaHqo11IKe4tYBtmnLn1BFPMl5oi0qCG2twlaP8kL0yqz4brynTMkTYYxHFTUtve/yrojx3Y5CPSf5COSDfoas37TcgNmARjzI9J6Von2sIQSxIpa/WnOxnE6X7JCDjEpqGQIThoH31hOL/4iUwzkniRnge5W6vx/1KsmHjYyoT59kID5Z//hCeRd9sRrZUFpIifcVTia4tTVgUl0OejmKixDwBNoA4qsdiCqqzSkUJybpi10p80FE8eKc3XQDlueNGnnGew941yT2hueRPtbUmG+ETtCKZ4ceUENc29416FZEXOO/oodbkH8UGAjgN+DbbZPXmLOO0YVZUYgHr0r7jAqahFr46ISvQE/Mqthc8j9cpk1mePsyVdlERpvLM05YaDxvDmr/+Cxqp+FYnT1ZQ1EesZzdjrjtuOqPm19fUe/YQAvjcjKdTF8EV4rqEYykKja6pZ6uc0+owbnWKFbprDIRNVdV4CL7fPvtK7O4O7v+drtgo2Q0DhIzNoKkmqFpog9ulCC9Ltu+lr0vdlaX/XFGCfODeDMYTB4zwd6loAyd4FKJ8XbZ+uNIgMpDpEjrztmRW8ESAKGfxDYcLNqmWCGdFPLgrEfgA7MmwAPDHmUjestCQgpCOEO0ss/oHGE5ycrAuapFtp1Wfvv5Zd2raXAHzcG7/pM3UifTiNIqnBbKUFdZAU2nlqO3ajeBY07v1zVJCqNNU4oA373e7WgZ79jjLN/dkxi9EiVN6t097rpGmZLB7JX7vuXiYkEY9tr909N3475inify1dxj1dO8YnLZvVzrbPXciydcpO8Zxweb7yYbY15ruBZmlbLp83ZP+vwGV6T7LA==
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer info"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/info/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"}},"title":"CustomerInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"customer":{"type":"object","properties":{"customerid":{"type":"string"},"customername":{"type":"string"},"networkid":{"type":"string"},"networkname":{"type":"string"},"emailaddress":{"type":"string"},"phonenumber":{"type":"string"},"passwordreset":{"type":"string"},"customeractive":{"type":"string"}},"title":"CustomerLoginData"}},"title":"CustomerInfoResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

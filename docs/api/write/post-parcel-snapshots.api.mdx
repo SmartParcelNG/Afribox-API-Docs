@@ -1,0 +1,69 @@
+---
+id: post-parcel-snapshots
+title: "Parcel snapshots"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Parcel snapshots"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1vGjEQ/SuWTyQiLMqRqgf6ITU9tFFCT1EUzO4EnHpt156lQYj/3hl7YReFRq3UQznA4pmx3zzPe7uVzkNQqJ29quREehfxwatQgnmIVvm4chjlUKJaRjm5kzkk74eyglgG7bmS6qYNrsCiLtNWE3F+rrwX32Fzfi4GEUBQWBwniWWjKzgbiRmFAkTvbASho/g0m12Ly/H4TSqiSGOQ17VNCwtXbcQ8osImlq6CuXjUYKoRoXy+CKAqZ81GTh6ViTCUAX40EPEdFcnJNv3VAahVDA2FS2eRIHGIAJsWWvEUuautjOUKasVPuPFAfbrFE5RIR/nAxKGGmGs19drLixi0XcrdsGWsAlTa6OpECuWgRsNL1yn39sD7bsfRPTfpJOKFf47Zv8kcgV2DIVjE+IGdIj/WEKNaMttfnL2Yj8dz0eUQsxV3DlEoKyAEF5jNf8RNd85Jfo7wnc448NFFVQhqQ0dphDr+AYZ2i5MX0J0A67bf32PgcbLl60CbYE7GdU0tVsQz6vr0DhwsaYYR/m5SPihUcvdKwk07Q2mkKA2e6WojXSereivT8PblM5RrZRpoZbQjvdeAK7e3CCZY4Yr+FXm+iwNBBcUihDWEvHUiQ64QfZwUhXoMeuGeSS+jWKuAuXpkl8X6Ur4wlZws6C6rpkyeMVhfnkmGw1N402n747OqvYG+Fve0vZRg/0rso0tMt7Ttj5xeXzEH1ESGcjkaj8a/BbhQ5XewFVeJwS33leknuU2NIV1W3mmLJK+yBI/i8+3XL8LR7uL66+1MDBpraP6FpQmsuObYJ8n61lqxNOe5t/neCltzS5Y44YRpp9MEhpKHQol3TdSWT/DNguJ52YV+JPLcIUeyIScTztpkAMr8VJvYubJrsHR1susA3gUCfuTPDPjIowfJc96K2BAFMZ4R2mqf0Yp/Pkp+SeNVq+QwVtXdKIv+6+joGradU/0n76FWt0gqK7xR2nJjrStk3RzepH17G0p+sa5YX5Sw3S5UhG/B7Ha8TDcdaKrv7lmaQasFz+vdPW28ItFC6On4fabjYsYwDkp+aeK74b5imuby1dy+BfDUUvKifanWydtlUD9pkb8nkh5cup5kv2ltK42yyya5vMx78ucXqlf5hA==
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Parcel snapshots"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/parcel/snapshots/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"ParcelSnapshots"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshots":{"type":"array","items":{"type":"object","properties":{"snapshotid":{"type":"string"},"snapshotevent":{"type":"string"},"snapshotsequence":{"type":"string"},"snapshoturl":{"type":"string"},"imagedatetime":{"type":"string"},"datecreated":{"type":"string"}},"title":"ParcelSnapshotsData"}}},"title":"ParcelSnapshotsResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

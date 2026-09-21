@@ -1,0 +1,5119 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Afribox API",
+    "version": "2.0.0",
+    "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, or a Business secret key. The HTTP status is always 200; the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`."
+  },
+  "servers": [
+    {
+      "url": "https://afriboxapi.smartparcel.ng/v2",
+      "description": "Afribox production (v2)"
+    }
+  ],
+  "tags": [
+    {
+      "name": "customer",
+      "description": "End-user accounts: signup/login/OTP, profile, saved cards, parcels, support."
+    },
+    {
+      "name": "business",
+      "description": "Business/partner accounts: dashboard, boxes, parcels, wallet, transaction history."
+    },
+    {
+      "name": "kiosk",
+      "description": "Locker/device operations: setup, ping, parcel drop/collect, appless reserve/verify, snapshots."
+    },
+    {
+      "name": "pay",
+      "description": "Payments: parcel payment search/success, and the Paystack initialize/verify/status/return/webhook endpoints."
+    },
+    {
+      "name": "parcel",
+      "description": "Parcel proof-of-delivery snapshots (list, fetch, image)."
+    },
+    {
+      "name": "admin",
+      "description": "Administrative operations: businesses list and wallet transactions."
+    }
+  ],
+  "paths": {
+    "/admin/businesses/wallettransaction/new/": {
+      "post": {
+        "operationId": "post_admin_businesses_wallettransaction_new",
+        "summary": "Businesses wallettransaction new",
+        "tags": [
+          "admin"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminBusinessWalletTransactionInsert"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessWalletTransactionInsertResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/business/cancelledparcels/": {
+      "post": {
+        "operationId": "post_business_cancelledparcels",
+        "summary": "Business cancelledparcels",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsCancelledParcels"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsCancelledParcelsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/business/parcels/cancel/": {
+      "post": {
+        "operationId": "post_business_parcels_cancel",
+        "summary": "Business parcels cancel",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsParcelInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsParcelInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/business/parcels/create/": {
+      "post": {
+        "operationId": "post_business_parcels_create",
+        "summary": "Business parcels create",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentication: **business secret** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsParcelNew"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsParcelNewResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/business/parcels/retrieve/": {
+      "post": {
+        "operationId": "post_business_parcels_retrieve",
+        "summary": "Business parcels retrieve",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsParcelInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsParcelInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/business/pendingdropoffs/": {
+      "post": {
+        "operationId": "post_business_pendingdropoffs",
+        "summary": "Business pendingdropoffs",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsPendingDropoffs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsPendingDropoffsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/business/retrievedparcels/": {
+      "post": {
+        "operationId": "post_business_retrievedparcels",
+        "summary": "Business retrievedparcels",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsRetrievedParcels"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsRetrievedParcelsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/business/wallettransaction/new/": {
+      "post": {
+        "operationId": "post_business_wallettransaction_new",
+        "summary": "Business wallettransaction new",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessWalletTransactionInsert"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessWalletTransactionInsertResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/cards/add/complete/": {
+      "post": {
+        "operationId": "post_customer_cards_add_complete",
+        "summary": "Cards add complete",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **none** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error."
+          }
+        }
+      }
+    },
+    "/customer/cards/add/": {
+      "post": {
+        "operationId": "post_customer_cards_add",
+        "summary": "Customer cards add",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerCardsAdd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerCardsAddResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/cards/delete/": {
+      "post": {
+        "operationId": "post_customer_cards_delete",
+        "summary": "Customer cards delete",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerCardsDelete"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerCardsDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/cards/setdefault/": {
+      "post": {
+        "operationId": "post_customer_cards_setdefault",
+        "summary": "Customer cards setdefault",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerCardsSetDefault"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerCardsSetDefaultResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/changepassword/": {
+      "post": {
+        "operationId": "post_customer_changepassword",
+        "summary": "Customer changepassword",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerChangePassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerChangePasswordResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/edit/": {
+      "post": {
+        "operationId": "post_customer_edit",
+        "summary": "Customer edit",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerEdit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerEditResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/forgotpassword/": {
+      "post": {
+        "operationId": "post_customer_forgotpassword",
+        "summary": "Customer forgotpassword",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerForgotPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerForgotPasswordResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/login/": {
+      "post": {
+        "operationId": "post_customer_login",
+        "summary": "Customer login",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerLoginResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/otp/resend/": {
+      "post": {
+        "operationId": "post_customer_otp_resend",
+        "summary": "Customer otp resend",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OTPResend"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OTPResendResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/otp/verify/": {
+      "post": {
+        "operationId": "post_customer_otp_verify",
+        "summary": "Customer otp verify",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OTPVerify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OTPVerifyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/parcels/cancelled/": {
+      "post": {
+        "operationId": "post_customer_parcels_cancelled",
+        "summary": "Customer parcels cancelled",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerParcelCancelled"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerParcelCancelledResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/parcels/hold/": {
+      "post": {
+        "operationId": "post_customer_parcels_hold",
+        "summary": "Customer parcels hold",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **paystack dual** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParcelHold"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParcelHoldResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/parcels/hold/release/": {
+      "post": {
+        "operationId": "post_customer_parcels_hold_release",
+        "summary": "Parcels hold release",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParcelHoldRelease"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParcelHoldReleaseResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/parcels/new/": {
+      "post": {
+        "operationId": "post_customer_parcels_new",
+        "summary": "Customer parcels new",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerParcelNew"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerParcelNewResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/parcels/newrequests/": {
+      "post": {
+        "operationId": "post_customer_parcels_newrequests",
+        "summary": "Customer parcels newrequests",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerParcelNewRequests"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerParcelNewRequestsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/resetpassword/": {
+      "post": {
+        "operationId": "post_customer_resetpassword",
+        "summary": "Customer resetpassword",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerResetPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerResetPasswordResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/signup/": {
+      "post": {
+        "operationId": "post_customer_signup",
+        "summary": "Customer signup",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerSignup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerSignupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer/support/": {
+      "post": {
+        "operationId": "post_customer_support",
+        "summary": "Customer support",
+        "tags": [
+          "customer"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerSupport"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerSupportResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/parcel/appless/reserve/": {
+      "post": {
+        "operationId": "post_kiosk_parcel_appless_reserve",
+        "summary": "Parcel appless reserve",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplessReserve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplessReserveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/parcel/appless/verify/": {
+      "post": {
+        "operationId": "post_kiosk_parcel_appless_verify",
+        "summary": "Parcel appless verify",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplessVerify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplessVerifyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/parcel/collect/": {
+      "post": {
+        "operationId": "post_kiosk_parcel_collect",
+        "summary": "Kiosk parcel collect",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollectParcel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectParcelResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/parcel/drop/": {
+      "post": {
+        "operationId": "post_kiosk_parcel_drop",
+        "summary": "Kiosk parcel drop",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DropParcel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DropParcelResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/parcel/nipost/reserve/": {
+      "post": {
+        "operationId": "post_kiosk_parcel_nipost_reserve",
+        "summary": "Parcel nipost reserve",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NIPOSTReserve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NIPOSTReserveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/parcel/nipost/verify/": {
+      "post": {
+        "operationId": "post_kiosk_parcel_nipost_verify",
+        "summary": "Parcel nipost verify",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NIPOSTVerify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NIPOSTVerifyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/parcel/snapshot/": {
+      "post": {
+        "operationId": "post_kiosk_parcel_snapshot",
+        "summary": "Kiosk parcel snapshot",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SnapshotUpload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SnapshotUploadResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kiosk/setup/": {
+      "post": {
+        "operationId": "post_kiosk_setup",
+        "summary": "Kiosk setup",
+        "tags": [
+          "kiosk"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BoxesSetup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BoxesSetupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parcel/snapshots/": {
+      "post": {
+        "operationId": "post_parcel_snapshots",
+        "summary": "Parcel snapshots",
+        "tags": [
+          "parcel"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParcelSnapshots"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParcelSnapshotsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/initialize/": {
+      "post": {
+        "operationId": "post_pay_initialize",
+        "summary": "Initialize a Paystack payment",
+        "tags": [
+          "pay"
+        ],
+        "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup).",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaystackInitialize"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaystackInitializeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/success/": {
+      "post": {
+        "operationId": "post_pay_success",
+        "summary": "Pay success",
+        "tags": [
+          "pay"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaySuccess"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaySuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/success/nipost/": {
+      "post": {
+        "operationId": "post_pay_success_nipost",
+        "summary": "Pay success nipost",
+        "tags": [
+          "pay"
+        ],
+        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaySuccess"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaySuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/verify/": {
+      "post": {
+        "operationId": "post_pay_verify",
+        "summary": "Verify a Paystack payment",
+        "tags": [
+          "pay"
+        ],
+        "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments.",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaystackVerify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaystackVerifyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PaystackVerifyResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "transactionstatus": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "fees": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "channel": {
+            "type": "string"
+          },
+          "paidat": {
+            "type": "string"
+          },
+          "authorizationcode": {
+            "type": "string"
+          },
+          "customeremail": {
+            "type": "string"
+          },
+          "businessid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "parcelreference": {
+            "type": "string"
+          },
+          "collectcode": {
+            "type": "string"
+          },
+          "dropcode": {
+            "type": "string"
+          },
+          "processed": {
+            "type": "string"
+          }
+        },
+        "description": "Verified transaction details, including parcel collectcode when applicable."
+      },
+      "PaystackVerify": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          }
+        }
+      },
+      "PaySuccessResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "transactionreference": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/PaySuccessData"
+          }
+        }
+      },
+      "PaySuccessData": {
+        "type": "object",
+        "properties": {
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "deliveryamount": {
+            "type": "string"
+          },
+          "grandtotal": {
+            "type": "string"
+          },
+          "parcelsubdescription": {
+            "type": "string"
+          },
+          "collectcode": {
+            "type": "string"
+          },
+          "deliveryrequested": {
+            "type": "string"
+          },
+          "deliverypaid": {
+            "type": "string"
+          },
+          "recipientaddress": {
+            "type": "string"
+          },
+          "deliveryarea": {
+            "type": "string"
+          }
+        }
+      },
+      "PaySuccess": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "transactionreference": {
+            "type": "string"
+          }
+        }
+      },
+      "PaystackStatusResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "transactionstatus": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "channel": {
+            "type": "string"
+          },
+          "paidat": {
+            "type": "string"
+          },
+          "processed": {
+            "type": "string"
+          },
+          "flowtype": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "businessid": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "PaystackStatus": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          }
+        }
+      },
+      "PaySearchParcelResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/SearchParcelData"
+          }
+        }
+      },
+      "SearchParcelData": {
+        "type": "object",
+        "properties": {
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "deliveryamount": {
+            "type": "string"
+          },
+          "grandtotal": {
+            "type": "string"
+          },
+          "parcelsubdescription": {
+            "type": "string"
+          },
+          "parcelpaid": {
+            "type": "string"
+          }
+        }
+      },
+      "PaySearchParcel": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          }
+        }
+      },
+      "PaystackInitializeResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "authorizationurl": {
+            "type": "string"
+          },
+          "accesscode": {
+            "type": "string"
+          }
+        },
+        "description": "Paystack initialization result."
+      },
+      "PaystackInitialize": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "callbackurl": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "flowtype": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ParcelSnapshotsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "snapshots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParcelSnapshotsData"
+            }
+          }
+        }
+      },
+      "ParcelSnapshotsData": {
+        "type": "object",
+        "properties": {
+          "snapshotid": {
+            "type": "string"
+          },
+          "snapshotevent": {
+            "type": "string"
+          },
+          "snapshotsequence": {
+            "type": "string"
+          },
+          "snapshoturl": {
+            "type": "string"
+          },
+          "imagedatetime": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          }
+        }
+      },
+      "ParcelSnapshots": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          }
+        }
+      },
+      "SnapshotUploadResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "snapshotid": {
+            "type": "string"
+          },
+          "snapshoturl": {
+            "type": "string"
+          }
+        }
+      },
+      "SnapshotFetch": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "snapshotid": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxesSetupResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "box": {
+            "$ref": "#/components/schemas/BoxData"
+          }
+        }
+      },
+      "BoxData": {
+        "type": "object",
+        "properties": {
+          "boxid": {
+            "type": "string"
+          },
+          "boxcode": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxcapacity": {
+            "type": "string"
+          },
+          "lockersavailable": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxlongitude": {
+            "type": "string"
+          },
+          "boxlatitude": {
+            "type": "string"
+          },
+          "cityid": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "stateid": {
+            "type": "string"
+          },
+          "statename": {
+            "type": "string"
+          },
+          "lockersinuse": {
+            "type": "string"
+          },
+          "lockersfree": {
+            "type": "string"
+          },
+          "boxdescription": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxesSetup": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxcode": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxPingResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxPing": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          }
+        }
+      },
+      "SnapshotUpload": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "snapshotevent": {
+            "type": "string"
+          },
+          "snapshotsequence": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "imagedatetime": {
+            "type": "string"
+          }
+        }
+      },
+      "NIPOSTVerifyResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/NIPOSTVerifyParcelData"
+          }
+        }
+      },
+      "NIPOSTVerifyParcelData": {
+        "type": "object",
+        "properties": {
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "boxlockerid": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          }
+        }
+      },
+      "NIPOSTVerify": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          }
+        }
+      },
+      "NIPOSTReserveResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/NIPOSTReserveParcelData"
+          }
+        }
+      },
+      "NIPOSTReserveParcelData": {
+        "type": "object",
+        "properties": {
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "itemcount": {
+            "type": "string"
+          },
+          "dropcode": {
+            "type": "string"
+          },
+          "collectcode": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          }
+        }
+      },
+      "NIPOSTReserve": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          }
+        }
+      },
+      "DropParcelResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/DropParcelData"
+          }
+        }
+      },
+      "DropParcelData": {
+        "type": "object",
+        "properties": {
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "couriername": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "itemcount": {
+            "type": "string"
+          },
+          "parcelsubdescription": {
+            "type": "string"
+          },
+          "dropcode": {
+            "type": "string"
+          },
+          "boxlockerid": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "lockerstatus": {
+            "type": "string"
+          }
+        }
+      },
+      "DropParcel": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "unlockcode": {
+            "type": "string"
+          }
+        }
+      },
+      "CollectParcelResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/CollectParcelData"
+          }
+        }
+      },
+      "CollectParcelData": {
+        "type": "object",
+        "properties": {
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "couriername": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "itemcount": {
+            "type": "string"
+          },
+          "parcelsubdescription": {
+            "type": "string"
+          },
+          "collectcode": {
+            "type": "string"
+          },
+          "boxlockerid": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "lockerstatus": {
+            "type": "string"
+          }
+        }
+      },
+      "CollectParcel": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "unlockcode": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplessVerifyResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/ApplessVerifyParcelData"
+          }
+        }
+      },
+      "ApplessVerifyParcelData": {
+        "type": "object",
+        "properties": {
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "boxlockerid": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplessVerify": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplessReserveResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/ApplessReserveParcelData"
+          }
+        }
+      },
+      "ApplessReserveParcelData": {
+        "type": "object",
+        "properties": {
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "itemcount": {
+            "type": "string"
+          },
+          "dropcode": {
+            "type": "string"
+          },
+          "collectcode": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplessReserve": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "paymentreference": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerSupportResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerSupport": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerSignupResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "otp": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerSignup": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerResetPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerResetPassword": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "oldpassword": {
+            "type": "string"
+          },
+          "newpassword": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelTimelineResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "timelines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelTimelineData"
+            }
+          }
+        }
+      },
+      "CustomerParcelTimelineData": {
+        "type": "object",
+        "properties": {
+          "parceltrackingid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "narration": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelTimeline": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelReportsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelData": {
+        "type": "object",
+        "properties": {
+          "parcelid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "datecreatedshortdate": {
+            "type": "string"
+          },
+          "datecreatedshorttime": {
+            "type": "string"
+          },
+          "datecreatedlongdate": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "couriername": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "recipientaddress": {
+            "type": "string"
+          },
+          "deliveryarea": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "itemcount": {
+            "type": "string"
+          },
+          "parcelsubdescription": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "dropcode": {
+            "type": "string"
+          },
+          "collectcode": {
+            "type": "string"
+          },
+          "parcelpaid": {
+            "type": "string"
+          },
+          "authorizationotp": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelReports": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "datefrom": {
+            "type": "string"
+          },
+          "dateto": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelNewRequestsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelNewRequests": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelNewResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/CustomerParcelData"
+          }
+        }
+      },
+      "CustomerParcelNew": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "requesttypeid": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "recipientaddress": {
+            "type": "string"
+          },
+          "deliveryareaid": {
+            "type": "string"
+          },
+          "parceldescription": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelInLockerResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelInLocker": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/CustomerParcelData"
+          }
+        }
+      },
+      "CustomerParcelInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelInfoAllResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/CustomerParcelData"
+          },
+          "timelines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelTimelineData"
+            }
+          }
+        }
+      },
+      "CustomerParcelInfoAll": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          }
+        }
+      },
+      "ParcelHoldReleaseResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "ParcelHoldRelease": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "holdtoken": {
+            "type": "string"
+          }
+        }
+      },
+      "ParcelHoldResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "holdtoken": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "authorizationurl": {
+            "type": "string"
+          },
+          "accesscode": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "ParcelHold": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "requesttypeid": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "deliveryareaid": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderphone": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "recipientaddress": {
+            "type": "string"
+          },
+          "parceldescription": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelEnrouteToRecipientResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelEnrouteToRecipient": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelDeliveredResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelDelivered": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelCancelledResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelCancelled": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelArchivedResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelArchived": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerParcelAllResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerParcelData"
+            }
+          }
+        }
+      },
+      "CustomerParcelAll": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "OTPVerifyResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "OTPVerify": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "otp": {
+            "type": "string"
+          }
+        }
+      },
+      "OTPResendResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "otp": {
+            "type": "string"
+          }
+        }
+      },
+      "OTPResend": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerLoginResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CustomerLoginData"
+          },
+          "dashboard": {
+            "$ref": "#/components/schemas/CustomerDashboardData"
+          }
+        }
+      },
+      "CustomerDashboardData": {
+        "type": "object",
+        "properties": {
+          "newrequests": {
+            "type": "string"
+          },
+          "inlocker": {
+            "type": "string"
+          },
+          "enroutetorecipient": {
+            "type": "string"
+          },
+          "delivered": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerLoginData": {
+        "type": "object",
+        "properties": {
+          "customerid": {
+            "type": "string"
+          },
+          "customername": {
+            "type": "string"
+          },
+          "networkid": {
+            "type": "string"
+          },
+          "networkname": {
+            "type": "string"
+          },
+          "emailaddress": {
+            "type": "string"
+          },
+          "phonenumber": {
+            "type": "string"
+          },
+          "passwordreset": {
+            "type": "string"
+          },
+          "customeractive": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerLogin": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CustomerLoginData"
+          }
+        }
+      },
+      "CustomerInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerForgotPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerForgotPassword": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerEditResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerEdit": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerDashboardResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "dashboard": {
+            "$ref": "#/components/schemas/CustomerDashboardData"
+          }
+        }
+      },
+      "CustomerDashboard": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerChangePasswordResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerChangePassword": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "oldpassword": {
+            "type": "string"
+          },
+          "newpassword": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsSetDefaultResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsSetDefault": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "cardid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerCardData"
+            }
+          }
+        }
+      },
+      "CustomerCardData": {
+        "type": "object",
+        "properties": {
+          "cardid": {
+            "type": "string"
+          },
+          "first6digits": {
+            "type": "string"
+          },
+          "last4digits": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "expiry": {
+            "type": "string"
+          },
+          "isdefault": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "card": {
+            "$ref": "#/components/schemas/CustomerCardData"
+          }
+        }
+      },
+      "CustomerCardsInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "cardid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsDelete": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "cardid": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsAddResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "cardaddurl": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomerCardsAdd": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "customerid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "StatesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StateData"
+            }
+          }
+        }
+      },
+      "StateData": {
+        "type": "object",
+        "properties": {
+          "stateid": {
+            "type": "string"
+          },
+          "statecode": {
+            "type": "string"
+          },
+          "statename": {
+            "type": "string"
+          },
+          "countcities": {
+            "type": "string"
+          },
+          "countboxes": {
+            "type": "string"
+          },
+          "statedescription": {
+            "type": "string"
+          }
+        }
+      },
+      "StatesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "StatesInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/components/schemas/StateData"
+          }
+        }
+      },
+      "StatesInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "stateid": {
+            "type": "string"
+          }
+        }
+      },
+      "SizesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "sizes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SizeData"
+            }
+          }
+        }
+      },
+      "SizeData": {
+        "type": "object",
+        "properties": {
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "widthcm": {
+            "type": "string"
+          },
+          "heightcm": {
+            "type": "string"
+          },
+          "depthcm": {
+            "type": "string"
+          }
+        }
+      },
+      "SizesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "SizesInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "size": {
+            "$ref": "#/components/schemas/SizeData"
+          }
+        }
+      },
+      "SizesInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          }
+        }
+      },
+      "SizesFeesResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "sizes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SizeFeesData"
+            }
+          }
+        }
+      },
+      "SizeFeesData": {
+        "type": "object",
+        "properties": {
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "widthcm": {
+            "type": "string"
+          },
+          "heightcm": {
+            "type": "string"
+          },
+          "depthcm": {
+            "type": "string"
+          },
+          "fees": {
+            "type": "string"
+          },
+          "sizedescription": {
+            "type": "string"
+          }
+        }
+      },
+      "SizesFees": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "requesttypeid": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          }
+        }
+      },
+      "RequestTypesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "requesttypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestTypeData"
+            }
+          }
+        }
+      },
+      "RequestTypeData": {
+        "type": "object",
+        "properties": {
+          "requesttypeid": {
+            "type": "string"
+          },
+          "requesttype": {
+            "type": "string"
+          },
+          "requesttypedescription": {
+            "type": "string"
+          }
+        }
+      },
+      "RequestTypesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesServiceResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "fees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeesServiceData"
+            }
+          }
+        }
+      },
+      "FeesServiceData": {
+        "type": "object",
+        "properties": {
+          "servicefeeid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "servicefee": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesService": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesSelfStorageResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "fees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeesSelfStorageData"
+            }
+          }
+        }
+      },
+      "FeesSelfStorageData": {
+        "type": "object",
+        "properties": {
+          "storagefeeid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "storagefeepersixhours": {
+            "type": "string"
+          },
+          "storagefeeperhour": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesSelfStorage": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesNIPOSTResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "fees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeesNIPOSTData"
+            }
+          }
+        }
+      },
+      "FeesNIPOSTData": {
+        "type": "object",
+        "properties": {
+          "nipostfeeid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "nipostfee": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesNIPOST": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesComputeResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "fees": {
+            "$ref": "#/components/schemas/FeesComputeData"
+          }
+        }
+      },
+      "FeesComputeData": {
+        "type": "object",
+        "properties": {
+          "servicefee": {
+            "type": "string"
+          },
+          "storagefee": {
+            "type": "string"
+          },
+          "totalfees": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesCompute": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "requesttypeid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesApplessResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "fees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeesApplessData"
+            }
+          }
+        }
+      },
+      "FeesApplessData": {
+        "type": "object",
+        "properties": {
+          "applessfeeid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "applessfee": {
+            "type": "string"
+          }
+        }
+      },
+      "FeesAppless": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "DeliveryAreasListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "deliveryareas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeliveryAreaData"
+            }
+          }
+        }
+      },
+      "DeliveryAreaData": {
+        "type": "object",
+        "properties": {
+          "deliveryareaid": {
+            "type": "string"
+          },
+          "deliveryareaname": {
+            "type": "string"
+          },
+          "stateid": {
+            "type": "string"
+          },
+          "statename": {
+            "type": "string"
+          }
+        }
+      },
+      "DeliveryAreasList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "statename": {
+            "type": "string"
+          }
+        }
+      },
+      "CouriersListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "couriers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourierData"
+            }
+          }
+        }
+      },
+      "CourierData": {
+        "type": "object",
+        "properties": {
+          "courierid": {
+            "type": "string"
+          },
+          "couriername": {
+            "type": "string"
+          }
+        }
+      },
+      "CouriersList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "CitiesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "cities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CityData"
+            }
+          }
+        }
+      },
+      "CityData": {
+        "type": "object",
+        "properties": {
+          "cityid": {
+            "type": "string"
+          },
+          "cityname": {
+            "type": "string"
+          },
+          "stateid": {
+            "type": "string"
+          },
+          "statename": {
+            "type": "string"
+          },
+          "countboxes": {
+            "type": "string"
+          },
+          "citydescription": {
+            "type": "string"
+          }
+        }
+      },
+      "CitiesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "CitiesInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "city": {
+            "$ref": "#/components/schemas/CityData"
+          }
+        }
+      },
+      "CitiesInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "cityid": {
+            "type": "string"
+          }
+        }
+      },
+      "CitiesListByStateResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "cities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CityData"
+            }
+          }
+        }
+      },
+      "CitiesListByState": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "stateid": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "boxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BoxData"
+            }
+          }
+        }
+      },
+      "BoxesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxesInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "box": {
+            "$ref": "#/components/schemas/BoxData"
+          },
+          "lockerSizes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LockerSizeData"
+            }
+          }
+        }
+      },
+      "LockerSizeData": {
+        "type": "object",
+        "properties": {
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "sizedetails": {
+            "type": "string"
+          },
+          "sizewidthcm": {
+            "type": "string"
+          },
+          "sizeheightcm": {
+            "type": "string"
+          },
+          "sizedepthcm": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxesInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxesListByStateResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "boxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BoxData"
+            }
+          }
+        }
+      },
+      "BoxesListByState": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "stateid": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxesListByCityResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "boxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BoxData"
+            }
+          }
+        }
+      },
+      "BoxesListByCity": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "cityid": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxAvailabilityResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "box": {
+            "$ref": "#/components/schemas/BoxAvailabilityData"
+          },
+          "sizes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SizeAvailabilityData"
+            }
+          }
+        }
+      },
+      "SizeAvailabilityData": {
+        "type": "object",
+        "properties": {
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "lockersfree": {
+            "type": "string"
+          }
+        }
+      },
+      "BoxAvailabilityData": {
+        "type": "object",
+        "properties": {
+          "boxid": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          }
+        }
+      },
+      "BusinessWalletTransactionInsertResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          }
+        }
+      },
+      "BusinessWalletTransactionInsert": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "wallettransactiontypeid": {
+            "type": "string"
+          },
+          "walletfundmodeid": {
+            "type": "string"
+          },
+          "transactionamount": {
+            "type": "string"
+          },
+          "narration": {
+            "type": "string"
+          },
+          "createdby": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsTransactionHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsTransactionHistoryData"
+            }
+          }
+        }
+      },
+      "LogisticsTransactionHistoryData": {
+        "type": "object",
+        "properties": {
+          "transactionid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "elapsed": {
+            "type": "string"
+          },
+          "narration": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsTransactionHistory": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsRetrievedParcelsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelData"
+            }
+          }
+        }
+      },
+      "LogisticsParcelData": {
+        "type": "object",
+        "properties": {
+          "parceldetailid": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "businessid": {
+            "type": "string"
+          },
+          "businessname": {
+            "type": "string"
+          },
+          "parcelrequesttypeid": {
+            "type": "string"
+          },
+          "parcelrequesttype": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "sizename": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "boxname": {
+            "type": "string"
+          },
+          "boxaddress": {
+            "type": "string"
+          },
+          "boxcityid": {
+            "type": "string"
+          },
+          "boxcityname": {
+            "type": "string"
+          },
+          "boxstateid": {
+            "type": "string"
+          },
+          "boxstatename": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          },
+          "sendername": {
+            "type": "string"
+          },
+          "senderemail": {
+            "type": "string"
+          },
+          "dropcode": {
+            "type": "string"
+          },
+          "collectcode": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "dropdate": {
+            "type": "string"
+          },
+          "collectdate": {
+            "type": "string"
+          },
+          "parcelamount": {
+            "type": "string"
+          },
+          "elapsed": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsRetrievedParcels": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsPickedUpParcelsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelData"
+            }
+          }
+        }
+      },
+      "LogisticsPickedUpParcels": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsPendingPickupsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelData"
+            }
+          }
+        }
+      },
+      "LogisticsPendingPickups": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsPendingDropoffsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelData"
+            }
+          }
+        }
+      },
+      "LogisticsPendingDropoffs": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsParcelTimelineResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "timelines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelTimelineData"
+            }
+          }
+        }
+      },
+      "LogisticsParcelTimelineData": {
+        "type": "object",
+        "properties": {
+          "parceltrackingid": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          },
+          "parcelreferencenumber": {
+            "type": "string"
+          },
+          "parcelstatusid": {
+            "type": "string"
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "narration": {
+            "type": "string"
+          },
+          "datecreated": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsParcelTimeline": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsParcelInfoResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/LogisticsParcelData"
+          }
+        }
+      },
+      "LogisticsParcelInfo": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsParcelReportsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelData"
+            }
+          }
+        }
+      },
+      "LogisticsParcelReports": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "datefrom": {
+            "type": "string"
+          },
+          "dateto": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsParcelInfoAllResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/LogisticsParcelData"
+          },
+          "timelines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelTimelineData"
+            }
+          }
+        }
+      },
+      "LogisticsParcelInfoAll": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "parceldetailid": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsParcelNewResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcel": {
+            "$ref": "#/components/schemas/LogisticsParcelData"
+          }
+        }
+      },
+      "LogisticsParcelNew": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "recipientname": {
+            "type": "string"
+          },
+          "recipientphone": {
+            "type": "string"
+          },
+          "recipientemail": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsDashboardResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "dashboard": {
+            "$ref": "#/components/schemas/LogisticsDashboardData"
+          }
+        }
+      },
+      "LogisticsDashboardData": {
+        "type": "object",
+        "properties": {
+          "boxes": {
+            "type": "string"
+          },
+          "lockers": {
+            "type": "string"
+          },
+          "users": {
+            "type": "string"
+          },
+          "parcelspendingdropoffs": {
+            "type": "string"
+          },
+          "parcelspendingpickups": {
+            "type": "string"
+          },
+          "parcelspickedup": {
+            "type": "string"
+          },
+          "parcelsretrieved": {
+            "type": "string"
+          },
+          "parcelscancelled": {
+            "type": "string"
+          },
+          "parcelstotal": {
+            "type": "string"
+          },
+          "lockersvacant": {
+            "type": "string"
+          },
+          "lockersreserved": {
+            "type": "string"
+          },
+          "lockersoccupied": {
+            "type": "string"
+          },
+          "lockerstotal": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsDashboard": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsCancelledParcelsResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogisticsParcelData"
+            }
+          }
+        }
+      },
+      "LogisticsCancelledParcels": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsBalanceResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "string"
+          }
+        }
+      },
+      "LogisticsBalance": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      },
+      "AdminBusinessWalletTransactionInsert": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "businessid": {
+            "type": "string"
+          },
+          "wallettransactiontypeid": {
+            "type": "string"
+          },
+          "walletfundmodeid": {
+            "type": "string"
+          },
+          "transactionamount": {
+            "type": "string"
+          },
+          "narration": {
+            "type": "string"
+          },
+          "createdby": {
+            "type": "string"
+          }
+        }
+      },
+      "BusinessesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string"
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "businesses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessData"
+            }
+          }
+        }
+      },
+      "BusinessData": {
+        "type": "object",
+        "properties": {
+          "businessid": {
+            "type": "string"
+          },
+          "networkname": {
+            "type": "string"
+          },
+          "businessname": {
+            "type": "string"
+          },
+          "businesscode": {
+            "type": "string"
+          },
+          "countbusinessboxes": {
+            "type": "string"
+          },
+          "billingtype": {
+            "type": "string"
+          },
+          "businessbalance": {
+            "type": "string"
+          },
+          "businessactive": {
+            "type": "string"
+          }
+        }
+      },
+      "BusinessesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

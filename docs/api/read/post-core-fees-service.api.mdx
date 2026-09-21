@@ -1,0 +1,68 @@
+---
+id: post-core-fees-service
+title: "Core fees service"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core fees service"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1z2jAQ/SsanQhDMMPRnR5I2k7TQ8IEespkgrAXUCJLqiTTUI//e3dlA2byMTn0UA5gtKvV26d9zxU3FpwI0uirnKfcGh8eMuPgYQXgHzy4rcyAD3gQa8/TO04xfj/gOfjMSUsbcdukDBvQQWaxUsr6fWEte4Jdv896HoBhmJ0msXUpczgbsjmGHHhrtAcmPfs+n0/ZeDT6FDdhpFSB1qWOC0uT79jCBxFKn5kcFmwlQeVDxPh87kDkRqsdT4MrYcAd/CrBhwvcw9Mq/pUO8n04MzogIgohXtUiSx49NVVxn22gEPQUdhawTbN8hCzgSdYRbUGCb/ZKbLWT54OTes3rGnmTQdHSN6Rz1rJZ1xTZ9xxLYL/0c8rqbdM76C0oPA+ZPHSdNI8FeC/WxOK10eeL0WjBjjnIWE4tgWdCM3DOOGLpHzV9POeVxgf8BN+rGTRgnYBwTuzwFBmg8B84vuESi8j8dQDyz3shLYo3gB8Kf/hCv4ggeP1G8La95njrmALPyL5HxklOFY+D053cAd8KVUIzojUqrYCwMXttEg8ibPBfQkpMiMSkhZzwBj24pnTpFOZtQrA+TRKxcnJpnnFWh74QLljhMlBDvU62Y/5Cz00yQ87zMoty7W3HZ5zw0KDcHnX19VkUVkFXBx02pV6ZyGNLzL7wZHpFnSLU5sDxcDQcvQljKbIn0DntYr0ZoZ9G9Dj3E6VQILk1Ugec8ywDG9iP2c01M1idTW9mc9YrtcJBZNoEyGnPqRGht2ylII0smg4We69p7SN6TkoJk6NgIhhMHjDBLkovNZ1gyyXGm2XjuhEPmYNAkcbxoss1IiEAQv0WO3+0PVOGzBTRDx1Y4xD4iQES4BMT7EXxf2a+RAq8P0O0+T6jVeFiSDdCU1SIKPVGA/wSB4nRILGj3Z/cQ3X0jP/E6VtZBhRTYpWQmjqL8161+mjfVK3NHGSNT/T22pCUMKeqlsLDT6fqmpbxth3O7909idBJsaSZvbvH2huUJ7iOYi8bRs7nhOSg2ZeOWg/2OyZxNt/N7aqdJheTl+2rq4hGy534jYv0nXJ8MPGGoiHGtYoroddltFze1KTPXzmhveA=
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core fees service"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/fees/service/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"FeesService"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"array","items":{"type":"object","properties":{"servicefeeid":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"servicefee":{"type":"string"}},"title":"FeesServiceData"}}},"title":"FeesServiceResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

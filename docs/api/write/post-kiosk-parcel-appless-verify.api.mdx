@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-appless-verify
+title: "Parcel appless verify"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Parcel appless verify"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1PGzEQ/SuWTwGFbMQxVQ+hrVR6AARpLwglzu4kMXht1x8p6Sr/vTP25ksEVKQeyiHsesb2zHvz3jbcWHAiSKMvKz7g1vgwfpLGP42tcCWosbBWgffjJTg5W/EuD2Lu+eCepyz+0OUV+NJJS2fgCcMYFqCDLNOhA3Z6iiewJ1idnrKOB2AYZodJbB5lBSc9NsKQA2+N9sCkZ19Hoxt23u9/SJswElWgdanTwtRUKzbxQYToS1PBhM0kqKqHRT6fORCV0WrFBzOhPHS5g58RfLjATXzQpFfpAJsOLmK4NDpgSRSiltvSikdPXTXclwuoBT2FlQXs00wfoQx4lXUEYZDg816Jve7l+eCknvN1l0/Ns6yORrz8DVrUcCSI0SCDoqVhZuJHJmK9ptgGrXQ3IkX/Dvm4zaiBXoLCQpGDLV5FfqzxUDEn/K+MPpv0+xO2y0GsK8ICPBOagXPGEb7/CK3dPcdx2a/vaEYe0r+4CBF+P/iJs7dioqqQAf9GaaI2MeN0bL8y5RPSebywbVzHegruHcNxk67+LIJ4Pee2nZw0SJgEz0ioRxJJ3A1PQ7wvoy5fChWhldMadV9DWJiNaRDiIizwrUjGUOT2i9Y+imwfBaZ5cPiSb4kOueOLEKwfFIWYOUmgWtnztXAhH9HT82J5zl/4TE5myHMVy2QjneX5CafKaAxvd3L/8ixqq2BfnhsIt6rcLezmYY8LqWcmEbCBsr19eHNJyGA/uarzXr/Xf7XWqUA6dUW7WOeOWsxMofSGSqFGK2ukDii1sgQb2Le76ytm8HR2c303Yp2oCUumTYCK9hy6KBrjUgqS6SS3OdkYZWt9yTAHlDDcaTYVg8ldJthF9FLTDTZOMZ6XjduPeCgdBIpku04WnXVKBQj1S6z8zrNNDKWpk5k7sMZh4QfuTQUfOHgn+c9H5iNC4P0JVlttMlojmPSSvHDoapHcpmUrY8naiWPbD9YBF83Ouv6TT1Wr6YACLKwSUlN3SRhNK6nNt3Zrd13eNplnL7dJn+IFKRHzm2YqPHx3ar2mZWTf4dDfP5CInRRTmuH7B7xngfIma9kq/lNG52xEVW01/9Lk193NjmGa1Tdz982CJjnJLn+G6+T93IlfuEi/A44PJrGVfDWtNVwJPY/pK8DzmfT3B8gxDMU=
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Parcel appless verify"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/appless/verify/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizename":{"type":"string"}},"title":"ApplessVerify"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"parcelamount":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessVerifyParcelData"}},"title":"ApplessVerifyResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

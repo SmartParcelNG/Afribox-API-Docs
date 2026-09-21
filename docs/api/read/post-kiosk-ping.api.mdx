@@ -1,0 +1,68 @@
+---
+id: post-kiosk-ping
+title: "Kiosk ping"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Kiosk ping"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVMFuGjEQ/RXLJ4IIizhu1QOpKjWtlKCEnqIoa3Yn4OC1XdtLQSv+vTP2bgAlrXrooRxgmRl737x5b1puLDgRpNHXFc+5NT48baTxmycr9YqPeBArz/MHHoP8ccQr8KWTlo7ggVkT1qCDLOMdORsOhbVsA/vhkA08AMM0Oy9iq0ZWcDFmC0w58NZoD0x69mWxmLPpZPIhHsJMowLFpY6Bpan2rPBBhMaXpoKCPUtQ1RhB7i4diMpoted5cA2MuIMfDfhwhWd43sa/0kHVp0ujAyKiFOJVHbLsxVNTLfflGmpBT2FvAds0yxcoA77JOiIsSPDprMRWT+p8cETbYcSXZierdzKYCjIoCl2Z3TzFKNozES9GFujnnOu7xAjoLShEgfy+cpGlxxq8Fyvi9sboy2IyKdixBnmsqFHwTGgGzhlH3P0jKo7veZeOM3x/Rctdx0ekB9OwQ5geoZEcWx55Px38iG+FaiBN+IBCrSGsTS9qwivCGv9lUckZyTvDqAe3BZfubJzCgnUI1udZJp6dxCnijMe+Fi5Y4UpQYzy2nfI3PkjFDEmpmjLKfLCdXnACQlTeHfX4eSdqq+BUPz0Nr7I5YU7qZxMJ6+jp3zSbX1PPiD0hmI4n48lvcS1FuQFd0Sk2uKd25rEdlMpMKdRUZY3UAaVRlmAD+3p/e8MM3s7mt/cLNmi0wtkxbQJUdObc0WjSrRQkqyK1VPSm7XwYzZtTweyosQgGi0dMsKvGS01vsM0S8yls3GnGQ+kgUCatjrgukq4IgFA/xd4f94dpQmnquFgcWOMQ+NkmIcBn22QQ/fKR+QYp8P4C0VZ9RSfcYkwTIT3VIrpDi5pm8o0kxbqNeTaA9uiv/2RXdsYL6KfMKiE1tRSV33YW6Zc9dpo6orW/JhNhqm2XwsN3pw4HCuN0HQr44ZHs56RYkkYfHvHKNRoT3IlXPyUiLhcE4NWtb5fOYdSfmEUt/rH21Oek1GihtPPruIu4Ez8xSN85xwcTBxNXVoy1XAm9auJW4ulO+vwCg411hw==
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Kiosk ping"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/ping/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"title":"BoxPing"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"BoxPingResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

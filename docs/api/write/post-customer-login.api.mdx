@@ -1,0 +1,69 @@
+---
+id: post-customer-login
+title: "Customer login"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer login"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1v4zYQ/SsET07gWEaOLnrw7hboFsVukLinIFhT4sTihiJZknJiCP7vnaEky0Lk3R56qA+2PB/kzJuZN2q4deBFVNZ8lnzFnQ3xW1GHaCvw37TdKcPnPIpd4KtH3iv405xLCIVXjjzRb13HEkxURTpqxa6vhXPsBQ7X12wWABiq2diI7Wol4WrBNqjyEJw1AZgK7PfN5o7dLpe/JCfU1DqSXJkkyK08sG2IItahsBK27FmBlguM8+3Gg5DW6ANfPQsdYM49/F1DiB/Qia+a9Fd5wFSjr1FdWBMxJFJhwLoLLfseKKuGh6KEStBTPDjAPG3+HYqIVzlPwEUFofVVmOuZXYhemR0/zjn6Kz2pcSKEV+vlhBK1UUVNoo8d5n+mWhyPpOvRSncjUvQzrsd9ixqYPWgMFGtwwitrHysIQewI/y/W3GyXyy0bbBBrSVhAYMIw8N56wvc/Qmu4ZxKXUXyTFqc+/OlVvaWaQnk4yIhq+iYDEUv0csG90170TrUXUmK9wnQLlNaAqat8lMv7FsEDIP4wA1FEtZ+K4lIrfRJR0AFShDK3YtSGF8A08NqN03Q2ymhbvFxIBYy3dYRoPRTKqa6N3plJ0JhHmtB/k8qnPvo2nUvJ3ncDk+aHgnnDPg7Yu0RrDU+ze84ec74XuoaORY5IdxXE0vYMSciIWOK/rMc/S1yZoSaAxwTag2uPo8/LGF1YZZl49iq3b0gWi1AJH53wBeiF2WX7W/6OUVtjhiWQdZEIc7a/veIUDA3c/UBsv72Jymk4J6IesxP/DIKBdkale7YJ8Q69/vb13WcCA/Npo7pdLBfLi7HmAstvJHmx2QOleJdSRJJZa41sJJ1VJiKpFAW4yP54+PqFWTyd3X192LBZbTROCjM2giSf8b7AFbBXgghp26a57VdC15VpNazIYD2wUwoGjedMsA91UIZucHWO+lZs/bkmQOEhkqZdTGkZtYxEAQj9Kg5h2E7Y0gWWn1QenPUY+GhPUcCjXTVLTPsrCzVCEMIVRit7i47ytos0+thnlUi82vLLqaNZv5ZHRWgGdv6fbONueiMOW+a0oO01byei6cbn7I1izvus6OWipCFDddPkIsBfXh+PJMYqe2zuxyeaT69ETr36+ITHlji5RDynYf7YgnGzoSBO4/x+bR3nvcc69eQPbc95gDoWjfPuxaJK24x78YpC+l5xfLCpOIktk6zhWphdnfYab8+kzz9/sFTy
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer login"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/login/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"}},"title":"CustomerLogin"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"customer":{"type":"object","properties":{"customerid":{"type":"string"},"customername":{"type":"string"},"networkid":{"type":"string"},"networkname":{"type":"string"},"emailaddress":{"type":"string"},"phonenumber":{"type":"string"},"passwordreset":{"type":"string"},"customeractive":{"type":"string"}},"title":"CustomerLoginData"},"dashboard":{"type":"object","properties":{"newrequests":{"type":"string"},"inlocker":{"type":"string"},"enroutetorecipient":{"type":"string"},"delivered":{"type":"string"}},"title":"CustomerDashboardData"}},"title":"CustomerLoginResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,974 @@
+[
+  {
+    "method": "POST",
+    "path": "/admin/businesses/list/",
+    "tag": "admin",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BusinessesList",
+    "response": "JSON_BusinessesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/admin/businesses/wallettransaction/new/",
+    "tag": "admin",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_AdminBusinessWalletTransactionInsert",
+    "response": "JSON_BusinessWalletTransactionInsertResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/availableboxes/all/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_BoxesList",
+    "response": "JSON_BoxesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/availableboxes/city/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_BoxesListByCity",
+    "response": "JSON_BoxesListByCityResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/availableboxes/state/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_BoxesListByState",
+    "response": "JSON_BoxesListByStateResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/balance/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsBalance",
+    "response": "JSON_LogisticsBalanceResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/boxes/all/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_BoxesList",
+    "response": "JSON_BoxesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/boxes/assigned/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_BoxesList",
+    "response": "JSON_BoxesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/boxes/city/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_BoxesListByCity",
+    "response": "JSON_BoxesListByCityResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/boxes/info/",
+    "tag": "business",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesInfo",
+    "response": "JSON_BoxesInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/boxes/state/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_BoxesListByState",
+    "response": "JSON_BoxesListByStateResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/cancelledparcels/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": false,
+    "request": "JSON_LogisticsCancelledParcels",
+    "response": "JSON_LogisticsCancelledParcelsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/cities/all/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_CitiesList",
+    "response": "JSON_CitiesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/cities/state/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_CitiesListByState",
+    "response": "JSON_CitiesListByStateResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/dashboard/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsDashboard",
+    "response": "JSON_LogisticsDashboardResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/draft/deliveryareas/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_DeliveryAreasList",
+    "response": "JSON_DeliveryAreasListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/draft/parceltypes/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_RequestTypesList",
+    "response": "JSON_RequestTypesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/parcels/cancel/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": false,
+    "request": "JSON_LogisticsParcelInfo",
+    "response": "JSON_LogisticsParcelInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/parcels/create/",
+    "tag": "business",
+    "auth": "business_secret",
+    "readonly": false,
+    "request": "JSON_LogisticsParcelNew",
+    "response": "JSON_LogisticsParcelNewResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/parcels/info/all/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsParcelInfoAll",
+    "response": "JSON_LogisticsParcelInfoAllResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/parcels/info/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsParcelInfo",
+    "response": "JSON_LogisticsParcelInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/parcels/reports/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsParcelReports",
+    "response": "JSON_LogisticsParcelReportsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/parcels/retrieve/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": false,
+    "request": "JSON_LogisticsParcelInfo",
+    "response": "JSON_LogisticsParcelInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/parcels/timeline/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsParcelTimeline",
+    "response": "JSON_LogisticsParcelTimelineResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/pendingdropoffs/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": false,
+    "request": "JSON_LogisticsPendingDropoffs",
+    "response": "JSON_LogisticsPendingDropoffsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/pendingpickups/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsPendingPickups",
+    "response": "JSON_LogisticsPendingPickupsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/pickedupparcels/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsPickedUpParcels",
+    "response": "JSON_LogisticsPickedUpParcelsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/retrievedparcels/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": false,
+    "request": "JSON_LogisticsRetrievedParcels",
+    "response": "JSON_LogisticsRetrievedParcelsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/sizes/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_SizesList",
+    "response": "JSON_SizesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/states/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_StatesList",
+    "response": "JSON_StatesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/transactionhistory/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": true,
+    "request": "JSON_LogisticsTransactionHistory",
+    "response": "JSON_LogisticsTransactionHistoryResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/business/wallettransaction/new/",
+    "tag": "business",
+    "auth": "business_public",
+    "readonly": false,
+    "request": "JSON_BusinessWalletTransactionInsert",
+    "response": "JSON_BusinessWalletTransactionInsertResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/availability/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesInfo",
+    "response": "JSON_BoxAvailabilityResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/available/bycity/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesListByCity",
+    "response": "JSON_BoxesListByCityResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/available/bystate/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesListByState",
+    "response": "JSON_BoxesListByStateResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/available/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesList",
+    "response": "JSON_BoxesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/bycity/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesListByCity",
+    "response": "JSON_BoxesListByCityResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/bystate/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesListByState",
+    "response": "JSON_BoxesListByStateResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/info/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesInfo",
+    "response": "JSON_BoxesInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/boxes/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxesList",
+    "response": "JSON_BoxesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/cities/bystate/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CitiesListByState",
+    "response": "JSON_CitiesListByStateResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/cities/info/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CitiesInfo",
+    "response": "JSON_CitiesInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/cities/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CitiesList",
+    "response": "JSON_CitiesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/couriers/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CouriersList",
+    "response": "JSON_CouriersListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/deliveryareas/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_DeliveryAreasList",
+    "response": "JSON_DeliveryAreasListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/fees/appless/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_FeesAppless",
+    "response": "JSON_FeesApplessResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/fees/compute/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_FeesCompute",
+    "response": "JSON_FeesComputeResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/fees/nipost/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_FeesNIPOST",
+    "response": "JSON_FeesNIPOSTResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/fees/selfstorage/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_FeesSelfStorage",
+    "response": "JSON_FeesSelfStorageResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/fees/service/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_FeesService",
+    "response": "JSON_FeesServiceResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/parcels/search/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_PaySearchParcel",
+    "response": "JSON_PaySearchParcelResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/requesttypes/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_RequestTypesList",
+    "response": "JSON_RequestTypesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/sizes/fees/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_SizesFees",
+    "response": "JSON_SizesFeesResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/sizes/info/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_SizesInfo",
+    "response": "JSON_SizesInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/sizes/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_SizesList",
+    "response": "JSON_SizesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/states/info/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_StatesInfo",
+    "response": "JSON_StatesInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/core/states/list/",
+    "tag": "core",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_StatesList",
+    "response": "JSON_StatesListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/cards/add/complete/",
+    "tag": "customer",
+    "auth": "none",
+    "readonly": false,
+    "request": null,
+    "response": null
+  },
+  {
+    "method": "POST",
+    "path": "/customer/cards/add/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerCardsAdd",
+    "response": "JSON_CustomerCardsAddResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/cards/delete/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerCardsDelete",
+    "response": "JSON_CustomerCardsDeleteResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/cards/info/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerCardsInfo",
+    "response": "JSON_CustomerCardsInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/cards/list/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerCardsList",
+    "response": "JSON_CustomerCardsListResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/cards/setdefault/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerCardsSetDefault",
+    "response": "JSON_CustomerCardsSetDefaultResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/changepassword/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerChangePassword",
+    "response": "JSON_CustomerChangePasswordResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/dashboard/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerDashboard",
+    "response": "JSON_CustomerDashboardResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/edit/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerEdit",
+    "response": "JSON_CustomerEditResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/forgotpassword/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerForgotPassword",
+    "response": "JSON_CustomerForgotPasswordResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/info/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerInfo",
+    "response": "JSON_CustomerInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/login/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerLogin",
+    "response": "JSON_CustomerLoginResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/otp/resend/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_OTPResend",
+    "response": "JSON_OTPResendResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/otp/verify/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_OTPVerify",
+    "response": "JSON_OTPVerifyResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/all/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelAll",
+    "response": "JSON_CustomerParcelAllResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/archived/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelArchived",
+    "response": "JSON_CustomerParcelArchivedResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/cancelled/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerParcelCancelled",
+    "response": "JSON_CustomerParcelCancelledResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/delivered/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelDelivered",
+    "response": "JSON_CustomerParcelDeliveredResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/enroutetorecipient/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelEnrouteToRecipient",
+    "response": "JSON_CustomerParcelEnrouteToRecipientResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/hold/",
+    "tag": "customer",
+    "auth": "paystack_dual",
+    "readonly": false,
+    "request": "JSON_ParcelHold",
+    "response": "JSON_ParcelHoldResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/hold/release/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_ParcelHoldRelease",
+    "response": "JSON_ParcelHoldReleaseResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/info/all/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelInfoAll",
+    "response": "JSON_CustomerParcelInfoAllResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/info/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelInfo",
+    "response": "JSON_CustomerParcelInfoResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/inlocker/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelInLocker",
+    "response": "JSON_CustomerParcelInLockerResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/new/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerParcelNew",
+    "response": "JSON_CustomerParcelNewResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/newrequests/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerParcelNewRequests",
+    "response": "JSON_CustomerParcelNewRequestsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/reports/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelReports",
+    "response": "JSON_CustomerParcelReportsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/parcels/timeline/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_CustomerParcelTimeline",
+    "response": "JSON_CustomerParcelTimelineResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/resetpassword/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerResetPassword",
+    "response": "JSON_CustomerResetPasswordResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/signup/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerSignup",
+    "response": "JSON_CustomerSignupResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/customer/support/",
+    "tag": "customer",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CustomerSupport",
+    "response": "JSON_CustomerSupportResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/parcel/appless/reserve/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_ApplessReserve",
+    "response": "JSON_ApplessReserveResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/parcel/appless/verify/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_ApplessVerify",
+    "response": "JSON_ApplessVerifyResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/parcel/collect/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_CollectParcel",
+    "response": "JSON_CollectParcelResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/parcel/drop/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_DropParcel",
+    "response": "JSON_DropParcelResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/parcel/nipost/reserve/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_NIPOSTReserve",
+    "response": "JSON_NIPOSTReserveResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/parcel/nipost/verify/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_NIPOSTVerify",
+    "response": "JSON_NIPOSTVerifyResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/parcel/snapshot/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_SnapshotUpload",
+    "response": "JSON_SnapshotUploadResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/ping/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_BoxPing",
+    "response": "JSON_BoxPingResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/kiosk/setup/",
+    "tag": "kiosk",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_BoxesSetup",
+    "response": "JSON_BoxesSetupResponse"
+  },
+  {
+    "method": "GET",
+    "path": "/parcel/snapshot/image/",
+    "tag": "parcel",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_SnapshotFetch",
+    "response": "JSON_SnapshotUploadResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/parcel/snapshots/",
+    "tag": "parcel",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_ParcelSnapshots",
+    "response": "JSON_ParcelSnapshotsResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/initialize/",
+    "tag": "pay",
+    "auth": "paystack_dual",
+    "readonly": false,
+    "request": "JSON_PaystackInitialize",
+    "response": "JSON_PaystackInitializeResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/return/",
+    "tag": "pay",
+    "auth": "none",
+    "readonly": true,
+    "request": null,
+    "response": null
+  },
+  {
+    "method": "POST",
+    "path": "/pay/search/",
+    "tag": "pay",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_PaySearchParcel",
+    "response": "JSON_PaySearchParcelResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/search/nipost/",
+    "tag": "pay",
+    "auth": "app_key",
+    "readonly": true,
+    "request": "JSON_PaySearchParcel",
+    "response": "JSON_PaySearchParcelResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/status/",
+    "tag": "pay",
+    "auth": "paystack_dual",
+    "readonly": true,
+    "request": "JSON_PaystackStatus",
+    "response": "JSON_PaystackStatusResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/success/",
+    "tag": "pay",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_PaySuccess",
+    "response": "JSON_PaySuccessResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/success/nipost/",
+    "tag": "pay",
+    "auth": "app_key",
+    "readonly": false,
+    "request": "JSON_PaySuccess",
+    "response": "JSON_PaySuccessResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/verify/",
+    "tag": "pay",
+    "auth": "paystack_dual",
+    "readonly": false,
+    "request": "JSON_PaystackVerify",
+    "response": "JSON_PaystackVerifyResponse"
+  },
+  {
+    "method": "POST",
+    "path": "/pay/webhook/paystack/",
+    "tag": "pay",
+    "auth": "none",
+    "readonly": false,
+    "request": null,
+    "response": null
+  }
+]

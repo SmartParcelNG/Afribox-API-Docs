@@ -1,0 +1,508 @@
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
+
+const sidebar: SidebarsConfig = {
+  apisidebar: [
+    {
+      type: "doc",
+      id: "api/read/afribox-api",
+    },
+    {
+      type: "category",
+      label: "core",
+      link: {
+        type: "doc",
+        id: "api/read/core",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-availability",
+          label: "Core boxes availability",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-available-bycity",
+          label: "Boxes available bycity",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-available-bystate",
+          label: "Boxes available bystate",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-available-list",
+          label: "Boxes available list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-bycity",
+          label: "Core boxes bycity",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-bystate",
+          label: "Core boxes bystate",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-info",
+          label: "Core boxes info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-boxes-list",
+          label: "Core boxes list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-cities-bystate",
+          label: "Core cities bystate",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-cities-info",
+          label: "Core cities info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-cities-list",
+          label: "Core cities list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-couriers-list",
+          label: "Core couriers list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-deliveryareas-list",
+          label: "Core deliveryareas list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-fees-appless",
+          label: "Core fees appless",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-fees-compute",
+          label: "Core fees compute",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-fees-nipost",
+          label: "Core fees nipost",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-fees-selfstorage",
+          label: "Core fees selfstorage",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-fees-service",
+          label: "Core fees service",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-parcels-search",
+          label: "Core parcels search",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-requesttypes-list",
+          label: "Core requesttypes list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-sizes-fees",
+          label: "Core sizes fees",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-sizes-info",
+          label: "Core sizes info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-sizes-list",
+          label: "Core sizes list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-states-info",
+          label: "Core states info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-core-states-list",
+          label: "Core states list",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "customer",
+      link: {
+        type: "doc",
+        id: "api/read/customer",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/get-customer-cards-add-complete",
+          label: "Card add callback (browser)",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-cards-info",
+          label: "Customer cards info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-cards-list",
+          label: "Customer cards list",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-dashboard",
+          label: "Customer dashboard",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-info",
+          label: "Customer info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-all",
+          label: "Customer parcels all",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-archived",
+          label: "Customer parcels archived",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-delivered",
+          label: "Customer parcels delivered",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-enroutetorecipient",
+          label: "Customer parcels enroutetorecipient",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-info-all",
+          label: "Parcels info all",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-info",
+          label: "Customer parcels info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-inlocker",
+          label: "Customer parcels inlocker",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-reports",
+          label: "Customer parcels reports",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-customer-parcels-timeline",
+          label: "Customer parcels timeline",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "business",
+      link: {
+        type: "doc",
+        id: "api/read/business",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/post-business-availableboxes-all",
+          label: "Business availableboxes all",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-availableboxes-city",
+          label: "Business availableboxes city",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-availableboxes-state",
+          label: "Business availableboxes state",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-balance",
+          label: "Business balance",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-boxes-all",
+          label: "Business boxes all",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-boxes-assigned",
+          label: "Business boxes assigned",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-boxes-city",
+          label: "Business boxes city",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-boxes-info",
+          label: "Business boxes info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-boxes-state",
+          label: "Business boxes state",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-cities-all",
+          label: "Business cities all",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-cities-state",
+          label: "Business cities state",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-dashboard",
+          label: "Business dashboard",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-draft-deliveryareas",
+          label: "Business draft deliveryareas",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-draft-parceltypes",
+          label: "Business draft parceltypes",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-parcels-info-all",
+          label: "Parcels info all",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-parcels-info",
+          label: "Business parcels info",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-parcels-reports",
+          label: "Business parcels reports",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-parcels-timeline",
+          label: "Business parcels timeline",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-pendingpickups",
+          label: "Business pendingpickups",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-pickedupparcels",
+          label: "Business pickedupparcels",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-sizes",
+          label: "Business sizes",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-states",
+          label: "Business states",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-business-transactionhistory",
+          label: "Business transactionhistory",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "kiosk",
+      link: {
+        type: "doc",
+        id: "api/read/kiosk",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/post-kiosk-ping",
+          label: "Kiosk ping",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "pay",
+      link: {
+        type: "doc",
+        id: "api/read/pay",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/post-pay-return",
+          label: "Pay return",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/get-pay-return",
+          label: "Payment return / landing page",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-pay-search",
+          label: "Pay search",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-pay-search-nipost",
+          label: "Pay search nipost",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-pay-status",
+          label: "Get payment status by reference",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-pay-webhook-paystack",
+          label: "Paystack webhook",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "parcel",
+      link: {
+        type: "doc",
+        id: "api/read/parcel",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/get-parcel-snapshot-image",
+          label: "Parcel snapshot image",
+          className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "admin",
+      link: {
+        type: "doc",
+        id: "api/read/admin",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/post-admin-businesses-list",
+          label: "Admin businesses list",
+          className: "api-method post",
+        },
+      ],
+    },
+  ],
+};
+
+export default sidebar.apisidebar;

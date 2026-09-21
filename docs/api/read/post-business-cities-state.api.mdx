@@ -1,0 +1,68 @@
+---
+id: post-business-cities-state
+title: "Business cities state"
+description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Business cities state"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFS2zAQ/RWNToEJcSbHdHoItDOl04EMpCeGIbK9JAJZciU5xZPJv3dXshO7ELj00BxiW7srPT3te9pyU4IVXhp9mfMpL43zD2nlpAbnHjLpJbgH54UHPuRerByf3vE2zu+HPAeXWVnSBFg+q/watJdZmHHKTk/bXFZWqZLZ6SkbOACGaayfzFaVzOFkxBYYsuBKox0w6di3xWLOJuPxp1CEkUp5Gpc6DKQmr9mSIFYuMzks2aMElY8Q78uZBZEbrWo+9baCIbfwqwLnz7GGT7fhU1rI23BmtEdEFBJlqRpkyZOjzW25y9ZQCHrzdQm4XZM+QeZxpdISjURWrJXPUHfynLdSr/huyAOVMn8jhkEvvaKhi0D7D4lA69vA/W5H8ZaVsAgyQo8+/zeRHdAbUIgIud7zksTXAs9CrIjnK6PPluPxkh1ykNOcNg2OCc3AWmOJx39Ey2Gdo9Ts8b2ZEduxExLWihrXkR4K9zEArK/f5D5MXWtRHEf29qE1saOVmam0T81LD3V/1d4BftAV9RfhBd+92ys3TZOEnsFEeEF8Dmcn6W55aMyuMoZ8I1QFUQI7VHQBfm1aLyAOhV/jV9IqOYnHEPoJEkxwYDdg4/SVVZi79r500yQRj1bi7lEPI1cI60thM1AjvUo2E/7KO2IywzPLqyxYwmAzOeGEiVrt5qDdry+iKBV0tdYy1jmtDtFSP5rAbsNau9ZsfkkEIPqIYTIaj8ZHkaUiewadUxUb3NKG5mFDKKaZUqi6vDRSexRPlkHp2ffb6ytmcHY2v75dsEGlFTmhNh5yqun7H1raRgoS3jJuatlaXONaweqmlDA7qDCAweQhE+y877Vx2NhuxEFmwVMkGm0w16g8AiDUb1G7g9uaymemCDZsoTQWgfd8lwD3vHcQHOUzcxVS4NwJos3bjEbayxGdCDVXIULLR/XwPcbYX6y9df4SyN6M/rPLphGuR70lpRJS0y6DHLaNhDoX597LmnbFJ12ma1Ic5m23qXDw06rdjobx9C22+N09adVKkVIP393j/GtUMdiOsC8iO2cLQrOX9mvb3g3bilno1Xdzu6ZAnYzJaXODFsHNuRW/cZD+pxxfTDit4HlhbMuV0Ksq+DqPc9LvD5oy9nI=
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Business cities state"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/cities/state/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"stateid":{"type":"string"}},"title":"CitiesListByState"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"cities":{"type":"array","items":{"type":"object","properties":{"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"countboxes":{"type":"string"},"citydescription":{"type":"string"}},"title":"CityData"}}},"title":"CitiesListByStateResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

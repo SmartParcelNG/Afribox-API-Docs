@@ -1,0 +1,69 @@
+---
+id: post-pay-initialize
+title: "Initialize a Paystack payment"
+description: "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil='wallet'` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup)."
+sidebar_label: "Initialize a Paystack payment"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVk1vIjkQ/SuWTxARQBxZzYFEO9rsYYISRlopE02b7gKcuG2vP0gYxH+fKjdNN0lnD6M97GFzCOCqssv16r3ynhsLTgRp9E3Bp9waH75bsfsutQxSKPkD+IAHsfZ8+sDRwB8HvACfO2kpCEOuHYgAngk2FzsfRP7MghPai5wchmwWwwZ0kHk6hYk8Bxs8u7gAiQZ3cYGRV9FLDd4zD7mDwJ5hx3pXk6s+upnkotnMWlVvMpvfJB+roiebSckIxbI8+mBKcLLIaIfr/pBlojRRh4xJz6RmpXgyjkW8n2e9v24/o8dXDywrIYhCBDG0wuWgHKzAgc4hY8FgkHvGPCsTfshiwHCXJmgV1UqqT9/4i1AKwjeewvAyhQwYuKwvWJmHbLEB5sBbo/FsqXMVsaqYKhbLOPkjXTM6hZfYICRQsHwD+bOJoY/3LdARy+h9bgrMr7fCVLCWDQDW2Gj7Q4Tu9RLhKYxWOz5dCeVhwB38HcGHK1Pg2j79lJgnnwYX0ZwbHRAvMomm5KMnT2jvucdESkHfws4C4m+WT5AHPMo66qUgwVexEhFq+fngpF7zw4BjvFSdFrsxGjotDa6d5griDyId4didygnl7lAEa4n1RCA67WdE6LCvlHmpFjuMdet0lVIU2Dapo+dnRX2zyQG3CTIoWquxv2mIe0gOdZelDSbjMX2cM/gOfFSBgd6CwtNYDzcKMTXXqPpaYq+JNSBVvhh9mY3HGWt8sH0L6hJIVATnjKPO+5f6qDmns4pn+f0CxG8J1+10IlsXCG8F8cTCk4ZWouVSmak0H2N2dwQrYUdUecUaeowm/d3zxKg2pwd8K1SEI7cPj6mtNqaWcqqmCBv8NULtHjWiPkKLB7cFV22cbs43IVg/HY3EysmleUUKDz0qX6hkb6jXo+2Ev73urHJmCFsRk+az3nbS55QMgX3XyM3vr6K0CtryUJfxpArNwlEMmoW2BjSrNfXbfjXjm7VWF7Qc2/xuls/vd1pu2NystUhMcEm9MqlFjgDXtcF5RVBhtas9J8PxcPxhJSklQJGnKde7JwDmCQCk30wp5GlhjdQ4vqpZyv68v/3CDO7O5rf3C9aLWtGo0QbnRv/dAMYpuJWCqJpVIGQ0FUOaRwkptkSoph+M3EF7Wtu4RHu1jCOoc45Xo+6PxWJ+lAxKQKgXbH2GavRbOhnnWo7IksmBNY4G3jEpSiYlnDVKgCMvadAn5mOi5nEonolBNkwTBVlQiqQ4WpSESUO29pMF6VGSWr0T9ZOM/f/Q+U8/dI7MDKiYI6uE1IT+UdArDazer0TS1tOW3rN0MJn3+6Xw8NWpw4GWkQwONeThkUTWSbEkSj884rYblF9wLUW+rprkckFJnDT5/dw7DOqIWeqOf/RtizkRG52XxzdbmUYRd+KFpA3/Tzl+qZojTc20tudK6HVMg5FXe9LfT2e7McM=
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Initialize a Paystack payment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/initialize/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil="wallet"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"customerid":{"type":"string"},"amount":{"type":"string"},"currency":{"type":"string"},"reference":{"type":"string"},"callbackurl":{"type":"string"},"description":{"type":"string"},"flowtype":{"type":"string"},"metadata":{"type":"object","additionalProperties":{"type":"string"}}},"title":"PaystackInitialize"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"}},"description":"Paystack initialization result.","title":"PaystackInitializeResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

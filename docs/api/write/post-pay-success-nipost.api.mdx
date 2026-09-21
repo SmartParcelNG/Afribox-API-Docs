@@ -1,0 +1,69 @@
+---
+id: post-pay-success-nipost
+title: "Pay success nipost"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Pay success nipost"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1v4zYQ/SsET07gWEaOLnrwbgt0e9g1EvcUBDEljW3uUiRLUt64hv97Z0hJthtLWaA9NIdE4TwOZ958Hrix4ESQRn8q+Yxb48OLFfsXXxcFeP+iJR3xMQ9i4/nsiaOQP495Cb5w0tJFvDavwxZ0kEXUNGO3t8Ja9g32t7ds5AEYitkliG1qWcLNhC1R5MBboz0w6dlvy+WC3U+nP8VLKKlVoHOp40Fuyj1b+SBC7QtTwoqtJahygia+3jkQpdFqz2droTyMuYM/a/DhA17is0P8VzpAT4OrUVwYHdAkEqHBqjEt++rJqwP3xRYqQV9hbwH9NPlXKIgN64i3IMGnuxJ9PcP54KTe8CMChStAOViDA12Arqsc3FVkcEJ7UZABHfwKkJAyKDpaiP1jChMek6ClMRqFFNKfy0A9JDpB70ChBxicjsgsfVaoTmwoMJ+NvltNpyt2wmAQSiIJPBOagXPGEfH/EY2nd64SdGHfv6Gwjcr7FiWcLAeUlBCE7IOUSFWBSRlgSMWPZEeLjOlM0kGjznADqETooKIEuR4O+RdoUV1/IDevQzJRlo7StkdMr/brLmTY9wodFNJKTMb3EXZr9DsQTFuprnsPugTX+0gS97+Q5P3qE/uiMnUqq7eZhWm5A7cfgGywGspgghh6wtf5RYe4xrdRCoujty5bU5qk60n1FmVFT8J1pA8lR+c2FtWPNsdfRBA9ooemYcb+iQh4xbzzSASNugOPTf18rIz5TqgamvFyxDlYQdiadnJS/xBhi/9lOCazZoZmaYZmnMLu0PqkvHYYF74NwfpZlom1k1QYVk58JVxI0ZnoTba752/GbQIzbFZlHdsdG+3ubzgZRE334TT1fn0VlVVwPqVatnrbzwlwvaGexUPqtYlxaKhtLZsvPhFZ6Guy+H4ynUx7/chF8Q0Lgm6x0SO5v4iW4RCaK4XTqrRG6oBDBwm1gf3++OUzM6idLb48Ltmo1gp5Ztpg8tGdy0UDd4edFDSwVomCVbtLNBkbd4oZAean6RWNQfCYCfYBu6SmF2ydozwdG3cu8dTnA0nSRhO3mNQ9yQChvou9P601psZ6quK+48Aah4ZfLDhk8MWSM4qT+GfW5NQNWlu2iGYkriaxrDHVKhErOXUnSvf2GuvWuX8UfTfB/yerXFPXAQsys0pITa7Fijk0JZY2USypZgMa88432k+39ImgwyEXHv5w6nikY4y3wxJ4eqZKdlLklLVPz6h8izVOyd+V/cdEyd2STOkK/+2Ccxy3N+YxOwex5x2DcpfTvEu7aRX7K3fiOx7S7xnHDxNDFJthPDtwJfSmjhsQTzrp5280piY1
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Pay success nipost"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/success/nipost/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"},"transactionreference":{"type":"string"}},"title":"PaySuccess"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"transactionreference":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"collectcode":{"type":"string"},"deliveryrequested":{"type":"string"},"deliverypaid":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"}},"title":"PaySuccessData"}},"title":"PaySuccessResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

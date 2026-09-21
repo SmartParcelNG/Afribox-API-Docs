@@ -1,0 +1,68 @@
+---
+id: post-core-sizes-info
+title: "Core sizes info"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core sizes info"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFy2jAQ/RWNToQhmOHoTg8k7UzTQ8oEespkgrA2WIksuZJMoB7+vbuyHaCBTg89lAMY7a68evveU81tCU4EZc2N5CkvrQ+PmXXw6NVP8I/KPFk+4EGsPE/vOUX4w4BL8JlTJZVh0aQKOZigsrhPyvp9UZbsBbb9Put5AIZhdpzEVpWScDFkcww58KU1Hpjy7Mt8PmXj0ehDLMJIpQOtKxMXllZu2cIHESqfWQkL9qRAyyH2uLl0IKQ1esvT4CoYcAc/KvDhCmt4Wse/yoHswpk1ATuiEPar286SZ0+HqrnPcigEPYVtCXhMu3yGLOCbSkegBQW+qVV41IM8H5wyK74bcMJQyRMhjAUVNC3NCOcbgnm3o/UOjLg3AkE/x3DfNaCAWYPGRhDiNziS5rEA78WK4L215nIxGi3YPgehlHRW8EwYBs5ZR/D9IzT27zmNyGF/ZzH7i9ecQ7bZwIji9O6vSoY8K07GclCrPJwJSijPFP42y08iiNMDvmsnGweNCbBBwD2CTNKqeSTRIYsHfC10BQ1dd6i6AkJuO5USJCLk+C8hVSZRrwnpNcGQB7cG12xcOY1ZeQilT5NEPDm1tBtk7dAXwoVSuAz00KyS9Zi/U3aTzBB8WWVRuL31+IJTN8SMu73CPm9EUWo4VEQH0V4IB4BGZyE0W5i6V02mN3RybL5pYTwcDUdnG1uK7AWMpCrWm9F5pvE8SP2J1qgRWVplAlI9y3CC7Ovs2y2zuDubfpvNWa8yGrnIjA0gqebYpNB31kqQTBbNmRadD7XWEv0opYTJXjOxGUweMMGuKq8MvaGslhhvlq07jHjIHASKNG4YHbDRCTUg9KvY+r0l2ipktohe6aC0Dhs/Mkdq+Mgge1H/H5mvEALvL7Bb2WW0QlwMaSLEqkJEtTf64ddILBaJxdqL4GgK9d40/pM7oJVmQGklpRbK0Lki/+tWLe0d1lDS85aHA063Wk6ywoy6XgoP353e7WgZJ+2QzfcPJEinxJL4ev8QHUNIcAfqvW7wuJxTH2/6fW+ou0FXMYm8/GPuofKJtZi8bK+0Ivosd+IVF+k75fhg43yiT8a1mmthVlV0XN7sSZ9fOSvEmg==
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core sizes info"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/sizes/info/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"sizeid":{"type":"string"}},"title":"SizesInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"size":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"widthcm":{"type":"string"},"heightcm":{"type":"string"},"depthcm":{"type":"string"}},"title":"SizeData"}},"title":"SizesInfoResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

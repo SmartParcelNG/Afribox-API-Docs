@@ -1,0 +1,69 @@
+---
+id: post-customer-cards-add
+title: "Customer cards add"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer cards add"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFuGjEQ/RXLJ4IIizhS9UCiSk0PCUroKYqCWU/Aidd2bS8FIf69M/ZuFhRaqVIP5cDuesbeN2/em91z68CLqKy5kXzCnQ3xuaxDtBX451J4GZ6FlHzAo1gFPnnkbZA/DbiEUHrlaDfundZxDSaqMh03Yf2+cI69wa7fZ70AwDDMTpPYqlYSLoZsjiEPwVkTgKnAvs7nMzYejT6lTRipdaR1ZdLC0sodW4QoYh1KK2HBXhRoOUSc20sPQlqjd3zyInSAAffwo4YQr3ATn+zTo/KA5UZfY7i0JiIkCiFg3UArXgNVteehXEMl6C7uHGCddvkKZcRXOU/kRQUh71VY61FeiF6ZFT8M3jlT8mzYiArOBtzamvMRRKT0mQiGooqalq6bl15TE6fYw8OBwi3LCTMyTJfTPt5ntsFsQGOB2Lt3not8W0EIYkV9u7XmcjEaLViXgz2SxCEEJgwD762nvvwjlrv3nOXlBN/5XiAdqOja/yV99w1viUbqwBbLCVgCuWLPU+uPxTfgG6FraER4QLdUENe2NRkVJuIan4pWHUWyW4HgCowG8Bvw+fAElq9jdGFSFOLFq6Xdot6GoRI+OuFL0EOzKjZj/sGUOZkhi7Iuk+d6m/EFJ0DE/X3njS9bUTkNx1puiTmVcLealds9N4LtFhqdHvGvzItNzDc8twCnsxviDEvOwMfD0XD023KWonwDI2kX6z0QC7PEAkpyqjVqVzqrTEQJliW4yL493N0yi6ez2d3DnPVqo1EjzNgIkvacTiUcNBslSL6LzMSiHTzNKEkDaEIJ007LCQwmD5hgV3VQht7g6iXG87L1x5EApYdIkTz+0sjL+iUAQv8Uu9DNQFvHEhtAIQ/OegR+Mg0J8MlE7CVffmahRgpCuEC0ss1oDLIYpimDcqxEcmHTz1b7LCmS5Q/ASSP2nZ//k7nfODmiLwunhTJUWuPy7LSjb1ceAwGvuTb6mK3JlZi03y9FgO9eHw60jP326ITHJzK0V2JJqn18wsPXaHU8q3P/dabkck5Q3v3/cdwdBu2OaVLnH3OPBwdpF5OXzYesSlOQe/ETF+l/wvHGphalYZnW9lwLs6rTPOT5TPr9AjRBxIM=
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer cards add"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/cards/add/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"}},"title":"CustomerCardsAdd"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"cardaddurl":{"type":"string"}},"title":"CustomerCardsAddResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

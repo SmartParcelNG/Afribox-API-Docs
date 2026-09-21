@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-nipost-reserve
+title: "Parcel nipost reserve"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Parcel nipost reserve"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVsFu4zYQ/RWCJydwLCNHFz14tws0PWSDxD0FQUxLY5sbimRJyhvX8L93hpQsuysply3QHBKF80gOZ968mQM3FpwI0ui7gs+4NT68vknj316tcDmoVy3jmgMPbgd8zIPYeD575hHFX8a8AJ87aekMPGFehS3oIPN46IxdXwtr2Rvsr6/ZyAMwNLNLENtUsoCrCVugCS+yRntg0rPfF4sHdjud/hI3oaVSgdaljgsrU+zZ0gcRKp+bApZsLUEVE3Ty/caBKIxWez5bC+VhzB38VYEPn3ATnx3iv9IBPjq4Cs250QFdIhM6rGrXsm+eXnXgPt9CKegr7C3gO83qG+QBr7KOQhgk+LRX4lvPcD44qTf8OOYr8y6LTouXf0OPSZSmSl51nadM/gZOV+UKXCfGQS6txHdpUcIwwm6N/gCCEZCqA4KYIIOipfu7h69Pi8eaLcfjMe5PKY0BwnTSn0vSPKbUgt6BwmgiUU5JzdJnCd6LDZHk3uib5XS6ZC0GCVFQwsAzoRk4ZxyR4CeltL2nO3nn/nUiUiV9fFHC9RAhGQsImIIeSIERyJH3AYaOcLAGBzqHAdo0yFgxZB106gw3gEpxGjwoQXpLpJfDWAlDNlEUSMHuc9FMt/afncuw/7h4/tPyasIzoAUSN+e91gJp1svf3CiFbOy1fywzfeX/EL3+TQTRj3mstSFKBYLgHXPhsUypxxx41NJzNR/znVAV1Kp+xPZTQtiapndRTYmwxf+y2J+yFLksdbGs7mIZwuKHS7dUDsPOtyFYP8sysXaSWGPlxJfChXTERG+y3S3/od0lMMNKLqo8drPR7vaKk2ckNI9t1/nyLkqr4LxLNCE8NYd2oekJ7UqT/otNl6lpTf9iZoehJmSHpebhOb302sTE1ylsXj1/uKOMYBxTNG4n08m0N0Yrgb7qgnax0ROFNjEERX2uFKp/YY3UAUU8z8EG9sfT13tm8HRGhGGjSissY6YNChztuRwicC7YSUENYJnCu2zmhFqf4rwwI8C87QbRGQSPmWCfUJ403WCrFdrTsnHnFk8CG8iSppU4oSTZIgeE+i72vh1ZTIV1VcZZxoE1Dh2/GF7I4YsBZhQ726/MVxgC76/Q26JB1C1mOYmKgHQuRexjdYZTLFliOmvntYtcHNqm+D+Z1GotCVj4mVVCanpdLMhDXcrNqHlqpGOeHhk52zyTJtEtLSL+cFgJD386dTzSMmbfYbE9v5B4OClWxOHnF7xni7JCdXNSms8pOjcL8uqkNT+OD8dxs2MeuTqIPRcpYnKs3DSFllF1uRPf6TH4e8bxw8RsxYYV1w5cCb2p4nzB05n08w9CCR2U
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Parcel nipost reserve"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/nipost/reserve/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"amount":{"type":"string"},"boxlockernumber":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"}},"title":"NIPOSTReserve"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"NIPOSTReserveParcelData"}},"title":"NIPOSTReserveResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

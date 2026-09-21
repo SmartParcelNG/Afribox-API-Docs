@@ -1,0 +1,68 @@
+---
+id: post-customer-parcels-delivered
+title: "Customer parcels delivered"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer parcels delivered"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1vGzcQ/SsET7IhawUfVfSgpAWaHhLDVk+GYVHLscSES7IkV7Ei6L93htyVVrFWSoAcmoOz4jxyZt58brl14EVU1nyQfMKdDfG5rEO0FfhnJ3wJOjxL0GoNHiQf8iiWgU8eeQviT0MuIZReOXoF35jWcQUmqjI9O2HX18I59gU219dsEAAYitkxiC1rJeFqxGYo8hCcNQGYCuyv2eyO3Y7Hv6VLKKl1pHNl0sHCyg2bhyhiHUorYc5eFGg5QjtfbzwIaY3e8En0NQy5h39rCPEd3uGTbfqpyKdGXFoT0SISob26saz4HMipLQ/lCipBX3HjAN20i89QRtTkPHEYFYR8V6GrHVyIXpkl3w33lCl5QozyqKKmo/cN7i7R/8ee/N2OUC09SRtSQ/8dB+A+0wRmDRpNQ9L3BBX5s4IQxJII/2jNzXw8nrMDBsmV5D0EJgwD760nQn8RPwc9Jzk6su8koknKjkx4LzaoSEWowmUL8gMng9C+LiEK1QeRSE2JyRXhojysrI/0+4eAUVUXgdqaZe+D2XgPL5gupgRTVwss0HPIVBEkPUtHB3c6sW3tFXgjeuxvQpZCe1ZRhpxODPUNehUs7Os5mZASq+b0uygmrf1vlypueoUeSuUUlsVlhFtZcwGCBaT0ecg5V5o2vRGYKqc5BCPPhCmL++3M8n4jz/a3NsSisnXuIm8AVL9lr7TJkHpx1OxOR1Tb8gs62p//EjtCbw8qrdbYOHrl2RInevwUONqsV99Sf7TR/VSzF1Hw3Q8Mg/tmCqShgHB4xRQOqJCG85anEdSdgUO+FrqGPOx2OLMrQCvbkU89UsQV/iraIBYN38V++BecUsDjd9ZRe0wDvorRhUlRiBevqNScGoVK+Jivj8yyWN/yNytCBjNszLIu0wYwWN9ecTKMBsr9YVT/+Soqp6E7WlsajzOum0jmxSbWGw5bddO7D0QEOpDNuB2NR+Ne4xYCk8hIusUGD+RTjgFOzanWOF6ls8pEnJJlCS6yvx8+fWQWX2d3nx5mbFAbjZXKMAVA0p3jjQeXmLUSNGHn2a95u9Q03TYtNxMCTA/jNhmD4CET7B02U0MaXL1AeT62visJNDYiSfJqldap3GTJAKG/ik047Fe2xqSv0uLlweFEAnm0aZHBR9vWIK0Ov7NQIwUhXKG1skU0M3w+SiWDSVaJVK+5/ezzmjV5xrpL5nclvl89/ie7ZVPNEYuucFooQy6mctg2ddTZjw8by75DJx9pcV5R7SF4u12IAP94vdvRMcbfY54/PlHVeiUWlMWPT6hkhfVMLW1f4u8zNTczMmlf5G83tN2wvTFN2XoW220PlMucmmremqvUFLkXX/GQ/k44ftgUqjSV0tmWa2GWdVrheH6T/v0H6RBiVA==
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer parcels delivered"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/delivered/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"}},"title":"CustomerParcelDelivered"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"datecreatedshortdate":{"type":"string"},"datecreatedshorttime":{"type":"string"},"datecreatedlongdate":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"boxlockernumber":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"parcelpaid":{"type":"string"},"authorizationotp":{"type":"string"}},"title":"CustomerParcelData"}}},"title":"CustomerParcelDeliveredResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

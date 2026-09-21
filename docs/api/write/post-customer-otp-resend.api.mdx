@@ -1,0 +1,69 @@
+---
+id: post-customer-otp-resend
+title: "Customer otp resend"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer otp resend"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFu4jAQ/RXLJ4ooQRxZ7YFWK2330CLKnqqqOMmUuHVsr+2woIh/3xknIaCyqz3sYTlA8IztmTfvvdTcWHAiSKPvcj7j1vjwklU+mBLciwn2xYEHnfMRD2Lj+eyJd1H+POI5+MxJS9tx87wKBeggs3jejA2Hwlr2DvvhkA08AMMwO09im0rmcDVmKwzhVdZoD0x69nW1WrDpZPIpbsJIpQKtSx0XUpPv2doHESqfmRzW7FWCysdY5+7agciNVns+exXKw4g7+FGBDze4ic/q+Fc6wH6DqzCcGR2wJAphwaotLXnz1FXNfVZAKegp7C1gnyZ9gyzgVdYRekGCb/ZK7PUkzwcn9YYfMLEwGi5G8GSpLkQwFGRQtPSwWiybIRwOtN7BFC9FiOjnfBDLBi7QW1BYIYJ/BCppHkvwXmwI+Hujr9eTyZr1OQhyTiCAZ0IzcM44AvYfwdTfcxGQs/ouZiAr/xKwZYtUBI7A3mEDHosmItc8TuuULyO+FaqCljcHJHgJoTCdMKgVEQr8l3QiSLCYpJFIgmEPbguuOb1yOFdehGD9LEnEq5Op2SFHxr4ULljhMlBjvUm2U/5BSE0yQ+DyKos6GWynV5wqIriXPZ+/7ERpFZzyr4PkSLt+oWXbCZhSv5qIZotdd/V8cUdwYDNNSdPxZDz5baGpyN4RAtrFBo/U3yL2h/yaK4VEzK2ROiCfsgxsYN8eH+6ZwdPZ4uFxxQaVVjhwpk2AnPacewTKfisFcXHd9LjubKAVdrSDGSXMe2LGYjB5xAS7qbzUdIOtUow3y8adRjxkDgJFGjOKBtSQkQoQ6qfY+96RTBUyJACFHFjjsPAzb6KCz/xpEEX2mfkKIfD+CqvNu4yW7etx9ApkWimipLQoaSa3LdkYko0d/fhsEnWvzv/Ehlt5BtRcYpWQmnqLmqhbFZ28ShpRR2trmqOXS0GSw6y6ToWH704dDrSME3fI8qdnUquTIiXePj3j6QXqGA/rpX3bYHK9olqO4v7oXodRt2Me+fnH3FNXIPZictq+WMpoatyJn9QLfs84tRZnFL0vrtVcCb2por3x5kz6/AKvI54M
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer otp resend"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/otp/resend/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"}},"title":"OTPResend"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"OTPResendResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

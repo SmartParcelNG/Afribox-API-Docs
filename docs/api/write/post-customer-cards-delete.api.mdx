@@ -1,0 +1,69 @@
+---
+id: post-customer-cards-delete
+title: "Customer cards delete"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer cards delete"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1v2kAQ/SurPRFEMOLoqgeSVmp6SFBCT1EU1vYAm6x33f0gIIv/3pm1DUZJK1XqoRyMvTO7fvPmvXHNTQVWeGn0TcFTXhnnn/PgvCnBPufCFu65AAUe+Ih7sXY8feRdnD+NeAEut7KiA3D7LPgNaC/zeGLKhkNRVewV9sMhGzgAhmF2nsTWQRZwMWYLDFlwldEOmHTs22IxZ9PJ5FPchJGgPK1LHRcyU+zZ0nnhg8tNAUu2kqCKMeLcXVoQhdFqz9OVUA5G3MLPAM5f4Sae1vFRWsCKvQ0Yzo32CIlCCFi10JIXR1XV3OUbKAXd+X0FWKfJXiD3+KrKEn9egmv2Sqy1l+e8lXrND6MjZ7L4OIxMfxjCmJde0dJ1e8Q1deVL05TDgTI62iIIpIz+zhtz39AHegsKEWMzjsQlzW0Jzok1NeLW6MvlZLJkpxwkvSBSwDGhGVhrLBH9j2g7vedDbs7w/TVF9y03kSpMhR1CdgiTpFzz2K++YkZ8K1SAVjkHlHgJfmM6cxB44Tf4lHQtTaJNksYmCSY4sFuwzfnBKszdeF+5NEnEysrM7FAnY1cK6ythc1BjvU62U/7OTE0yQ7KKkEevDLbTC06YiOL7k6a/7kRZKehrsKPnXHq91VZxPaKlXpnIb8tmB2A2vyFasKQG2HQ8GU9+CzcT+SvognaxwQNVOY9VorJmSqEEi8pI7VFJeQ6VZ98f7m6ZwdPZ/O5hwQZBK2w108ZDQXvOpwUOgK0UpMJlU+myGwitxeNgSClhdpJkBIPJIybYVXBS0xuqkGG8WTa2H3GQW/AUacZSHEWNDAmAUG9i706zyQSfI8EUslAZi8DPphQBPptUg2ivz8wFpMC5C0RbdBmtzpdj6ggprhTRTFqUfYWzKDp2nM1nvahPzvxPRnJrWY/uSyolpKbqojfq1k+9z0ojTherasujT82G7Id5dZ0JBz+sOhxoGbtuUe+PT+RcK0VG2n18wvM36Gk87mTz64aVywWhORr9/ew6jLods6jRP+b2JwQpGJOz9jNTxpHGrXjDRbqmHG9M7FKcfHGt5krodYjDjTdn0u8XXEymMA==
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer cards delete"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/cards/delete/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"cardid":{"type":"string"}},"title":"CustomerCardsDelete"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"CustomerCardsDeleteResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

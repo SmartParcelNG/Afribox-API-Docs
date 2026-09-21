@@ -1,0 +1,69 @@
+---
+id: post-customer-signup
+title: "Customer signup"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer signup"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFu2zAM/RVBp7RI46DHDDukw4Bth7Zos1NRLIrNJtpkSROltIGRfx8p23WCZgMG7LAeUlukJPLxvedGOg9BRe3s50rOpHcYv5UJo6shfEO9tsnLsYxqjXL2IPuIfBzLCrAM2vNW2jhPcQM26jKfNRPn58p78QN25+dihACCwuI4SayTruBsIhYUCoDeWQShUXxaLG7F5XT6Lm+iSDKR17XNCytX7cQSo4oJS1fBUjxpMNWE6ny5CKAqZ81Ozp6UQRjLAD8TYLyiTXLW5FcdgHqNIVG4dDZSSRyigk1XWvEduatGYrmBWvFT3HmgPt3qO5SRrvKBkYsasN2rqdeDPIxB27Xcj6VVNZwM+I2zpyN0pTan9yjEZxeqE0GKRh0NL33oxnTfzm+/52CPcK6X0OV/xzO8a5EGuwVDzdHcXjEu2scaENWaZ3bt7MVyOl2KIYfmUzF+gEJZASG4wDP5RwgP95wE5qi+kxku+r9B7a6DK6PHM3mhLpAqZyE0Mk/7kG9juVUmQce7PQmkhrhxvai4HxU39Fb0IipaeRUUQghbCO3JKdDo5SZGj7OiUE9Br9wL8WuCtQrRq1CCmdh1sb2Ub0TYJgtCrkpl1thoe3kmuRrG+27QwscXVXsDh9ztMekpO7x3TB0WOoIeZLzy8gBxbZ9chrwDuC9vfvuZ4aKG27IvJ9PJ9LfNrFT5A2zFu8TonjG4zRgQCefGEFsr77SNRLqyBB/Fl/uba+HodHF7c78Qo2QNsUJYF6HiPcceRLay1YoJu2xxWPY20xlHtpsZJ8wH9uZiKHkslLhKqC3f4NOK4u2yC4cRhDJA5EhrdtngWsZyAco8qx0OjudSLIkgHArgXaDCj7yPCz7yv1FW4nuBiSBAPKNqqz6jk8Ryku2DmFirrLtuxj3pxavXH02hGeT7n1h8p99Ieiy8UdpyX1kzTaewg88UKatviz9ZGxYixZtmpRC+BrPf8zLNORD/Hx5Zw0GrFbP14ZHO3ZC66ZhB8B9aNC4WXMWr5N8a237c75hnVv4x99ArmLOUvOo+V3X2OxnUMy3y70zSg8vTybaY1xpplF2n7HyyPZP/fgG7i7uK
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer signup"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/signup/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"}},"title":"CustomerSignup"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"CustomerSignupResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

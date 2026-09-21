@@ -1,0 +1,70 @@
+---
+id: post-pay-webhook-paystack
+title: "Paystack webhook"
+description: "Server-to-server webhook. Paystack signs the raw body with HMAC-SHA512 using the secret key; the signature is sent in the `x-paystack-signature` header and validated. Handles `charge.success` and `charge.failed`. Returns HTTP 200 on success, 403 on invalid signature. Not called by clients."
+sidebar_label: "Paystack webhook"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVU2P2zYQ/SsDnryALblue3HRgxMU2C3QxFi7p8UioiSuzSwtqiTlDwj+73kjSnayTor+gPpgm+TM6HHmvadW2Fo5GbStHkoxF7X14VMtT58OKt9a+8r/fZDFqxiLUvnC6ZpjEblSbq/cJNiJ7/5Rn5HQsk8hrzeVp7BV5OSBclue6KDDlu7/WryfrO4Xv/40o8bratPFeFU4FehVnX6La2TL0DhF2uOwCqSr7iA7TgZUk0tQRlslS8CQVUl7aXQpgyoTusfaKE9ZsZVuoxLfFIXyPuvihs0XqY0qs4QeFWoB8/16vaTZdEq2oj5jTL9Mf+a1rrryV3wJfbCBCmlQg/ITFUYDrU/QsiA3XsyfBPCK57E4ThxA2sqcxDy4Ro1x4OROBeU4rBUVFujt9y6Iapr7Hq+JlVP/NNqpcijli63aSTFvRTjVXMUHh96K8/k5Bisf3mEGHPE2t7BVAGY+knVtdNExIv3sedTtbWmbf1ZFuOHEZfJqz/PCJYyVZQII5zNj8LWtvPJcCM3ln2/zF8VrZQ9o4wbQkIGO3wY9vO2/4OLqiAt4RMRGgkVdHy/9HgtkNSpemDuCrm/tQHnBkwhbrFKATnsqp8MUUpxHlsfqjTM8iRBqP09T+eJ0bo+y1onfSRcw00KZpNqk+9lNixYxmGpny6bgTRrtZ3eCIXG7H6+D+uMod7UB5PbMs3+x3QB04K1LncXyge8GZLH+LJkm0x8+NcdlFIiPLBqtGOyyA3uX0MIYwlFtNbhLEpyvA/25+viBLKt7+XG1plFTQUueKgttcU4DPVahpwvrdK8llEUZmoERZINke/p1HjDngMWVZR0YBI9J0ju2A35C3eQ4j9vWfX1ytYmE1ijdSRVTCo1nANIcMDTWbnQR24TC7joPcaq2DsAHUJ0hMeAsphe2hI2Msuk0o98H2d9Fo4gRO2zIjcoSJifzZic7ffSyvdC/58/bMbRXnf1vn//JPqPbBIg7rY2E/6HvnfjaXq/RWsfi2vGvXlhsuVtWN8LaNpde/e3M+czboKODQzw9sy84LXMW1dMzyvf+yjIvtecDmMSLNF79yzRHj72h3tGPYA+O9F1n771JIHDwrvex+GTNxa4RN/b8jZexShGc9za/A6OxC/rw+wLfeMIYb/wQfbKNe60wsto0IDbOY03+fAGMYdGN
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Paystack webhook"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/webhook/paystack/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Server-to-server webhook. Paystack signs the raw body with HMAC-SHA512 using the secret key; the signature is sent in the `x-paystack-signature` header and validated. Handles `charge.success` and `charge.failed`. Returns HTTP 200 on success, 403 on invalid signature. Not called by clients.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"x-paystack-signature","in":"header","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","description":"Paystack event payload."}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Acknowledged"},"403":{"description":"Invalid signature"}}}
+>
+  
+</StatusCodes>
+
+
+      

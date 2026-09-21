@@ -1,0 +1,69 @@
+---
+id: get-customer-cards-add-complete
+title: "Card add callback (browser)"
+description: "Browser landing page used as the Paystack `callback_url` after adding a card. Reads `reference`/`trxref`, verifies the transaction, and stores the card authorization code. Returns an HTML page with the outcome."
+sidebar_label: "Card add callback (browser)"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVE1vGjEQ/Ssjn0CiuyhHqh5o1Tap2gYVeqoi1uwOYMXYjj0mUMR/78wuJLRVTr31BN758Jvn9+agfMCoyXh306iRWiHN65zIbzDOax2bNNdNM6/9JlgkVAPVYKqjCVLB+W+jf0wYwWrXGLeCoFcIOWEDOgGtESZ6n0jX91DV2toF/5vnaCvQS+Iy7i1VGuSqAr6hbhJUEZcY0dVYlRXFHR+rAWwxmqXBritF7ZKuBcQA+GpgxPEUk1agM619ND/byaD2DUp3ytElzofr2ZfPHdZHQ+u2zGfiKbHgEUmvkhr9UGci1N1A7V5FBued3asRxYwDFXTUG+YkSu5BOT4wIU/YuY8Rhh4yxj0fIj5kE5FJXmqbuD7Va9xoNToo2gcpTRSZDHU8Dp66ddP/Q6s7yU7Bu4RJ4lfDofz8/ojPbPTGTQPvhMBprmtMaZktlPBBG4tNvxBsCneELnFlN/c9MiOX9AzUVtuMHU0CgEla+5O4lPBGaz6UZ3bLVmYlS6E8y6zkNFbV9swtK4Yr1kQhjcpSL6NZ+J0OpkgbHYkfokZbuFW5vfpLoOMuGUL0TW4FA73tVV8JMOOWviXNkMWL3PHkRqbg27seV8WwGL7YWTSNLEGugt5UAE1aQP0CxtYCh4I3jlh3zGgg+DS9/Qqeu8PkdjqDXnaWiQbnSSiGMSsXHZm6k65JsDVaNFvxwEx2Bca1ghUVYCJY+GY/koRxCPZcJmA4mc0Bb3MyTm4IecHx7rOPl5GEdUSSSAEzbn09m03YUppyEgDaPrKLgbXz+tIqEooYfGTgZ1ACpgVcdeXivAp61XBYwRtInaj6rWVPGRv+wNKrWFysDZ9oo508yskBrRhZG3BeH9BbdDun/+eLHFTtHWuT/tu91Jmb2IFlsJp3AlPWeuNwctXFzhqo1lf8y8PI6XmFyz5bM9OSfzgsdMLv0R6P8rlbMeK5xiS9sBdLpjP65X47+Vwp2Vgv5D9tsOfkOzlEI9l8093xYkN8fD/jHfMLS3dI1w==
+sidebar_class_name: "get api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Card add callback (browser)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/customer/cards/add/complete/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Browser landing page used as the Paystack `callback_url` after adding a card. Reads `reference`/`trxref`, verifies the transaction, and stores the card authorization code. Returns an HTML page with the outcome.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"reference","in":"query","required":false,"schema":{"type":"string"}},{"name":"trxref","in":"query","required":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"HTML page (Add Card Successful / Failed)."}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,16 @@
+extends:
+  - recommended
+
+# The Afribox API is served by ASP.NET Web Forms directory endpoints, which
+# require a trailing slash. Keep those paths as-is.
+rules:
+  no-path-trailing-slash: off
+  security-defined: off
+  operation-description: off
+  tag-description: off
+  info-license: off
+  no-ambiguous-paths: off
+  operation-4xx-response: off
+  no-unused-components: off
+  operation-operationId: error
+  operation-summary: error

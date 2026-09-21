@@ -1,0 +1,68 @@
+---
+id: post-core-boxes-availability
+title: "Core boxes availability"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core boxes availability"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFOGzEQ/RXLp4BCNuKYqodAK5UeAEF6QohM1kPi1mu7tjclXeXfO+NNyAZI20MP5RASz4z95nnecyOdxwBJO3uh5Eh6F9ND6QI+zNwTxgdYgjYw00anlezLBPMoR3eSM+R9XyqMZdCey6l4XKcF2qTLvN9IHB+D9+Ibro6PRS8iCgqL/SQxr7XCo4GYUChg9M5GFDqKT5PJtTgdDt/lIorUJvG6tnlh5tRKTGOCVMfSKZyKR41GDQjj00lAUM6alRylUGNfBvxeY0xnVCNHTf6pA6ptuHQ2ESIOEV6zQVZ8jdxUI2O5wAr4W1p5pDbd7CuWiU7ygclLGmNbq6nVTl5MQdu5XPclcanVGxEKJZ0ML50x3Rf20dEqr2+5yFsTD/xvn+2blhO0SzSEgxh+ZqNov1YYI8yZ3UtnT6bD4VTscohJxa1iFGAFhuACs/ePyNid8yYhe/gOUfbnUw7xmsstVAe3BqWI4PjHKxl3xv8DJMjY9U/sVkIIwNrQCav4F8xQ+QHQHDqI2rjyG4b4GPCteAf2Le3yGvdvGrvZjFqePErDJ5qASLfOUm9kHuquqvpyCabGVj5rcoEK08Jt3YMbhrSgXwW7RJF9pOj6SEEpEcOSuskH1MFQ9iIlH0dFAY9B8w15PYgVhOQhlGgGdl4sT+Urx2mTBVGs6jIbSm95eiQZFY/szU75H5+g8ga7St2y9yzQDt2apcg8bzjbnjS+vmACCHuL4HQwHAwP4poBXZpVXCV6t9zOdW6HJDk2hrSrvNM2kQTLEn0Sn2+vLoWj3cX11e1E9GpraEyFdQkV1+x7J9nhUgPLd9q2NN3a48bxsk2OOGG803IGQ8l9AeKsjtryCb6eUbxddqEbiVgGTBxpTTobc6tfBgDmB6zizqldnUpXZQsP6F0g4HuezYD3fLuXfem9iDVREOMRoVXbjI1BTAd8IzxcFWQXakUiz2m+RJ4v8eKd2ruNZmdq/8kTtRFvIqUV3oC23F+WQbMRz+aJzZNJvtGXLxrkx3fBaqPMpplBxC/BrNe8TDcfaLjv7lmnQcOM5/funk5YkIIxdER93vJyMmE8z7J+bfzr/rZinOf0t7ldQ+Apzk20L2+V3wMZ4Act8udI0heX7ymbY15rpAE7r/PLINs9+e8XgasEeQ==
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core boxes availability"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/boxes/availability/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"title":"BoxesInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"}},"title":"BoxAvailabilityData"},"sizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"lockersfree":{"type":"string"}},"title":"SizeAvailabilityData"}}},"title":"BoxAvailabilityResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

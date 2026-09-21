@@ -1,0 +1,68 @@
+---
+id: post-pay-status
+title: "Get payment status by reference"
+description: "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot."
+sidebar_label: "Get payment status by reference"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1vGzcQ/SsETzIgrwQfVfSgBEXrHhLBVtGDYURc7kjLmEuy/JAtCPrvnSF3I9lZBwjQQ32QuZwPzjzOezxy68CLqKy5bfiCOxviFycOX0IUMQU+5VHsAl88cNzkj1PeQJBeOQpA9zuIyZvAYgvMg7S+gYaVULa1ngnc3YIHI2HKAujttbRmq3ynzI49q9iylTigv3xiaouBSmvmwDRortitibjEhJTJWa0pqD7kw7SVT4D5nWPCNOzvVsSwxI/axgqLfrn2IBpr9IEvok8w5R7+SRDiB9vg1jF/Kg/NYMay8LBIJsyplcyQzL4GavPIg2yhE7SKBwfYuK2/gox4kvMEYFQQSqx6gsOFX4geq+YnKqAHYsSK5qiipq0Bj/uC/+l0yrHBWRPKGTfzOf17exEh6cjA7EFjQWxSLkHaBmZl2UEIYgdXFftkzfVmPt+wsw9TiDn2DAHhZOC99QTjf4TK+ZxRZF7V99PYIXRemCAkldZP7ZiX6GwqrXxnkslT9vF7k60wBvSozQnViPGciIDEjmjCRqxbbZ/L5mhWL0E3EIXSajy+TkEZTP+OWaYQbQd+1PzusN31U5aHDr3gBS8/EKrI/yPPg33JrCnfC52gUOiE2tBBbO2gIjQFIrb4NUPp6IdwhrsB/B58yZk8AsvbGF1YzGZi61VtX5BEVeiEjwWIyuxm+xv+VnqWxZkh0E3Kl88m+5srToXQgN6dCf/bi+ichkuCDmi8mq0LBJXZ2oxdj9Rw2nJ1S31j/aWKm2pezd+trUZsUcIoik3uqaVVbglJuESlQ5OzykQknZTgIvvz/vMnZjE7W32+X7NJMhovmRkboaGYhNJnYk9DpgLbK0GE3ZS2NkjjXopz76iGzWFBDssze3Mx6DxFcf7QjxFzqUZ72c6y/c0SQHqIZKnYGlP/sV6vBoXHAoR+xhliqEm/5JNtihInj0wenPVY+FAUFZML3pz1YMMmWYl+ZSFJ4stVlvPNK0nYVJkVOFOdyLpjREd38jvWhaPVISRDRfg6nO/zza0cz3L2v323eqpGpN7MaaEMdZ5JcuzZVB7iQTRxQY9yS3xD0/FYiwB/eX060TYOgcdZf3gkpnolahrlh0dM2SKHwV/Q+mOB5npNBXwj9veqf5oOEcs8sj/0vZQEGmh0rvv3t8uPAffimSiIvwuOC5uvKut33jtyLcwu5WeBl5z09y9vNw4v
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get payment status by reference"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/status/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"reference":{"type":"string"}},"title":"PaystackStatus"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"reference":{"type":"string"},"transactionstatus":{"type":"string"},"amount":{"type":"string"},"currency":{"type":"string"},"channel":{"type":"string"},"paidat":{"type":"string"},"processed":{"type":"string"},"flowtype":{"type":"string"},"parceldetailid":{"type":"string"},"businessid":{"type":"string"},"customerid":{"type":"string"}},"title":"PaystackStatusResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

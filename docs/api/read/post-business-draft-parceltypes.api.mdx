@@ -1,0 +1,68 @@
+---
+id: post-business-draft-parceltypes
+title: "Business draft parceltypes"
+description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Business draft parceltypes"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVcFy2jAQ/RWNToQhmOHoTg+k7UzT6SQMoadMJsj2AkpkyZVkAuPh37sr28Fu0qSHHsoBjPZJu/u077nipgArvDT6MuMxL4zz90nppAbn7jMr1v6+EDYF5Q8FOD7iXmwcj295C+J3I56BS60s6BQ8Y1b6LWgv03BszIbDFsuKMlEyHQ7ZwAEwhLE+mG1KmcHZmC0xZMEVRjtg0rGvy+WcTSeTD2ETRkrlaV3qsJCY7MBWzgtfutRksGJrCSobY737cwsiM1odeOxtCSNu4WcJzl/gHh5X4a+0kLXh1GiPFVFIFIVqKoseHDVXcZduIRf0RIxguyZ5gNRjpsISl14iTWGvfIRDB+e8lXrDj0fkUHpFS4u6kiVR+106j0EKt42Hc7Bp+ulTvKgJAL0DhUmRzufWo/oxR7rFhqi8Mvp8NZms2AmDtGXUFzgmNANrjSWq/lHnpzyvdD/ivfpeRTQXVE/cCSCsFQfMJj3k7v0yOqfI7L0878V79P/llX4WXvDjW/e9aC463DviYI/8O8xBCqt4mJ/uAI/4TqgS6kk9ovBy8FvT6pYYEH6L/6JWcFFQcNRRcIQoB3YHts5RWoUbtt4XLo4isbYyMXuc3bHLhfX1xrHeRLspf6HzGsyQ9qxMg3wHu+kZp8JoZhYnnX3Zi7xQ0NVFh2ep1yaw2tDUHjybX1LLWGqdcDqejCd/LCMR6SPojHaxwQ1VPw/VowRmSqFWssJI7XHk0xQKz77dXF8xg6ez+fXNkg1KrciitPGQ0Z6+MaHX7KQguazqDlat9zRTEjwoJsDspJ1QDIJHTLCLvgnWy8Z2Iw5SC54itQMG16v1QgUI9SQO7mSDpvSpyYM/WiiMxcJ7hkgF90xxEHzgI3MlUuDcGVabtYhGkKsx3QiNUy7CqGuR05081xgmivXfCb+p49lH/rNXQaNajzKLCiWkplaDAKpGOZ3XGnZFnQZRdXul992W1IbgqkqEgx9WHY+0jHNgcbJv70inVoqEpvn2DpNsUcFgO6L+VFN0TlZwkvVL2z2O2h2zMLVvYruGQDON4KR5yeXBjbkVT7hI3zHHBxOurHZLWqu4EnpTBl/m9Zn0+QXcfNyV
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Business draft parceltypes"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/draft/parceltypes/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"RequestTypesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"requesttypes":{"type":"array","items":{"type":"object","properties":{"requesttypeid":{"type":"string"},"requesttype":{"type":"string"},"requesttypedescription":{"type":"string"}},"title":"RequestTypeData"}}},"title":"RequestTypesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

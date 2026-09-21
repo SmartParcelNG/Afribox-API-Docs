@@ -1,0 +1,69 @@
+---
+id: post-customer-parcels-hold-release
+title: "Parcels hold release"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Parcels hold release"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1v2kAQ/SurPRFEMOJI1QOpKiU9JIjQUxTB2h5gk/Wuux8UZPHfO7O2Y6yklSr1UA5gdmZ337x5b1xxU4IVXhp9l/MZL43z6yw4bwqw61LYDJRb743K1xYUCAd8xL3YOT574m0efx7xHFxmZUkH4THz4PegvcziyTM2HIqyZK9wGg7ZwAEwDLN+EtsFmcPVmK0wZMGVRjtg0rHb1WrBppPJp7gJI0F5Wpc6LqQmP7GN88IHl5kcNmwrQeVjxHm8tiByo9WJz7ZCORhxCz8COH+Dm/isin+lBazc24DhzGiPkCiEgFUDLXlxVFXFXbaHQtCTP5WAdZr0BTKPV5WWePQSXL1XYq0Xec5bqXf8POJEpTevoD+IYthLr2hpEZm/xeRlQ/v5TPGWmHgNkkI/feqXNUGgD6AQE9L9Rk1SPxbgnNgR1fdGX28mkw3rcpDWnMoGx4RmYK2xROU/Iqa750Nyevj+kqBlw0wkChPhiIAdgiSpVjz241IRI34QKkCjjDNKuAC/N60JCLrwe/yXtDJPGjsk1MOksUOCiQ7sAWx9T7AK9+y9L90sScTWytQcUQ9jVwjr6xPGepccpvydaepkhpTlIYueGBymV5ywEdHLTrtfj6IoFVxqrSWpJ7ELbqXemkhpQ2B723xxR1wg/hrFdDwZT36LLRUZHpzTLjZ4pJLqRqCY5kqh6vLSSO1RPFkGpWffHh/umcHT2eLhccUGQSvsLtPGQ057+iMAXX2QgoS3qcvatC5vfBvdPqOEeafCCAaTR0ywm+CkphvKkGK8Xjb2MuIgs+ApUs+aOF9q5REAoX6Kk+sGjgk+w+5TyEJpLALvjR4C3Bs/g+ioz8wFpMC5K0SbtxmNtDdj6gjJrBDRP1oUnagdow6ybt72WlF1XvxPxmxjUo+OS0olpKbiog+qxkMXrwqyVSyyESqnmdYWSi+SPZkPd1RViovfrTqfaRnbb1HlT8/kWytFSiJ+eqaJio7GgzuTf6n5uV4Rrjebv59b51G7Yx7F+sfcy/lAUsbktHmJFHGccSt+UjH4PeP4YGK/4tSLaxVXQu9CHGy8PpM+vwB7jJ2g
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Parcels hold release"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/hold/release/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"holdtoken":{"type":"string"}},"title":"ParcelHoldRelease"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"ParcelHoldReleaseResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

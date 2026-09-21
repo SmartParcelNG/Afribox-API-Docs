@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-drop
+title: "Kiosk parcel drop"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Kiosk parcel drop"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVstuWzcQ/RWCK9mQdQUvFXShNAWaBEgMW10ZhkVdjiTGvCTDh2JV0L93htSzvlfedFEvLIlnSA7PPM5suHXgRVTWfJZ8xJ0N8flF2fDy7ISvQT9Lbx3v8ygWgY8eecb4U59LCLVXjnbivnGKSzBR1fmoEbu+Fs6xF1hfX7NeAGAIs3MjtkhKwtWATRDyEJw1AZgK7M/J5I7dDocf8iZEko60rkxemFm5ZtMQRUyhthKmbK5AywE6+XrjQUhr9JqP5kIH6HMPPxOE+BE38dEm/1Qe8KnRJ4RrayK6RBA6rHeuVT8CvWrDQ72ERtC3uHaA77SzH1BHvMp5Ii4qCGWvwree2IXolVnwbZ/P7KuSrUgy2tYv9IQWGPGooqalT3jVXQ4GLhOwJytfjUTRx3k47gtpYFag0U8MwYGuqnxtIASxIPq/WXMzHQ6n7GiDVEuiAgIThoH31hO9/xFZx3taaTnzr9WiZOb7FxW7DvYLKCEK1WUikYEaMyrCpSM8zMGDqcGkZgb+omXORUIvOnVi12pV2+QVeCOaS/wUHtspVn9D525M2EuYkBLzr/1chOnW7rNrFdedoIdaOYUJ9r6FW1rzjgmmotLtrwcjL7BX4O4bCt59fArgO8JbpxBt0wmXuInGplJkbwwUvqruRHdhT7OzXtCW11glneWHMaS21OnkAb+Q7sWgMwFbe9snEUUHdL/rd7n9oQW8YooFfB0p0obnznva+/t8JXSCnQZsUawaiEu71zfqEyIu8VeV1awqxFVES8UpwH6F3uezk8cg82WMLoyqSsy9ohJwahAa4WPZODCLanXL30hiMWbYk2Sqs+L1VrdXnPyhlnl/VKY/XkXjNJwqyZ6sg4AcF0514zQ5zNxmsnf87e8f330mRvBFxa/bwXAw7PR2JjB0RtIu1nugR5YYoFCMtUZFkc4qE1EY6hpcZF8evn9jFk9nd98fJqyHzmF3YMZi06Q955KPKr5SgkRlWh463av6rudldR+RwfioMNkZNO4zwT6moAzd4NIM8bJs/SkSqGlHQspskeeJkozkgNC/xDocBwybYo1FSZAHZz06fjZqkMNn40Yvq+VvLCSkIIQr9FbuLXayNR3kgsRka0SuwdJt+FfKN1bShu0mq39V60Fk/ycz1a52IxZd5bRQJvc4r4vAUhnth8KDMJcOgx80Jy6p4tBms5mJAH95vd3SMkbbY5o/PlGxeiVmlLOPT3j2EsuY+sqhsn8vjNxMyJNDbb8dQbb9/Y5xzs2LtqdNgTI3F1qZEZtSWV78wkX6P+L4xeYI5XaW1zZcC7NIeUbh5Uz6+we0qPX2
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Kiosk parcel drop"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/drop/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"unlockcode":{"type":"string"}},"title":"DropParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"userid":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"dropcode":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"},"lockerstatus":{"type":"string"}},"title":"DropParcelData"}},"title":"DropParcelResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,69 @@
+---
+id: post-customer-parcels-new
+title: "Customer parcels new"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Customer parcels new"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNV8Fu4zYQ/RWCJydwbCNHFz14twW6PWSDJD0FQUyLE5u7FMmSlDdew//eGVKy5bUlt0APm4MjcYbkcObN49OWWwdeRGXNJ8mn3NkQX4sqRFuCf3XCF6DDq4FvfMijWAY+feaNmb8MuYRQeOVoPs6eVXEFJqoiLThl19fCOfYVNtfXbBAAGJrZsRNbVkrC1Yg9oclDcNYEYCqwP56e7tntZPJLmoSWSkcaVyYNLKzcsHmIIlahsBLm7E2BliOM8/3Gg5DW6A2fvgkdYMg9/F1BiB9wEp9u06vygAeOvkJzYU3EkMiEAes6tPGXQKfa8lCsoBT0FDcO8Jx28QWKiFs5T+mLCkKeq/CsLb8QvTJLvtsHQONKnvVostphXtj3DktQ37vW9FAop/BkRpTQ7+FW1lxwwRwo3e8ipMRKhbNOErRag98IrE5HvBlvR5g68UK3qKKmoY91yu7TtDsE6W63S+FkGKU4EEL07xioDxlOYNagsYIIzj2QxvmxxGOIJQHzzpqb+WQyZwcfBKEkkEBgwjDw3noC3v8Eo8M+5+vdjq8njZc3yn4XahGx6B0uEjNQYDUjXLSHlfWR3v+VY1QdcG05amuWnQvm4D28gQdTgKnKBfJVn+el9jzxO9/EtvIKfGe71YSaKti7UXbp7PfODZAm+mx9/Ylm2rV77ULFzWUi+dmo5nwOwcieMmVzd5zZ3h3kBS7PJRalrTJZnDgoTEDRaa0RUi36iTJVVNviKx60G/8SGaGTagqrNRJHpz1H4rroXOBNb736nmjQRvdf2Pw3EUU/2T/ULJ9IHx3hHbEbcCcSKVuebuK2FhjytdAV1Jpgh+KlBIyvUT3EjiKu8G3clG9cZ3qM+mfMqeweUZWXrzyWnq9idGE6Hos3r6i9nBqFUviYJ47Mcry+5ScqKTszJGNZFUkEDda3V5xCorvi4SBWfn8XpdPQFhdN6k40xcHQht9htFYQh4FGOLRXPGriM4a6J85Y6m44Y9l36sH2oxY4WM5IgHZjmDebUFSDoknl7P4T1ReLk2fcjiajSWfiFwKbwkiaxQaPVK8MKrzsZ1qjKpDOKhPxci8KcJH9+fj5jllcnd1/fnxig8poPA9DSIOkOceCFjXqWgkSBvNcs3mjWeuCJe06JYfZQSWkYNB5yAT7gJeDoR1ctUB7Hra+bQl0DUayZOWc1HK+NCgAob+JTTjIZ1thE5dJV3tweMOCPBLSFPCRmB4kxfMrCxWmIIQrjFY2HrX0mI8SBWDrlCLxTw2aplFZ3T0sfz38QFZ7rfSTfDTUvBSRRcZOC2XocKnJtzUvtD589hyMT/l09C20IhZBt+12IQL85fVuR8NYc499+/xCBOSVWBByn19w+RVSE9Hynq0+5qTcPFEwe746FZO7YTNjlhDa69smOsJvooL8HVQmYude0BHod8rxwaYipZs1jW25FmZZJbXJ85r09w+U4gWV
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Customer parcels new"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/new/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"requesttypeid":{"type":"string"},"customerid":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryareaid":{"type":"string"},"parceldescription":{"type":"string"}},"title":"CustomerParcelNew"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"datecreatedshortdate":{"type":"string"},"datecreatedshorttime":{"type":"string"},"datecreatedlongdate":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"boxlockernumber":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"parcelpaid":{"type":"string"},"authorizationotp":{"type":"string"}},"title":"CustomerParcelData"}},"title":"CustomerParcelNewResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

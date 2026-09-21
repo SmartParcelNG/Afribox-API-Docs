@@ -1,0 +1,68 @@
+---
+id: post-pay-search
+title: "Pay search"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Pay search"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1zIjcQ/SsqnbALM5SPpHJgs6nK5rBL2eTkci09ozZod0ZSJA1rQvHf0y3xMcQwvuwhHGBQP3W33nT301Zahx6ituaTkhPpbIhfHWy+BgRfreRQRlgGOXmStCifh1JhqLx2vIHg0zau0ERdJQ8TcXsLzonvuLm9FYOAKMgszkFi2WqFNyMxJ5PH4KwJKHQQf8znM3E/Hv+SNpGlrSOva5MWSqs2YhEixDZUVuFCvGis1YhSfL3zCMqaeiMn0bc4lB7/bjHED7RHTrbpr/aoDubKmkgZsYnyrfeZFd8CH2orQ7XCBvgpbhzSMW35DatIkZxnuqLGkPdqOmoHF6LXZil3BCT2sPb4gh5NhaZtSvQXkASNOta8NIPNYyJ9lvaSja0HhlJAYod/zt/BQ2YKzRpryo54P3JU5McGQ4Alc/7ZmrvFeLwQJwzxq5gADAKMQO+tZ05/EkWnOBdpOsuvh8j3A2WcVj1OFEbQ1yCKGKiojCL2uXj/hZ6QqQLZ2ptUB9eDyjz1OsqQyyzrf9BAczlAaV/7bKAUleBlv2TmqNd9Vzpurho9VtppqrH3EW5lzTsQqkZdXz49GoX+apBsvh4h26+7z+xDY9vcLW8ri8pyjX7TA1l6MCraCH0hQlueNf5VoIOLhdIZNd058xEi9M2hh/0ASvOIYPhKLzxQBqwKW5kGYHcCD+Ua6hbzqN2RYjQYV/agLdy3EFf0ryBBKbLKFJJp9kRS9tl64kGuYnRhUhTw4jUXotOj0ICP+ZAjsyzW9/KNIGWwoOGg2irpzWB9fyM5EZ5dDydh+P0VGldjd5AfuLra7h2utXmxieU9bYfI09kn5oDOkjO6H41H46t5llB9pwLjXWLwyMfLrNOsntY1DXXlrDaRZnNVoYviz8cvn4Ul72L25XEuBq2pqTuFsTS3eM+51JJ6rjXwXF/kIy4OarofO0lVJwyYnoZ8SobAQwHiA00dwxFcW5I9L1vftQSem5EtWdOTjudpxAlA/QM24STsto2VbZLie3TWU+JnEs8Jn8n8IAnWryK0REEIN5StOiD2yrEYpeqn+mogdUbudi5lcbzI/Kd5jgL3P7nE7Ls1Un8VrgZt+EipE7b7lsl3MG6V/Yn4PrbipiLTdltCwL98vdvxMr1dTwX99Mzt6DWUXKNPz+RyRY3KpXzs3d8yEXdzTuDYvW9Vfzc87JimWuzFdvueK1WyWuTLWJMuA9LDD1rk74mkB5teTNKZtLaVNZhlm64FMvvkz7/W178I
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Pay search"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/search/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"}},"title":"PaySearchParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"parcelpaid":{"type":"string"}},"title":"SearchParcelData"}},"title":"PaySearchParcelResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

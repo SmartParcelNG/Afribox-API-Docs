@@ -1,0 +1,68 @@
+---
+id: post-core-parcels-search
+title: "Core parcels search"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core parcels search"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVkFz2joQ/isanUiGYCZH3rwDbd9M20PLJPSUyQTZ2mC1tqQnyTSU4b+/XcmAabBz6eFxAKP9JK0+736fdtxYcCIooz9JPuPW+PBUGAdPVrgCKv/kAR9KPuZBrD2fPXCK8scxl+ALpyxNxYnzJpSggyriWjN2fS2sZT9ge33NRh6AYZidg9i6URKuJmyJIQfeGu2BKc8+LpcLdjud/hUnYaSpAo0rHQdyI7ds5YMIjS+MhBV7VlDJCeb4cuNASKOrLZ8F18CYO/i3AR/e4Rw+28W/yoE8hAujA2ZEIcy3ajPLvns61I77ooRa0FPYWsBjmvw7FAF3so6ICwp8mqvwqB2cD07pNd8jMPLo4Bkc6AJ0U+fgLiARGlSoaGghtveR9UWcizGKHhiKGyI79HP+Du4SU6A3UGF2yPuRoyw91uC9WBPnX4y+WU2nK3bCIL+SCADPhGbgnHHE6R+i6LTPRZrO8hsg8u2NEk7JgUUkBKH6IBIZKLCMAgwt8fYLPSFjBVJ0MKkObgCVeBpcKEEus6x+gRb15Q1y8zIUE1JiCV5eF8O0a//ahQrb3qCDQlmFNfY2wpZGvwHBalTV5dODluB6N0nh/h1SvH/5xL6oTZO65XVlYVluwG0HIGsntAwmiKEtfJOfNX4v0IqLhdKRmq7OfBBBDOnQXStAUY8QBi/4wj1mQLaw41EAuwo85htRNZCkdo+OUUMozcFlqG9FKPFfRo6StUfLkt9knPh2yFZavHFICC9DsH6WZeLZKapIqya+Fi6kuRO9zja3/JUzJTBDlZBNEY1ntLm94pQRidjdySH+eRG1raCr6AfSevu+Q7rSzybS3fJ32Hm++ERk4FlSRreT6WTam2cuih9YaTSLje7peIl+FO15VaG6S2uUDijSRQE2sM/3X78wg6uzxdf7JRs1usI2ZdqggNGcc89FG90oQQK/SkdcHWy11Z9orzMCzE9qH5NB8JgJ9g7lR9MOtskxnoaN60Y8CWigSDL3aOhJligBUf0UW39yeNOEwtTR+h1Y4zDxM6+nhM/8fhSd62/mG6TA+yvMVh4QrYWsJrENsNBqEVsktT1/j7XG2lpjx7vNb+10tLz/ybWm7d+AHZfZSihNZ4stsWubqL2WHRUitk97OLqsldRxiNrtcuHhm6v2exrGN+6wyB8eqVedEjnV7cMjrl5iF1N5Hxv7feLkZkm5HFv79ZVgPz7MmMf6HMR2RYGql5OVpJtaHW8K3ImfOEjfM44PJr6jaEJxbMcroddNvDPwtCZ9/gMEis2p
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core parcels search"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/parcels/search/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"}},"title":"PaySearchParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"parcelpaid":{"type":"string"}},"title":"SearchParcelData"}},"title":"PaySearchParcelResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

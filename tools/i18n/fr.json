@@ -1,0 +1,28 @@
+{
+  "info": {
+    "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
+  },
+  "tags": {
+    "core": "Données de référence publiques : États, villes, casiers, tailles, frais, coursiers, zones de livraison.",
+    "customer": "Comptes clients : inscription/connexion/OTP, profil, cartes enregistrées, colis, assistance.",
+    "business": "Comptes entreprises/partenaires : tableau de bord, casiers, colis, portefeuille, historique des transactions.",
+    "kiosk": "Opérations du casier/appareil : configuration, ping, dépôt/retrait de colis, réservation/vérification appless, instantanés.",
+    "pay": "Paiements : recherche/succès du paiement d'un colis, et les points Paystack initialize/verify/status/return/webhook.",
+    "parcel": "Preuves de livraison (instantanés) : liste, récupération, image.",
+    "admin": "Opérations d'administration : liste des entreprises et transactions de portefeuille."
+  },
+  "operations": {
+    "post_pay_initialize": {
+      "summary": "Initialiser un paiement Paystack",
+      "description": "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure (XOF). Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil=\"wallet\"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack)."
+    },
+    "post_pay_verify": {
+      "summary": "Vérifier un paiement Paystack",
+      "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis."
+    },
+    "post_pay_status": {
+      "summary": "Statut du paiement par référence",
+      "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp."
+    }
+  }
+}

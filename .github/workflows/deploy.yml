@@ -1,0 +1,72 @@
+name: Build & deploy docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Re-sync from the (private) backend weekly
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs
+        uses: actions/checkout@v4
+
+      - name: Checkout backend (source of the spec)
+        uses: actions/checkout@v4
+        with:
+          repository: SmartParcelNG/Afribox-Backend
+          token: ${{ secrets.BACKEND_PAT }}
+          path: backend
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate OpenAPI specs
+        run: python3 tools/generate_openapi.py backend
+
+      - name: Lint spec
+        run: npx @redocly/cli lint openapi/openapi.json --config .redocly.yaml
+
+      - name: Generate API docs
+        run: npm run gen-api-docs
+
+      - name: Build site
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

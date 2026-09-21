@@ -1,0 +1,68 @@
+---
+id: post-core-fees-selfstorage
+title: "Core fees selfstorage"
+description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
+sidebar_label: "Core fees selfstorage"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVU1z2jAQ/SsanUiGYCZHOj2QtJ2mhyQT6CmTCcJeQIksuVqZQD3+792VTTCTj7YzPZQDGO1qtfv03nMlXQFeBe3sRSZHsnAY7lPn4X4BgPcIZoHBebUE2ZdBLVGObiXH5V1fZoCp1wVvpq3jMqzABp3GaiNxfKyKQjzC9vhY9BBAUFgcJollqTM4GogphTxg4SyC0Ci+TqfX4nQ4/BA3UaQ0gde1jQtzl23FDIMKJaYug5lYaDDZgHrcnHhQmbNmK0fBl9CXHn6UgOGM9shRFf9qD9kunDobqCMOUb+m7Sx5QB6qkpiuIFf8FLYF0Jhu/gBpoJMKz9AFDdjs1TRqJw+D13Yp65pw08Hw0heCdEKITlpE65qju7ljGZqZfw6RvWnmB7sGQ2cSms+TJ81jDohUkZC8dPZkNhzOxD6HUMt4LEChrADvnWek/tHg+3NeGb4vD/p7NYOJ1gko79WWTtEBcvyT4yOWVERnrzegf74Xsip/q/FdYToN9WblSo+/z+S0v2LBJxWUrN9JuGn5EelCabCha0O6KtZiJSPrurTvy7UyJTT8rkmmOYSV24mbAVRhRf8SlnHC6CcdmSeUgODX4JvypTeUuwqhwFGSqIXXc7chsg8wVz4UyqdgBnaZrE/lC0NokgVdWFamUe+99emR5J6YZTd7YX7eqLww0BVSB2BtFy5i2gK0Kzy+vuBp+XrigaeD4WD4ZhtzlT6CzXiX6E24++vYPYlmbAypKyuctoFEkqZQBPFtcnUpHFUX11eTqeiV1hCLhXUBMt5z6GRkTmutWGCzZoLZzqxa/4mmNeKE8V5tsRlK7gslzkrUlk8oyjnFm2XnuxGE1EPgSGOZ0SYbhXEDyjypLe5905UhdXk0VA+F89T4gYNywwcu2ovO8VFgSRAgHlG32S6jlfBswDfCTMpV9IlGQPKcyCSYTOLwnXFwF9XedP6T10Ur00CiSgqjtOXpIuerVift6671KRZHdzx+Da5YVpRXVXOF8N2buuZlunVPPL69Y0F6rebM3ds7qr8iqYLvqPe8QeVkyt086/elLdf93Y5x5Oi7uV3lM4Mped6+A/Po1tKrJ1rk75GkBxdvKXpcXKukUXZZRt+WTU3+/AJGvdv9
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Core fees selfstorage"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/fees/selfstorage/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"FeesSelfStorage"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"array","items":{"type":"object","properties":{"storagefeeid":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"storagefeepersixhours":{"type":"string"},"storagefeeperhour":{"type":"string"}},"title":"FeesSelfStorageData"}}},"title":"FeesSelfStorageResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
