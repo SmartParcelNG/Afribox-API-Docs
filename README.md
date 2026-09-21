@@ -37,8 +37,9 @@ npm start
 - Descriptions, examples, manual endpoints: `tools/overrides.json`
 - French translations: `tools/i18n/fr.json`
 - Redocly rules: `.redocly.yaml`
-- Read/write classification: `tools/endpoint-classification.json` (generate) and the
-  `readonly` flag in `tools/overrides.json`
+- Read/write classification: auto-generated to `tools/endpoint-classification.json`
+  (git-ignored; local review only) and overridable via the `readonly` flag in
+  `tools/overrides.json`
 
 ## CI/CD
 

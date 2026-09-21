@@ -18,3 +18,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Private backend checkout used by CI/local generation (never commit)
+/backend
+
+# Generated review artifact (contains internal class names)
+tools/endpoint-classification.json
