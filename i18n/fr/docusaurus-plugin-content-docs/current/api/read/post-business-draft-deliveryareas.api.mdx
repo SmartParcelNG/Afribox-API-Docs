@@ -1,0 +1,68 @@
+---
+id: post-business-draft-deliveryareas
+title: "Zones de livraison (brouillon)"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Zones de livraison (brouillon)"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1u20YQfpXFXiobiij4qKIHNwlQF0EjxMqlhmEtyZG0znJ3uz+sBULvE/c19GKdWZKmZMsJEPRSHyxqZzg/3+z3jRpuLDgRpNFXJZ9xa3y4y6OXGry/K51YhbsSlKzBbYUD4fmYB7H2fHbDezd+O+Yl+MJJS3EwymUMG9BBrmSRQrMZOz8v1P6R2Zgr+VcEVv6EDg6skx7Oz9moNtIxBWwdZUlW8SzE2YR9EMztH63RHhj4wECz3xaLObuYTtnP9C5afVRBBIYewZlYYyShPdmKjagsW3q0Rl+YEpasjKwwzvoJ9vTwhhJi6U+9p0qLZMK+S6PVls+CizDmDrADH341JR416at0UPbmwuiApZNJWKu6BrJ7T9g03BcbqAQ9ha0FTGnyeygCZrKOhhEk+PZd+QW2B34+OKnXfDfm1AVoUcEJK5qDDIqO3nWDu6TBfZA+oJXsDnxCMaVB9OjjeIDvdQ3KWIv4HcI6GuDL2scKoRJrwOl81s/QlavV/tEhEBRjOZ0umdRlmn3UOEDnIDqC/j+Ca8j9KmRP5Z70OL7mg4dwTmwxnQxQ+e/XcRhGlt/N9MoUuxm/EuAH5v9OBMF337wdn7prkW4JOsIDJvE4C2J7w9Nl7Iky5rVQEU4QZjceXJ+I8+RODNmhXlQQNqYXHMJQJPZlfbQsSU92NJMM/Tw4/N4WFJ3CVzYhWD/LMrFyMjcPyJqJr4QLVrgC1ESvs/qCvxCo1pnh6MpYJIka1RdnnEqji/dpYPj7BxQOBYeM7LE+GsTBeKRemTSZDuk+2+X8ipDA+tsqLibTyfRlbfMrkqZcFF9Al6x/eXRNXc1TV0i3hYmka55ZI3XwpJhFsf/qGX6ADYl2kf1+/fEP0sn5x+sFslfEVSJhp8rEPCdQukhcXyguiehKyMBqKZCybNm2vxwklcSTyK1QmBGw/T8BUOmJ3UnrsaSBz+Ph/OQOYCYOHh4Kt/8ajj2wRmCJxqHVfdoBwcR7E50/tQTI3koOFXNUNLV0pFajJFC/MB8TimcMQu/QacZyQqOl61qJJEzd2P80eF8TCrJGMD1dpRx3j1QKt9bz6TaD3P0Pt2QnNQGVIbNKSE2QJBo2HYMPfhVg58Rh/lxZx5x+MGyI9+jeNLnw8Nmp3Y6OsWmHDLu5JcVwUuREoJtbTLNBLQF3oERvWyDfLKioQY9e7JBBkC4TNb7peyhNRBp0zrs1X6XVwp34Gw/p/4zjg0mDTcqfzhquhF7HtGR4G5P+/gVBPFi9
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Zones de livraison (brouillon)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/draft/deliveryareas/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"statename":{"type":"string"}},"title":"DeliveryAreasList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"deliveryareas":{"type":"array","items":{"type":"object","properties":{"deliveryareaid":{"type":"string"},"deliveryareaname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"}},"title":"DeliveryAreaData"}}},"title":"DeliveryAreasListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,69 @@
+---
+id: post-customer-otp-verify
+title: "Vérifier l'OTP"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Vérifier l'OTP"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVU1PGzEQ/SuWLwQUshHHVD3QqlKpqhKVlAtCibM7m5h6bdcfKWiV/wP9G/ljnfFu2ASiqodeyoEkM2N7/Oa955obC04EafRFwUfcGh+mefTBVOCmJtjpCpwsH3ifB7HwfHTDt1l+2+cF+NxJS8tx8XkMS9BBljJPO7IROznJ1eaJFUfCWtWGT05Yb2WkYwrYIsoCKP1i6fGAfRbMbZ6s0R4Y+MBAs4+TyZidDYfsDa3FrI8qiMCwIjgTV7iT0J5y+VJUls08ZqPPTQEzVkSWG2f9AO9yf0oHYsvY1vQ7PKSQA1EYrR74qBTKQ587+BHx5HemwFidfkoHCFNwEdO50QF7ptTO7bI7T2DU3OdLqAR9Cw8W8Cwzv4M84FHWEehBgm/WSuqgq/PBSb3gayxcGg0HM7izVAczOLMDcUwEGRSFLifj62am6zXFHfgEcmoGwaWP/bl+0CtQxlqEdxf1Xodu1nytwHuxABzeN/0CfFmWmyeHcNEes+FwxqQuJOLLosb5OgfR0WT+Eajd2QdB2mv3L+H62uKUYKMR3GOjHpsjVdQ8zXBLrD5fCRVhh2DrflfyTLTnskS4NQqqgrA0WyHSrUSiabYVXYbjzRpJZpj24PBH00B0SAi+DMH6UZaJ0sm5uUdyDXwlXLDC5aAGepGtzvgr4TbFDDEsYp6k21udHXPqiJD/2gnhwz0KS8EucbeoPfO1C7Q07QKJnTuDkLo0Cf8W7W0n5+MLQgfv1nR4NhgOhq/7Hl+QrOci/w66YNvFvSu68TjdGLk4MZE8wTNrpA6e3CbPN4+e4QfYkDgZ2aeryy/kMePLqwlSW8QyMbR1MqKlE6h+MqZXbkUGVAoZ2EoK5DObNdDMOjsi4yHmKzQ1BHPzKwC6I1H/tT/2u7iNc5VEUhzheQ6sk3iUiV2Fh9xtHsN+BfYILHE8NJ5J/hlMvDPR+UMGSvlGj9TMXtN0pT0p95J63zIfE4rHDMK2oBXUbJDMCxlciaRaLSoa7jU6AGIG6PxHKKuX46w78f9HT0nrHAHtILNKSE13T1qsW/XuPJmNABKxm0eVHtElSR2r6nouPHxzar2mMI7dobpubsklnBRzEsjNLe6+RP/AzTrXed/gdjqhXva8Z99AOxM6T9T/Y+2uG5EosHjevoRV8lXuxE8M0v8Rp6ulOSb7TbGaK6EXMTksb/akv9/4MPuy
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Vérifier l'OTP"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/otp/verify/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"otp":{"type":"string"}},"title":"OTPVerify"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"OTPVerifyResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

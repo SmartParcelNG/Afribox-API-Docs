@@ -1,0 +1,502 @@
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
+
+const sidebar: SidebarsConfig = {
+  apisidebar: [
+    {
+      type: "doc",
+      id: "fr/docusaurus-plugin-content-docs/current/api/read/afribox-api",
+    },
+    {
+      type: "category",
+      label: "core",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/core",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-availability",
+          label: "Disponibilité des casiers",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-available-bycity",
+          label: "Référentiel: Casiers disponibles par ville",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-available-bystate",
+          label: "Référentiel: Casiers disponibles par État",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-available-list",
+          label: "Lister les casiers disponibles",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-bycity",
+          label: "Référentiel: Casiers par ville",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-bystate",
+          label: "Référentiel: Casiers par État",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-info",
+          label: "Référentiel: Détails d'un casier",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-list",
+          label: "Lister les casiers",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-cities-bystate",
+          label: "Référentiel: Villes par État",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-cities-info",
+          label: "Détails d'une ville",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-cities-list",
+          label: "Lister les villes",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-couriers-list",
+          label: "Lister les coursiers",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-deliveryareas-list",
+          label: "Lister les zones de livraison",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-appless",
+          label: "Frais appless",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-compute",
+          label: "Calculer les frais",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-nipost",
+          label: "Frais NIPOST",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-selfstorage",
+          label: "Frais de self-stockage",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-service",
+          label: "Frais de service",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-parcels-search",
+          label: "Rechercher un colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-requesttypes-list",
+          label: "Lister les types de demande",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-sizes-fees",
+          label: "Frais par taille",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-sizes-info",
+          label: "Détails d'une taille",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-sizes-list",
+          label: "Lister les tailles",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-states-info",
+          label: "Détails d'un État",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-states-list",
+          label: "Lister les États",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "customer",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/customer",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-cards-info",
+          label: "Détails d'une carte",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-cards-list",
+          label: "Lister les cartes",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-dashboard",
+          label: "Tableau de bord client",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-info",
+          label: "Informations client",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-all",
+          label: "Tous les colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-archived",
+          label: "Colis archivés",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-delivered",
+          label: "Colis livrés",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-enroutetorecipient",
+          label: "Colis en route vers le destinataire",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-info-all",
+          label: "Client: Détails de tous les colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-info",
+          label: "Client: Détails d'un colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-inlocker",
+          label: "Colis en casier",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-reports",
+          label: "Client: Rapports de colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-timeline",
+          label: "Client: Chronologie d'un colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/get-customer-cards-add-complete",
+          label: "Retour d'ajout de carte (navigateur)",
+          className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "business",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/business",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-availableboxes-all",
+          label: "Casiers disponibles (tous)",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-availableboxes-city",
+          label: "Entreprise: Casiers disponibles par ville",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-availableboxes-state",
+          label: "Entreprise: Casiers disponibles par État",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-balance",
+          label: "Solde du portefeuille",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-boxes-all",
+          label: "Casiers de l'entreprise (tous)",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-boxes-assigned",
+          label: "Casiers attribués",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-boxes-city",
+          label: "Entreprise: Casiers par ville",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-boxes-info",
+          label: "Entreprise: Détails d'un casier",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-boxes-state",
+          label: "Entreprise: Casiers par État",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-cities-all",
+          label: "Villes (toutes)",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-cities-state",
+          label: "Entreprise: Villes par État",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-dashboard",
+          label: "Tableau de bord de l'entreprise",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-draft-deliveryareas",
+          label: "Zones de livraison (brouillon)",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-draft-parceltypes",
+          label: "Types de colis (brouillon)",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-info-all",
+          label: "Entreprise: Détails de tous les colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-info",
+          label: "Entreprise: Détails d'un colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-reports",
+          label: "Entreprise: Rapports de colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-timeline",
+          label: "Entreprise: Chronologie d'un colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-pendingpickups",
+          label: "Retraits en attente",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-pickedupparcels",
+          label: "Colis retirés",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-sizes",
+          label: "Tailles disponibles",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-states",
+          label: "États",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-transactionhistory",
+          label: "Historique des transactions",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "kiosk",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/kiosk",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-kiosk-ping",
+          label: "Ping du casier",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "pay",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/pay",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-search",
+          label: "Rechercher un colis à payer",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-search-nipost",
+          label: "Rechercher un colis à payer (NIPOST)",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-status",
+          label: "Statut du paiement par référence",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/get-pay-return",
+          label: "Page de retour de paiement",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-webhook-paystack",
+          label: "Webhook Paystack",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "parcel",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/parcel",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/get-parcel-snapshot-image",
+          label: "Image d'instantané de colis",
+          className: "api-method get",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "admin",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/admin",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-admin-businesses-list",
+          label: "Lister les entreprises",
+          className: "api-method post",
+        },
+      ],
+    },
+  ],
+};
+
+export default sidebar.apisidebar;

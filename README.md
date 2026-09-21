@@ -4,7 +4,7 @@ Online API documentation for the Afribox backend (SmartParcel), built with
 [Docusaurus](https://docusaurus.io) and `docusaurus-plugin-openapi-docs`.
 
 - **Spec**: auto-generated from the private backend source (`tools/generate_openapi.py`).
-- **Site**: bilingual — French (default) and English.
+- **Site**: bilingual — English (default) and French (`/fr/`), incl. translated API reference.
 - **Try it**: enabled for **read-only** endpoints only; write endpoints are reference-only.
 - **Hosting**: GitHub Pages (this repo is public; the codebase stays private).
 

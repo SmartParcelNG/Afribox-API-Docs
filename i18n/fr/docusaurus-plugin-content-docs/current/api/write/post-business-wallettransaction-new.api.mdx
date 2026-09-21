@@ -1,0 +1,69 @@
+---
+id: post-business-wallettransaction-new
+title: "Créer une transaction de portefeuille"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Créer une transaction de portefeuille"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVsFuGzcQ/RWCl9qGohV8VNGDEwSoi6IRYgU9GIbF3Z2V6FAkOyQVG4L+J85v6Mc6w5W8K0v1pb1UB2nFeSSHb+Y97lo6D6iidva6lmPpXYj3ZQraQgj335QxECMqG1TFmHsL3+RARjUPcnwr90B5N5A1hAq1ZxStc5XiAmzUja7y4mIsLi4qs30WPpVG/5VA1D8RAMGjDnBxIc5WTqMwIOZJ1xxVr5Y4H4rflcDts3c2gIAQBVjx63Q6EZejkfiZ51I0JBNVFISI6NKKVqLsOVYt1NKLWaBoCpWrYSbqJCqHPgzpTI/veENK/eX0OdMqhxBU7ax5kuNGmQADiUBHCPG9q2lsnf9qBGIwYqJw5Wyk3DmkvDe7ExQPgclZy1AtYKn4KT55oD1d+QBVpK08cj2ihtDO1V/hqYcLEbWdy81AHpWGEbp+A9skWy/p2P8A6i2lli61yR+hrMK2W05GK+IpQl2eSpm30NHw0Psdw3/mvKbdxtdUWIyEZTRCyJXOTFCF+eewyT7aFRjnPdW4X/qzrsRF+7ikzdQcqIO+2FcdoJtm+4xUK15jNhrNhLZ17s9kqckQISG3x39U0W7vkwQepPuvSPy8Yy+TSdPgkdIPFGbhrmVuq33PD+RKmQQnen8z6KAvGniBZy1sSPtLiAu3tw8+s8pKKvbLFUfdWpCRFISkVFeAbU4JDU1axOjDuChUg7p0jySBYVgqjF5hBWZo58XqUh7ZTQsWRHad8gbkJ5fnkpPjEn3u5PrxkWzAQF9ee3rfUNVrSF9MXeyEhrpgTzrdYE8xvTbQtnG5+rta7493Nblm9omwdpnL4Wg4OiZjcs3OVqrqK9ha7Cef3TCNk0wjKWHqEttiEN5pGwMbblVtvwdBP+BjVkQSv918+oNtdvLpZkrCUqnJ+tiZOosCFRkfe/ORYbMHN0pHsdKK1CRmLd+zzpHZe1l3hnydKrT9EYEuChZevioopU5qg2785BUiXOoQASrcfo+HCMoRRFZYbK8NvkKiSw8uYTh1h3C8dQNO5iBpPtKBkZxl7/hFhJRZPBcQ94CdnGdDLi0rZKmyZ1CPcHE/0IaAOfde/zAt3mGEBpKmjntd5XXnSP/Dy3Zna5FcqfBGacvUZP2vd+bRe7k4IUuWU34T4TePBZsOTVivSxXgC5rNhofp2Eiyur1jv0KtSpbS7R1ttCAnA+z54IeWyndTTqtzwyOj7+zwKovkTWzfF1k+BC53rwvL7P8SFR+Bv8eSHlwubb4m8thaGmXnKd8Esl2TP38D6Cl6SA==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Créer une transaction de portefeuille"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/wallettransaction/new/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"wallettransactiontypeid":{"type":"string"},"walletfundmodeid":{"type":"string"},"transactionamount":{"type":"string"},"narration":{"type":"string"},"createdby":{"type":"string"}},"title":"BusinessWalletTransactionInsert"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"BusinessWalletTransactionInsertResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

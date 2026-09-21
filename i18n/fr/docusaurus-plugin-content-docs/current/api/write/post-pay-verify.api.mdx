@@ -1,0 +1,69 @@
+---
+id: post-pay-verify
+title: "Vérifier un paiement Paystack"
+description: "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis."
+sidebar_label: "Vérifier un paiement Paystack"
+hide_title: true
+hide_table_of_contents: true
+api: eJztlt1uYjcQx1/FOjdJJBZQLql6ke6u1FRVFyXZvYmiYM4ZwFkf+9QfNBTxLnvXpa/Bi/U/NuRAQiJV6mVzEcAz9ozn4zdeFrYhJ4Oy5rIqBkVjfbhv5OJ+Tk5NFkWnCHLqi8FtgcXirlNU5EunGt4A9S+bNdQUiWhEIxXVZAK+ODFyNCFHpqRRR+gTMo6mygdHgoKgx826jIGEJhGcVCHvOy2tVh7bF5u16InSbdaVwnHWBRwWldZ0JioSE7n5yxqhKqobG7CTuuKzET6W5ea7F9Vm/bD5Jp5M4jBzQj6IB1lLnI+F4OzUSSh2xRWZuVXJlRHsaypDaSsaiSqKrT82Ooj90wU9O5FkXcTn8Z2MYcahkwsfZPn1vopSJ4EjWVmjF8VgIrWnTuHo9whPfrIV1pbpp3KEuAcXIS6t4euwSDaNVmXKS+/Bc6yXhS9nVEv+FhYNwaIdP8BdmGocZzEo8nmv+kqLPT0EQZlpsWIHtlk5IoU4qKB5abi9ypdcBKvVKu31jTU+2zjv9/njsBo+mjlp2zTEAUKYfdRBIq84K0TPYe3lrzV5L6d0lvI2asWIuppMUFNcDjhj1O+PhDKVQthQYige5yg6Dvt/FKvW9tF4Hbj7ryOKgDppvCzZtXzUUS1Z25iv8kI0ITq+p4yOzR5PczmTxpA+KkMVV/K4MS5k69SfKZSvxqSMPtgal0Y3HTcxjl4ZxExVr3jgStIVBex/U+Xt2O5161F5hUS/KkQVlPCQjplfPafcBxADvqa+11LsJVXMMwA3a+qIBaBQNw7I0MyHKrcBJcK1OGGZ9AIEnG3W0gQu5uN9d7VtuNR/cIoeUfGeSwk8Xhapx3f46RRzqSO9wNCq0yo+4ehJOWFpBarXhMzv+M9NIhPSejislydBD6ueHH5k69Eh98UshMYPej05cWpsH0Gerq+lCzl/XTPtzc+L5+G8yMoCOahiDuPp/PysYEe4f69aSn58lHWjaZ9quzQdtN5eZpWZ2JTUbUx31i6Gl3xx+J+9OO/2u/2Xvg0vOVVjBJBMJXabT6/5VsN0K1DrxkafR4JVaR6cyDx78EFNSPSK4pfrT79hDInhp+sbQFDGSWJZJpVggKEyHFPw1xNOIrahlLZiz3MOdTNXkofrKF8fgETt5fpyza4geY5s/sY8HSRIlhojDy61WOy0600c64TTCkMZ85jrlYSNrYYnTN7v4VADPpJICAvi55uboeCBGmx8wHD0AtNA/MBetdBneSY3O3PgNF/pAPqnifM/7ib4Gb8RRgfoHXVT06I4a5n4bmRNe+8Pd/AA2bXR8+wu26nx/8uls8NeAFd6jZbKcIxTXy+3AMivvtQ1+THIL8AZIwKi5XIsPX12erXiZdSUQ3ve3jFdnJJj7r7bOxw5A3fI7THrfc7Cuxt2oCXXiznewusi9dWbuvsU446D8nj7zqrTFCic/IOpgf+DAl9sqoo0XdPastDSTGMa9EU+k//+AYyrBwk=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Vérifier un paiement Paystack"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/verify/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"reference":{"type":"string"}},"title":"PaystackVerify"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"reference":{"type":"string"},"transactionstatus":{"type":"string"},"amount":{"type":"string"},"fees":{"type":"string"},"currency":{"type":"string"},"channel":{"type":"string"},"paidat":{"type":"string"},"authorizationcode":{"type":"string"},"customeremail":{"type":"string"},"businessid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreference":{"type":"string"},"collectcode":{"type":"string"},"dropcode":{"type":"string"},"processed":{"type":"string"}},"description":"Détails de la transaction vérifiée, y compris le code de retrait du colis le cas échéant.","title":"PaystackVerifyResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

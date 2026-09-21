@@ -1,0 +1,68 @@
+---
+id: post-core-boxes-bystate
+title: "Référentiel: Casiers par État"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Référentiel: Casiers par État"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1u2zgQfhWClzqBaxk5erGHtFtgsyi2RuKegiCmpbHNlCK5/NHGMPwA+yZNX8MvtjOUFNmJlV72sjlEMmfIGX4z833acmPBiSCNvir4hFvjw31uHNwvzCP4+8XGBxGAD3kQK88nt5yM/G7IC/C5k5Z24r7LGNagg1zKPB3GJuz8PFf7J1a8E9aqZvn8nA0qIx1TwFZRFkDmF1vPRuyzYG7/ZI32wMAHBpr9PptN2cV4zH6hvWj1UWFmDD2CM7HCk4T2ZMvXorRsTnlHn5sC5qyIDNO2foT3eHxPATFlTOv+G2zSkgNRGK02fBJchCF38FfEwB9MgUvb9FM6KFpzbnTAlMl0cLnswRMWW+7zNZSC3sLGAoYyiwfIA0ayjuAOEny9V1ICnZ8PTuoV3w15Ql0WJ2xoDDIoWvpAJfosMc/NTarSbkdmBz5Bl2IgZPQ4rtYnXYEy1iJoh1gOOsyy+rUE78UKsCRf9QtI5XK5f3KIAp0xH4/nTOpCImwsaqyacxAd4f0fYdXF7sXrOd2THqmfDyzCOUHFlwFK//P4uP1kOdLBvWmhTYuy15YLK3IZTreAMvk3cF5UQiqxUL2HiKLAivs+szJ6JUPsT1BhQXrtlF3PvcnUe7n+/m1svTuba0sd/ZsOSwe9Vzrq9p9M0G8iCL57a6yum3lK44V+8Ijpezyb+HDL0wi3tDLklVARDuhlN+xcnmnm2Y34ZIdsWkJYm5aAqflE4qiM2DZLrZs1VJyh1YOrEIIUPjqFjusQrJ9kmVg6ST1h5ciXwgUrXA5qpFdZdcFfkXbtzLDTi5gn2h5UF2ecEqL5vO5Y8NMjkmrdgy1rtXgeFPugClIvTcK+AbWNdTm9ottThVMOF6PxaPw6s+kVkfZCYKl1wdrNgxu60zTdCTlpZiIxvmfWSB08aUme7797hg+wIXFTZH/cfPmTFGT65WaGFCfiMjFVo1NET04guZPsvNIikpelkIFVUiCvsXl9+XknNiQrxIAKJQvh2v8IgNpHFPha/Ybduo0LlciyeIfxHFgnMZSJnYeH3O2/h2MPzBFY4rpQKyKpYzDxwUTnT8kj2WtepmSOkqYrHVH6ILH4r8zHhOIZg9A6NMQ6H1FpqUVLkSarnmJ+vX9qxECCmrCPwkssMMPmY/t/8ICX9d12qvA/+nJoaCTg/GdWCakJjDR+22Zem6+jVmzw+fz5RJ9Ma5ptdNpuF8LDV6d2O1rGNnA4T7d3xApO1lx/e4eHr5EvwB2wzMcatvczSuWIa46FtSOdyzQKb/oe0g8NScq//vApk7BxJ/7GRfo/4fhiUhmT4qS1LVdCr2JSXl6fSX//AvcVqpo=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Référentiel: Casiers par État"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/boxes/bystate/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"stateid":{"type":"string"}},"title":"BoxesListByState"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"boxes":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}}},"title":"BoxesListByStateResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

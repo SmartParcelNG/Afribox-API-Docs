@@ -1,0 +1,68 @@
+---
+id: post-business-dashboard
+title: "Tableau de bord de l'entreprise"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Tableau de bord de l'entreprise"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVsFuGzcQ/RWCl8qGIgk+qujBbQLURdAYsXIKgojLHUm0KZIdkqoNQf8T5zf0Y53hSlrJkpUeeqkP3hXncTjzhvNml9IHQJWMdze1HMrgY/pa5WgcxPi1VnFWeYW17MqkplEOP8utUX7pyhqiRhN4N+29zmkGLpmJ0cWhGIrLS23XzyLkypq/Moj6JwIgBDQRLi9FZ+ENCgtimk3NVvXCxUVPvFcC18/BuwgCYhLgxO+j0a24GgzEz7yXrDHbpJIgREKfF+RJucg2PVPzIMaRrDlqX8NY1FlojyH2KKfHN3wghb7LuESqiwlB1d7ZJzlMmKErESiDmH71NS0ty0+DUG/N2rtEobNJhWA3CfTvI3OzlFHPYK74LT0FoCN9dQ860UkBuQTJQGz2mgd42sPFhMZN5WpFJTDJ8tJ7PzUxGR3f7uqzWjEAIRaiiiciiB+HNXrnFmB9CETRPnOdlqF+8zonNtQUqACf3AsCzWSyfkbKlX2MB4OxMK4u5c2OaoQIGZnd/4iR9uwTrHTlQbgnEe0t/uFZlX9sXo6cWK8fAE/bcnzNEhRqsDEAEeSmNZ3lJ5N/Aw1GP+RwHkkQqHM4h0GgFVhAfQ6klaOHPQ9KPil7jpmFIj/pHIJuJ+BrsWwwXusczHnMa6Gc7ZC3KqkfQD5uuqc0EyHhka5vpCvLureUpS23ktGVC2UznJCOVbeF7iRkB2etWJFyziHN/FZw+RqqokP9rbf+7tL2yVp4wyaMjJS7nKUU4rDfVxM0dGlJNXpxrjA11eq5aX9xJY8EugELuvN11kWiO4urC8kBcVd+bBXu3SMJp4V9RdorhHETXwqw4XLr+Pr2hlOlUJsDr3qD3uA4jNsbVuFKUTVdLbabO3ecwG1JgGRn5DNLeBTBG5ciDwet19+ioAeEVOQniz/uPvzJI+H2w92IVEzlSRGjzQBiBUJFKs1z5Gi48LyYKJPEwiiSLjFuMh2304PnBIucpRlE3Ky/J6ChxipXxhqF1Opat10/Oe6Ezy0igsb1t3SIoBhBFDlLzYjjcZd8vvcZ46l5x/ZGejmYg6A5pQPV7hSh/kXEXFi8EJC2gI12jnul3ek+zlURaKfmXNyRqiyozDxUHuvCx17UL8u7bHX/f/hFsJGURL3fD1YZV/Qdi9w0Pbr3BbQ/WrqSP4hm3M0EWS4rFeET2tWKlylRpA76/IV1AA0Tyr/I9YwUAnBPX35ryHsz4kBalTkaoK3MXJd+OIvdFxzuFAJXm8+YeZmrEtXftMj/h5JefClmGT9lbSmtctNcJqxsfPLfP6yophw=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Tableau de bord de l'entreprise"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/dashboard/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsDashboard"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"dashboard":{"type":"object","properties":{"boxes":{"type":"string"},"lockers":{"type":"string"},"users":{"type":"string"},"parcelspendingdropoffs":{"type":"string"},"parcelspendingpickups":{"type":"string"},"parcelspickedup":{"type":"string"},"parcelsretrieved":{"type":"string"},"parcelscancelled":{"type":"string"},"parcelstotal":{"type":"string"},"lockersvacant":{"type":"string"},"lockersreserved":{"type":"string"},"lockersoccupied":{"type":"string"},"lockerstotal":{"type":"string"}},"title":"LogisticsDashboardData"}},"title":"LogisticsDashboardResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,68 @@
+---
+id: post-core-fees-selfstorage
+title: "Frais de self-stockage"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Frais de self-stockage"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVlcFuGzcQhl+F4CWyIWsFH1X04DYJ6qJohEg5GYZF7c5KtHdJdkiqcgW9T9zX0It1hrvKrmLHbYFe6oMlcYbk8B/+H3fSOkAVtDXXhZxIZ324yy3CXQng7zxUpQ8W1QrkUAa18nJyIzkub4eyAJ+jdjyZpl7FsAYTdKnztJ6YiPPzvDo8ieKNcq5qh8/PxWBjNYoKxCrqAjj81dSzkfhFCTw8OWs8CPBBgBE/zedTcTkei+94LkV9rIIKgjIC2rihlZTxHMvXqnZi4SkafW4LWIgiCirb+RGdY3vBG1LJVNbdAzymIQRVWFM9yknACEOJ8FukjX+wBQ3t0k+NUBzDuTWBSuZQ73DZvWctdtLna6gVfwuPDmgru7yHPNBODlnxoME3czUX0OX5gNqs5H5PcutQ8dB76sSMGjFrG7HfcxTBJ3XSMqQKf5w25J3ZQGWdI136cg06WbLmaw3e08Kk+ifzlWq6LA9PSAflNRbj8UJoU2hSRkRDjUGEiCzpfyRHt/cLkgzlSbkvZvCt7QUUouL26gC1/yfbJ4VpEV28XID+47WQUfW3Cj8uTLt5vV3biP7vMzntX92NtyoouX8l4WN7a9IlojTYUts8tYqNvZPpLh79MZQbVUXo+WQ/7FK++OVLGhtjT1ioIaztESassUpmyxgbGTco62ElowQPuAFsKohYUe46BOcnWaZK1Eu7JZeMfK0wOIU5VCOzyjaX8hmAmmRBPS1inhA02FyeSa6JL+LHztHvtgSICvoO7PVAm9Im2VsNjwtfTa/5tNzBtOHlaDwaPy9jes20War8AUwhjpMHMz7ANB2AnDa3kVHlhbPaBM8QzPPDZy/oA1xIjovi59mHXxl90w+zORlXxTL5rwUsmw4VUYl5+QyizMVS6SA2WpFbxaI56aKjJPOQfV0Ra0mbw58BCNps7OfYHnbjLi6rhIDiDe2H4FDTVjZ2GR5yPHwOpxlUI4jk4NCgnLEebLxnL7zEdY43tOFiTormI52AapDY9L3wMal4JiAcE1pcLEbcWr6StUpMaswq35OCSQW+lBd0K/OH5rU76equI9z/6KFruRHI5ZmrlDYsQXLYrnVl+5i34GQr9h98fuTXbGLK2+2WysMnrPZ7Hqb+I7nm5pbtj1ot2Sk3t7T+msAA2MPJj41yF3Ou5gQqp+9ER5er5IFXc/ucYXdQ8rJ9quv0fEhUv9Mg/59I+mJTJxN009hOVsqsYnpIZLMm//0FiMg2Dg==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Frais de self-stockage"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/fees/selfstorage/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"FeesSelfStorage"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"array","items":{"type":"object","properties":{"storagefeeid":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"storagefeepersixhours":{"type":"string"},"storagefeeperhour":{"type":"string"}},"title":"FeesSelfStorageData"}}},"title":"FeesSelfStorageResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,68 @@
+---
+id: post-customer-parcels-enroutetorecipient
+title: "Colis en route vers le destinataire"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Colis en route vers le destinataire"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV81u4zYQfhWCl00Cr23k6KKHNA3QFEU3SLynIIhpaWwzK5Esf9xkDb/PZl/DL9YZUrLsWHK6QC/1wZY5Q85w/r5PK64NWOGlVtc5H3GjnX/MgvO6BPtohM2gcI+grA4evLaQSSNBed7jXswdH93zWps/9HgOLrPS0HF42EXwC9SVM5lFC2zEzs6yYvPK8g/CmKJaPjtjJ0stLSuAzYPMgcRvtp722R+C2c2r0coBA+cZKPbbeHzDzodD9hPtRakLhReeoYZHj5d4klCOZNlClIZNHEqDy3QOE5YHlmlrXB/v8vyRDKLL6NbjF3iJSxZErlXxwkfeBuhxC38FNPyLznFpFf9KC3ktzrTyFBkU7Vxu8OQoFivusgWUgp78iwE0padPkFEgjaUceAku7ZXkQKPnvJVqzte9baRl3iJGuZe+oKXLSu8mpu8qJW+sb7fJW69J3YKL0YxmMYr0s5/AK7WEQhuDcdwN70kTxkF6LME5MQfM0mf1JspyNtu8WrRKZ0yGwwmTKpcYSRYUJtJaCJZS8B+Fr7HdGsI9d1s1qprfkQlrBVWE9FC69z1IB7TmqD49By9kl0ouPGRYex7elbuFtp7+/ytFL8t3FQut5p0HJuctzADzmYEK5RTb/phmbBiSHg3Hjl573etgJVglOvyvUhZTe9RQUmkvDPkVOg1M9fMxmchz7KX2c1FMVrvPzqR/6RRu5+37Gmah1Tsq2ECyOK5y7Co5VvUS7IvAUmmPIaj8SJqSuNvPJO928uj4q1MsSh3SFDlQoP7NOqVVhYTp3ghsz2ihsy940e76z3EidM6gTBcFDo5OefLEiI57ElJpK7/G+ai9+REs+FV4wdc/ghW3FUhEzMB98Iy17NAyYf+KR6iq4bPHl6IIsAOj616jsoXTrRrh5hpZQwl4o5p90DwVEYsHdcIHVW4GhzxkwKluLJZl8idYrB2+8N640WAgZlZSfxrZd6WwPp3TV/PB8pwfsJWkzHCa5yGLfOVkeX7KyUNCodsG/q+ekU0UsAvXdez3y3S3+tRMx1RVga/NXdxcU0TwAsmN8/6wPzx07uaaCMtUYOGpnNWbT+7oWil3CL5jHYjtOGa0VN4Rj8qyzTfH8AeMjyAc2O93n/4k9nTz6W6MWC7CLEJyxdEIh61AYkOU64CHEbWaCenZUgoEcDZJ9580RIsoFUF9gXQNI7b57gF5H2H9IfPrNesmTIvICvIPaM+CsRJN6dBoOMSozTe/r4E+Aotj3Sc2SMzQ6/CEkOHaqCHJEwEhZ/acpivtcZeTSFd+Zi7EKJ4y8LVCxSAm/diwWLaliNMiDT9+qQvpKMaxXhlll+xgTr1U2IMY3rcpXjUM6H9EnKvB43EsDEwhpKJ4xCZcVW2884LQkCucI22vFPQKsaAZgLtWq6lw8NkW6zUtY2lYbLP7B5oeVoopNdH9A1pb4FyhMbydRpcpjh/H5NveTNpnlc1wuojtcVR3d0xR43ACgvQiUMZBzq34Gxfpe8TxQce8RiSNayteCDUPkXbydCZ9/gGzR9J5
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Colis en route vers le destinataire"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/enroutetorecipient/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"}},"title":"CustomerParcelEnrouteToRecipient"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"datecreatedshortdate":{"type":"string"},"datecreatedshorttime":{"type":"string"},"datecreatedlongdate":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"boxlockernumber":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"parcelpaid":{"type":"string"},"authorizationotp":{"type":"string"}},"title":"CustomerParcelData"}}},"title":"CustomerParcelEnrouteToRecipientResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

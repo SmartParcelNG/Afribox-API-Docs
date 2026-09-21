@@ -1,0 +1,68 @@
+---
+id: post-business-draft-parceltypes
+title: "Types de colis (brouillon)"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Types de colis (brouillon)"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVcFuIzcM/RVBlzqB12Pk6KKHtF2gKRZdI/GegiCWZ2hbWY2kUpKbYOD/2fQ3/GMlNXZmnBibHnqpD/ZY5FDkI99jI50HVFE7e1XJifQuxPtFCtpCCPcVqmW89wpLMPHJQ5BDGdUqyMmtPDjJu6GsIJSoPUehGJcprsFGvdRlDiwm4vy8NLtn4dPC6D8TiOoHckDwqAOcn4vBxmkUBsQq6Yqt6lWIs5H4pATunr2zAQSEKMCK32azqbgYj8WP/C5ZQzJRRUEeEV3aUCRlA9vKtaq9mAeyplC6CuaiSqJ06MOIanr8wBdS6i+V50zLbEJQlbPmSU4iJhhKBKogxJ9dRUdN/qsRqoO5dDZS6mxS3pt9AcVDYGwaGco11IqfGFC60i0eoIx0k0duRdSEcn5Xf4Wnnl+IqO1KbrfUAh0NH123mcy4M590iGRkM0LIMOU4BA//HHfoo92Acd4TQH3cBh0+RftYExZqBQT/F/sKPr1c7p6RKuUY8/F4LrStcnOTpQ4hQkLG9j/Co7v7BCZDeZTuSY9929ox7hwUonqi23SEOryfRi+Krt675z37UVP+ZaN/VVHJ7fem4Hrf/jwN5AePhH+gO5i2jcxTdZj4odwok+DE5G+HnesLA17cedS3RPwa4toddIPBUplGxSFakRWk6ClIQV4BcAPYppPQ0AvrGH2YFIVaol64Rxr+UagVxvbFkV0Vmwv5RmdaZ0EdqlKZlWawuTiTnBiP13VH1I+PxH8DfWL1WqLt0uUG7BE9BL6cXnHJlGp74cVoPBq/TWN6xWKyUOVXsJU4vDy44QKmuQDiz8wlVqIgvNM2Bta4stx9C4J+wMfMoyR+v/n8Byvb9PPNjOio0jKzaq+jTCVUJDYsh280kmVvqXQUG62Ig2LeVjrvRJDljtlqSEoJm93fEUibma5ZnSmljqDD7vykaguXOo8AJe6+xWMPyhFE5mVslZpVO7r04BKGU7LN9lZDOJmjpLmkI/kZZMX5SYSUUTwTEA8OexGYj7i1PJe1yvSyqubmZp4wCqUzOojBgjaFNoZ2zOvONp12/Q932l5NItG/8EZpy3BktjV7mvZ2OFXORM0M7i97Xu5rpjY5N81CBfiCZrvlYyoZiUa3dywKqNWCqXN7R5esSS4Ae2LzSwvjB4a+Jzlv1kGnOZeZFN/17asP04WcF/uVXOctIVH9RYf8PZH04HJbWxXns0YaZVcp7wvZxuTPPyfXPCk=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Types de colis (brouillon)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/draft/parceltypes/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"RequestTypesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"requesttypes":{"type":"array","items":{"type":"object","properties":{"requesttypeid":{"type":"string"},"requesttype":{"type":"string"},"requesttypedescription":{"type":"string"}},"title":"RequestTypeData"}}},"title":"RequestTypesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

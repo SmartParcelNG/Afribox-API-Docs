@@ -1,0 +1,69 @@
+---
+id: post-customer-otp-resend
+title: "Renvoyer l'OTP"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Renvoyer l'OTP"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVU1PGzEQ/SuWLwQUshHHVD3QCqlUVYkgnBAizu4kMXht1x9b0Cr/B/o38sc6492wCURVD72UA0k8Y3vmzXvPNTcWnAjS6POCj7g1Ptzl0QdTgrszwd458KAL3udBLDwf3fBNlN/2eQE+d9LSdtx8GsMSdJBzmacT2YgdHeVq/cKKA2GtapePjlivMtIxBWwRZQEUfrP1cMC+CebWL9ZoDwx8YKDZl8lkzE6GQ/aB9mLURxVEYJgRnIkVniS0p1i+FKVlU4/R6HNTwJQVkeXGWT/AXh6P6UIsGcu6e4CntORAFEarJz6aC+Whzx38iHjzJ1PgWp1+SgcIU3ARw7nRAWum0FZ32b0nMGru8yWUgr6FJwt4l5ndQx7wKusI9CDBN3slVdDl+eCkXvAVJi6Nhr0RPFmqPREMBRkULV1MxpfN7FYrWsdBJjDTpQgifezO70xXoIy1COM2ur0Oxaz5WoL3YgE4pGv9BmQ5n69fHMJCZ0yHwymTupCII4sa5+gcREcT+EfgdXfvhWmn3L0ZSPG/hPGyxS/BSSN4xAY8Fk2qqHma4YZYfV4JFWGLYKt+l/JKtNe0RLgVCqqEsDQbIVK3ItE024guw3qzRpIZhj24ClxTQHRICL4MwfpRlom5kzPziOQa+FK4YIXLQQ30IqtO+DvhNskMsS1inqTbq04OOVVEE7nshHD2iMJSsE3cDWqvfO0WWppu4S313CTAW3g3V5+OzwkObKYp6WQwHAzfFzo+Jx3PRP6ACLDN5t4VtThOLSIpJyaSCXhmjdTBk73k+frZM/wAGxI5I/t6dfGdTGV8cTVBjos4T1RtrYv46QTKnZzonT2R48yFDKySAonNpg0W085/yGlIAgpdDNFb/wqAdkgaeG+I/W7dxplKaikO8D4H1km8ysQuw0Pu1s9hNwNrBJbIHhqTJMMMJt6b6Pw+x6R4I0wqZqdoamlH070k44/Mx4TiIYOwSWiVNR0kt0LKliLJV4uShnsJujJPgE5/gDJ6O826M4H/6OlonSKg/DOrhNTUetJe3ap164ls/CV5b/OI0qO5JGljVl3PhIdrp1YrWsapO1TTzS25gpNiRvq4ucXTl+gXeFjnMp8b3I4nVMuO1+waaWc6p4n5f8zddh/SBCbP2pevTP7KnfhJveD/EafW0hyTDae1miuhFzE5LW/OpL/fqxT1jQ==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Renvoyer l'OTP"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/otp/resend/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"}},"title":"OTPResend"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"OTPResendResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

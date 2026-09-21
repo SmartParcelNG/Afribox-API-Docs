@@ -1,0 +1,68 @@
+---
+id: post-business-boxes-info
+title: "Entreprise: Détails d'un casier"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Entreprise: Détails d'un casier"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1uGzcQfhWCl8iGohV8VNGD0wSoi6ARYudkGBbFHWnpcEmWP4pdQe8T5zX0Yp3har2SrXV66KU+eFecIWfmm53v45pbB15EZc1FySfc2RBv5ykoAyHczu09hFtlFpYPeRTLwCfXvLXymyEvIUivHG3HzecpVmCiWiiZT2QTdnoq9faRlW+Ec3q3fHrKBiurPNPAlkmVQOZnW09G7KNgfvvorAnAIEQGhv1+dTVlZ+Mx+4X2ojUkHUVk6BG9TSs8SZhANlmJ2rFZQGsK0pYwY2Vi0noXRljL/VsKiCljWrdf4SEveRClNfqBT6JPMOQe/koY+J0tcWmdfyoPZWuW1kRMmUx7xRV3gbBY8yArqAW9xQcHGMrO70BGjOQ8YR4VhGavogQ6vxC9Mku+GXKEX5VHLGiKKmpaekcduqAGbTa07iFkxPLRiBQ9Dpv0waxAW+cQq30IBx1URfNaY4/FErATX8wzJNVisX30WDydMRuPZ0yZUiFaLBlslveQPMH8H0HUxT4K00G6fUD+PEof2nl7b3C0GVH32qRwQqp4vL/ayq/gg1gJpcVc9x4iytLTwPWYtTVLFVN/ghph77VTdj11k6m3OEIdejZmW+/OXdnKpPCqw8JDb0kH3/RPBuS9iKI79lL9DftQCu8Fzb+KUId/8S3i9r6q0dQPFxpLiNjp430k+zdVxkrWvfYK1LKKrziU4HoO2EPk4xMMDTBH6eTzjkcyraAD3GNDA6JNErDmmbFaFh3yldAJ9th0M+xcnlj1yY3oc4PiUUOsbCs6BLTIlFy0AlNk+SlIfgo0B/Ar/Cpy/OQ1elYxujApCrHwisbEqVGohY9OeAl6ZJbF6oy/EKnGmWFbyySzTA1WZyecMiJi+tyx/od7FJFmLFuWbgF9Iue9DmSdJOh3YLaRzqcXVDx98jmDs9F4NH6Z1/SCJGousDumZO3mwSVVNM0VIRVf2UT6FpizysRAyinl9ntg+MDmZ0pO7I/LT3+SXk4/XV4hs4u0yAS9U2ViZS9QykhkXygvielCqMhWSiCds1lT+qyTVhJRIn6NAo1gbX9EQKUn5n+p9cNu3aW5zhpRvsF4HpxXGMqmziOA9Nvv8dADcwSWKT42+k93gWjTnU0+HLsMkL2RI0rmIGkq6UDJBlm8fmUhZRRPGMTWYacnsxG1lr7QWmSqaSYcZbRNcMLebx/zYGPeCJgUQYF/3t91J4b/o3vSjkUijn/htFCGwMjDt96N6959MM8E0HN3Y6QbYkWzjV7r9VwE+OL1ZkPL+B14HKfrG2IFrxr1u77B0yvkC4SvY5nfGtzeXlEuB1xzeKHoSOc8z8Krvvv0Q1OSk2/ueXWWeu7FN1yk/xOOLzb3MXN3XltzLcwy5RsHb86kv38ABHX++Q==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Entreprise: Détails d'un casier"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/boxes/info/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"title":"BoxesInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"},"lockerSizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"sizedetails":{"type":"string"},"sizewidthcm":{"type":"string"},"sizeheightcm":{"type":"string"},"sizedepthcm":{"type":"string"}},"title":"LockerSizeData"}}},"title":"BoxesInfoResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

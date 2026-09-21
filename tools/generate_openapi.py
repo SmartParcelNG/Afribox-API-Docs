@@ -241,6 +241,7 @@ def build_operation(ep, classes, name_map, overrides):
             "The response is HTTP 200; the result is in the body `statuscode` field."
         )
     op["description"] = desc
+    op["x-auth"] = ep["auth"]
     op["x-readonly"] = bool(readonly)
     if o.get("deprecated"):
         op["deprecated"] = True
@@ -267,6 +268,8 @@ def apply_i18n(spec, fr):
     """Return a French copy of spec with fr.json strings applied."""
     import copy
     out = copy.deepcopy(spec)
+    templates = fr.get("templates", {})
+    auth_labels = fr.get("authLabels", {})
     if "info" in fr:
         for k, v in fr["info"].items():
             if v:
@@ -283,6 +286,12 @@ def apply_i18n(spec, fr):
                 op["summary"] = t["summary"]
             if t.get("description"):
                 op["description"] = t["description"]
+            elif templates.get("operationDescription"):
+                auth = op.get("x-auth", "")
+                label = auth_labels.get(auth, auth)
+                op["description"] = templates["operationDescription"].replace("{auth}", label)
+            if templates.get("response200") and "200" in op.get("responses", {}):
+                op["responses"]["200"]["description"] = templates["response200"]
     for sname, schema in out.get("components", {}).get("schemas", {}).items():
         t = fr.get("schemas", {}).get(sname, {})
         if t.get("description"):
@@ -291,6 +300,25 @@ def apply_i18n(spec, fr):
             if pv and "properties" in schema and pname in schema["properties"]:
                 schema["properties"][pname]["description"] = pv
     return out
+
+
+def disambiguate_summaries(paths, tag_labels):
+    """Sidebar labels are translation keys; ensure summaries are unique."""
+    from collections import Counter
+    counts = Counter(op.get("summary", "") for methods in paths.values() for op in methods.values())
+    for methods in paths.values():
+        for op in methods.values():
+            s = op.get("summary", "")
+            if counts[s] > 1:
+                tag = (op.get("tags") or ["api"])[0]
+                op["summary"] = f"{tag_labels.get(tag, tag)}: {s}"
+    # Second pass for any remaining collisions (rare)
+    counts2 = Counter(op.get("summary", "") for methods in paths.values() for op in methods.values())
+    for path, methods in paths.items():
+        for op in methods.values():
+            s = op.get("summary", "")
+            if counts2[s] > 1:
+                op["summary"] = f'{s} ({path.strip("/")})'
 
 
 def main():
@@ -334,7 +362,10 @@ def main():
     }
 
     paths = OrderedDict()
+    excluded = set(overrides.get("excludeEndpoints", []))
     for ep in endpoints:
+        if ep["path"] in excluded:
+            continue
         paths.setdefault(ep["path"], OrderedDict())[ep["method"]] = build_operation(
             ep, classes, name_map, overrides
         )
@@ -355,31 +386,38 @@ def main():
     spec["paths"] = paths
     spec["components"] = {"schemas": schemas}
 
+    disambiguate_summaries(spec["paths"], {t: t.capitalize() for t in present_tags})
+
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "openapi.json"), "w", encoding="utf-8") as fh:
         json.dump(spec, fh, indent=2, ensure_ascii=False)
 
     spec_fr = apply_i18n(spec, fr)
+    disambiguate_summaries(spec_fr["paths"], fr.get("tagLabels", {}))
     with open(os.path.join(OUT, "openapi.fr.json"), "w", encoding="utf-8") as fh:
         json.dump(spec_fr, fh, indent=2, ensure_ascii=False)
 
     # Split specs: read (interactive "Try it") vs write (reference only)
-    for kind, predicate in (("read", True), ("write", False)):
-        sub = dict(spec)
-        sub["paths"] = OrderedDict(
-            (p, OrderedDict((m, op) for m, op in methods.items() if bool(op.get("x-readonly")) == predicate))
-            for p, methods in spec["paths"].items()
-            if any(bool(op.get("x-readonly")) == predicate for op in methods.values())
-        )
-        used_tags = []
-        for methods in sub["paths"].values():
-            for op in methods.values():
-                for t in op.get("tags", []):
-                    if t not in used_tags:
-                        used_tags.append(t)
-        sub["tags"] = [t for t in spec["tags"] if t["name"] in used_tags]
-        with open(os.path.join(OUT, f"openapi.{kind}.json"), "w", encoding="utf-8") as fh:
-            json.dump(sub, fh, indent=2, ensure_ascii=False)
+    def split(base, prefix):
+        for kind, predicate in (("read", True), ("write", False)):
+            sub = dict(base)
+            sub["paths"] = OrderedDict(
+                (p, OrderedDict((m, op) for m, op in methods.items() if bool(op.get("x-readonly")) == predicate))
+                for p, methods in base["paths"].items()
+                if any(bool(op.get("x-readonly")) == predicate for op in methods.values())
+            )
+            used_tags = []
+            for methods in sub["paths"].values():
+                for op in methods.values():
+                    for t in op.get("tags", []):
+                        if t not in used_tags:
+                            used_tags.append(t)
+            sub["tags"] = [t for t in base["tags"] if t["name"] in used_tags]
+            with open(os.path.join(OUT, f"{prefix}{kind}.json"), "w", encoding="utf-8") as fh:
+                json.dump(sub, fh, indent=2, ensure_ascii=False)
+
+    split(spec, "openapi.")
+    split(spec_fr, "openapi.fr.")
 
     classification = [
         {

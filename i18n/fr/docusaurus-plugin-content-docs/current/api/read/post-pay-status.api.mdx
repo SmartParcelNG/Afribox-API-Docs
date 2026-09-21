@@ -1,0 +1,68 @@
+---
+id: post-pay-status
+title: "Statut du paiement par référence"
+description: "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp."
+sidebar_label: "Statut du paiement par référence"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1uIzcMfhVBlySA1zZydNFD2i6wKYquEXvRQxDEtIZjKzsjqfrxxjD8Pk1fwy9WUuPJ2JvZAgX2Uh/ssUhR1Ed+H2cnrUMPUVtzW8iJdDbERwfbxxAhpiAHMsIqyMm9pEX5MJAFBuW14w3kfodmYzWKCkXeEAUajysdoj+8CGeTF8mgoD/l4cWjUTggD6GsKbWvwUQByfnDX0EUKKawpSDqswhamMOLwhBAexyKXzBETSvkLII1BaxQOPCiugDnKq1y+kJB0OgFRs5maaP4Yw0x3Dg3pFs8v4MU13zB4yGPRYIqGzxCYU21lZPoEw6kxz8THfiTLWhpl/9SFkVrptwjmsimk9NHT4EB2cmg1lgDP8WtQzrQLp9QRTrJeYY6agzNXv0Ztyd+BJk2K7nnBErMWPVYyRx1rHiphWvWVGq/3+e9wVkTmjOux2P+OS/Ze7PByjqHDDkVJqSKAojLpuDKFjhqHmvGf4VXQ/HJiEVnXohCl005I8dYjMcLoU2hCbZcbfQek2fUvxNW3dm9eJ2l+58RJUA9mACKUzt2fZ8X1DY1V3ljUslz9P5qqjUYg1WvzYEuoD8mIcAE4L7rsZaV/dIs9kb1CqsCI+hK9+9fpqANhf+GWaUQbY2+1/zNFrw79l5uRfLCZyp+YFRJP3Yyt3tLxIHcQJXwDSH3g87xlZivzszAPYlQjXFtW7nidoHM7RHFOjbviFYD+g365vDkqQJyHaMLk9EISq+X9pk4OAw1+NggNjSr0eZafq1xN42zoIoUKXeJuNxcX0lOhDv5rtOL989QuwpP+d3CdtaEJ1BrU9oM8hHS9rSb6S3fm/Jvsrgejofjt7lNb0WRxJLwQ1OIdvPljG81zbci/s5tCiSKgQRZm0haewFKsejSD7qYeZzEr7OPv7M4Tz/O5iQHkMrM6lZdicqe5Zji/XbBNaRtumzNAUUJOoqNBtIAsWiuT1JB1GI9Vta7LPIVCFbUw98RxSTLhapI2YtTKR906y4tqywsxQWd59F5TUfZ1HkEVDRA4rkH5fg6kT7M51NBBRLRpieaSEGQLoofOKtO/tjeaBgnc5Y0X+lM/i6z4v0oQsooXvHIWZyJ0GKYeUjNSTOOq2ug5uLOmowIbGI+1gw8z7GT8fh1hXedhv5/hu1RMCIJwMhVoA2jkRm4O1K1eZ1opZse+NVizWQm0263hICffLXf8zJV3xOR7h9YBryGJfPk/oFCrkkg0J+Iy88NVu/mnEAnMW9mT6cyN5kB/+p7qjfMDXJeHt8N6jySpIcvzG/6nkh6sLl2eYrktZ2swKxSHk6yicmffwCyB2Zn
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Statut du paiement par référence"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/status/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"reference":{"type":"string"}},"title":"PaystackStatus"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"reference":{"type":"string"},"transactionstatus":{"type":"string"},"amount":{"type":"string"},"currency":{"type":"string"},"channel":{"type":"string"},"paidat":{"type":"string"},"processed":{"type":"string"},"flowtype":{"type":"string"},"parceldetailid":{"type":"string"},"businessid":{"type":"string"},"customerid":{"type":"string"}},"title":"PaystackStatusResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

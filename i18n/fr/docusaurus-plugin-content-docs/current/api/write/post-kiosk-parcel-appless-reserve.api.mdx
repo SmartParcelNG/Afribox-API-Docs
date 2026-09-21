@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-appless-reserve
+title: "Réserver un casier (appless)"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Réserver un casier (appless)"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV81u40YMfpXBXNYJvJaRo4se0u4CTVF0jSR7CgJ7LNH2JNLMdH7cpIbfZ9PX8IuVHEmW/6Rcdg/NIVGGHJIiP/Kj1lwbsMJLrW4yPuJGOz95lto9T4ywKeQTYUwOzk0sOLAr4H3uxcLx0QOPavyxzzNwqZWGjKCJ6+CXoLycyzTaZSN2eZnm2zeWfSBj1fHlJeuttLQsB7YIMgMSH129GLA/BLPbN6OVAwbOM1Dst/v7MbsaDtlPdBelLuReeIYa3uqwQktCOZKlS1EYNnUoDS7VGUxZFliqrXEDfJGXj+QQQ8awJs/wGo8siEyr/JWP5iJ30OcW/gro+Red4dk6/istYLK8DShOtfIYM4n23i55cpSMNXfpEgpBT/7VAPrSsydIPboyllLvJbjyrqQIGj3nrVQLvunzmX6R2VmJk/9Ai0gUOpRRnbOX6/QZrArFDOx5y6AyVBAFdIjNUqsuOb64zM/KLaTSSExbq4edRruTnUq7HyNeC1SwMMdoVHrODmp56XM6ui6hflshfbPZRC8uoi9WCVFHfw4B/1mtINfGIO724dhrYJeUjwUaFwtAVH9VR6iU8/n2DUP0ZGM6HE6ZVJlE4LGgEPjWQrAE2e+Etsb3+fLth9uSWBoO7zsq9VowWgoz8Fi+FpVMeEixJT10mdjVtwPRtWZsZpJ2BrWn16FV5qnTUKnS2r2t+Mcm7ZKJLENgnreLYvLabjuV/vX9xvvBrfmDJ0yZ/Y4pKDG2tFWaIYpb2yPVeY5gb5W/P2Bbh844hv1JeNGhdFuNpDihUAtesNgO5wDR8ppHHqnJrc9XIg+wR3KbfqOyI7udWiS9DZJ6AX6p65WA+lpEqkwi6ydlepNqOUiq5SDhVBh8sGUkwWJx+NJ740ZJIuZWEnSNHLhCWF/aGKhFsrriJ1tEqcxwnGQhjXtEb3V1wSk0mna3DSt/fkGWz2GfRetE78izOag5szmpQXJw6bCAe9f3YHt8WqH1+LgCaXN81GJnBCeWjhuqkZxS3D7I1VxH+NU4qrJ6Pb6hkmOdymxfDYaD4WkNxje0L80EpkJlrL7cu6PqlUhFLrvXgZYtx4yWyjta49J0+80x/APGR04L7Pe7L3/S8jb+cneP1CjCPDJctSISrVmBaxVtfCdrIG12cyE9W0mBfMimZZmnzZ5HGx0xZ47bIgJj+68HXDuJOk8Xz35zbsIsjySbfYgpNFaiKx0aDYfss/3mDzUwRmBxsPtyGaXF1OvwpIN15zZTkpd8TsEcBE2vdLAK9CL7/8xciFm8YOBrhYqQp4M44LAtCxFZv4LRLfqLzUc5SoWT+NSrOvTiuLjrZpX4H23s1Rj1OPESkwupKBNxyqyrAVV/luxWlD6vUhC7qP6Goc+WJQ02vLBez4SDrzbfbOgY8WBxhDw80ky0Usyocx4e0dESpyVNg92M/bVM4cd7Cutg0h5uZs3IvY490am7P3upW+I8Kr89isg43Iq/6WXw94jjg44ljbtAPFvzXKhFiKsbL23Sz38olfEQ
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Réserver un casier (appless)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/appless/reserve/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"amount":{"type":"string"},"boxlockernumber":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"paymentreference":{"type":"string"}},"title":"ApplessReserve"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessReserveParcelData"}},"title":"ApplessReserveResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

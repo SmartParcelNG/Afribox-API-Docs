@@ -1,0 +1,69 @@
+---
+id: get-pay-return
+title: "Page de retour de paiement"
+description: "Page de retour hébergée. Vérifie le paiement, exécute le traitement, puis redirige vers `metadata.returnurl` si présent. Renvoie une page HTML (pas de JSON). Paramètres : `reference` (ou `trxref`)."
+sidebar_label: "Page de retour de paiement"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVcuOGzcQ/JUGL6sFlJGwRwU5+GAkGzixkJVzCRYeaqZHYjwiaT4ELQT9j5XfmB9z9czsSmsjp9xykUSy2d2sqi4dlfMcdDLO3tdqoTacPnr99DFwysGqqao5VsF4CcDxUm+YaiYcuxxo253XHDbdmQv6szsH0ximlslrwzu2aUp86M5VTv1uCtqkcd9nE5GlNsEg455DpHLHSdc66WIonkNbUjTkQ3eOuFTQH2z3DhWylRK498vqt3c08TpKT78+vP/9tqClDnrXfUmBIy2oDNxwYFtxSROXqUzhgK3ytsDbkt5EtfhL4cHqcaoOPwTWtbPtk1qkkHmKA+TihO4QdlQWC4DwkhIpjKDyOXN4wiLw52zwKLVodBtxP1Zb3mm1OKr05OVqTMHYjTqdpi/Zhob+Q6pHiY7e2chRzu/mc/l6Tdxbu+fWeT+wB0Bzm3SiScRnjpWreTb83HGMgBZAfrBUXo5Lqk3TgGMwITnK+bwkY2uDjntCOATOoZC3KT4kthGVB9w+MRC9hneq9rrNPMAsDwDIWzfqTwnuaYvFDMTMBjHMsBs57J+pgDgQsE3Jx8Vspptg1u6gvSniTocE3ipuC7uZ7e++0/CbIRi6cnWuZJMm+7tbJX0Y27geY5Navop9s7yXplF9yHFXzIv595mX91RnWuvqE9uani9PHqSnZd8TcF25HDEOkbwzNkG6N7qqui+R8MU+9fjmXs3ElpbvH1agSeemR7vqR5UqZ2WagvD07kbntMU1TN94HJkazBrtjQY3VAIYcAAKtZXSuB58PzOtJlFa9w8mdNHTWLXdWVryvh2zTS/7Pq/bnvD6BvUC+2BQCmP1EhG5Chi+1xHokamXUsLIrpbEMREM5G94SCTolX6Uri6ylPNBW9LMq6blSa9kOemV+BPF3KN4S5yeA0YtlxAlNOVi2mkr7I6T942Z1Rff+pbZoxLA5eB/Z4GDmSRM7My3Gh4EqPrhOo5TONijeMz4jyBWuQWYcnQ8rnXkD6E9nWR7cC+Zz9pEvW6v/GvwgGvrHC1AKTHDf4l/McdL8KMsgpFoVHo8XZnHz29XsJ+vumpt3A==
+sidebar_class_name: "get api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Page de retour de paiement"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/pay/return/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Page de retour hébergée. Vérifie le paiement, exécute le traitement, puis redirige vers `metadata.returnurl` si présent. Renvoie une page HTML (pas de JSON). Paramètres : `reference` (ou `trxref`).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"reference","in":"query","required":false,"schema":{"type":"string"}},{"name":"trxref","in":"query","required":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur."}}}
+>
+  
+</StatusCodes>
+
+
+      

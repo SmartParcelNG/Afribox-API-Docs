@@ -1,0 +1,68 @@
+---
+id: post-business-boxes-assigned
+title: "Casiers attribués"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Casiers attribués"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVsFyGjkQ/RWVLotdhKF8ZGsPTjZV663UhorJyeUyYqYBOULSqiXWLor/ifMb/Nh2axgP2ExyySUcYFC3Wt2v1e/NRjoPQUXt7FUlR9I7jHezhNoC4t3MPQDeKUS9sFDJvoxqgXJ0IxsPeduXFWAZtOcQFOAyxSXYqOe6zFHFSJyfl2b3JHyaGf1vAlH9Rg4BfNAI5+eit3Y6CANikXTFVvUixNlAfFAi7J68swgCMAqw4q/JZCwuhkPxO+8lKyYTVRTkEYNLa4qkLLKtXKqVF1Mka8LSVTAVVRKlCx4HVNPDGz6QUn8uO2daZlMAVTlrHuUohgR9GYAqwPjWVbS0yX91IGj25tLZSKmzSXlv9gUU98jYbCSWS1gpfoqPHuhIN7uHMtJJPnAfogas9+ov8HjghzFou5DbLbVAR8NLb7k3HzRGWuX1AJjxyQEIF/45bs17uwbjvCdkDgHrtcAU9eOKQFALINw/2xe46fl89xSoRI4xHQ6nQtsqdzVZak0IkAKD+pOAaM8+AUZfHqV70iPf4AOLCkE90jE6wgp/fD5t11VX4M60yGbVqtNWKq9KHU/1ty+NK79AQLVW2qiZ6QyiqirwAHaYjbMLHVN3goYa0mnn7DrqZlNncdwP6NiYbZ0792Vrm/C7DvMAnSUd3fYfjM6fKiq5PTlPn/aDlOeKHOCB8kYKysy3kXkwG9Loy7UyCU6Qx7bfuj6TyLM7s8WWuHMFceka3uXbpzITFU20It/fomHgglwQwpqAyLmkYMh7GaPHUVGoedB8M7we4EqF6FUowQzsolhfyFc8XTsLuu9VKjNT99YXZ5Kz4in91BLd+wfiz/omNsR0ALy2c5fh3uPYBL4cX3G93NR84MVgOBi+TmN8xWQ8U9RdW4lmc++aCxjnAoiGJi4xk6PwTtuIrBFlufuKgn7Ax0xHSfx9/fEfVobxx+sJsZpK80xOex1iRgqKyJrl5JXGsGzMlY5irRVRmZjWlU5bEWG5YNIzJEWEze5bBNI2Zr2sbpRSy3P9dv2k6gmXWg+EMuy+xmMPyhFEprdYKx2rXnTp3qWAp2SP7TUVczJHSXNJRyzey8T9h8CUUTwTEBuHPZdOB9xavpQrlYepHlz5TqGmjgoVqf8zOgpfdnTTUv8v+C6w54xIM194o7RlGPKUbfazefDu06hLXx68IfEb0ZKHmTw3m5lC+BzMdsvLVG+g2bm5ZRoIumb3m1s6YUkEAeGAXt7VGL6ZcD4tybyS0pZlLvMkfNf3kG94RnIB9XvMKkuZDOo/WuTvkaQHl3uaNSavbaRRdpGy1so6Jn/+B0wRpDU=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Casiers attribués"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/boxes/assigned/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"BoxesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"boxes":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}}},"title":"BoxesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

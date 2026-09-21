@@ -46,6 +46,7 @@
           "admin"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -79,6 +80,7 @@
           "business"
         ],
         "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -112,6 +114,7 @@
           "business"
         ],
         "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -145,6 +148,7 @@
           "business"
         ],
         "description": "Authentication: **business secret** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -178,6 +182,7 @@
           "business"
         ],
         "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -211,6 +216,7 @@
           "business"
         ],
         "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -244,6 +250,7 @@
           "business"
         ],
         "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -277,6 +284,7 @@
           "business"
         ],
         "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -302,22 +310,6 @@
         }
       }
     },
-    "/customer/cards/add/complete/": {
-      "post": {
-        "operationId": "post_customer_cards_add_complete",
-        "summary": "Cards add complete",
-        "tags": [
-          "customer"
-        ],
-        "description": "Authentication: **none** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-readonly": false,
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error."
-          }
-        }
-      }
-    },
     "/customer/cards/add/": {
       "post": {
         "operationId": "post_customer_cards_add",
@@ -326,6 +318,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -359,6 +352,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -392,6 +386,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -425,6 +420,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -458,6 +454,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -491,6 +488,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -524,6 +522,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -557,6 +556,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -590,6 +590,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -623,6 +624,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -656,6 +658,7 @@
           "customer"
         ],
         "description": "Authentication: **paystack dual** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -689,6 +692,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -722,6 +726,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -755,6 +760,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -788,6 +794,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -821,6 +828,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -854,6 +862,7 @@
           "customer"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -887,6 +896,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -920,6 +930,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -953,6 +964,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -986,6 +998,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1019,6 +1032,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1052,6 +1066,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1085,6 +1100,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1118,6 +1134,7 @@
           "kiosk"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1151,6 +1168,7 @@
           "parcel"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1184,6 +1202,7 @@
           "pay"
         ],
         "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup).",
+        "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1217,6 +1236,7 @@
           "pay"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1250,6 +1270,7 @@
           "pay"
         ],
         "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1283,6 +1304,7 @@
           "pay"
         ],
         "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments.",
+        "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
           "required": true,

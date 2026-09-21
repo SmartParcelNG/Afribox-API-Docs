@@ -1,0 +1,68 @@
+---
+id: post-core-sizes-list
+title: "Lister les tailles"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Lister les tailles"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVcFy2zYQ/RUMLpE9iqjxUZ0e3CYzdSfTaGLl5PFYELkS4ZAAugAUuxz+T9zf0I91F6RCyZYzPfRSHUQSu8Duvt330EjrAFXQ1lwVciad9eEutwh3Xv8F/q7SPsixDGrj5exGskXejmUBPkfteBttuoyhBBP0WufpJDET5+d5tXsSxRvlXNUvn5+L0dZqFBWITdQFsPnZ1rOJ+KAE7p6cNR4E+CDAiN8Wi7m4mE7FT7yXrD5WQQVBHgFt3NJJyni25aWqnVh6skaf2wKWooiC0nZ+QnU8vOWAlDKldfcFHtMSgiqsqR7lLGCEsUT4M1LgX2xBS0361AjF3pxbEyhlNh0Ul917xqKRPi+hVvwWHh1QKLu6h5xBdMhYBw2+26s5gcHPB9RmI9uW4Nah4qVr7sEHbkHb8jqCT7ikAwgPfhy34r3ZQmWdI0QOgRoNgGTdaw3eqw0Q3p/NM7z0er17QiqRz1hOp0uhTaEJExENtQQRIjKY/xEQQ+wTYIzlUbqnPRilA4tCVNxZHaD2/yI+bdfFqycbVZ8O+1UXoczrk7YS9KYMrxgLcK9sfNb6dyoo2Z4ciE/9JKTBIAd4oFZ4gp9p2sg0WftpH8utqiIcTH07Hly+T/93Nx7zlkheQyjtXhQYNpWok7EIZAn0jOUhI5MH3AJ2sSNW5FWG4Pwsy9Qa9co+0LRPfK0wOIU5VBOzybYX8oWQdM6CGlTEPEnJaHtxJjkbHqtPAzPfPxDRKzhk0gHE2qxtwrfHbX/w5fyK66RUu4AXk+lk+jKN+RWrxkrlX8AUYr95dM0FzFMBxJuFjSw5XjirTfAsZnm+++YFPajDiT9R/H798Q+WsPnH6wXRUMV1YlMvlEwhVKQurHsvxJD1ba10EFutiHti2VW6HNSOdY1ZWpFmEja7vwOQ+DJNX8rveFh3cVUlQhdvKB6CQ02hbBw8POS4+xaOPShHEImPoZNkludg472N6E/pM9s77eBkjpLmko5kZ5SU5mfhY0LxTEDYO/TkX064tTyMtUoK01FTMh8AUyuC0hU9n3e0GbTqf3RZ9eIQiNuZq5Q2XH5iV9Nzsb+Q9xI4lv11zVd0yaQlj6ZZKQ+fsWpbXqauI3Hl5pbpjlqtmB83t0mzVAF4IB+/dpi9XXAeRyJyrPWDmlymyf+h76GuMCfIedVftHW6AiSqr7TI/zNJLzb1MCl1WmtkpcwmpstAdmfy7x9LURmq
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lister les tailles"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/sizes/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"SizesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"sizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"widthcm":{"type":"string"},"heightcm":{"type":"string"},"depthcm":{"type":"string"}},"title":"SizeData"}}},"title":"SizesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

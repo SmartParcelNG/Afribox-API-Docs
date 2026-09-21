@@ -1,0 +1,69 @@
+---
+id: post-business-parcels-create
+title: "Entreprise: Créer un colis"
+description: "Authentification : **clé secrète d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Entreprise: Créer un colis"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV81uGzcQfhWCl8qGIgk+qujBTQ3URZAYsXMyDIvijiQ6K5Llj2JX0PvEeQ29WGfIXa1s7coo0B7qg7XizM4M5+ebT2tuLDgRlNGXBR9za3y4n0avNHh/b4WTUPp76UAE4H0exNzz8S2vNfhdnxfgpVOWTKCB8xgWoIOaKZmssjE7PZXl9pl5kG77PQArfkIFB9YpD6enrLcyyrES2DyqgqTilYmTAfsgmNs+W6M9MPCBgWa/39xcsbPRiP1M76LUxzKIgG5YcCau0JLQnmRyIZaWTTxKo5emgAkrIpPGWT/AOz2+I4cY+u7aFCmEJMKLF0aXT3w8E6WHPnfwZ8QIfjUFnq3TV+UAUxdcRLE0OmDsJBLWltUNhg+ekrPmXi5gKegpPFlAn2b6AJJcWUeFCAp8fld9hac9PR+c0nO+6fOpeVRFq8Srv6BD5EAqqzAwLZZwXMMujH5DBa+gyhYV1AkqlHT0wcyVD0r6q9RCH+EbijfJiE9lTNfE8tHHyw660CsojbVYwP269pr6DfPjEmsl5oDt8UW/Kq+azbbPDkMlG5PRaMKULhRWjkWNHeQcREe1/5fK1fhuL8x+uK0aedDedpT1CghYgI5SFzipeV7b5dmEgxlgfiTouJyCa++0ah46HNXizpaqPaWBIWmHoQO9I1o5lUcNZZV/OiEk6rxJ98yh5NhboigcwWSHWKrw1G2YpMeM00W7rlOL3573/xQRMK+gC3CdTrK4+/UC279zrqQpS5ySTjkmoTTyK7rvbnJyQCNzzEGnPDecWJqYMeRAAYXWtw5iN1b+JoJ4A0s/VyCaMJXcPGKlPSIXLec1T6uj3mt9vhJlhJb9tuk3qrs9t1NP+26D+30JYWFqbkCIJNK2HNbmhtXYDTPqDDlV1a3A5WCiw8ryRQjWj4dDMXOK5sKqgV8KF/K7Az0frs74AZfIygwxsIgysYne6uyEU1QE0Z+bXXzxiDu+hP3dWad6N77NQY0DzcmrcWgRVFPQIqm6d6/sSs9MqnlVwfoi51eXlGBMTb7g2WA0GB1e++qSCMpUYOvqgtUv964pYbkHcOfdmEjsxjNrlA6eeJOU2++e4QfYkHZfZH9cf/pIbOnq0/UNrlARZ2kTVtyM1p8TyF+IYh3wLqJSM6ECWymBe5NNcmYnDbEiCkUbtkR6hrXY/kB2N04rNjE+DKlZqv3m3MZpmZbxPhNkJjYarVwRYwSW0D1k9kdMMJj4YKLzbVSQ5HnvUzAvgqYrvaAMvcQSfmE+piyeMAi1QrW4J4M08jgES5HYQdUqF7sAx+w9OgdHyULoUP51adcN4fgfEuUKwQKizdCWQmnKRxrvdQUKez8MdtuYWFb984F+LiwIRVBzvZ4KD19cudnQMbaDw6G9vSMAckpMaXBu79DDAqGJwHsHbO9zDt/dUDwNvB0QuAbfztNIHNXdBzoalgQbmeMv037hTnyjqcf/Y44PJtU0rfZ0tual0POYGB7PNunvbxFfwhU=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Entreprise: Créer un colis"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/parcels/create/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé secrète d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"}},"title":"LogisticsParcelNew"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}},"title":"LogisticsParcelNewResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

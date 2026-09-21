@@ -1,0 +1,68 @@
+---
+id: post-core-boxes-bycity
+title: "Référentiel: Casiers par ville"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Référentiel: Casiers par ville"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1u2zgQfhWClzqBaxk5erGHNFugWRRbI3FPQRDT0thmSpFc/nhjCH6fZl/DL7YzlFTZiZVe9tIcIpkz5Ay/mfk+VdxYcCJIo68LPuHW+PCQGwcPC/ME/mGxzWXY8iEPYuX55I6Tjd8PeQE+d9LSRtx2GcMadJBLmaez2ISdn+dq/8yKd8Ja1Syfn7PBxkjHFLBVlAWQ+cXWsxH7LJjbP1ujPTDwgYFmn2azKbsYj9lvtBetPqogAkOP4Ezc4ElCe7Lla1FaNvdojT43BcxZERmmbf0I7/H0ngJiypjWwzfYpiUHojBabfkkuAhD7uDviIE/mAKXqvRTOihac250wJTJdHC57NETFhX3+RpKQW9hawFDmcUj5AEjWUdoBwm+3ispgc7PByf1iu8wAoIuixMmtAUZFC19oAJ9lpjm9opqtNuR1YFPwKUICBg9jmv1UW9AGWsRskMkBx1iWf1agvdiBViQr/oFoHK53D87xIDOmI/HcyZ1IRE0FjXWzDmIjtD+n5DqYp9E6yjdkx6pmQ8swjlBpZcBSv/z+Lj9ZDXSwb1poU2LsteWCyvScJ2yK5N/A+fFRkglFqr3EFEUWHHfZ1ZGr2SI/QkqLEivvbcLa1Pv5age0LMx2Xp3NteWOvo3HZYOeq901O0/GaA/RBB898ZU3TTjlKYL3eAJs/d4NJFhxdP8tpwy5BuhIhxwy27YufzgmB9uRCY7pNISwtq05Eu9JxJBZUS1WercrKbhDI0e3AYBSNGjU+i3DsH6SZaJpZPUEVaOfClcsMLloEZ6lW0u+CvCrp0Z9nkR80TZg83FGad8aDpvOgb8+ISEWndgy1gtml2LHJRA6qVJwDeItqEup9d0dypvSuFiNB6NXyc2vSa+Xgissy5Yu3lwS1eapishIc1MJLL3zBqpgycZyfP9d8/wATYkYorsz9svf5F4TL/czpDfRFwmmmokirjJCeR1UpxXMkTKshQysI0USGpsXt993ukMKQrRn0K1QrT2/wZA2SP+ey18w27dxoVKTFm8w3gOrJMYysTOw0Pu9t/DsQfmCCwRXajFkIQxmPhoovOnlJHsNSlTMkdJ05WO+HyQKPx35mNC8YxBaB0aVp2PqLTUoKVIY1WPML/ZPzdKIEFN2JXwEgvMsPcwisL6v6hv1UnCL/TR0HBIwOnPrBJSExhp+qpmWpsPo1Zp8Nl+ONHH0poGG32qaiE8fHVqt6Nl7AKH03R3T5TgZM3zd/d49hrJAtwBxVzVqL2fUSZHRHMsqh3jXKZJeNP3kHtoRlL69SdPmUSNO/EPLtL/CccXk6qY1CatVVwJvYpJdXl9Jv39Bx43p0k=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Référentiel: Casiers par ville"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/boxes/bycity/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"cityid":{"type":"string"}},"title":"BoxesListByCity"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"boxes":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}}},"title":"BoxesListByCityResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

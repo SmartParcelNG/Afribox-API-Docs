@@ -1,0 +1,69 @@
+---
+id: post-customer-parcels-hold-release
+title: "Lever la mise en attente"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Lever la mise en attente"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVcFu2zgQ/RWClzqBaxk5uughuyjQLIqtkbinILBpaWwzpUjukPQmMPw/zf6Gf2xnKKmyk6BAgV7qgy1zhsPhm/eedtJ5QBW1s1eVnEjvQpyXKURXA869whJMmG+cqeYIBlQAOZRRrYOc3MouT94NZQWhRO25EJW5THEDNuqVLnNtMRHn56U5PInqjfLetMvn52KwdRqFAbFOugIOP9t6NhKflMDDk3c2gIAQBVjxcTabiovxWLzjvRQNyUQVBWVEdGlLlZQNHCs3qvZiESiaQukqWIgqidKhDyO6y8NbPpBaprbmX+ExLyGoylnzKCcrZQIMJcI/iU7+w1W0tst/NQIBFjFRuHQ2Us8cOrpdcR8YjJ0M5QZqxU/x0QOd5Zb3UEY6yiPDHzWEZq/mDvq8EFHbtdwPJU8guq9gX4lSOOpoeGmaB/aRkq/bae33HEcIGb58DMHGP6cT+2C3YJz3BNwxnoMet6J5rCEEtQYayxf7DFa9Wh2ekIDgGovxeCG0rTQhJ5KlySFCQsb8F8HVn/0qZCft/iRs1y1eGT5KhAdqOFCTzPudzFPqqDOUW2USHFFoP+xTvlPpe1qm1J4kU0PcuE50fDuViVh0sipa+RU8/KKVX0GJAXAL2LSS0NCeTYw+TIpCrVAv3QMRaRRqhbGpMLLrYnshX4i0SRaEapXKLNPB9uJMcm88i+ue9B8eSEQGjkna4XjCzSP4tV25jHqLcXfa5fSKsaD+my4uRuPR+GVv0yuW6VKVVLcS3ebBDd+qGRcxcOYSazwI77SNgd2jLA/fgqAf8DEzMYm/bj7/zZ4x/XwzI0KrtMq8bJ2JyYiK1MxG88J92FBWSkex1YpYLBbN9Re9vbCRMN8NmRQBdvgvArkdE/6l3w37dZ+WJkujekPnIXjUdJRLfUaAEg/f4mkG9QgiMzs2Hsh+GF26dwnDa4bI8UaF3MxJ03ylEwEPsmbfi5AyimcCYpfQymgx4tEyX2uVtWpVzcP9BDRQhqDmWxDWKjL68Hyuu177v9E7ojWOSC5QeKO0ZRCy8HataI/ehazjLNtWGZLdt3tz8ptyw2qnHbvdkha/oNnveZm4gCSr2zs2CtRqyaq5vWPvJwuhwr3x/Nlg+HbGfZ3Yz6mX9j50mfXww9xjQ2KlUPKyfd3V2WIlqn/5MvQ9kfTg8kyzE+e1nTTKrlM2W9nU5M//Xkz4tg==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lever la mise en attente"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/hold/release/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"holdtoken":{"type":"string"}},"title":"ParcelHoldRelease"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"ParcelHoldReleaseResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

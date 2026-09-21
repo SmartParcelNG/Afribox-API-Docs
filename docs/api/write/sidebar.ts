@@ -16,12 +16,6 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/write/post-customer-cards-add-complete",
-          label: "Cards add complete",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "api/write/post-customer-cards-add",
           label: "Customer cards add",
           className: "api-method post",

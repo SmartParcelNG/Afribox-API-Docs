@@ -1,0 +1,69 @@
+---
+id: post-customer-cards-delete
+title: "Supprimer une carte"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Supprimer une carte"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVcFu2zgQ/RWClzqBaxk5erGHNC2wWSy2RuOegiCmpbHNlCLZIekmEPw/TX/DP9YZSo7sJChQYC/rgy1zhuTMm/eeGuk8oIra2ctKTqR3Id6WKURXA96WCqtwW4GBCHIoo1oFObmW+7i8GcoKQona8wG0/TzFNdiol7rMZ4qJOD0tze5RVG+U96ZbPj0Vg43TKAyIVdIVcPjZ1pOR+EcJ3D16ZwMICFGAFX/NZlNxNh6LP3gvRUMyUUVBGRFd2tBJygaOlWtVezEPFE2hdBXMRZVE6dCHEfVy/5YvpJKprNsv8JCXEFTlrHmQk6UyAYYS4Wuim9+5itaa/FcjEFARE4VLZyPVzKGD7oq7wGA0MpRrqBU/xQcPdJdb3EEZ6SqPDHvUENq9mivo80JEbVdyO3yCWlevh2lAr4YoFnU0vHTRHXHBw3zfznK75QyEkMHNRRCo/HM8zw92A8Z5T7Aeoj3oUS3axxpCUCugoX22z0DXy+XuEQkmPmM+Hs+FtpUmXEWyNFdESMgT+Y/A7O9+FbGjcn8buE8dYhlASoV7KjlQmayLRuYp7qk1lBtlEhxQbDvsU56o9pSWKbclSdUQ124vRu5PZaIWey4UWZZFK8uCEgLgBrAtIaGh3HWMPkyKQi1RL9w9EWwUaoXRKyzBjOyq2JzJF+JtkwXhWaUyy3ewOTuRXBNP4VMvhg/3JC4Dh+TdI3jM2YPVjqoHs9B26fIIOsD3BZxPLxkWaqkt7Gw0Ho1flju9ZEUvVPkFbCX2mwdX3Og0N0p0nLnEdhCEd9rGwEZTlrvvQdAP+JhpmcTfVx//ZXuZfryaEbtVWmaSdibGzERFwmdPemFU7D1LpaPYaEWUFvMWkXnvROw5TH5DfkYY7n5EIGNk9r+0xmG/7tPCZJ1Ub+g+BI+arnKpzwhQ4u57PM6gGkFkmsfWLtk6o0t3LmF4zTs53kqSizkqmls6UvMgC/hPEVJG8URA3Cd0mpqPeLRM3Vpl4VpV83CvkqfyiBZt+TQjeD7SpveA/9GbpDOQSF5QeKO05f6zDJtOugdvzFYHIXfevVX5LbpmpVNe0yxUgM9otltepuEjSev6hk0CtVqwTK5v6Pw12Qcd15vORYvc2xlXc2Q9x07ae9B5FsAvcw/NiKVByYvuVVhng5WovtEif08kPbg8yezDea2RRtlVylYr2zP58xMCs/9j
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Supprimer une carte"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/cards/delete/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"cardid":{"type":"string"}},"title":"CustomerCardsDelete"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"CustomerCardsDeleteResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

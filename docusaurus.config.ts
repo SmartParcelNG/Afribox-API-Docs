@@ -22,11 +22,11 @@ const config: Config = {
   },
 
   i18n: {
-    defaultLocale: 'fr',
-    locales: ['fr', 'en'],
+    defaultLocale: 'en',
+    locales: ['en', 'fr'],
     localeConfigs: {
-      fr: { label: 'Français', direction: 'ltr', htmlLang: 'fr' },
       en: { label: 'English', direction: 'ltr', htmlLang: 'en' },
+      fr: { label: 'Français', direction: 'ltr', htmlLang: 'fr' },
     },
   },
 
@@ -76,6 +76,44 @@ const config: Config = {
           afriboxwrite: {
             specPath: 'openapi/openapi.write.json',
             outputDir: 'docs/api/write',
+            hideSendButton: true,
+            showSchemas: false,
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          },
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'afribox-read-fr',
+        docsPluginId: 'classic',
+        config: {
+          afriboxreadfr: {
+            specPath: 'openapi/openapi.fr.read.json',
+            outputDir: 'i18n/fr/docusaurus-plugin-content-docs/current/api/read',
+            hideSendButton: false,
+            showSchemas: false,
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          },
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'afribox-write-fr',
+        docsPluginId: 'classic',
+        config: {
+          afriboxwritefr: {
+            specPath: 'openapi/openapi.fr.write.json',
+            outputDir: 'i18n/fr/docusaurus-plugin-content-docs/current/api/write',
             hideSendButton: true,
             showSchemas: false,
             sidebarOptions: {

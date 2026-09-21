@@ -1,0 +1,68 @@
+---
+id: post-business-parcels-timeline
+title: "Entreprise: Chronologie d'un colis"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Entreprise: Chronologie d'un colis"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVsFuGzcQ/RWCl8qGohV8VNGDmwaIgyARYuVkGBa1O5LocEmGHKo2BP1P3N/Qj3WGq/VKluAGRS/VQVqRj+Twzbw3u5bOQ1Conb2q5Eh6F/FulqK2EOOdV6EEE+9Q12BoSPYlqkWUoxvZYuRtX1YQy6A9b0JbXCZcgkU912XeV4zE+Xlptk/Cp5nR3xOI6hcCBPBBRzg/F72V00EYEIukK55VL7Y4G4iPSoTtk3c2goCIAqx4P5mMxcVwKH7ltTQbk0GFghAYXFrRTspGniuXqvZiGmk2xdJVMBVVEqULPg7oTg9v+EAKvbs4R1rmqQCqctY8yhGGBH0ZgG4Q8XdX0dA6/9UBqna6dBYpdJ5S3pvdBYr7yNysZSyXUCt+wkcPdKSb3UOJdJIPnAnUEJu1+hs87uEiBm0XckPAnJQKUGmjqxMQwqBGw0Mf3UJH1GUc50WTNo+bDaMCxExoPpGI5J/DXL6zKzDOe6Jyn+Fex2TRPNbEmloAJeqrfUG0ns+3T4E44T2mw+FUaFvlMkiWchkCpMBZ+I+Y684+yd5BuCcRbbHHvVkVgnqkozRCHf85hiZFGFT5jTY9maSfyGMLCTAH4q8Em+oZhFeQzeVe3ayBnARYvmWT+BOzlUIoSQwI/67m/lCo5OYngF92VZmLlODwQGURKSz2nbXMsmgl25crZRKckO6m30GfJfwMZ61uyLlqwKVrfY/TqLIPFO1uxY60oi2KgkARwgpCE00KhvBLRB9HRaHmQc/cA4l3EGsVsFk9sItidSGPfLIBCyqdKpXZKXurizPJcXHRf+mM5t0D+ZeBfWNomT+uo72caTt3OVk7xtsjL8dXzAVdognlYjAcDI8DHF+xTc6oisFWol3cu+arNTkjvU9cYo+NwjttMbJ7l+X2RxT0Ax6z7pP4cP35E3v2+PP1hOxDpXl2gV2HYOkHRTbKRn/k/mzoc6VRrLQizxDThoNpZ+9s5OwuhpoEsbb9C4G6DttL7jsUUmco/W78ZD8SLnWISCW//YGHCIoRRNYRNj2I+xG6dO9SiKcaEs83nsfBHATNVzqwy152yN9ETJnFMwHYAnamNR1kNVPB1ipL1aoasle3AY7E22Vw1hkSGIeemGGj48sMrzvP/R927Z0DIflD4Y3SlmnJelzvdLz3lvJsf7IzeHrkt5clS5+w6/VMRfgazGbDw3TjQDq7uWXTCFrNWEE3t3TGkuyEbfjZjN42LL6ZcESdJR11sc6TLrM2XsXuuxOrhsCz3TtHnZubDOpPGuTvkaQHl7OarT2PraVRdpFym5PNnvz5G00Qi5I=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Entreprise: Chronologie d'un colis"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/parcels/timeline/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"LogisticsParcelTimeline"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"timelines":{"type":"array","items":{"type":"object","properties":{"parceltrackingid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"narration":{"type":"string"},"datecreated":{"type":"string"}},"title":"LogisticsParcelTimelineData"}}},"title":"LogisticsParcelTimelineResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -13,8 +13,8 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "gen-api-docs": "docusaurus gen-api-docs afriboxread --plugin-id afribox-read && docusaurus gen-api-docs afriboxwrite --plugin-id afribox-write",
-    "clean-api-docs": "docusaurus clean-api-docs afriboxread --plugin-id afribox-read && docusaurus clean-api-docs afriboxwrite --plugin-id afribox-write",
+    "gen-api-docs": "docusaurus gen-api-docs afriboxread --plugin-id afribox-read && docusaurus gen-api-docs afriboxwrite --plugin-id afribox-write && docusaurus gen-api-docs afriboxreadfr --plugin-id afribox-read-fr && docusaurus gen-api-docs afriboxwritefr --plugin-id afribox-write-fr",
+    "clean-api-docs": "docusaurus clean-api-docs afriboxread --plugin-id afribox-read && docusaurus clean-api-docs afriboxwrite --plugin-id afribox-write && docusaurus clean-api-docs afriboxreadfr --plugin-id afribox-read-fr && docusaurus clean-api-docs afriboxwritefr --plugin-id afribox-write-fr",
     "lint:spec": "redocly lint openapi/openapi.json --config .redocly.yaml",
     "generate": "python3 tools/generate_openapi.py"
   },

@@ -1,0 +1,68 @@
+---
+id: post-core-cities-bystate
+title: "Référentiel: Villes par État"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Référentiel: Villes par État"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1u2zgQfhWClzqBaxk5erGHbFtgUxStkbi9BEFMS2ObKUVy+eONIfgB+iZNX8MvtjOUHEmJ0156WR9smTPkfPyG30dV3FhwIkijLwo+4db4cJsbB7e5DBL87WLrgwjAhzyIleeTa05RfjPkBfjcSUtTceJ5DGvQQS5lnlZjE3Z6mqv9AyteCWtVM3x6ygYbIx1TwFZRFkDhJ1NPRuyDYG7/YI32wMAHBpr9PZtN2dl4zP6guRj1USEyhhnBmbjBlYT2FMvXorRsTrijz00Bc1ZEhrCtH+E+7l9TQYSMsG6/wjYNORCF0WrLJ8FFGHIH/0Qs/JcpcKhKf6WD4hDOjQ4ImUKdzWV3nriouM/XUAp6ClsLWMos7iAPWMk64puYredKAtDm+eCkXvHdkCfWZXEkhsEgg6KhN6lHHyQC3V6lNu12FHfgE3epCHJGP/12vdMbUMZaZK1L5qAlLasfS/BerAB78lk/4VQul/sHhzTQGvPxeM6kLiTyxqLGtjkH0RHhv4mstvaLhD3CPZpRn+hOSDgnqP0yQOl/DQDnb492JC291aJ8GdnxVjaxF2fmJuqwMPc91P2qvbb+4qxs34og+O6nJ+iyOTrpJGEi3CM+j6uT9iuejutBQkO+ESpCR0q7YZvyKKnHNNLODp2jhLA2B7chmkXSY0bOktVdyhrfyTDswW3A1fWjU5i5DsH6SZaJpZNID8po5EvhghUuBzXSq2xzxp85VJ3MsKlFzJNHDTZnJ5wQ0Vm8bCX/7h4dREFXogdKO+3sdELqpUn0N7Qeap1PL2j7iL7GcDYaj8bPkU0vyKEWIv8KumCHyYMr2tM07Qn1NzOR7M0za6QOnowzz/ffPcMfsCHpMLL3V58+kl1OP13NUM4iLpMqG1MmKTqBTkYe+8x4yUuXQga2kQI1zOb15uets5KHktoV+jPStf8RAI2e5P7c6oftuI0LlYyheIX1HFgnsZSJbYaH3O2/h34GYgSWdB1q+6erIJh4Z6Lzx+4CitceRGB6oGlLPfsaJMf6k/mYWDxhEA4JjYnMR9RaOqOlSOKqdcov9w+N8UlQE/ZFqtQV4dj+G85/2t6qNcD/0S3ZGElA/WdWCamJi6S+qtFr8ybw6KtD3r4r0PvBmsSNWVW1EB4+O7Xb0TAeA4d6ur4hW3BSLEgw1ze4+hoNA1zHZt7UvL2eEZae2fQvkdZ1zpMUfprb9R8SCeFubvky3S3ciX9xkL4nHB9M6mNy4DRWcSX0KqZbhtdr0uc/G7tKYQ==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Référentiel: Villes par État"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/cities/bystate/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"stateid":{"type":"string"}},"title":"CitiesListByState"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"cities":{"type":"array","items":{"type":"object","properties":{"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"countboxes":{"type":"string"},"citydescription":{"type":"string"}},"title":"CityData"}}},"title":"CitiesListByStateResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

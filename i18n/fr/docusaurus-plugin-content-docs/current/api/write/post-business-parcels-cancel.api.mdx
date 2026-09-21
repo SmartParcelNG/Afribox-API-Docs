@@ -1,0 +1,69 @@
+---
+id: post-business-parcels-cancel
+title: "Annuler un colis"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Annuler un colis"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1uIzcMfhVBlzqB1zZydNFD2i7QFItusPGegiCWNbStrCyp+nGTGn6fTV/DL1ZS8mSceMa59NIcMuMhxZ+PIj9uuHXgRVTWXFV8zJ0N8X6WgjIQwr0TXoIO91IYfPI+j2IR+PiW1xr8rs8rCNIrRybQwGWKSzBRzZXMVtmYnZ9LvXtmLs20+jMBq35ABQ/OqwDn56y3tsozDWyRVEVS8cbE2YB9Eszvnp01ARiEyMCw3yaTa3YxGrEf6SxKQ9JRRIYa0du0RkvCBJLJpVg5Ng0oTUHaCqasSkxa78IAc3r8QA4x9CZtilRmkQdRWaOf+HgudIA+94AphPizrfDbJv9UHhC66BOKpTURYyeRcE7vMxg+BAJnw4NcwkrQW3xygD7t7AFkRFfOUyGiglDOqm/wdKAXoldmwbeomGtSQRRKq6pFBXWiipo+fbILFaKS4TofujJzi3LS8BAymtkbokiP14X8aNagrXOI4yG8vQbGYXldIWRiAVilr+YNymo+3z17xINsTEejKVOmyncgGSyk95A8leA/Qq3x3Yrcq3BPYPu+o3drgF0hIki8PRHa5cWEhzkgPhJMWs3At2rW17LDUS02YnUqqf29JWmHoSO9E1oFypOGikp7IdTfXUGQqDOTmX3sAsE+njolqsrTtOoQSxWfug2T9JRxSrQrnVrced6DVE7h3X9fwy2teUcFu0TpdlzBVOA7nRRx9/EKr39nX0mrNXZJpxxB0FZ+Q/fdl5wcUMucctApLxdOrGwqM+RIAYUutDZi97D8VUTx3jD9sp+ieaiSn0csdcDRRSS54XmE1/zS52uhE7TwzLbfqL7wzYt65p0t8uwK4tLWHE0jSWTWGtbmhvu+Gxa2HnIqq1+DL8Ekj6XlyxhdGA+HYu4VNYZTg7ASPpazA7MYri/4EacXZYZDsEoys3pvfXHGKSqa0V8aTvz4iFyr4ZDDaqyPqeugQoqoicqzB7t2eXl9RVBgEiWUi8FoMDoO8PqKKH0m8JaZitWHezeUWikX0tPEJtoHAnNWmRho05By9z0wfICLmaYS+/3m8x+0X1x/vpkg24k0z6S132aIqbxAxqel5GhToeVjLlRkayWQ4ti0YDBtVhFaOogMNS40iNrunwi4IREb5h0JQ2r4r998b92dmE2NRkC22X2PrzUwRmB5EMeyL9HuFG16sMmHtuWJ5IWiKZhXQVNKr9i9lwn9JxZSRvGMQawV9hw7HeTuxOu6EpnIy/zhl8YkDZ4QwtZW4W09N81C8D/cJ/cTJuIwGDotlCEQcvdt9j17sD+/sCVtQfWWTVv1kpocNTebmQjw1evtlj5jvh576vaO5oNXYkbdcnuHHpY4OWi4vsydXwqGHyYUTzN9jhasZvxc5j44qXs4h6hDOI33sgqv8vznXvyFH+n/mOOLzTXN1Ju/bbgWZpHyBsaLTfr7F5s3dAE=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Annuler un colis"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/parcels/cancel/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"LogisticsParcelInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}},"title":"LogisticsParcelInfoResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

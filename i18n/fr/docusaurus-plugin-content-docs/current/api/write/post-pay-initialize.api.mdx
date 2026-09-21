@@ -1,0 +1,69 @@
+---
+id: post-pay-initialize
+title: "Initialiser un paiement Paystack"
+description: "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure (XOF). Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil='wallet'` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack)."
+sidebar_label: "Initialiser un paiement Paystack"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVs1u4zYQfhWCl9iB1zZydLGHJNiiKYrGSLJAgWwQ0dLIZpYSWf44P4bfZ93X8It1hrIsOdHmsNhT0RwSZf5Iznzzzay4NmCFl7q8yPiEG+38vRHP97KUXgolX4APuBdzxye3HBX8bsAzcKmVhpzQ5dxuN8BCCcxbUTqRkpxNxbPzIv06ZH8cieAXUHqZyzSexESagvHAjo+dlv74OHqnarthDlK7/Yaq7Ag9LBgrHbDe2clZf9Bhnh0JY9Q+7BJS1LEkDc7rAqzMEpaLNCiPBjmFOe/jhYAlotCh9AkD5xmU6CQ9hivEAwSL5/11+SsafvZS4fEvLCnAi0x4MTTCpqAs5GChTCFhRgeLfvbvAJbOTjW6MEzUdjNgOrRc86ByqT5+4Y9CKfBf+M4ZH7zJpEd3BSixHoMHiSb4Onpokwe8umBobXSJSUk1phSV+BjMr7byJWYhWJWwnhESClIutpsZ2Pl202dApph551KdARlpE8y+Uv0hVvrpAwUjIOyk91kQKiosiEyX6plPcqEcDLgFfLTzZzpD2Sr+Ky0girwNqKb74Q1I1SrS6MERalbcpQsoBH35ZwN4op49QOrxKGMJk/g2V/nKr/DcsnPeynLO1wOO/lJ1asxCl9CpaaDRqa5w8R1PSzXvvsoeEd2uWPEZJhNr06k/aKgOfa70YyXsUNYA60qlyBBZGFWo6UFSXwVZYxgvvSJZDYeLhgDW0cCCi8CLAU7GY/pzyASfyiUobQwiFwinLjYe62E8HyLoRtVngRgUc6AWw25t1AnLZJ5vN5aQizGS8ThhsswkAi02PWAJgiWg/iR0NWd35vbguj9Q+Ned2W2078mu0rym26t9XjFB6qjmaScOaZe/V9GrXSljZamRnjCXDv2J5Vc89ltNBQO+FCrAG0pYDxrDPTXsjSNFrO8iOhe6niyUfhHpZYTBRs2MGaHGgV2CrW4QU8UX3hs3GY1EbuVMPyETDB1Sra9IeFjOR8sT/jo/p5UxwzpnoZpFveVJn9NlCB1XDWt9ehKFUdBmmTrve3JpBDtOaQRtKmmkNYO07WriaGQt2LQM2zTRiA/ftxc3pNDIWlxAdZVlriOmdkioc3M6vaBSYbarmCfD8XD8NpPTC5YFRjeCMmO1c++aajCNNcAOvtHB4eTCmadl6R2N5DTdfnP1kKdODuz368s/adBOL69vkBBEyGNf7wY3NbMVODz6nesCDrtcSM+WUsTxXhULyQLXDRqaqbbGxXbA8Yjl3f6DC8TkO1vCoJGbMFORWg6WDRza768jcYOIzODZbzc307hEeB0ecJo7hszIfqFbNQRI+orF6DIHl6YnHRBgL3LeR+ZCzGI1tQ9oKBnGCYftVIjIdaUoqLh1e7tqEdlvAHX7v67vquHQ/3e4/9IOtyMFj6w+MkrIkvCyGz4V/VabPPFDa8mnzX5BJI3q1WomHHy2ar0mMSUG6ev2jvjdSjEjNrm9w7ALZH6wralxXmHqww1dopkdb2Z0Mz5OI5DetW3PEWIQNJ7tts4ijk1uxSOxKv6ecPzQEeNxwkfZiitRzkMc4ryKST//Anc8qd0=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Initialiser un paiement Paystack"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/initialize/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure (XOF). Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil="wallet"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"customerid":{"type":"string"},"amount":{"type":"string"},"currency":{"type":"string"},"reference":{"type":"string"},"callbackurl":{"type":"string"},"description":{"type":"string"},"flowtype":{"type":"string"},"metadata":{"type":"object","additionalProperties":{"type":"string"}}},"title":"PaystackInitialize"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"}},"description":"Résultat de l'initialisation Paystack.","title":"PaystackInitializeResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

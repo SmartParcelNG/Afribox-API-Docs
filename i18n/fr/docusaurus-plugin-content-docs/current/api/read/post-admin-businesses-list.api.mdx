@@ -1,0 +1,68 @@
+---
+id: post-admin-businesses-list
+title: "Lister les entreprises"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Lister les entreprises"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVlsFyGjkQhl9FpUuwizCUj2ztwdlNVZxKJVRMTi6XETMNyNZISksidlG8T7yvwYttt4bxgE2cy16WAwxSS+r+u/vTrKXzgCpqZy8qOZLehXijqlrbm1kK2kIIEG6MDlH2ZVSLIEdXMs/L676sIJSoPa+mtecpLsFGPddl3lCMxOlpabaPonqjvDe74dNT0Vs5jcKAWCRdAU8/W3oyEJ+UwO2jdzaAgBAFWPFhMhmLs+FQ/MFraTYkE1UUZBHRpRXtpGzguXKpai+mgWZTKF0FU1ElUTr0YUCB3L/lA8llcuvmDh7yEIKqnDUPchQxQV8ifE908DtX0dA6/9UIVTtdOhvJZZ7aC664DazFWoZyCbXip/jggY5ys1soWUWPLHnUEJq1mh3o7EJEbRdysyG9dTQ89O4pE584EZsNTyKELE7ehUThn8N8vLcrMM57kmVfrV6nStE81rS3WgCJ/s0+E03P59tHpDh5j+lwOBXaVpqEEclSXhAhISv6H6nRnX1Ekb48cPeoRVe0e9MKUXGOdYQ6/N6Jdg9dHT3CQvzh8M6q+nUXfmvwyzBLl2xsrWbu/iCYvX20MfTYjL9yzkwZZcvXbVQZ9eqYyZEy/FtFJTe/LtCvu8rMhUpWcE+lEagcGB5rmcu9bcG+XCmTYK8VN/3O5Kkln8y49zZEnhri0rXA4gyq3M9FRlPRVUHB6CrIIACuABsPEhqyXcbow6go1Bw1iUyNOAi1wugVlmAGdlGszuQLxjXGgiqmSmWmXG91diLZJy72rx003t8TgwzsN/me8NrOXZZ7J2G78fn4gqMlV5sDzwbDwfClG+MLBtpMlXdgK9Eu7l1yAOMcAHXzxCWmYRDeaRsDc7Ystz+DoB/wMXd1Eh8vv3xmuo6/XE4IDirNc4/vGM6NjYrAx0h+wWlG71zpKFZaERHEtIl02oGYkcvsMIRz0mb7TwS6FxgeL2+Gfjfu08xkzFRv6DwEj5qOcqmzCFDi9mc8tCAfQWRKxOa24JsjunTrEoZjVwfPN0RjZw6c5pAOYNjL/PtThJRVPBEQW4MdkqYDTi2XZK0y9xoGSO4KwJyKztfwPKvrjqL/o7t0x4tIXV54o+jFgCTIHbbedWX7wnBA577cvVTwe8SSm5js1uuZCvANzWbDw5R/pK65uub2R61m3ClX17T/ksAAuIeTvxrl3k7YmwOoHN5FHV3Ocw+8arvPGe4OjmD3NlBndktUP2iQv0eSHlzOZKZ1HltLIu8i5ctKNnvy51/8cFvF
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lister les entreprises"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/admin/businesses/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"BusinessesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"businesses":{"type":"array","items":{"type":"object","properties":{"businessid":{"type":"string"},"networkname":{"type":"string"},"businessname":{"type":"string"},"businesscode":{"type":"string"},"countbusinessboxes":{"type":"string"},"billingtype":{"type":"string"},"businessbalance":{"type":"string"},"businessactive":{"type":"string"}},"title":"BusinessData"}}},"title":"BusinessesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,69 @@
+---
+id: post-customer-parcels-hold
+title: "Mettre un colis en attente"
+description: "Authentification : **clé secrète d'entreprise ou clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Mettre un colis en attente"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdls1uIzcMgF9F0GWdwGsbObroIS0W2BRtN9hkT0EQyxraVqKRVP24yRp+n82+hl+spGbsGdvjdA89NYfYFimRosiPXHHrwIuorLkq+Jg7G+KDTCHaEvyDE16CDg8Lqwve51HMAx/f8a2c3/d5AUF65egA3H6Z4gJMVDMl85lszM7Ppd68sgDSb75FYMU7VPDgvArAbGJZWrwTzul60/k56y2t8kwDmydV0B5xcPDZgP0umN+8OmvwHAiRgWEfb2+v2cVoxH6ivSgNSUcR0TiL3qYlniRMIJlciNKxSUBpCtIWMGEF+mK9CwO86fN7MkjxEC+oI58eiiR0FngQhTX6hY9nQgfocw9/JbT/iy1wbZV/Kg8YzOgTiqU1ET0nUeuOw8dAAVvxIBdQCvoWXxygRTt9BBnRlPP0NFFBqPaqJ3hp6YXolZnzdX/3HKroFNf+0foJjal9PiEJ6usbm7SVT+BNKqeYC106BWi1BP8iMGgnjsHLK90pcQtroNsrMAXaFeVb4n/bftqwB6mcwjc7aWGncdrITuUH7Iii8BBCdxRyCe5V2ZEWqkUVNS1dZ/WPVK/r9TobCblE8ulYGvSxX7MfzBK0dQ6Lo10zvaY2htXXEn0Uc8DS+2IOSkfNZptXj1ehMyaj0YQpUyjMO5YMVqf3kDzV1X9UDI3t7gduu9upQUCL9gm6okkxm2F+GNm9l8hgvfqaXU+++22FlGj+pIeitKkKw4885ef6DfOTUs08YxADWicar3jmwhZZfb4UOsERutb9RnGHsJ1yRtkacV4CXm7bCCjuImNwuGXMsG4JQ4rgkFMxeazwypEcDL6I0YXxcChmXiEkEFyDUAofq50DMx8uL/hR46iUGb5zkWRuHb3lxRknnyg7PjeQ/fCM6NbQhuI2fPssbFYPENgIavI1C1vg7ansc64RHeKtkdRF3yzUoGgZajHscPWE8tGhB6DqEByddIilDsmORi3vjyHUSmZlZjancp2427e8vL6iDMPsqHZcDEaD0fHLX19R651ipuIt2XZz74ZypqoBJM6tTdS3A3NWmRhoIpBy8y0wKjQXM3kS++3m0580B1x/urlFgIk0yxyqZxGCjxfYm2l4OJooaEiYCRXZUgmkFptUyTVpRgYaDohvGgcPTKjNd5xmxhlwxzNMv1l3aaozCg8nn51G52yEPgLLJIvVXEMzTrTp0SYfuoYcklfUJWf2nKYr7QG7lxn9MwspR/GMQdwq1NicDHL3QQqUIlOyzrE/IKKHFCBptQoUbREp/nD4squG9v+bubCmdUQCD50WylCQ6h5QobI1HW/rJvCq4eAHTcwLIivqrVZTEeCL1+s1LWOGeETZ3T1B2SsxpVq6u6dmhbgm8OxQ/2sV1/e35E0D/KOO2jD/MlfJm7pt+FP9ZPRVI22Z2xj34m/iBP4fc/xi8zvnfpzXVlwLM0+55fLqTPr7Byq3ZuM=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Mettre un colis en attente"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/hold/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé secrète d'entreprise ou clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"requesttypeid":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"boxlockernumber":{"type":"string"},"deliveryareaid":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"parceldescription":{"type":"string"}},"title":"ParcelHold"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"holdtoken":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"},"amount":{"type":"string"}},"title":"ParcelHoldResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-snapshot
+title: "Téléverser un instantané de colis"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Téléverser un instantané de colis"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVttu4zYQ/RWCL+sEXsvIo4s+pMUCTVF0jY3zFAQxLY1sJhTJ8qImMPw/m/0N/1hnKCnyLQYK9KWBEcszQ3J4Zs4Zrbmx4ESQRt8UfMKt8eHxWRr//GiFy0E9ei2sX5nAhzyIpeeTe578/GHIC/C5k5ZW49rrGFaggyxlnjZkE3Z5mavtGys+CWtVa768ZIPaSMcUsGWUBZD7YOnFiP0hmNu+WaM9MPCBgWa/zWZTdjUes59oLXp9VEEEhhHBmVjjTkJ78uUrUVk29+iNPjcFzFkRWW6c9SO8yMtnOhBTxrQen+E1mRyIwmj1yielUB6G3MFfEU/+xRRoW6ef0gGiFFxEd250wJzJtXO77MkTGGvu8xVUgp7CqwU8yyyeICcYrSPMgwTfrJWUQR/ng5N6yTdDvjAvsjjpaWpz1llAEPJ8iIMSHOgcdKwW4D7KQZn8GdyZmK5FoG7x+DDCE6R44MkgWYnlGU8hAgRZnYrAkCCDItNte9KdVUYU6CKnA58aKQGODURf+737RdegjLXYQrudNeg7KGseK/Aek8EGvdMHDSbLcvuGeAbaYz4ez5nUhcQLs6ixh52D6Kj7/qPG6c8+DfluumeL8kGPdO7o1L+B/FuLdYIeo+AFL+vxgiQda556vSPgkNdCRdgh4mbYh7wT8j0sEXODwlNBWJlOrwgZkeicJWXKmu7OugtkGODB1eCaFNKF+CoE6ydZJkonscmRhiNfCReaxSO9zOorfiRxTTDDShQxTyI3qK8uOOVE9fvWS8aXF5QgBbsU78B7Z3Zv6Al9aOt5fOg5ou/e/vus7V0HZD129BztfS01Dww9I3e5qkuT+qXtjg6y6+kNFRKL0EB5NRqPxscAT29IqRcCk9cF6xYPbqk003RtpN7MRJJ5z6yROngaIHm+/e4ZfoENiYKR/X779U8aG9OvtzNksohlImQ7nIiFTqCg06w5GkA0U0ohA6ulQPqyeVPDeT9haJYQ0RXOKURs+yMADjxi+vHIG/Z2GxcqaULxCc9zYJ3Eo0zsIzzkbvs97EdgjsASpUMzBmkkBhOfTHT+1EwkfyM/lMxe0nSlPeUaJLH6mfmYULxgELqAVj/mozQ1kGyVSCKlRSr7bPuGKVNRwRFMUuMyjR86lM5T0h/WeN0L4P/olaGVv4ByllklpCZAWmls1Kd7L+rouUMpfKTXpRWJFcat1wvh4c6pzYbM2A0O1eH+gXTOSbEg3tw/4P4rVEBi77tu/tog93lG2eyp5/4Y6WX0OjHibOyunhJXkn407zxVmi7cib/RSP8nHB9MqmQaQsm25kroZWwkotmT/v4Bvr6veA==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Téléverser un instantané de colis"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/snapshot/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"boxlockernumber":{"type":"string"},"snapshotevent":{"type":"string"},"snapshotsequence":{"type":"string"},"image":{"type":"string"},"imagedatetime":{"type":"string"}},"title":"SnapshotUpload"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

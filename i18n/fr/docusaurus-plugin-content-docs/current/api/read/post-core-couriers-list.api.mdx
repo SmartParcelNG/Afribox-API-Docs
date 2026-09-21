@@ -1,0 +1,68 @@
+---
+id: post-core-couriers-list
+title: "Lister les coursiers"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Lister les coursiers"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVcFu2zgQ/RWClzqBaxk5erGHbLdAUxSt0binIIhpaWwzlUjukPQmEPQ/TX/DP7YzlFzJcbZ72Ut9kGTOcGb4Zt5jLa0DVEFbc1XImXTWh7vcItAjogb0d6X2QY5lUBsvZzeSjfJ2LAvwOWrHO2nfZQxbMEGvdZ6CiZk4P8/L/ZMoXinnym75/FyMdlajKEFsoi6Azc+2nk3EByVw/+Ss8SDABwFGvFss5uJiOhW/8V6y+lgGFQR5BLRxR5GU8WzLt6pyYunJGn1uC1iKIgoq2/kJnePhNSekkqmsu6/wmJYQVGFN+ShnASOMJcJfkRL/YQtaqtNfjVAczLk1gUpm0+Bw2b1nLGrp8y1Uir/CowNKZVf3kDOIDhnuoMG3ezUX0Pv5gNpsZNMQ3DqUvPSma8MH7kLTsAnBJ2hSDIKEX8fdeGt2UFrnCJQhVqMek6z9rMB7tQGC/It5Bpler/dPSKfkGMvpdCm0KTTBIqKhriBCRMbzf8Kiz/0CHmN5VO6LHod5HRgVouL+6gCV/+8Sugi6+Fl8o6qX8p927E8VlGz+rZWfux6mlpIPPBCInoBjjtUyjcVhVMdyp8oIg5Ftxr3Lj9H94cYz2hBDKwhbeyA1n1aluc+YwdkBrozpnZHVA+4SfJQ+YkmO2xCcn2WZWqNe2Qea1omvFAanMIdyYjbZ7kKeCEHrLAjaIuZJCka7izPJBfFMfO6Z9faBiFrCkAkDvLVZ2wR0h94h8OX8io9KpbYJLybTyfS0jPkVs36l8q9gCnHYPLrmA8zTAWjoFzayZHjhrDbBsxjl+f6bF/QCF9LwR/H++tNHlqD5p+sFcUjFdaJCJ3Q8/6hIHVi3TsSM9WmtdBA7rYg4YtmedNmrFesSU6wkzSNs9t8DkHgyx07lc9yvu7gqExuLV5QPwaGmVDb2Hh5y3H8Lxx5UI4hEptBKKstrsPGexsG/pK9sb4nPxRwVzUc60oxRkonfhY8JxTMB4eDQMXc54dbyPFYqyUNLJ8mUAEyt4MH0icjPelr3UvMLXTedTgQieOZKpQ0DkPhVd4TsrtSBgo1ld+fyPbtl8pJTXa+Uhy9YNg0vU+uRCHNzy7RHrVZMkptbCr4lQQAcyMibFrbXCy7lSEyO1bpXlcs0/j/1HeoLE4OcV91tWSURl6j+pkV+ziR92NTGJLRprZalMpuY5Fy2Mfn3D+6LCHQ=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lister les coursiers"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/couriers/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"CouriersList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"couriers":{"type":"array","items":{"type":"object","properties":{"courierid":{"type":"string"},"couriername":{"type":"string"}},"title":"CourierData"}}},"title":"CouriersListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

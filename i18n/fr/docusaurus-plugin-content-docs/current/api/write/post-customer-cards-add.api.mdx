@@ -1,0 +1,69 @@
+---
+id: post-customer-cards-add
+title: "Ajouter une carte"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Ajouter une carte"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVc1u2zgQfhWClzqBYxk5erEHb1Bgsyhao3FPQRDT1NhmKpHskHQTGH6fpq/hF9sZSo7sxChQYC+bQyTPDDk/33yfNtJ5QBWNs9elHEnvQrzXKURXA95rhWW4V2Up+zKqZZCjW7l3yru+LCFoNJ5P09lxiiuw0SyMzheKkTg/19XuWZTvlPdVaz4/F721MygqEMtkSmD3q6NnA/FBCdw9e2cDCAhRgBV/T6cTcTkcij/4LHlDqqKKgiIiurSmm5QN7NMrVXsxC+RNQbsSZqJMQjv0YUC9PF5wQiqZyrr/Ck/ZhKBKZ6snOVqoKkBfInxLlPkvV5Jtk38aBJpSxERu7Wykmtl10F3xEHgYGxn0CmrFb/HJA+Vy8wfQkVJ55JlHA6E5a7iCLi5ENHYpt/2XUZvypNuqGk46/MrZ0x6qyFQnPOSKJlZsumqTXjH2Y4J+u2U3QshY5JoJA34cw//erqFy3hMKh+D0OhCK5rWGENQSCOMv9hVGZrHYPSNNle+YDYczYWxpCAaRLK0BIiRkAP+j2Xe5T07rqNzTCNGQiB4Jf3Oon9tp5uEyLo/UTqAWmGIbmRdiv6V9uVZVgoNt3fa7kJetfQnL27sldtYQV25Pau5d5Z0v9mtVZHoXVH9B3gC4Bmzy537kKkYfRkWhFmjm7pEWdRBqhdEr1FAN7LJYX8o3ItAECxp0mXSWgd768kxyQQzP545U7x+JpBUckmA/u+Pd76zNyne/203vDO2CH0Bk7MJlcFoo9gWOJ9c8M2q5KfxyMBwM37YzuWblmCv9FWwp9od7NzyISR4E7fHUJZadILwzNgYWNK13P4KgB/iY9zmJf24+fWQZm3y6mRItVFrk7W7FklcaFQkMa98bQWSNWygTxdoo4oKYNRObdYrH2sasqUg3aca7nxFIgJk2byW439l9mleZYOU7yofg0VAql7qIABp3P+JxBNUIIvMjNrLMEh1denAJwymNZn/DZS7mqGhu6UgGepn5f4qQ8hTPBMR9QEvG2SDrHO11rTLj28UYU/4I2BRPCMFrQDeddPyPvletsESSicJXyljuvhWdhtUH3+VGlQI9mw83f6hXrAAUtNnMVYAvWG23bCbckVh3e8figUbNmSG3d3T5imSF7urE6KoZ28WUSzmSpGP17bRpnHf/l7GHIsWsoOB5+7WtsyhLVN/JyP9Hkl5chjFrd7ZtZKXsMmV5ls2d/Pcv1yIeIg==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Ajouter une carte"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/cards/add/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"}},"title":"CustomerCardsAdd"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"cardaddurl":{"type":"string"}},"title":"CustomerCardsAddResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

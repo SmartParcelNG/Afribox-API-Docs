@@ -1,0 +1,69 @@
+---
+id: post-customer-edit
+title: "Modifier le profil"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Modifier le profil"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVcFu4zYQ/RWCl3UCr2Xk6KKHdBGgKdqusfGegiCmpZHNLEWyQ9JNIPh/Nv0N/1hnKDmyk6DooZf6YMszQ3L45r2nVjoPqKJ29rqSM+ldiPdlCtE1gPdQ6SjHMqp1kLNbeYjLu7GsIJSoPS+kZZcpbsBGXesy7yVm4vy8NPtnUX1Q3ps+fH4uRlunURgQ66Qr4PSrpWcT8asSuH/2zgYQEKIAK35eLObiYjoVP/BayoZkooqCKiK6tKWdlA2cKzeq8WIZKJtC6SpYiiqJ0qEPE7rL40c+kFqmtu6/wVMOIajKWfMkZ7UyAcYS4Y9EJ//kKoq1+a9GIIAiJkqXzkbqmVNHtyseAoPRylBuoFH8FJ880Flu9QAlI+mR4Y4aQrdWcwdDXYio7Vruxi9Q6+rdtFUNvJOgTNTRcOhTv8EVj3C34xRCyJjmswlL/jkd45XdgnHeE5rHII8GMIvusYEQ1BpoVl/tK6x1Xe+fkdDhPZbT6VJoW2mCUyRL40SEhDyI/wjD4ex3gTpp998j9qWHKiNHNfBIvQbqj3XQyjy1A5XGcqtMgiNK7cZDyQu1XsoyxXYkoQbixh1ExxdTmZjFYfYFy6+gRADcAnZHJzRUs4nRh1lRqBr1yj0SkSahURi9whLMxK6L7YV8I9KuWBCAVSqzTEfbizPJvTDsXwbSXz2SiAwck/QA2Sk3h2hHySPota1dRrzH93D85fyawaALdW1dTKaT6dtm59es25Uqv4GtxGHx6IavOc/XJPYtXGLRB+GdtjGwnZTl/nsQ9AM+ZhYm8cvN59/ZROafbxZEZpXqzMneqpiIqEje7Dxv7IgdplY6iq1WxGCx7PBYDn7DzsJcN+RahOD+rwhkf0z2twY4HuI+rUyWRfWBzkPwqOkol4aKACXuv8fTCuoRRGZ17EyRDTK69OAShvcckvOdArmZk6b5SifiHWW9/ihCyiieCYiHgl5CywmPlgnbqKzTfuy/ORK+huzsxK9am9cTbQfF/49eF71dRDKAwhulLV8/a7Dt9Xr0WiSf6F6Y/ILcsKgp27YrFeArmt2OwzRxJDXd3rEfoFYr1sbtHe26IaegTQZ/+dTh9XHBPZy4zKlbDnZzmVn/j7XHvsN6oOJV/5ZrsolKVH9SkL9nkh5cnl/22hxrpVF2nbKdym5P/vwNFOruRQ==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Modifier le profil"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/edit/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"name":{"type":"string"}},"title":"CustomerEdit"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"CustomerEditResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

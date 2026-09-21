@@ -1,0 +1,68 @@
+---
+id: post-core-deliveryareas-list
+title: "Lister les zones de livraison"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Lister les zones de livraison"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVls9uGzcQxl+F4CWyoWgFH1X04DYB6iJohFg5GYZF7Y4kOrskOyS3dhd6nzivoRfrDHflXflPAhS91AdrRQ45w2/4/VaNtA5QBW3NRSFn0lkfbnKLcFNAqWvAe4Wg/E2pfZBjGdTGy9mV5Ah5PZYF+By14+W0+DyGLZig1zpPO4qZOD3Ny/2DKN4o58pu+PRUjGqrUZQgNlEXwNNPlp5MxAclcP/grPEgwAcBRvy2WMzF2XQqfuK1NOtjGVQQFBHQxpp2UsbzXL5VlRNLT7PR57aApSiioLKdn9A57t5yQiqZyrr5AvdpiA5aWFPey1nACGOJ8GekxL/Ygoaa9FUjFIfp3JpAJfPU4HDZrWctGunzLVSKn8K9A0plV7eQs4gOWfOgwbdrNRfQx/mA2mzkbiy5ejCqghdmaTroUPLQu65T59ypD9yo3Y7nEXxSL6Uh1fjjuGHvTQ2ldY50G8o56mXL2scKvFcboK58Nk9U1ev1/gFJCN5jOZ0uhTaFJuVENNQ4RIjIkv9HcvW5X5XssdwXI47u9SBCISq+BzpA5X9cx3AbXfww0ytd7Hr8ygb/ov/vVFBy993b8am7FumWUCDcURJPvWBnNzJdxoNBxrJWZYSBUXbjPuTRMI9h7IwdcaGCsLUHnrB2KrktY25kRx3ImCwZhXhAGmxriFhS9DYE52dZptaoV/aOjDLxlcLgFOZQTswmq8/kMwa1wYK6VcQ8UWhUn51Irorv2qfe1O/viBElDE14kPdI+0FHtFnb1IxO3EO28/kFi0D1t1WcTaaT6fPa5hdMoZXKv4ApxGHx6JJPNU+nIoctbGSEeeGsNsEzHPN8/9UL+gAXktOi+P3y4x+MxPnHywUZVsV18l0HXjYbKqIVc/QZXJmXa6WDqLUil4ple/xlT0/mJPu5JAaTYPtvAQjmbOjnOB/34y6uymT94g3lQ3CoKZWNfYSHHPdfw3EE1QgiOTe0iGfcBxtvbUT/Eu95vqUMF3NUNB/pCFCjxKSfhY9JxRMB4RDQYWI54dbyTa1UYlHXdjYLYGrF39ZAK4iuSVdm1pPmNj3g/kfvwQ4qgRiQuVJpw0ok9zWdZ7t3/VNujmX3i4B/BWzZ5BTZNCvl4TOWux0P00VA8tTVNeMBtVqxZa6uKcOWwAE4wM2vrXZvF1zPEXSOXxQ9fc6TGb4bO+QQ24SCV927vErvD4nqLxrk/zNJDzb1MuE9jTWyVGYT05tEtnvy3z8sa0NY
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lister les zones de livraison"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/deliveryareas/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"statename":{"type":"string"}},"title":"DeliveryAreasList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"deliveryareas":{"type":"array","items":{"type":"object","properties":{"deliveryareaid":{"type":"string"},"deliveryareaname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"}},"title":"DeliveryAreaData"}}},"title":"DeliveryAreasListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

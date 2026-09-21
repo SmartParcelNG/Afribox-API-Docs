@@ -1,0 +1,68 @@
+---
+id: post-customer-parcels-archived
+title: "Colis archivés"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Colis archivés"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV81uGzcQfhWCl8iGIgk+qujBdQPURdEYsXMyDIvijiQ6XJLlj2pH0PvEfQ29WGe4u17J1koJ0Et9sFac2Znh/H2fVtw68CIqay4LPubOhngvU4i2BH/vhJegwz1+LNQSCt7nUcwDH9/yRoff9XkBQXrlyAiaOE9xASaqmZLZLhuz01OpN8+seCec0/Xx6SnrLa3yTAObJ1UAiV+9ejJgfwjmN8/OmgAMQmRg2G83N1fsbDRiP9G7KA1JRxEZakRv0xItCRNIJheidGwSUJqCtAVMWJGYtN6FAd7l8T05xJAxrPsv8JSPPIjCGv3Ex9En6HMPfyV0/Ist8GiVvyqPqajF0pqIIZNo63LDh0C5WPEgF1AKeopPDtCVnT6AjOjJecp8VBCqdxUF0OqF6JWZ83X/JdOq2CNGeVRR09FFrXeVi3belGy9JiUPIecwO8Pc0cdu2T6YJWjrHGZvO6m9NnnD6rGEEMQcsDafzavcqtls8+wxHWRjMhpNmDKFwvyxZLB83kPylPj/KGmt772J2wl3r0bd31sy4b2gPlARynA8gsrA3so01guIQnWpFCKCxI6LcFQeFtZH+v5dilGVRxW1NfNOg1XwHmaA9ZRgUjnFYT+kmceEpAfTsaW3v9tt8gq8ER3x1yXLpT3oqFLZ3xjqK3Q6mNrHQzJRFDhL++2imLx225YqPnUKPUjlFI7FcQ23sOaICg6Q0odVDl2lwK5egn8S2Cr7cwimOFCmStwdZyXvDvLg0mtKLEqbqi3yRoHmV3ZK6w5J050VuL+i2soveNHu/i9wI3TuIGm1xsXRKa8icaLjnoRP1quveT/a6H4EAX4VUfD1cYT4VENDRgrUhkfs4ID+COdXPMNSA5V9vhQ6wRZkrvutygt0vqgRRq6RIZSA92j4BW1RkXF32JR5WFdk2DCNIace8diCVRTJY5/wRYwujIdDMfOKZtGpQSiFj9XbAzMfLs/4Gz5SKTPc3EWSmZH0lmcnnOIixPnUAvyHR+QLGrYBucnzbktud5qZ2VyWOsmNu/OrS8oDXqAK42wwGozeBnd1SZRkKrDJTMGal3vXdK2qTgi0NzYRnwnMWWViIKYk5eZbYPgBLmbATez3649/Ej+6+nh9g7gt0izDb83CCHO9QOpCpOoN0yLyNBMqsqUSCNZsUt1/0lIpIk0E6xoJGWZs808EZHaE62+5Xb89d2mqMwMo3qE/D84rdGVTqxEQjzbf4q4Gxggsr/BY8T3iftGmB4SHsI/8kbwiGxTMTtB0pR2e0svU5GcWUs7iCYPYKNRsYTLIw4nNWoq8GapFxy+sVpj13KTo+nU5Vy2z+R/R4HqhRBz8odNCGbp7HrhVPahbdL8lTbid2p8F9DNgQbONuqvVVAT47PV6TcdYfI+DdHtHW8ErMaUxub1DHwvcF7RUX7bMRZW99zcU0c6u2eWI7dI5zwNwUHd7/dBocFrrFZkv81rmXvyNh/R/zPHB5mpmXMxnK66FmadMInllk/7+Bax1tls=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Colis archivés"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/archived/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"}},"title":"CustomerParcelArchived"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"datecreatedshortdate":{"type":"string"},"datecreatedshorttime":{"type":"string"},"datecreatedlongdate":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"boxlockernumber":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"parcelpaid":{"type":"string"},"authorizationotp":{"type":"string"}},"title":"CustomerParcelData"}}},"title":"CustomerParcelArchivedResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

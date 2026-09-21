@@ -1,0 +1,69 @@
+---
+id: post-kiosk-parcel-drop
+title: "Dépôt de colis"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Dépôt de colis"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1yIjcQfhWVLotdLFA+ksrBWW9VnEplqTV7crmM0DQge0ZS9EPsUH6fdc55A14s3RIwYGbwZS/xwYC6pe7++ufrFTcWnAjK6OuCD7k1Ptw/KuMf761wEsr7whnLuzyIuefDW55k/K7LC/DSKUs38d5lDAvQQc2UTI+xITs/l+X6lRUfhLXl5vj8nHWWRjlWAptHVQCJ31w967HfBXPrV2u0BwY+MNDs1/F4xC4GA/YT3UWpj2UQgaFGcCYu8SWhPcnkQlSWTTxKo5emgAkrIpPGWd/DQJ4+kkF0Gd26f4TndORAFEaXz3w4E6WHLnfwZ0TLv5gCz1bpp3KACAUXUSyNDugzifai6z94AmPFvVxAJehbeLaAtsz0AWRAU9YR3kGBz3cVeVDr+eCUnvOXLp+aJ1U0SqIujXykwBrEKA8qlHR0haZGKYd4TAIHPkGaTCOU9HGYxc96CaWxFsHcx7hTY9nPXyvwXswBU/VNv4FazWbrV4fg0BuTwWDClC4Uosmixmw6B9FRHn4QhLXtRrAO3G3UyGX+vqGs15KTLCwgCNWmUogAEusswKknHMwAwZOgYzUFd1IzVShJTzq1p9eoJU10CpwW1Sl8Mo7NEKu/ofU2lvEpmSgKrMrmd1FMVtvflio8twodSGUVFtj7GnZh9DsqWIqqbI4edHECvSxut5Dl7c9HD64lvTL6YKpWcc6bqEzMTXakoDAq2SrdpD1ODyZEU11jl7S2H+aQhlWrkzv5iXLPCq0F2DjxrkQQLaKvmymYhiJqwBOWmMfoiN5WPM3jLUl0+VKUEfbI4qVbq+xIY6eWyOMFybGCsDBbPqVRIhLl9BN79jO2fUKuz6kG3BIDTOajwzrgixCsH/b7YuYUdYlVPV8JF/LFnp73lxf8iIKzMsOxVUSZSLizvDjj5A9N1a81pX1+QoosYZ+CtnjumKc+2Cec/frRM5PysYF4a/9ydE2IYETZr4veoDc49nZ0TbQ8FZhcXbDt5c4NxZkzhewyNpE43TNrlA6etgUp1989ww+wIbFMZL/dfPmDdoTRl5sxkpWIs8Q5m02EiMYJZG9aLI62DVogZkIFtlQCGYpNMiCTep2gxYG4rMSlBCFc/xMAtxsis+P9pluf2zgtE+0VH9CeA+sUmjKx1vDIB+vv4VADfQSWij3knYf2n2DiA45p37QAkTwzLDlz4DSFdEDOncTHPzMfE4pnDMJWYUORk15qfqzaSqR+z5ONX+E6tv43cbo0pfJv87mq+fx/tAtuRknAGdC3pVA6jVxXZr6nlt0uvLs9IQ88/KAdeEHdjTqr1VR4+ObKlxc6xqw7bKnbOxoMTokp9cftHb69wJFBY243aD5l1D6OyZODcXO4EdVz5zJV/knd/QFEPZGaOi+yVe5iJ/7CQ/o/5PjFpCym6ZrOVrwUeh7TysTzm/T3H3jbUK0=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Dépôt de colis"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/kiosk/parcel/drop/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"unlockcode":{"type":"string"}},"title":"DropParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"userid":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"dropcode":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"},"lockerstatus":{"type":"string"}},"title":"DropParcelData"}},"title":"DropParcelResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

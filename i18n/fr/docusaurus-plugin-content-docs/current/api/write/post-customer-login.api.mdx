@@ -1,0 +1,69 @@
+---
+id: post-customer-login
+title: "Connexion"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Connexion"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVls1yGjkQgF9FpUuwiwDlI1t78DqpWm+lNlTsnFwuI2YakK2RtPrBuCjeJ85r8GLbrZlhGDMkOexlOcCgbkn9+/VsuLHgRJBGX+d8zK3x4SGLPpgC3IMyC6l5nwex8Hx8x2sBv+/zHHzmpKWduO8yhiXoIOcyS4exMTs/z9TuleXvhLWqWj4/Z72VkY4pYIsocyDxm61nA/ZJMLd7tUZ7YOADA83+vL2dsIvRiP1Ge1HqowoiMNQIzsQVniS0J1m2FIVlU4/S6DOTw5TlkWXGWT9AX9bv6UI0Gc16eIKXtORA5EarFz6eC+Whzx38E/HmP0yOa5v0VzrACAUXUZwZHdBmEh14N3z0FIwN99kSCkFP4cUC3mVmj5AFvMo6ineQ4Mu9kixo9HxwUi/4ts9xv1SdEiu8fzYu7xCiNMigaOmqStWnlMLtlmQOfIppuhtjST/tNH7UK1DGWozmYZB7TTCH5WMB3osFYK6+6jexlvP57tVhdOiM6Wg0ZVLnEsPJosZ0OgfRUSL+oxg2d3dGq2Vup8a+qH96Va0pu2LfHKRF0X2ThoCJezqxvZKe3J0qQuQ5ZtF3F8bSaNCxmLV8OS4cPADCDz0QWZCrLitOFdgHEQQdkAu/nBnRKs4TwdTwXDVZtzdSK5M9nXAFNPZ8gGAcZNLKqoyO1HJQ6Efq219x5UNtfenOKWe/VG2UuoqMWWMde6xdYuSGp46uMdPnK6EiHOBm229U9tjZqyX8bBGvBYSlqYlMwRMJWsM6RcPE5iFKPDj0sbw7OmQGX4Zg/Xg4FHMnZ2aNlBn4QrhghctADfRiuLrgRwQvlRlmKY9ZYnhvdXHGyRjqyS8NET+ukbAKDglWh3UPrmah4VUru3OTklIFuL79cnJNwUB/SqsuBqPB6NjWyTUxfSawQHTO6s29G/JykrxEMt2aSAPBM2ukDp5GTZbtvnmGP2BDIlRkf918/psGzOTzzS2CTsR54lU1xghSTiD6aSodjSqaPnMhA1tJgXRj0zIc02YW0dQhDiqcaBjA3fcAOBoJhMfDsd+s2zhTCZn5O7zPgXUSrzKx0fCQud230NZAG4El4oVyYNLwDCY+muh81/QkeUlnMqZlNLnUAnsvsfx35mOK4hmDUCtUeJ0OEmawYAuRGF6yjF8ZrWFNqXuTyE0zBP5HbxAVSAL2/dAqQeO1X3bepmrTgzelPq9fouilaUnNjOLNZiY8fHVqu6VlzLTDJrq7Jw44KWbUE3f3eOwSCUEM3HPlqgzY+1syokWX9gRtMHOZqv2Huoe8oT5A5Vn15lOkwcqdeMZF+h5zfDApgQncaW3DldCLmEYsL8+kz7/S3qz/
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Connexion"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/login/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"}},"title":"CustomerLogin"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"customer":{"type":"object","properties":{"customerid":{"type":"string"},"customername":{"type":"string"},"networkid":{"type":"string"},"networkname":{"type":"string"},"emailaddress":{"type":"string"},"phonenumber":{"type":"string"},"passwordreset":{"type":"string"},"customeractive":{"type":"string"}},"title":"CustomerLoginData"},"dashboard":{"type":"object","properties":{"newrequests":{"type":"string"},"inlocker":{"type":"string"},"enroutetorecipient":{"type":"string"},"delivered":{"type":"string"}},"title":"CustomerDashboardData"}},"title":"CustomerLoginResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

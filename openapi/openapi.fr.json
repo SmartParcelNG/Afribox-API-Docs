@@ -45,11 +45,12 @@
     "/admin/businesses/list/": {
       "post": {
         "operationId": "post_admin_businesses_list",
-        "summary": "Admin businesses list",
+        "summary": "Lister les entreprises",
         "tags": [
           "admin"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -63,7 +64,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -78,11 +79,12 @@
     "/admin/businesses/wallettransaction/new/": {
       "post": {
         "operationId": "post_admin_businesses_wallettransaction_new",
-        "summary": "Businesses wallettransaction new",
+        "summary": "Créer une transaction de portefeuille (entreprise)",
         "tags": [
           "admin"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -96,7 +98,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -111,11 +113,12 @@
     "/business/availableboxes/all/": {
       "post": {
         "operationId": "post_business_availableboxes_all",
-        "summary": "Business availableboxes all",
+        "summary": "Casiers disponibles (tous)",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -129,7 +132,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -144,11 +147,12 @@
     "/business/availableboxes/city/": {
       "post": {
         "operationId": "post_business_availableboxes_city",
-        "summary": "Business availableboxes city",
+        "summary": "Entreprise: Casiers disponibles par ville",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -162,7 +166,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -177,11 +181,12 @@
     "/business/availableboxes/state/": {
       "post": {
         "operationId": "post_business_availableboxes_state",
-        "summary": "Business availableboxes state",
+        "summary": "Entreprise: Casiers disponibles par État",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -195,7 +200,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -210,11 +215,12 @@
     "/business/balance/": {
       "post": {
         "operationId": "post_business_balance",
-        "summary": "Business balance",
+        "summary": "Solde du portefeuille",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -228,7 +234,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -243,11 +249,12 @@
     "/business/boxes/all/": {
       "post": {
         "operationId": "post_business_boxes_all",
-        "summary": "Business boxes all",
+        "summary": "Casiers de l'entreprise (tous)",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -261,7 +268,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -276,11 +283,12 @@
     "/business/boxes/assigned/": {
       "post": {
         "operationId": "post_business_boxes_assigned",
-        "summary": "Business boxes assigned",
+        "summary": "Casiers attribués",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -294,7 +302,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -309,11 +317,12 @@
     "/business/boxes/city/": {
       "post": {
         "operationId": "post_business_boxes_city",
-        "summary": "Business boxes city",
+        "summary": "Entreprise: Casiers par ville",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -327,7 +336,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -342,11 +351,12 @@
     "/business/boxes/info/": {
       "post": {
         "operationId": "post_business_boxes_info",
-        "summary": "Business boxes info",
+        "summary": "Entreprise: Détails d'un casier",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -360,7 +370,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -375,11 +385,12 @@
     "/business/boxes/state/": {
       "post": {
         "operationId": "post_business_boxes_state",
-        "summary": "Business boxes state",
+        "summary": "Entreprise: Casiers par État",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -393,7 +404,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -408,11 +419,12 @@
     "/business/cancelledparcels/": {
       "post": {
         "operationId": "post_business_cancelledparcels",
-        "summary": "Business cancelledparcels",
+        "summary": "Entreprise: Colis annulés",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -426,7 +438,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -441,11 +453,12 @@
     "/business/cities/all/": {
       "post": {
         "operationId": "post_business_cities_all",
-        "summary": "Business cities all",
+        "summary": "Villes (toutes)",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -459,7 +472,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -474,11 +487,12 @@
     "/business/cities/state/": {
       "post": {
         "operationId": "post_business_cities_state",
-        "summary": "Business cities state",
+        "summary": "Entreprise: Villes par État",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -492,7 +506,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -507,11 +521,12 @@
     "/business/dashboard/": {
       "post": {
         "operationId": "post_business_dashboard",
-        "summary": "Business dashboard",
+        "summary": "Tableau de bord de l'entreprise",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -525,7 +540,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -540,11 +555,12 @@
     "/business/draft/deliveryareas/": {
       "post": {
         "operationId": "post_business_draft_deliveryareas",
-        "summary": "Business draft deliveryareas",
+        "summary": "Zones de livraison (brouillon)",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -558,7 +574,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -573,11 +589,12 @@
     "/business/draft/parceltypes/": {
       "post": {
         "operationId": "post_business_draft_parceltypes",
-        "summary": "Business draft parceltypes",
+        "summary": "Types de colis (brouillon)",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -591,7 +608,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -606,11 +623,12 @@
     "/business/parcels/cancel/": {
       "post": {
         "operationId": "post_business_parcels_cancel",
-        "summary": "Business parcels cancel",
+        "summary": "Annuler un colis",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -624,7 +642,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -639,11 +657,12 @@
     "/business/parcels/create/": {
       "post": {
         "operationId": "post_business_parcels_create",
-        "summary": "Business parcels create",
+        "summary": "Entreprise: Créer un colis",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business secret** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé secrète d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -657,7 +676,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -672,11 +691,12 @@
     "/business/parcels/info/all/": {
       "post": {
         "operationId": "post_business_parcels_info_all",
-        "summary": "Parcels info all",
+        "summary": "Entreprise: Détails de tous les colis",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -690,7 +710,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -705,11 +725,12 @@
     "/business/parcels/info/": {
       "post": {
         "operationId": "post_business_parcels_info",
-        "summary": "Business parcels info",
+        "summary": "Entreprise: Détails d'un colis",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -723,7 +744,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -738,11 +759,12 @@
     "/business/parcels/reports/": {
       "post": {
         "operationId": "post_business_parcels_reports",
-        "summary": "Business parcels reports",
+        "summary": "Entreprise: Rapports de colis",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -756,7 +778,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -771,11 +793,12 @@
     "/business/parcels/retrieve/": {
       "post": {
         "operationId": "post_business_parcels_retrieve",
-        "summary": "Business parcels retrieve",
+        "summary": "Récupérer un colis",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -789,7 +812,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -804,11 +827,12 @@
     "/business/parcels/timeline/": {
       "post": {
         "operationId": "post_business_parcels_timeline",
-        "summary": "Business parcels timeline",
+        "summary": "Entreprise: Chronologie d'un colis",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -822,7 +846,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -837,11 +861,12 @@
     "/business/pendingdropoffs/": {
       "post": {
         "operationId": "post_business_pendingdropoffs",
-        "summary": "Business pendingdropoffs",
+        "summary": "Dépôts en attente",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -855,7 +880,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -870,11 +895,12 @@
     "/business/pendingpickups/": {
       "post": {
         "operationId": "post_business_pendingpickups",
-        "summary": "Business pendingpickups",
+        "summary": "Retraits en attente",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -888,7 +914,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -903,11 +929,12 @@
     "/business/pickedupparcels/": {
       "post": {
         "operationId": "post_business_pickedupparcels",
-        "summary": "Business pickedupparcels",
+        "summary": "Colis retirés",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -921,7 +948,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -936,11 +963,12 @@
     "/business/retrievedparcels/": {
       "post": {
         "operationId": "post_business_retrievedparcels",
-        "summary": "Business retrievedparcels",
+        "summary": "Colis récupérés",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -954,7 +982,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -969,11 +997,12 @@
     "/business/sizes/": {
       "post": {
         "operationId": "post_business_sizes",
-        "summary": "Business sizes",
+        "summary": "Tailles disponibles",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -987,7 +1016,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1002,11 +1031,12 @@
     "/business/states/": {
       "post": {
         "operationId": "post_business_states",
-        "summary": "Business states",
+        "summary": "États",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1020,7 +1050,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1035,11 +1065,12 @@
     "/business/transactionhistory/": {
       "post": {
         "operationId": "post_business_transactionhistory",
-        "summary": "Business transactionhistory",
+        "summary": "Historique des transactions",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1053,7 +1084,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1068,11 +1099,12 @@
     "/business/wallettransaction/new/": {
       "post": {
         "operationId": "post_business_wallettransaction_new",
-        "summary": "Business wallettransaction new",
+        "summary": "Créer une transaction de portefeuille",
         "tags": [
           "business"
         ],
-        "description": "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1086,7 +1118,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1101,11 +1133,12 @@
     "/core/boxes/availability/": {
       "post": {
         "operationId": "post_core_boxes_availability",
-        "summary": "Core boxes availability",
+        "summary": "Disponibilité des casiers",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1119,7 +1152,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1134,11 +1167,12 @@
     "/core/boxes/available/bycity/": {
       "post": {
         "operationId": "post_core_boxes_available_bycity",
-        "summary": "Boxes available bycity",
+        "summary": "Référentiel: Casiers disponibles par ville",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1152,7 +1186,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1167,11 +1201,12 @@
     "/core/boxes/available/bystate/": {
       "post": {
         "operationId": "post_core_boxes_available_bystate",
-        "summary": "Boxes available bystate",
+        "summary": "Référentiel: Casiers disponibles par État",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1185,7 +1220,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1200,11 +1235,12 @@
     "/core/boxes/available/list/": {
       "post": {
         "operationId": "post_core_boxes_available_list",
-        "summary": "Boxes available list",
+        "summary": "Lister les casiers disponibles",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1218,7 +1254,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1233,11 +1269,12 @@
     "/core/boxes/bycity/": {
       "post": {
         "operationId": "post_core_boxes_bycity",
-        "summary": "Core boxes bycity",
+        "summary": "Référentiel: Casiers par ville",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1251,7 +1288,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1266,11 +1303,12 @@
     "/core/boxes/bystate/": {
       "post": {
         "operationId": "post_core_boxes_bystate",
-        "summary": "Core boxes bystate",
+        "summary": "Référentiel: Casiers par État",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1284,7 +1322,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1299,11 +1337,12 @@
     "/core/boxes/info/": {
       "post": {
         "operationId": "post_core_boxes_info",
-        "summary": "Core boxes info",
+        "summary": "Référentiel: Détails d'un casier",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1317,7 +1356,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1332,11 +1371,12 @@
     "/core/boxes/list/": {
       "post": {
         "operationId": "post_core_boxes_list",
-        "summary": "Core boxes list",
+        "summary": "Lister les casiers",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1350,7 +1390,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1365,11 +1405,12 @@
     "/core/cities/bystate/": {
       "post": {
         "operationId": "post_core_cities_bystate",
-        "summary": "Core cities bystate",
+        "summary": "Référentiel: Villes par État",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1383,7 +1424,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1398,11 +1439,12 @@
     "/core/cities/info/": {
       "post": {
         "operationId": "post_core_cities_info",
-        "summary": "Core cities info",
+        "summary": "Détails d'une ville",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1416,7 +1458,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1431,11 +1473,12 @@
     "/core/cities/list/": {
       "post": {
         "operationId": "post_core_cities_list",
-        "summary": "Core cities list",
+        "summary": "Lister les villes",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1449,7 +1492,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1464,11 +1507,12 @@
     "/core/couriers/list/": {
       "post": {
         "operationId": "post_core_couriers_list",
-        "summary": "Core couriers list",
+        "summary": "Lister les coursiers",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1482,7 +1526,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1497,11 +1541,12 @@
     "/core/deliveryareas/list/": {
       "post": {
         "operationId": "post_core_deliveryareas_list",
-        "summary": "Core deliveryareas list",
+        "summary": "Lister les zones de livraison",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1515,7 +1560,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1530,11 +1575,12 @@
     "/core/fees/appless/": {
       "post": {
         "operationId": "post_core_fees_appless",
-        "summary": "Core fees appless",
+        "summary": "Frais appless",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1548,7 +1594,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1563,11 +1609,12 @@
     "/core/fees/compute/": {
       "post": {
         "operationId": "post_core_fees_compute",
-        "summary": "Core fees compute",
+        "summary": "Calculer les frais",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1581,7 +1628,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1596,11 +1643,12 @@
     "/core/fees/nipost/": {
       "post": {
         "operationId": "post_core_fees_nipost",
-        "summary": "Core fees nipost",
+        "summary": "Frais NIPOST",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1614,7 +1662,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1629,11 +1677,12 @@
     "/core/fees/selfstorage/": {
       "post": {
         "operationId": "post_core_fees_selfstorage",
-        "summary": "Core fees selfstorage",
+        "summary": "Frais de self-stockage",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1647,7 +1696,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1662,11 +1711,12 @@
     "/core/fees/service/": {
       "post": {
         "operationId": "post_core_fees_service",
-        "summary": "Core fees service",
+        "summary": "Frais de service",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1680,7 +1730,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1695,11 +1745,12 @@
     "/core/parcels/search/": {
       "post": {
         "operationId": "post_core_parcels_search",
-        "summary": "Core parcels search",
+        "summary": "Rechercher un colis",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1713,7 +1764,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1728,11 +1779,12 @@
     "/core/requesttypes/list/": {
       "post": {
         "operationId": "post_core_requesttypes_list",
-        "summary": "Core requesttypes list",
+        "summary": "Lister les types de demande",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1746,7 +1798,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1761,11 +1813,12 @@
     "/core/sizes/fees/": {
       "post": {
         "operationId": "post_core_sizes_fees",
-        "summary": "Core sizes fees",
+        "summary": "Frais par taille",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1779,7 +1832,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1794,11 +1847,12 @@
     "/core/sizes/info/": {
       "post": {
         "operationId": "post_core_sizes_info",
-        "summary": "Core sizes info",
+        "summary": "Détails d'une taille",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1812,7 +1866,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1827,11 +1881,12 @@
     "/core/sizes/list/": {
       "post": {
         "operationId": "post_core_sizes_list",
-        "summary": "Core sizes list",
+        "summary": "Lister les tailles",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1845,7 +1900,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1860,11 +1915,12 @@
     "/core/states/info/": {
       "post": {
         "operationId": "post_core_states_info",
-        "summary": "Core states info",
+        "summary": "Détails d'un État",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1878,7 +1934,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1893,11 +1949,12 @@
     "/core/states/list/": {
       "post": {
         "operationId": "post_core_states_list",
-        "summary": "Core states list",
+        "summary": "Lister les États",
         "tags": [
           "core"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -1911,7 +1968,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1923,62 +1980,15 @@
         }
       }
     },
-    "/customer/cards/add/complete/": {
-      "post": {
-        "operationId": "post_customer_cards_add_complete",
-        "summary": "Cards add complete",
-        "tags": [
-          "customer"
-        ],
-        "description": "Authentication: **none** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-readonly": false,
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error."
-          }
-        }
-      },
-      "get": {
-        "operationId": "get_customer_cards_add_complete",
-        "summary": "Card add callback (browser)",
-        "description": "Browser landing page used as the Paystack `callback_url` after adding a card. Reads `reference`/`trxref`, verifies the transaction, and stores the card authorization code. Returns an HTML page with the outcome.",
-        "tags": [
-          "customer"
-        ],
-        "x-readonly": true,
-        "parameters": [
-          {
-            "name": "reference",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trxref",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "HTML page (Add Card Successful / Failed)."
-          }
-        }
-      }
-    },
     "/customer/cards/add/": {
       "post": {
         "operationId": "post_customer_cards_add",
-        "summary": "Customer cards add",
+        "summary": "Ajouter une carte",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -1992,7 +2002,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2007,11 +2017,12 @@
     "/customer/cards/delete/": {
       "post": {
         "operationId": "post_customer_cards_delete",
-        "summary": "Customer cards delete",
+        "summary": "Supprimer une carte",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2025,7 +2036,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2040,11 +2051,12 @@
     "/customer/cards/info/": {
       "post": {
         "operationId": "post_customer_cards_info",
-        "summary": "Customer cards info",
+        "summary": "Détails d'une carte",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2058,7 +2070,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2073,11 +2085,12 @@
     "/customer/cards/list/": {
       "post": {
         "operationId": "post_customer_cards_list",
-        "summary": "Customer cards list",
+        "summary": "Lister les cartes",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2091,7 +2104,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2106,11 +2119,12 @@
     "/customer/cards/setdefault/": {
       "post": {
         "operationId": "post_customer_cards_setdefault",
-        "summary": "Customer cards setdefault",
+        "summary": "Définir la carte par défaut",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2124,7 +2138,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2139,11 +2153,12 @@
     "/customer/changepassword/": {
       "post": {
         "operationId": "post_customer_changepassword",
-        "summary": "Customer changepassword",
+        "summary": "Changer le mot de passe",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2157,7 +2172,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2172,11 +2187,12 @@
     "/customer/dashboard/": {
       "post": {
         "operationId": "post_customer_dashboard",
-        "summary": "Customer dashboard",
+        "summary": "Tableau de bord client",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2190,7 +2206,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2205,11 +2221,12 @@
     "/customer/edit/": {
       "post": {
         "operationId": "post_customer_edit",
-        "summary": "Customer edit",
+        "summary": "Modifier le profil",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2223,7 +2240,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2238,11 +2255,12 @@
     "/customer/forgotpassword/": {
       "post": {
         "operationId": "post_customer_forgotpassword",
-        "summary": "Customer forgotpassword",
+        "summary": "Mot de passe oublié",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2256,7 +2274,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2271,11 +2289,12 @@
     "/customer/info/": {
       "post": {
         "operationId": "post_customer_info",
-        "summary": "Customer info",
+        "summary": "Informations client",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2289,7 +2308,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2304,11 +2323,12 @@
     "/customer/login/": {
       "post": {
         "operationId": "post_customer_login",
-        "summary": "Customer login",
+        "summary": "Connexion",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2322,7 +2342,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2337,11 +2357,12 @@
     "/customer/otp/resend/": {
       "post": {
         "operationId": "post_customer_otp_resend",
-        "summary": "Customer otp resend",
+        "summary": "Renvoyer l'OTP",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2355,7 +2376,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2370,11 +2391,12 @@
     "/customer/otp/verify/": {
       "post": {
         "operationId": "post_customer_otp_verify",
-        "summary": "Customer otp verify",
+        "summary": "Vérifier l'OTP",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2388,7 +2410,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2403,11 +2425,12 @@
     "/customer/parcels/all/": {
       "post": {
         "operationId": "post_customer_parcels_all",
-        "summary": "Customer parcels all",
+        "summary": "Tous les colis",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2421,7 +2444,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2436,11 +2459,12 @@
     "/customer/parcels/archived/": {
       "post": {
         "operationId": "post_customer_parcels_archived",
-        "summary": "Customer parcels archived",
+        "summary": "Colis archivés",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2454,7 +2478,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2469,11 +2493,12 @@
     "/customer/parcels/cancelled/": {
       "post": {
         "operationId": "post_customer_parcels_cancelled",
-        "summary": "Customer parcels cancelled",
+        "summary": "Client: Colis annulés",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2487,7 +2512,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2502,11 +2527,12 @@
     "/customer/parcels/delivered/": {
       "post": {
         "operationId": "post_customer_parcels_delivered",
-        "summary": "Customer parcels delivered",
+        "summary": "Colis livrés",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2520,7 +2546,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2535,11 +2561,12 @@
     "/customer/parcels/enroutetorecipient/": {
       "post": {
         "operationId": "post_customer_parcels_enroutetorecipient",
-        "summary": "Customer parcels enroutetorecipient",
+        "summary": "Colis en route vers le destinataire",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2553,7 +2580,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2568,11 +2595,12 @@
     "/customer/parcels/hold/": {
       "post": {
         "operationId": "post_customer_parcels_hold",
-        "summary": "Customer parcels hold",
+        "summary": "Mettre un colis en attente",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **paystack dual** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé secrète d'entreprise ou clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2586,7 +2614,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2601,11 +2629,12 @@
     "/customer/parcels/hold/release/": {
       "post": {
         "operationId": "post_customer_parcels_hold_release",
-        "summary": "Parcels hold release",
+        "summary": "Lever la mise en attente",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2619,7 +2648,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2634,11 +2663,12 @@
     "/customer/parcels/info/all/": {
       "post": {
         "operationId": "post_customer_parcels_info_all",
-        "summary": "Parcels info all",
+        "summary": "Client: Détails de tous les colis",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2652,7 +2682,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2667,11 +2697,12 @@
     "/customer/parcels/info/": {
       "post": {
         "operationId": "post_customer_parcels_info",
-        "summary": "Customer parcels info",
+        "summary": "Client: Détails d'un colis",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2685,7 +2716,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2700,11 +2731,12 @@
     "/customer/parcels/inlocker/": {
       "post": {
         "operationId": "post_customer_parcels_inlocker",
-        "summary": "Customer parcels inlocker",
+        "summary": "Colis en casier",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2718,7 +2750,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2733,11 +2765,12 @@
     "/customer/parcels/new/": {
       "post": {
         "operationId": "post_customer_parcels_new",
-        "summary": "Customer parcels new",
+        "summary": "Client: Créer un colis",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2751,7 +2784,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2766,11 +2799,12 @@
     "/customer/parcels/newrequests/": {
       "post": {
         "operationId": "post_customer_parcels_newrequests",
-        "summary": "Customer parcels newrequests",
+        "summary": "Nouvelles demandes de colis",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2784,7 +2818,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2799,11 +2833,12 @@
     "/customer/parcels/reports/": {
       "post": {
         "operationId": "post_customer_parcels_reports",
-        "summary": "Customer parcels reports",
+        "summary": "Client: Rapports de colis",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2817,7 +2852,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2832,11 +2867,12 @@
     "/customer/parcels/timeline/": {
       "post": {
         "operationId": "post_customer_parcels_timeline",
-        "summary": "Customer parcels timeline",
+        "summary": "Client: Chronologie d'un colis",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -2850,7 +2886,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2865,11 +2901,12 @@
     "/customer/resetpassword/": {
       "post": {
         "operationId": "post_customer_resetpassword",
-        "summary": "Customer resetpassword",
+        "summary": "Réinitialiser le mot de passe",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2883,7 +2920,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2898,11 +2935,12 @@
     "/customer/signup/": {
       "post": {
         "operationId": "post_customer_signup",
-        "summary": "Customer signup",
+        "summary": "Inscription",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2916,7 +2954,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2931,11 +2969,12 @@
     "/customer/support/": {
       "post": {
         "operationId": "post_customer_support",
-        "summary": "Customer support",
+        "summary": "Assistance",
         "tags": [
           "customer"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2949,7 +2988,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2964,11 +3003,12 @@
     "/kiosk/parcel/appless/reserve/": {
       "post": {
         "operationId": "post_kiosk_parcel_appless_reserve",
-        "summary": "Parcel appless reserve",
+        "summary": "Réserver un casier (appless)",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -2982,7 +3022,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2997,11 +3037,12 @@
     "/kiosk/parcel/appless/verify/": {
       "post": {
         "operationId": "post_kiosk_parcel_appless_verify",
-        "summary": "Parcel appless verify",
+        "summary": "Vérifier une réservation (appless)",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3015,7 +3056,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3030,11 +3071,12 @@
     "/kiosk/parcel/collect/": {
       "post": {
         "operationId": "post_kiosk_parcel_collect",
-        "summary": "Kiosk parcel collect",
+        "summary": "Retrait de colis",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3048,7 +3090,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3063,11 +3105,12 @@
     "/kiosk/parcel/drop/": {
       "post": {
         "operationId": "post_kiosk_parcel_drop",
-        "summary": "Kiosk parcel drop",
+        "summary": "Dépôt de colis",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3081,7 +3124,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3096,11 +3139,12 @@
     "/kiosk/parcel/nipost/reserve/": {
       "post": {
         "operationId": "post_kiosk_parcel_nipost_reserve",
-        "summary": "Parcel nipost reserve",
+        "summary": "Réserver un casier (NIPOST)",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3114,7 +3158,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3129,11 +3173,12 @@
     "/kiosk/parcel/nipost/verify/": {
       "post": {
         "operationId": "post_kiosk_parcel_nipost_verify",
-        "summary": "Parcel nipost verify",
+        "summary": "Vérifier une réservation (NIPOST)",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3147,7 +3192,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3162,11 +3207,12 @@
     "/kiosk/parcel/snapshot/": {
       "post": {
         "operationId": "post_kiosk_parcel_snapshot",
-        "summary": "Kiosk parcel snapshot",
+        "summary": "Téléverser un instantané de colis",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3180,7 +3226,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3195,11 +3241,12 @@
     "/kiosk/ping/": {
       "post": {
         "operationId": "post_kiosk_ping",
-        "summary": "Kiosk ping",
+        "summary": "Ping du casier",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -3213,7 +3260,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3228,11 +3275,12 @@
     "/kiosk/setup/": {
       "post": {
         "operationId": "post_kiosk_setup",
-        "summary": "Kiosk setup",
+        "summary": "Configuration du casier",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3246,7 +3294,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3261,15 +3309,16 @@
     "/parcel/snapshot/image/": {
       "get": {
         "operationId": "get_parcel_snapshot_image",
-        "summary": "Parcel snapshot image",
+        "summary": "Image d'instantané de colis",
         "tags": [
           "parcel"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3284,11 +3333,12 @@
     "/parcel/snapshots/": {
       "post": {
         "operationId": "post_parcel_snapshots",
-        "summary": "Parcel snapshots",
+        "summary": "Lister les instantanés de colis",
         "tags": [
           "parcel"
         ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3302,7 +3352,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3322,6 +3372,7 @@
           "pay"
         ],
         "description": "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure (XOF). Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil=\"wallet\"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack).",
+        "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -3335,7 +3386,7 @@
         },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3347,25 +3398,215 @@
         }
       }
     },
-    "/pay/return/": {
+    "/pay/search/": {
       "post": {
-        "operationId": "post_pay_return",
-        "summary": "Pay return",
+        "operationId": "post_pay_search",
+        "summary": "Rechercher un colis à payer",
         "tags": [
           "pay"
         ],
-        "description": "Authentication: **none** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
         "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaySearchParcel"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error."
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaySearchParcelResponse"
+                }
+              }
+            }
           }
         }
-      },
+      }
+    },
+    "/pay/search/nipost/": {
+      "post": {
+        "operationId": "post_pay_search_nipost",
+        "summary": "Rechercher un colis à payer (NIPOST)",
+        "tags": [
+          "pay"
+        ],
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaySearchParcel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaySearchParcelResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/status/": {
+      "post": {
+        "operationId": "post_pay_status",
+        "summary": "Statut du paiement par référence",
+        "tags": [
+          "pay"
+        ],
+        "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp.",
+        "x-auth": "paystack_dual",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaystackStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaystackStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/success/": {
+      "post": {
+        "operationId": "post_pay_success",
+        "summary": "Confirmer le paiement d'un colis",
+        "tags": [
+          "pay"
+        ],
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaySuccess"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaySuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/success/nipost/": {
+      "post": {
+        "operationId": "post_pay_success_nipost",
+        "summary": "Confirmer le paiement d'un colis (NIPOST)",
+        "tags": [
+          "pay"
+        ],
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaySuccess"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaySuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/verify/": {
+      "post": {
+        "operationId": "post_pay_verify",
+        "summary": "Vérifier un paiement Paystack",
+        "tags": [
+          "pay"
+        ],
+        "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis.",
+        "x-auth": "paystack_dual",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaystackVerify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaystackVerifyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pay/return/": {
       "get": {
         "operationId": "get_pay_return",
-        "summary": "Payment return / landing page",
-        "description": "Hosted callback page. Verifies the payment, fulfils it, then redirects to `metadata.returnurl` when present. Returns an HTML page (not JSON). Query parameters: `reference` (or `trxref`).",
+        "summary": "Page de retour de paiement",
+        "description": "Page de retour hébergée. Vérifie le paiement, exécute le traitement, puis redirige vers `metadata.returnurl` si présent. Renvoie une page HTML (pas de JSON). Paramètres : `reference` (ou `trxref`).",
         "tags": [
           "pay"
         ],
@@ -3390,205 +3631,7 @@
         ],
         "responses": {
           "200": {
-            "description": "HTML landing page (Payment successful / not completed)."
-          }
-        }
-      }
-    },
-    "/pay/search/": {
-      "post": {
-        "operationId": "post_pay_search",
-        "summary": "Pay search",
-        "tags": [
-          "pay"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-readonly": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaySearchParcel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaySearchParcelResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pay/search/nipost/": {
-      "post": {
-        "operationId": "post_pay_search_nipost",
-        "summary": "Pay search nipost",
-        "tags": [
-          "pay"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-readonly": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaySearchParcel"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaySearchParcelResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pay/status/": {
-      "post": {
-        "operationId": "post_pay_status",
-        "summary": "Statut du paiement par référence",
-        "tags": [
-          "pay"
-        ],
-        "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp.",
-        "x-readonly": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaystackStatus"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaystackStatusResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pay/success/": {
-      "post": {
-        "operationId": "post_pay_success",
-        "summary": "Pay success",
-        "tags": [
-          "pay"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaySuccess"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaySuccessResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pay/success/nipost/": {
-      "post": {
-        "operationId": "post_pay_success_nipost",
-        "summary": "Pay success nipost",
-        "tags": [
-          "pay"
-        ],
-        "description": "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaySuccess"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaySuccessResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pay/verify/": {
-      "post": {
-        "operationId": "post_pay_verify",
-        "summary": "Vérifier un paiement Paystack",
-        "tags": [
-          "pay"
-        ],
-        "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis.",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaystackVerify"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaystackVerifyResponse"
-                }
-              }
-            }
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur."
           }
         }
       }
@@ -3596,8 +3639,8 @@
     "/pay/webhook/paystack/": {
       "post": {
         "operationId": "post_pay_webhook_paystack",
-        "summary": "Paystack webhook",
-        "description": "Server-to-server webhook. Paystack signs the raw body with HMAC-SHA512 using the secret key; the signature is sent in the `x-paystack-signature` header and validated. Handles `charge.success` and `charge.failed`. Returns HTTP 200 on success, 403 on invalid signature. Not called by clients.",
+        "summary": "Webhook Paystack",
+        "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients.",
         "tags": [
           "pay"
         ],
@@ -3625,10 +3668,44 @@
         },
         "responses": {
           "200": {
-            "description": "Acknowledged"
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur."
           },
           "403": {
             "description": "Invalid signature"
+          }
+        }
+      }
+    },
+    "/customer/cards/add/complete/": {
+      "get": {
+        "operationId": "get_customer_cards_add_complete",
+        "summary": "Retour d'ajout de carte (navigateur)",
+        "description": "Authentification : **** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "tags": [
+          "customer"
+        ],
+        "x-readonly": true,
+        "parameters": [
+          {
+            "name": "reference",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trxref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur."
           }
         }
       }
@@ -3691,7 +3768,7 @@
             "type": "string"
           }
         },
-        "description": "Verified transaction details, including parcel collectcode when applicable."
+        "description": "Détails de la transaction vérifiée, y compris le code de retrait du colis le cas échéant."
       },
       "PaystackVerify": {
         "type": "object",
@@ -4000,7 +4077,7 @@
             "type": "string"
           }
         },
-        "description": "Paystack initialization result."
+        "description": "Résultat de l'initialisation Paystack."
       },
       "PaystackInitialize": {
         "type": "object",

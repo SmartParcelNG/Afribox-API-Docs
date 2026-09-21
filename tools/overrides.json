@@ -13,6 +13,11 @@
     "parcel": "Parcel proof-of-delivery snapshots (list, fetch, image).",
     "admin": "Administrative operations: businesses list and wallet transactions."
   },
+  "excludeEndpoints": [
+    "/customer/cards/add/complete/",
+    "/pay/return/",
+    "/pay/webhook/paystack/"
+  ],
   "operations": {
     "POST /pay/initialize/": {
       "readonly": false,

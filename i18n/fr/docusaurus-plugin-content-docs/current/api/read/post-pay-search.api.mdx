@@ -1,0 +1,68 @@
+---
+id: post-pay-search
+title: "Rechercher un colis à payer"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Rechercher un colis à payer"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVt1uYjcQfhXLN0siFlAuqXqRtis1VdVFCXsVRcEcD+DsObbrHxp6xLvs5aavwYt1xoYcCHBy05tGSiCesWf8zfj7pubGghNBGX0j+ZBb48OjFatHD8IVC97lQcw9H95zXOQPXS7BF05Z2oDu1zEsQAc1U0U6gw3Z5WVRbl6Y/CCsLbfLl5esszTKsRLYPCoJZH6z9aLHfhfMbV6s0R4Y+MBAs1/H4xG7GgzYD7QXrT6WQQSGHsGZuMSThPZkKxaismzi0Rp9YSRMmIysMM76Hl7j+SMFxJQxrcevsEpLDoQ0ulzxYXARutzBnxED/2QkLtXpX+VA7syF0QFTJtPe5fpPnrCouS8WUAn6FlYWMJSZPkERMJJ1hHJQ4PNeRQk0fj44ped8jY4IOpQOZuBAF6BjNQV3whNdgwolLY3E6i7VapT2oo2sDnzCMQVE/OjjsHSf9BJKYy0iuA9spwGwn79W4L2YA9bni36Dr5rNNi+YaaAzJoPBhCktFWLIosYSOgfREfj/EXBN7JPgHaTbAu/7gbKfki2HSAhCnXORIkCBzRWg7Yj3y9x4pr4ka2tSe34tXhmn1oOyy2mU1d+gRXU6wNQ8t9mElNiYp89FM0U9f3ahwuqs0UGhrMIee9/DLox+xwW7UZWnbw9agjsbJJvPR8j288dn9EVlYn4tx52FbbkEt2pxmTuhZTBBtIXwcXpAB2cdrTjZKHsEtM8+v4gg2tjpdktLiaXQDZ6x4B4zIImpeaLFHVV3+VKUEfYoe91tXF6p+9WNOHqNClVBWJidltHTFon3+yhg/axqfU6VcIhjDhsdQsUXIVg/7PfFzCnqVat6vhIuZBx6et5fXvEjAczODPlDxiJJYGd5dcEpEaK320ZRPj2jQJWwrwA7OM8ywl45lJ6ZVIgtsrvI16MbwgDvkjO66g16g+M8Rzckh1NRfMUWZLvNnTu6Ya4NEvzYRNJSz6xROnhS6aLYfPcMP8CGRPSR/Xb3+Q/S5tHnuzHqhYizRPvbCYC43gmUTRL0I5Un4Z4JFdhSCRQJNslQTBoZJ8EmOSlxGEDwNv8EwKmC9OR4rug26zZOy6Q88gPGc2CdwlAmNh4eKXnzPRx6YI7AEtuFPGvQ3BFMfDLR+VODB9mzyFEyB0nTlQ70sZMk8UfmY0LxgkHYOWxVatJLLw0btRLpFWZm4beAkujol0AqTKk823xj2MLYFW9qWzfy+j+ax7Z8EpAB+rYUShMQ6SHW2xebR056qdtJlMbPBb1pNNX1VHj44sr1mpax8A7f0/0DsYFTYkpP5P4Bj1wgT9BLemWXnzNYH8eUwAHHHM4lDdlcp+Zv9d2nHXoWnPQsD5FVGle4E3/hIv0dcvxiUvGSEqa1mpdCz2MaXHg+k37+BT1QIDo=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Rechercher un colis à payer"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/search/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"}},"title":"PaySearchParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"parcelpaid":{"type":"string"}},"title":"SearchParcelData"}},"title":"PaySearchParcelResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

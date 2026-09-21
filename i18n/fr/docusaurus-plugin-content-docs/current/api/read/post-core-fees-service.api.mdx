@@ -1,0 +1,68 @@
+---
+id: post-core-fees-service
+title: "Frais de service"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Frais de service"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVctuGzsM/RVBmzqB6zGydNFF+kJTFLdG466CIJZnaFvpjKRLSW7SwfxPcn/DP3ZJzThjN2nRRTf1wpZFSiQPeY5qaR2gCtqas0JOpLM+XOUW4WoJ4K884EbnIIcyqJWXkwvJNnk5lAX4HLXjg3TsNIY1mKCXOk93iYk4Ps7L7b0oninnym77+FgMNlajKEGsoi6AzT8cPRqJj0rg9t5Z40GADwKMeD+bTcXJeCxe8Fmy+lgGFQR5BLRxQzcp49mWr1XlxNyTNfrcFjAXRRSUtvMjquPmOQeklCmtq69wm7YQVGFNeSsnASMMJcK/kQK/sgVt1emvRih25tyaQCmzaa+47NozFrX0+Roqxatw64BC2cU15IEiOWS0gwbfntWcQO/nA2qzkk1DcOtQ8tY76sJ514SmYQuCT8ikKwgR/jlsxluzgdI6R5jsQzXoIcnaZQXeqxUQ4l/MD4jp5XJ7j1Qk3zEfj+dCm0ITKiIaagoiRGQ4/xAUfewn4BjKg3Sf9OBp3TMoRMWt1QEq/xvhW4TpEl08nYD+/iuTUdVPEn+4+Lfb/EYFJZufGD93zU+zQC5wQ+h7Qpy5Wcs0TrsRH8qNKiPsjXoz7F0eRv7BjWe7IWZXENZ2pwUMlUp8yZj5GeOcdVVlsi0QsI0esSS/dQjOT7JMLVEv7A0N+chXCoNTmEM5MqtscyIf6UfrLKgtRcyTggw2J0eS8+FZ+twT8u0N8buEfQLtAa7N0iaoO+x2F59Oz7hSSrUNeDIaj8aP05iesVgsVP4VTCF2hwfnXMA0FUBkmdnISuOFs9oEzxqW59s7L+gHXEikieLD+ad/WLmmn85nxD0Vl4lCnT4yb1CRqLDcPdJAlrWl0kFstCLCiXlb6bwXOZYzpmZJUknYbP8LQJrL3HysusN+38VFmVhcPKN4CA41hbKx9/CQ4/YuHHpQjiASCUOrxKzKwcZrG9E/JctsbwWDkzlImks60JpBkpeXwseE4pGAsHPoGD8fcWt5HCuVZKXlm3xHCCYU+mfqoJ91L09/0QvVqUQgbmeuVNpw8YlbdcfF7hXuVO9BZWjFL/OaaUs+db1QHr5g2TS8TV1H4srFJRMetVowPy4u6e41SQHgnoC8blF7PuNMDmTkUOB7PTlNk/9L331lYU6Q86J7X6uk+xLVN9rk74mkhU1dTPqc9mpZKrOK6QWQ7Z38+R9s+hdo
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Frais de service"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/fees/service/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"FeesService"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"array","items":{"type":"object","properties":{"servicefeeid":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"servicefee":{"type":"string"}},"title":"FeesServiceData"}}},"title":"FeesServiceResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

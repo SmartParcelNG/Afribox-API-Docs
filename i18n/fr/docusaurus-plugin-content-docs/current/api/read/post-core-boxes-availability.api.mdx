@@ -1,0 +1,68 @@
+---
+id: post-core-boxes-availability
+title: "Disponibilité des casiers"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Disponibilité des casiers"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVsFuGzcQ/RWCl8iGohV8VNGD0wSoi6IRYuVkGBa1O5LocEl2SKp2Bf1PnN/Qj3WGK3lXlpX00Et1kFacIWfmzbzHXUvnAVXUzl5VciS9C/GudAh3M/cA4U6tlDZqpo2Oj7Ivo1oEObqR7CFv+7KCUKL2vJ02X6a4BBv1XJf5RDES5+el2T6J6o3y3uyWz89Fb+U0CgNikXQFbH6x9WwgflcCt0/e2QACQhRgxa+TyVhcDIfiJ95L1pBMVFGQR0SXVnSSsoFt5VLVXkwDWVMoXQVTUSVBafswoDoe3nJASpnSuvsCj3kJQVXOmkc5ipigLxH+TBT4natoaZ3/aoRqby6djZQymzrFFfeBsVjLUC6hVvwUHz1QKDe7hzJSJI+MedQQmr2aE2j9QkRtF3LTl9QCXb1iIVPU0fDSO+7SlZ07WuV1hJARy0cTUvxz2KQPdgXGeU9YdSHstVAVzWMNIagFUCc+2xdI6vl8+4RUPJ8xHQ6nQttKE1oiWWoWIiRkmP8jiNrYr8J0kO4pIH8c5RTaebtV9cmjVVUR7OGHjbrscOm9iirnrv+G7k6FqHgadYQ6/AtkaPuJpNl0Mmvjyi+AYY7wmr2T9jWdcpz3dwr7tBvAPI/kBg80AYG6zrqxlnnU9/Try5UyCTo03PRbl2c6Prsx7zakOjXEpdurFWOiMpcLVqUi61bR1a2CXALgigrOOSQ05L2M0YdRUag5am6i14NQK4xeYQlmYBfF6kIeKVzjLKgLVSqzxvVWF2eSs+Kp/tRKxocHUiADXYrvAX5mdqcjmjnMrdjBuo90Ob5iACj3JoOLwXAwPM5rfMX6NlPUVluJ/ebeNVc0zhURjycusTgG4Z22MbDsluX2axD0Az5mPifx2/XHP1hsxx+vJyQLKs0zu3eSzpRGRTrICn0k26zEc6WjWGlFWiCmTenTVpdZgVk1DKk7gbX9FoGuCZaN44ui3677NDNZYKo3FA/Bo6ZQLrUeAUrcfo2HHpQjiKwPsbk8+CKJLt27hOG1m4TtjZZxMgdJc0kHMtjLyvezCCmjeCYg7h12YjQdcGt5SmuVFa8hpHyvmSQ6jyfHoZaUKmge0BedXbca+j+6Xnd6Eon8hTdKW4Yh0269I+vuFSIzAbjqFy8a/HKxZHaT53o9UwE+o9lseJmmAIlMN7esC6jVjPlyc0sRlqQYgB2d+aXB7u2E8zlQm8O7qJWdy8yE7/p2BYg5kotoXhHqfEVJVH/RIn+PJD243Mus13ltLY2yi5QvK9mcyZ9/AKTGYDc=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Disponibilité des casiers"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/boxes/availability/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"title":"BoxesInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"}},"title":"BoxAvailabilityData"},"sizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"lockersfree":{"type":"string"}},"title":"SizeAvailabilityData"}}},"title":"BoxAvailabilityResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

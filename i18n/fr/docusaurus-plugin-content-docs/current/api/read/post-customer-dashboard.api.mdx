@@ -1,0 +1,68 @@
+---
+id: post-customer-dashboard
+title: "Tableau de bord client"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Tableau de bord client"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVc1u2zgQfhWClzqBaxk5uugh2xbYFMXWaNxTUcSUNLaZUiSXP24Cwe/T7Gv4xXaGkiwrNroo0Mv6YEmcIWfmm/k+1txYcCJIo29KPuPW+HBXRB9MBe6uFH6TG+FKPuZBrD2ffeGdkX8d8xJ84aSl3bj3OoYN6CBXskgHshm7vCzU/omVL4S1ql2+vGSjrZGOKWDrKEsg87OtFxP2QTC3f7JGe2DgAwPN/lws5uxqOmWvaC9afVRBBIYewZm4xZOE9mQrNqKybOnRGn1hSliyMrLCOOsnWMvDSwqIKWNad9/gMS05EKXR6pHPgosw5g7+jhj4D1PiUp0+pYOyMxdGB0yZTEfFZfeesKi5LzZQCXoLjxYwlMnvoQgYyTqCPEjwzV5JCfR+Pjip13w3PiAtyzNmtAcZFC29af3eHrq125HdgU/wpTgIGz2GHXunt6CMtQjcMZ6jHresea3Ae7EGbMtn/QxWuVrtnxwiQWcsp9Mlk7qUCB2LGjvnHERHmP8mvPrYZzEbpHvWo5/p/4yl4Xs7BP7sUVIrU3xDKpwzgsaRDBCMg0Ja2ZZ+mg4ouYU0V7/U47ciiJ97fGrbn6aBEnpA/D1iTjSueZq6jgljvhUqwhEjduPe5cCMgxtRYIcCUEHYmE43CD+RaJV1o5sd0M7Q6sFhqU346BQ6bkKwfpZlYuVkbh6QDBNfCRescAWoiV5n2yt+ojONM8NmlbFISjPaXl1wSojG6VNP3HcPqAMKjonWoTvk16CrK5Oa0QLbhbue3xAAWECTxtVkOpmeJje/IanJBQ6GLlm3eXRLZc1TWciihYmkU55ZI3XwpIBFsf/hGT7AhsSmyN7ffvyLdG/+8XaBpBRxlbjVqisRygmUJBLLEwUlUVwJGdhWCmQiWzb1L3uJJDEkzioUWkRs/08AVGwi7almj/t1G3OV6F2+wHgOrJMYysTew0Ph9j/C0ANzBJbYGRodJ00PJt6b6Pw5USd7oySUzCBpKmkgQqOkO6+ZjwnFCwahc2ilYDmh1tKUViLpjRYVNXchcgUiEg65cSUWkJj6rKt1r17/o1uuVZOAxM+sElITBIl3dUvUo9v8WBjHnC73DVEaXeo6Fx4+O7Xb0TK23iGNvnwlMXCS8KMvPHqDMkFieBCXNw1oLxeUyEBihvLfa811Gv+f+h6rDhEDnfP2iq7SrcCd+I6L9D/j+GJSE5OCp7WaK6HXMd0PvDmTfv8Cczk1Xg==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Tableau de bord client"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/dashboard/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"}},"title":"CustomerDashboard"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"dashboard":{"type":"object","properties":{"newrequests":{"type":"string"},"inlocker":{"type":"string"},"enroutetorecipient":{"type":"string"},"delivered":{"type":"string"}},"title":"CustomerDashboardData"}},"title":"CustomerDashboardResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

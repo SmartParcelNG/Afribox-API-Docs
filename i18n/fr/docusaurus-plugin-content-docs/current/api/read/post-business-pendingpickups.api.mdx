@@ -1,0 +1,68 @@
+---
+id: post-business-pendingpickups
+title: "Retraits en attente"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Retraits en attente"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1yIjcQfhWVLsEuFigfSeXgJFsVp7aylO09uVyL0DQge0ZS9EPsULzPel+DF0u3xHjAzOAccokPBtSt/vla3V+vubHgRFBGXxV8zK3x4esseqXB+68WdKH0wir5GK3nfR7EwvPxHa81+H2fF+ClU5ZMoIHLGJagg5ormayyMTs/l+X2hdk4K9WfEVjxAyo4sE55OD9nvZVRjpXAFlEVJBVvTJwN2CfB3PbFGu2BgQ8MNPvt9nbCLkYj9iPdRamPZRCBoUZwJq7QktCeZHIpKsumHqXRS1PAlBWRSeOsH2BOTx/IIYbepE2RyiRyIAqjy2c+Di5CnzvADHz42RR4tE4/lYOiFkujA4ZOImFtuUtg+OAJmzX3cgmVoG/h2QK6NLMHkAE9WUd1CAp8vqse4XlPzweHdeCbDZZAhZKOPpmF8kFJP8lFmuyKtNmQlgOf0ErmECX6OCzUR72C0liLOO3D12tgGuavFUIiFoBV+KLfoKjm8+2Lw4TJxnQ0mjKFsVCNo8ZCOQfREcT/ESyN7xZo+vwg3FYNK5yE0u/JhHPiGR2pAJV/P4JsoIAgVKmKVh+FCCDx2QRol2cTDuaAwEnQsZqBa9Ws32OHo1qsRXUq292LJWmHoSO9U9gljE8ayirtFVJ/dwVBos5MZuapCwTzdOqWKApHY6pDLFV47jZM0lPGKdGudGpx530HUlmFTfG+hl0a/Y4Kto8q23HF6QCu00kWd18v8Pl3Npw0ZYld0ilHEEojH9F99yMnB9Qypxx0yvODE5WJebgcKaDQ+tZGbJ2kydyvIgi++Rej9no3Y9PIJWdPWG+Pg40ocs3TBK/Zpc9XoozQwjKbfqP6yjav6kQrGyTZCsLS1ARNY0kkyhrW1oaHVD3kVFq3ApdjiQ7Ly5chWD8eDsXcKWoOqwa+Ei5kGAd6MVxd8CNCz8oMB2ERZaL03urijFNUNMCvG0b8+IREW8I+g+3VQum5SYXYoVobvpxcUb4YanZ4MRgNRsdhTK6ItWcC35MuWH25d0MJ5MIhQ92aSJTvmTVKB0/LhJTbb57hB9iQmCqy328+/0ErxOTzzS0SnojzxFu7hYXIyglkddo7jpYR2i/mQgW2UgJZjk1zptNm26C9gviwxJ0Fsdl+D4BLEBFiWoMwpIYC+81563rETGw0PPLK9ls41MAYgaWRG/JKROtRMPHBROfb9iOSZ5amYA6CppQOCL6XOP0n5mNC8YxBqBV2NDsdpD7ER1mJxOV50vBrIAyxAgizCAQ8vC3pulkL/odb426cBGz6oS2F0oRDarP1rjn3tmRE6O0mTZvzknoZ9dbrmfDwxZWbDR1jtg5b5+6epoBTYkbtcneP9pc4H2iOvk6XXzKCH24pmmbGHC1ZzZC5TI1wUnd/3FCLcJrked+t0qjnTvyFh/R/zPGLSRVNLJvO1rwUehHTFsazTfr7B9PBbBk=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retraits en attente"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/pendingpickups/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsPendingPickups"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}}},"title":"LogisticsPendingPickupsResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

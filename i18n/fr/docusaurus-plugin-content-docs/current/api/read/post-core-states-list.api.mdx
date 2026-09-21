@@ -1,0 +1,68 @@
+---
+id: post-core-states-list
+title: "Lister les États"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Lister les États"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVlcFuGzcQhl+F4CWyoWgFH1X04LYB4iBIhFg5GYZF7Y4kOrskMyRVG4t9gL5JnNfQi3WGu/JKtpzk0Et9sCTOkBz+w/9jLa0DVEFbc1HIiXTWh5vcItz4oAL4m1L7IIcyqJWXkyvJIXk9lAX4HLXjeTTrPIY1mKCXOk9LiYk4Pc3L7YMoXinnym749FQMNlajKEGsoi6Aw0+mnozEeyVw++Cs8SDABwFGvJ3NpuJsPBa/8VyK+lhSfYIyAtq4oZWU8RzL16pyYs7VR5/bAuaiiILKdn5E57h7zRtSyVTWzRe4T0MIqrCmvJeTgBGGEuFrpI3/sAUN1emnRih24dyaQCVzaO9w2a1nLWrp8zVUir+Fewe0lV3cQs4iOmSxgwbfztVcQJ/nA2qzkk1DcutQ8tBlasJ77kHTcADBJ2HSCiQIfxz24o3ZQGmdI0n2lRr0imTt1wq8VysgwT+bJ4Lp5XL7gHRGXmM+Hs+FNoUmUUQ01BNEiMhq/kdK9HsfUWMoD8p9MaNdqgspRMW91QEq/2sFgC5eXvuHtYFR1fFobqMJud5tczy+sHcvhNPiB9396V35SwUlm+NX6FN3d9JVogy4o9I9rcvOrmW6jDuDDOVGlRH2jNIM+5RHwzymsTMa4kIFYW13IGGdVXJbxtzI2jZljJSMYh5wA9huHrGktHUIzk+yTC1RkyzkkJGvFAanMIdyZFbZ5kw+g0+bLKilRcwTfgabsxPJ5fBN/NS7+c0dwaGEffftya3N0iaJO+V2C59PL/igVGq74dloPBo/L2N6waRZqPwLmELsJg8u+QDTdACy2sxGxpQXzmoTPAMwz7ffvKAPcCFZLop3lx8/MPamHy9n5FwVl8mAHVzZdaiISMzKZwBlJi6VDmKjFdlVzNuTzntCMgvZ2CVxlrTZfg9AwGZnP0f2sB93cVEmBhSvaD8Eh5q2srHP8JDj9ls4zKAaQSQLhxbjjPRg462N6I8xneMtbriYg6L5SAekGiQ4/S58TCqeCAi7hI4X8xG3lm9jpZKBWrNKNgRgasX2H5rgnza07un2P3rfOjwE8nbmSqUNnz6Zq+682L3hj9Acyu6J52d9za6llLpeKA+fsWwaHqauI3nl6pr9jlot2B9X17T0mkgAuMePP1vRXs+4kAOKHD4PPU7O083/Ye4+WNgTlLzoHucqkVmi+psG+f9E0hebmpiomsZqWSqziun9kO2a/Pcv4rUubg==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lister les États"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/states/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"StatesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"states":{"type":"array","items":{"type":"object","properties":{"stateid":{"type":"string"},"statecode":{"type":"string"},"statename":{"type":"string"},"countcities":{"type":"string"},"countboxes":{"type":"string"},"statedescription":{"type":"string"}},"title":"StateData"}}},"title":"StatesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

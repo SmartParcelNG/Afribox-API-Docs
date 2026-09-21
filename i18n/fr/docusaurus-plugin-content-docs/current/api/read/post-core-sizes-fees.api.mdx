@@ -1,0 +1,68 @@
+---
+id: post-core-sizes-fees
+title: "Frais par taille"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Frais par taille"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVsFy2zYQ/RUMLpE9iqjxUZ0e3CaZutNpNLFy8ngsiFxJcEgAXQCKXQ7/J+5v6Me6C1KmZMlpD71UB4nCLrC7b/c9sJbWAaqgrbkq5EQ668NdbhHuvP4T/N0SwMuhDGrl5eRGskXeDmUBPkfteBttuoxhDSbopc7TSWIizs/zcvskijfKubJbPj8Xg43VKEoQq6gLYPOLrWcj8ZsSuH1y1ngQ4IMAI36ZzabiYjwWP/BesvpYBhUEeQS0cUMnKePZlq9V5cTckzX63BYwF0UUlLbzI6rj4S0HpJQprbsv8JiWEFRhTfkoJwEjDCXCH5EC/2QLWqrTX41Q7My5NYFSZtNecdm9Zyxq6fM1VIqfwqMDCmUX95AHiuSQsQ6aEE17NSfQ+/mA2qxk85wAr+vipMfCPpy0kCnoUPLSNffvA7evaZp0qE+YpuCEJf8ctvG92UBpnSM090Ee9GBm7WMF3qsVUK8+mxdY6+Vy+4QED58xH4/nQptCUzkiGmonIkTkRvxHIPaxT8J0kO5pD0Zpz6IQFU+FDlD5fxGftr/SIjYZVZ0O+1UXYZ1XJ21r0Kt1eMVYgHt1Y+Lqa6kctPqf5obH5p0KSjYnJ+pTN0ppssgBHqiXnk5mjahlGusd1YZyo8oIe5Rrhr3LM/We3ZhjDSlMBWFtd4rEuKvE24wVKEtdy7jejEwecAPYxo5Yktc6BOcnWaaWqIkqRLWRrxQGpzCHcmRW2eZCHqlY6yyow0XMk44NNhdnkrPhufzUy8L7B1KZEvZpvIPyiL29oSPtXmO0WdrUjQ7hXQqX0ytGhIpqU7sYjUfj44SnVyxuC5V/AVOI3ebBNZc6TaUSRWc2sjJ64aw2wbPm5vn2mxf0Q8OUqBrFr9cff2elnX68nhHjVVwm4nZ6zmxFRSLI8nyk2SzDS6WD2GhFNBfzFpN5L8osvywIJUk7obP9KwDdEawIx7fEsF93cVEm7SjeUDwEh5pC2dh7eMhx+y0celCOIBL1Q3tz8C0SbLy3Ef2pa4TtrUxxMgdJc0kHCjdIovaj8DGheCYg7Bw6nZmPuLU8tpVKXGtVQH4gBKkLCkVQuqR+v+hn3Yvi/+hG7YQkkAZkrlTacPGJhXXH2e6tYae1nU4NJb9HrJnc5FHXC+XhM5ZNw8vUcyRO3dyyLKBWC2bHzW0SR1UA7snMzy1mb2ecx4HYHF4qvepcprn/ru++/jAjEnnbt4Eq3TUS1VemOn1PJD3Y1MOkvmmtlqUyq5huHdmeyZ+/AaHgUxo=
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Frais par taille"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/sizes/fees/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"requesttypeid":{"type":"string"},"boxid":{"type":"string"}},"title":"SizesFees"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"sizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"widthcm":{"type":"string"},"heightcm":{"type":"string"},"depthcm":{"type":"string"},"fees":{"type":"string"},"sizedescription":{"type":"string"}},"title":"SizeFeesData"}}},"title":"SizesFeesResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

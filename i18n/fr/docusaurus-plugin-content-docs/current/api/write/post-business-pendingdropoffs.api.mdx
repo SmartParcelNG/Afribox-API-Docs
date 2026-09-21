@@ -1,0 +1,69 @@
+---
+id: post-business-pendingdropoffs
+title: "Dépôts en attente"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Dépôts en attente"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1uGzcQfhWCl8qGIgk+qujBrQPURdAYsXMyjIjizkp0dkmWP6pdQe8T59w30It1htR6ZWtX7qGX+mBJnOH8fMOZb9bcWHAiKKMvCz7l1vjwZR690uD9Fwu6UHpROGNNWXo+5EEsPJ/e8kaF3w15AV46ZckGWjiPYQk6qFLJZJZN2emprLZPzMZ5pf6IwIofUMGBdcrD6SkbrIxyrAK2iKogqXhl4mTEPgjmtk/WaA8MfGCg2a83N1fsbDJhP9JdlPpYBREYagRn4gotCe1JJpeitmzmURq9NAXMWBGZNM76Eeb08I4cYuht3hSpTCIHojC6euTTUlQehtwBpuDDz6bAs3X6qRwgdsFFFEujA8ZOImFttctgfO8JnDX3cgm1oG/h0QL6NPN7kAFdWUeVCAp8vqu+wuOeng8OK8E3G6yBChUdfTAL5YOS/iqX6aIp02ZDag58wivZQ5zo42Wp3usVVMZaRGofwEEL1Dh/rREUsQCsw2f9CkdVltsnhxmTjdlkMmMKg6EqR42lcg6iI5D/I1xa3x3YDPmLcDs1rHASKr8nE86JR3SkAtT+7QiygQKCUJUqOn0UIoDEhxOgW55NOCgBgZOgYz0H16nZvMgeR41Yi/pYtrsnS9IeQwd6x7BLGB81lFW6K6T+6guCRL2ZzM1DHwjm4dgtURSOBlWPWKrw2G+YpMeMU6J96TTi3vsOpLIKm+JtDbs0+g0VbB9VdeOK4wFcr5Ms7r9O07+34aSpKuySXjmCUBn5Fd33P3JyQC1zzEGvPD84UZuYh8uBAgqt72zEzlGazF2IIPjm38zaT7shm2YueXvAgnucbMSSa55meEMwQ74SVYQOotkMW9VnwnlWT8SzQaKtISxNw9I0mESirXFjbvyKr8ecqutW4HI00WGF+TIE66fjsSidov6wauRr4UJGcqQX49UZP2D1rMxwFhZRJl4frM5OOIVFM/xTy4rvH5BtK9hnsb1yKF2aVIsdsI3h86tLyhhDzQ7PRpPR5DCMq0ui7rnAJ6UL1lweXFMCuXZIUjcmEu97Zo3SwdNGIeX2m2f4ATYksorst+uPv9MecfXx+gY5T8QyUdduayG+cgKZnZaPg42EloxSqMBWSiDRsVnOdNauHLRcECVWuLggNtvvAXATIk5MuxCG1LLgsD3v3JGYia2GR2rZfgsvNTBGYGnqhrwX0Y4UTLw30fmuJYnkmagpmBdBU0ovOH6QaP0n5mNC8YRBaBR2TDsbpVbEV1mLROd52PALXNm2f2MFEGYRCHh4XdJ1uxn8D1fH3UQJ2PZjWwmlCYfUZutdd+6tyojQwT5N+/OSuhkV1+u58PDZVZsNHWO6Dnvn9o4GgVNiTv1ye4cOljgiaJY+D5hfMoTvbiicdswcLFrtnDlPnXBUd3/gUI9wmuZ56a3TuOdO/ImH9H/K8YtJJU1Mm87WvBJ6EdMmxrNN+vsHhppv0w==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Dépôts en attente"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/pendingdropoffs/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsPendingDropoffs"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}}},"title":"LogisticsPendingDropoffsResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

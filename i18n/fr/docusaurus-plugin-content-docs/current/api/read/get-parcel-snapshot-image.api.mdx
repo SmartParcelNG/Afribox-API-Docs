@@ -1,0 +1,59 @@
+---
+id: get-parcel-snapshot-image
+title: "Image d'instantané de colis"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Image d'instantané de colis"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVctu2zAQ/BWClziBaxk+uughh6B1ETRG7ZyCwKaltcVEIhk+hASG/yfpb/jHukvJkRUHvRcQIIEccmd3Z1Zbrg1Y4aVWk4yP+Qb8wgibQrFwShiXa7+QpdgA73MvNo6P73i9z+/7PAOXWmnoNJ69DD4H5eVapvFCNmYXF2mxf2PZmTCmaJYvLliv0tKyAtgmyAxo+8PR8wG7Fszu34xWDhg4z0CxH/P5lI2GQ/aVzuKuC4UXniHCWx0qvEkoR3tpLkrDlg53g0t1BkuWBZZqa9wAM3n+QgGRMtJaPMJLXLIgMq2KFz72NkCfW3AxOua85RiVXt2Er1QFhTYG4x7T6bVhk/qzBOewhpjVrfrASq7X+zeLudMdy+FwyaTK5FMAFhQmbi0ES5RTrTyiiMRRLZMHR0y23KU5lIK+/IsB5KZXD5B6PGgsddjLOo829hHWeSvVhu/6vEP3c0SjCpn9czvY4pN9BHjpC1qaNcBbU2iR/W5qjZAdoeAZk3WYIAluy6lF40PX+rwSRYCj7u36LeS9i+8w6uYOxVqCz3WjcaqLiApIajUnB+JJVHuCAAe2AlsTiOnw3Hvjxkki1lau9LMwcuBKYX19xUBtkmrET1xRgxn2IQtp9EWvGp1zoiTVWscyNUU5YC+nE+KP0es7RoPhYHh683RCql6J9BFUxg6HezPiNI2cUHFzHcgSjhktlXdktjTdvzqGLzA+Ki+wn7ObX2Sx6c1sjgIWYR112BiZxGeFtKTg6xOzkv/WQnpWSYGqZUssDLZj2bqRfEf6LtDT8BT2fzzgcCCBn46HfrtuwqqIVsjOMJ4FYyWG0qFFOEjt/tV3EcgRWFSyr0cGjQ+vw4MO1n02P2i/dh2R6ZCmlDqG7UWPfmMuxCqeM/AHQGOb5YCMYLTzpYjeVKKk5k5IWEhUKoQrfCgYxSmk+9jbbev3/2isNm736N7EFEIqKkQzCWq7vf882kmBn4cfDP1Scqwb4bbblXBwa4vdjpZRBRYNfndPtrZSrMgvd/d4f46GB3s0Ji6jrrtjojsvO9Pg+9Ucp85fFqt/cg==
+sidebar_class_name: "get api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Image d'instantané de colis"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/parcel/snapshot/image/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,68 @@
+---
+id: post-business-balance
+title: "Solde du portefeuille"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Solde du portefeuille"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVcFuGzcQ/RWCl8qGIgk+qujBKQLURdAIsXIyjIjijiQ6FMkOSdXGQv8T5zf0Y53h7nolWyhQoJfqIK04Q3LmzXtva+kDoErGu5tKTmXwMX1d5mgcxPh1qaxyGuRQJrWOcnonu5C8H8oKokYTeC/tvM5pAy6ZldHlODEVl5faHp5FyEtr/swgqp8oASGgiXB5KQY7b1BYEOtsKo6qV0dcjMRHJfDwHLyLICAmAU78Np/PxNVkIn7mvRSN2SaVBGUk9HlHJykXOaY3ahvEIlI0R+0rWIgqC+0xxBH19PiOL6TSX/otleoSQlCVd/ZJThNmGEoE6iCm976ipbr8NQhVF9beJSqdQyoE2zYwfoiMTS2j3sBW8VN6CkBX+uUD6EQ3BeQBJAOx2Wu+wdNRXkxo3Fru9zQCkywvffRrE5PR8X07nf2ewwixwFTOIXj453RCH9wOrA+BADrGbdDjM24et4SFWgPB/8W9gs+sVodnpE75jMVkshDGVWW42dGEECEjY/sf4dHffQaToTwp92xGx+B/hejnFsqCLOXBI/USqX6WQC3LhDr2DOVO2QxnWLQf9qkvbHpJZ9rsSURbSBvfKY/7V4WS4+60cdvBmGIRcAfYFJHRUtompRCn47FaoVn6R6LPKG4VpqBQgx259Xh3Jd8otUkWBHWVddHqYHd1IbkcHtDnnuofHklBFo6peQSucStfkG1x7A6+nt1wo1Rqc+HVaDKavC1jdsNyXCr9DVwlus2DW25gVhogBs59Zi1HEbxxKbJLaH34HgX9QEiFiVn8fvvpD/aG2afbORFa5VXhZetETEZUJFc2lDcuw8axUiaJnVHEYrFoOl30NsKGwXy3ZEaEzeFHAnI3JnzxNyqpp/iwXz/re8LnPiOCxsP3dJpBNYIozE6N17HvJZ8ffMZ4zvg43qiQizkpmls6EfCgaPYXEXNB8UJA6hJaGS1GPFpm41YVrTq15eHeessmnWkQmGAF2VgLr4da98L/H74QWodIpPdxsMo4RqIIrW51efQC7L1lKPltuGH9UkJdL1WEL2j3e16mNpFUc3fPykejlqyUu3s6eEOeAHjkKL820L2bcxm9r7zxz95YrosG/jH32GJYHVx3+w7bFluVqP6iRf6eSnrwZZTFfctaLanLdS4GK5sz+fM3cYTrsg==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Solde du portefeuille"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/balance/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsBalance"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"balance":{"type":"string"}},"title":"LogisticsBalanceResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

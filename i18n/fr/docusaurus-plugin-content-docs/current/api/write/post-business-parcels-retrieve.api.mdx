@@ -1,0 +1,69 @@
+---
+id: post-business-parcels-retrieve
+title: "Récupérer un colis"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Récupérer un colis"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1yIjcQfhWVLsEuFigfSeXgZLcqTm1lKZs9uVxGaBqQV0iKfggOxfus8xq8WLo1DAOGgctewgGG6Vb/fK3ur1fcOvAiKmvuCt7nzob4PE5BGQjh2QkvQYdnD9ErWABv8yimgfcfeaXDn9q8gCC9cmQETdymOAMT1UTJbJf12fW11Js35tJYq78SsOInVPDgvApwfc1aC6s808CmSRUkFe9MXHXYZ8H85s1ZE4BBiAwM+304HLCbXo/9TGdRGpKOIjLUiN6mBVoSJpBMzsTcsVFAaQrSFjBiRWLSehc6mNPyAznE0OvEKVKZRR5EYY1+5f2J0AHa3AOmEOKvtsB3q/xXeUDwok8oltZEjJ1Ewjm9zaD7EgicFQ9yBnNBT/HVAfq04xeQEV05T6WICkJ5Vn2D1z29gCUwU75GxVyVAqJQWhUnVFAnqqjp1Wc7VSEqGQb50J2ZWJSThoeQ0czeEEX6OSzkJ7MAbZ1DHPfhbdUwdsvHOUImpoBV+mreoawmk82bRzzIxqjXGzFlinwHksFCeg/JUwl+EGq175PIHYR7BtvLji7WALtCRJB4eyKclpcmPEwA8ZFg0nwM/qRmdS0bHFViI+bnktreW5I2GDrSO6NVQnnWUKlyuhDqn6YgSNSYydgum0Cwy3OnRFF4mlYNYqnia7Nhkp4zTok2pVOJG897kMopvPuXNdzMmgsq2CVKn8YVTAG+0Ukpbj5e4PVv7CtptcYuaZQjCNrKb+i++ZKTA2qZcw4a5eWFE3ObyhlypIBCF042YvOw/CiiuDRM77dTNA9V8rPEUgccXUSSK55HeMUvbb4QOsEJnlm3a9Ud3+zUM++skWfnEGe2YmkaSSKzVrcy1932Xbfi6y6nwvoF+DKc5LG4fBajC/1uV0y8otZwqhPmwsfydMdMu4sbfsTqpTLDMVgkmXm9tbi54hQXTen7mhU/LZFtNeyzWIX2MXnt1UgROVGBtnBXLm8HdwQGJlGGctPpdXrHAQ7uiNTHAu+ZKVh1uPVAqZUFQ4Ia2kQbQWDOKhMD7RpSbr4Hhj/gYiaqxP54+PInbRiDLw9D5DuRJpm2tvsMcZUXyPm0lhztKrR+TISKbKEEkhwblRiM6mWE1g6iQ40rDaK2+TcC7kjEh3lLwpBqBmzX709uT8ymWiMg32y+x0MNjBFYHsWx3Jhoe4o2vdjkw6n1ieQlSVMwB0FTSgf83sqU/gsLKaN4xSBWCluWHXVyf+KFnYtM5eUE4vebN5kc7QaeUMIGV+F9TVf1WvA/3Cq3cybiSOg6LZQhIHIHrradu7dF7ziT0zDfbdu0Xc+o2VF3tRqLAF+9Xq/pNWbssbMen2hOeCXG1DOPT+hjhhOEhuxu/vxWovhhSBHVU+ho0arH0G3uhrO6+/OI+oTTmC9X4nnmAe7F35QNfvc5Pthc1UzB+d2Ka2GmKW9ivLRJn/8AtNl55w==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Récupérer un colis"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/parcels/retrieve/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"LogisticsParcelInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}},"title":"LogisticsParcelInfoResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

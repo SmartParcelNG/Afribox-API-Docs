@@ -1,0 +1,68 @@
+---
+id: post-business-transactionhistory
+title: "Historique des transactions"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Historique des transactions"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVls1uGkkQx1+l1Ze1LQLIR1Z7cHYjxasoQTE5WVYoZgpoZ6a7013N2kK8T5zX4MVS1QMMGPKh1V7WBwNdNd310f9fzVI7jwHIOHtd6oH2LtLHSYrGYowfKYCNUIh1biK58Kg7mmAW9eBWb730XUeXGItgvDjyJleJ5mjJTE2Rd1YDdXFRVOsn5dOkMp8TqvI3dgjog4l4caHOFs4EVaGaJVOKFZ5tcd5Vb0CF9ZN3NqLCSAqtej0aDdVlv69+l2fZGlNFQIo9KLi04J04AbEVc6i9Gke2pli4EseqTKpwwccu5/TwQg7k0Hep50iLbAoIpbPVox5QSNjRATmDSC9dyUvL/NMELLfmwlni0MUE3lebBHr3UWqz1LGYYw3yjR498pFuco8F8Uk+SC/IYGyeNZ/wcc8vUjB2plcrboGhSpbeuBm3xRRx1Dbq9aZRq5V4Boy5YnlLrpR8HDbrlV1g5bznWu2X8KwtVa/5WnNZYIbciQ/2WSXNdLp+Cpy07DHu98fK2DL3OVluVgiYgpT5PypNe/aJ8nT0QbgnPfbuddxzgBBAbrghrOPPw9jbxZQnzymBsODrQ3ja3iycMEDtUlOnI5OHUGAVcIpc8AJtqicYfuBZIoGpvhMgVuDjd4KzUo7mkvzLO/gXEOjVLzq/39zUfHEltAe+KrHp0O1SZy1sddrRC6gSntDrqtO67nS7cxeBrhhXNdLcbXEnfYUs/t52t94x+HrsFjEsMDTxpFDxE3MiHwe9HkyDmbgH1mw31hCoKX3XznqLS32Ex8ZZ8W0qUz6D+Xd5riUykcL7li+vHhhbFe7zYK9Dxk5dbs6mutuNr4bXkjOH2hx42e13+8dhDK+FgRMoPqEt1fbhsxtJYJgTYK2PXBKARuWdsRQFzUWx/hIVf6CnrPmk/r5591aAPHx3M2J0QJpmAmzwL7IPwIwUih+hXWg9BUNqYYB5ocZNpuOW3UJpIUvFE4Brs/5KyCNF0JKHCofUwqTTrp8cNsql1iOyOtdf6NCDY0SVGULNgJFhQy7duxTiqWkj9oZ3EsxB0JLSASrPMh3/UDHlKp4rpK3DBljjbtYuX8wasvQs1NLcRiZNPtyOA4Q9a+2yBe3/cBZvUEMMgJ6vwFipR5bbciPUvXePA5a37yjyTjIXbbPvcjmBiB9CtVrJMmfMLoPbO6FCMDAR6dze8Rlz5oWgdEebP5sqvhhJRC1zjkZXC52rLIof+u7jR+TCzpPNm0SdJ5oO8A8vyv+B5i/O7+ZUXlvqCuws5dmmmz3l7xu9/IAm
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Historique des transactions"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/transactionhistory/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsTransactionHistory"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"transactions":{"type":"array","items":{"type":"object","properties":{"transactionid":{"type":"string"},"datecreated":{"type":"string"},"type":{"type":"string"},"amount":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parceldetailid":{"type":"string"},"elapsed":{"type":"string"},"narration":{"type":"string"}},"title":"LogisticsTransactionHistoryData"}}},"title":"LogisticsTransactionHistoryResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

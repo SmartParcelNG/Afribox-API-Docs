@@ -1,0 +1,69 @@
+---
+id: post-customer-signup
+title: "Inscription"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Inscription"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVV9v0zAQ/yqWX+im0lR7LOJhICSGEFSsPE3T6ibX1iOxzdkum6J+H8bX6BfjzkmWdquQkHihD03iO9vn+/1xLa0DVEFbc1HIiXTWh5s8+mArwBuvVyY6OZRBrbycXMkuIq+HsgCfo3Y8lSaex7AGE/RS52k1MRGnp3m5exDFC+Vc2Q6fnorBxmoUJYhV1AVw+MnUk5H4qATuHpw1HgT4IMCI97PZVJyNx+IVz6Woj2VQQVBGQBs3tJIynmP5WlVOzD1Fo89tAXNRRJFbdH5EZ7l7yRtSyVTWzTe4T0MIqrCmvJeTpSo9DCXC90g7v7EFjdXpUyNQiwJGCufWBKqZQ3uny249N6OWPl9Dpfgt3DugveziFvJAWznkhgcNvpmruYI+zwfUZiW3Q2lUBUcDbm3N8Qhtqcvjc5T3PywWR4IUDTqUPPS2RfeygX275SCCTzikeqn//DiE/p3ZQGmdIwT2gRn0AGTNawXeqxUQvl/NE3z0crl7QOoorzEfj+dCm0ITBCIaogAiRGTw/lHf+72Ptuug3KMZNri/6eWXtompp4zUHZ3CU+WsqlomDnTEHMqNKiPsEXQ77FMeifqYlgi7JUFWENa2EzEfWSWaZ51os0bOGYU84Aaw2TwicUauQ3B+kmVqiXph74iYI18pDE5hDuXIrLLNmXwm+iZZUHOLmCfZDzZnJ5KrYUi+9CJ6d0eiLGGf9F3bOq733y3F+4GW2XsZj4TeA0WbpU2otBh05Z1PL7hddOCm7LPReDR+fpjpBfvEQuXfwBSimzy45DZMUxuIuTMb2WS8cFab4Nm+8nz30wt6gAuJwVF8uPz8iU1r+vlyRkJQcZn43FojkxgV2Qk73TP7Y0dbKh3ERitiv5g3/Zr3/sZOxjopySWpw7tfAchuWSjPDXfYj7u4KJOkihe0H4JDTVvZ2Gd4yHH3MxxmUI0gkiJCY8JsyMHGWxvRH3Nkjjfq5WIOiuYjHQh/kLT+WviYungiIHQJrfzmo2RgROlKJY23ZLkwPXhPoKx7m/iP7qXWSwJ5Q+ZKpQ2fO4mzbqW8d/+ShLu7me/iNSue4nW9UB6+Yrnd8jCBjSS0q2s2C9RqwbK4uqZ112QjtExvPm+bjr2ccRUHFnRosr0XnSfC/zF335RYCpS8aC/UKnmvRPWDBvl/IunFJgSTRaexWpbKrGJyYdmsyb/f0D4UCg==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Inscription"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/signup/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"}},"title":"CustomerSignup"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"CustomerSignupResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

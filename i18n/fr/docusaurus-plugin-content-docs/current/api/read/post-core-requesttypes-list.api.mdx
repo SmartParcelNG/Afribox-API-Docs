@@ -1,0 +1,68 @@
+---
+id: post-core-requesttypes-list
+title: "Lister les types de demande"
+description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Lister les types de demande"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVlcFu2zgQhl+F4KVO4FpGjl7sId0tsCmK1kjcUxDEtDS2mUokd0h6Ewh6n6av4RfrDCVXchI0e9jL5hDb5JAc/jP/x1paB6iCtuaikDPprA+3uUW4Rfg7gg/hwYG/LbUPciyD2ng5u5YcIG/GsgCfo3a8mtaex7AFE/Ra52lDMROnp3m5fxTFG+Vc2Q2fnorRzmoUJYhN1AXw9JOlJxPxUQncPzprPAjKQ4ARfy0Wc3E2nYrfeC3N+lgGFQRFBLRxRzsp43ku36rKiaWn2ehzW8BSFFFQ2s5P6B73b/lASpnSuv0KD2kIQRXWlA9yFjDCWHYCvLMFDdXpp0YoDtO5NYFS5qnB5bI7z1rU0udbqBR/YwXpKLu6g5xFdMiSBw2+Xas5gT7OB9RmI5uG5Nah5KHLNpMFl+IjV6JpeBrBJ3nSPiQLfxxX5L3ZQWmdI2GGeo16XbL2awXeqw2Q7F/ME9n0er1/RLop77GcTpdCm0JTQiIaqgwiRGRN/yM9+rNf0GQsj9J9MWLYt4MAhai4zjpA5V9PY7CLLl4757X5o6L8y0L/qYKSza+64LIrf+oGioN70t/TGWzRWqauOnT6WO5UGWHQ8c24D/nZ+T/DuMUbMngFYWsPXGCRVLJNxgDIhkpnTIiMIjzgDrBNIWJJwdsQnJ9lmVqjXtl7aviJrxQGpzCHcmI22e5MPmNJGyyoKkXME01Gu7MTyUlxS1325nx/T14vYWimQRm0WdskeqfiYePz+QVfl1JtDzybTCfT52nMLxgcK5V/BVOIw+LRFV9gni5AnlnYyNTxwlltgmee5fn+mxf0AS4k70Tx4erzJ6bY/PPVgiyo4jo5qWMl2wcVAYbR94yHjLi10kHstCLfiWV702UPPEYbO7QkbJI2++8BiL9s0ecEHvfjLq7KZObiDZ2H4FDTUTb2ER5y3H8LxxGUI4jkxdBSmQkdbLyzEf1LiOb5lhuczFHSfKUj5IwSZX4XPiYVTwSEQ0Bn/OWES8s9WalkKaMqLi7bAjCVInUlC1IQdgzR5Elp6x5Y/6OHq0NHIK9nrlTasA7JZnXnze5xfsLBsexecH61t+xlCqzrlfLwBcum4WEKR/LO9Q1TALVasV+ub+iALfEBcECVP1rp3jKLjtlyzP0eMufJCb+MHeKGPULBq+7trdJzIFH9wxej/zNJX2wqZYtrHqtlqcwmpodBtnvy3w+ityku
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lister les types de demande"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/requesttypes/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"RequestTypesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"requesttypes":{"type":"array","items":{"type":"object","properties":{"requesttypeid":{"type":"string"},"requesttype":{"type":"string"},"requesttypedescription":{"type":"string"}},"title":"RequestTypeData"}}},"title":"RequestTypesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

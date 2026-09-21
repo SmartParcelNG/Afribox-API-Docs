@@ -176,12 +176,6 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/read/get-customer-cards-add-complete",
-          label: "Card add callback (browser)",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
           id: "api/read/post-customer-cards-info",
           label: "Customer cards info",
           className: "api-method post",
@@ -231,7 +225,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/read/post-customer-parcels-info-all",
-          label: "Parcels info all",
+          label: "Customer: Parcels info all",
           className: "api-method post",
         },
         {
@@ -257,6 +251,12 @@ const sidebar: SidebarsConfig = {
           id: "api/read/post-customer-parcels-timeline",
           label: "Customer parcels timeline",
           className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/get-customer-cards-add-complete",
+          label: "Card add callback (browser)",
+          className: "api-method get",
         },
       ],
     },
@@ -355,7 +355,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/read/post-business-parcels-info-all",
-          label: "Parcels info all",
+          label: "Business: Parcels info all",
           className: "api-method post",
         },
         {
@@ -434,18 +434,6 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
-          id: "api/read/post-pay-return",
-          label: "Pay return",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "api/read/get-pay-return",
-          label: "Payment return / landing page",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
           id: "api/read/post-pay-search",
           label: "Pay search",
           className: "api-method post",
@@ -461,6 +449,12 @@ const sidebar: SidebarsConfig = {
           id: "api/read/post-pay-status",
           label: "Get payment status by reference",
           className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/read/get-pay-return",
+          label: "Payment return / landing page",
+          className: "api-method get",
         },
         {
           type: "doc",

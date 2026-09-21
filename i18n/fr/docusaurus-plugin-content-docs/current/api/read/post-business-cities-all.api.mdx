@@ -1,0 +1,68 @@
+---
+id: post-business-cities-all
+title: "Villes (toutes)"
+description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+sidebar_label: "Villes (toutes)"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVsFuGzcQ/RWCl8qGohV8VNCDmwaIg6ARYqUXw7Co3ZFEh0uyQ1KxsND/xP0N/VhnuJJXsuXm0kt9sGTOcPjmDd+jG+k8oIra2atKjqR3Id7NUtAWQrgrddQQ7pQxsi+jWgQ5upH7qLztywpCidrzdtp8meISbNRzXeaKYiTOz0uzfRQ+zYz+K4GofqEEBI86wPm56K2cRmFALJKuOKqelTgbiE9K4PbROxtAQIgCrPgwmYzFxXAo3vJeioZkooqCMiK6tKJKygaOlUtVezENFE2hdBVMRZVE6dCHAfX08IYPJOhPLWekZQ4hqMpZs5ajiAn6EoE6CPE3V9FSk//UCNU+XDobCTqHlPdm10BxH5ibRoZyCbXib3HtgY50s3soI53kkWfATLd79TdYH+SFiNou5GZDI9DR8NK7PJdPOkRa5gBCyATlCkQMfxzP5r1dgXHeEzWHjPU6Zor2a00sqAUQ8V/tM+L0fL59ROqRa0yHw6nQtspjTZZmgwgJmdX/iInu7BNs9OUR3JMZ7fU9CClEtaZzdIQ6/BwA7V/r6rXSa6vq15HBKxtz7NWdpUs2ztzDEerjU4/G+pNLsv5dRSU3p6/Ol92dyVeIMuCBgAUqyypvZL6Ee4H05UqZBCeEsul3qU+CeUpnZWzIJ2qIS7f3F+ZZZdUV+2pFO6qCnKagcABcAbY4EhrKXMbow6go1Bw18UMiGYRaYfQKSzADuyhWF/KFH7XJgqZapTI7Um91cSYZEV/GL52g3z+QTxg4FOAB79rOXSZ7R+K+8OX4inslqO2BF4PhYPgSxviKTWemym9gK7Hf3LvmBsa5AVLbxCV2rCC80zYG9sKy3P4Igj7Ax6y6JD5ef/6DHXD8+XpC4lVpnjW481sWHioyJbbNF17K9jhXOoqVVqRYMW07nXZmybbI2jZkucTN9u8I5OEs7uziBKmTc79bP+nuwqUuI0CJ2x/xOIMwgsgqjq2js7tHl+5dwnDK3jneOg6DOQLNLR2ZVS/7068ipMzimYC4T9hZxnTAo+ULWasspVaV8k9teAw9QhIhnD0fZ9PZ2//wwdvZRSSxF94obZmDLLFmJ8qDB/7JQfuy/ReAn/wlK5iymmamAnxFs9nwMvWKJJqbW9Y+ajVjodzcUvUluQLggae8a/l7M2EsnbO8eCo6a7nMEvjX3EOTYXFQ8mz3UNf5BZGovtMi/x5J+uLyPLPP5rVGGmUXKb8lsq3JP/8AcVI72A==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Villes (toutes)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/cities/all/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"CitiesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"cities":{"type":"array","items":{"type":"object","properties":{"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"countboxes":{"type":"string"},"citydescription":{"type":"string"}},"title":"CityData"}}},"title":"CitiesListResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
