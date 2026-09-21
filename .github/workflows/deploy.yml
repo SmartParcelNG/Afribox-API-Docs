@@ -20,11 +20,16 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # When set, the workflow regenerates the spec from the private backend.
+      # When empty, it builds from the committed openapi/*.json.
+      BACKEND_PAT: ${{ secrets.BACKEND_PAT }}
     steps:
       - name: Checkout docs
         uses: actions/checkout@v4
 
       - name: Checkout backend (source of the spec)
+        if: env.BACKEND_PAT != ''
         uses: actions/checkout@v4
         with:
           repository: SmartParcelNG/Afribox-Backend
@@ -38,6 +43,7 @@ jobs:
           cache: npm
 
       - uses: actions/setup-python@v5
+        if: env.BACKEND_PAT != ''
         with:
           python-version: '3.12'
 
@@ -45,6 +51,7 @@ jobs:
         run: npm ci
 
       - name: Generate OpenAPI specs
+        if: env.BACKEND_PAT != ''
         run: python3 tools/generate_openapi.py backend
 
       - name: Lint spec
