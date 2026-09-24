@@ -1,0 +1,502 @@
+{
+  "version.label": {
+    "message": "Suivant",
+    "description": "The label for version current"
+  },
+  "sidebar.guidesSidebar.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category 'Guides' in sidebar 'guidesSidebar'"
+  },
+  "sidebar.readSidebar.category.core": {
+    "message": "core",
+    "description": "The label for category 'core' in sidebar 'readSidebar'"
+  },
+  "sidebar.readSidebar.category.customer": {
+    "message": "customer",
+    "description": "The label for category 'customer' in sidebar 'readSidebar'"
+  },
+  "sidebar.readSidebar.category.business": {
+    "message": "business",
+    "description": "The label for category 'business' in sidebar 'readSidebar'"
+  },
+  "sidebar.readSidebar.category.kiosk": {
+    "message": "kiosk",
+    "description": "The label for category 'kiosk' in sidebar 'readSidebar'"
+  },
+  "sidebar.readSidebar.category.pay": {
+    "message": "pay",
+    "description": "The label for category 'pay' in sidebar 'readSidebar'"
+  },
+  "sidebar.readSidebar.category.parcel": {
+    "message": "parcel",
+    "description": "The label for category 'parcel' in sidebar 'readSidebar'"
+  },
+  "sidebar.readSidebar.category.admin": {
+    "message": "admin",
+    "description": "The label for category 'admin' in sidebar 'readSidebar'"
+  },
+  "sidebar.readSidebar.doc.List billingtypes": {
+    "message": "List billingtypes",
+    "description": "The label for the doc item 'List billingtypes' in sidebar 'readSidebar', linking to the doc api/read/post-core-billingtypes-list"
+  },
+  "sidebar.readSidebar.doc.Core boxes availability": {
+    "message": "Core boxes availability",
+    "description": "The label for the doc item 'Core boxes availability' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-availability"
+  },
+  "sidebar.readSidebar.doc.Boxes available bycity": {
+    "message": "Boxes available bycity",
+    "description": "The label for the doc item 'Boxes available bycity' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-available-bycity"
+  },
+  "sidebar.readSidebar.doc.Boxes available bystate": {
+    "message": "Boxes available bystate",
+    "description": "The label for the doc item 'Boxes available bystate' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-available-bystate"
+  },
+  "sidebar.readSidebar.doc.List boxes with a free locker": {
+    "message": "List boxes with a free locker",
+    "description": "The label for the doc item 'List boxes with a free locker' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-available-list"
+  },
+  "sidebar.readSidebar.doc.Core boxes bycity": {
+    "message": "Core boxes bycity",
+    "description": "The label for the doc item 'Core boxes bycity' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-bycity"
+  },
+  "sidebar.readSidebar.doc.Core boxes bystate": {
+    "message": "Core boxes bystate",
+    "description": "The label for the doc item 'Core boxes bystate' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-bystate"
+  },
+  "sidebar.readSidebar.doc.Core: Get boxes": {
+    "message": "Core: Get boxes",
+    "description": "The label for the doc item 'Core: Get boxes' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-info"
+  },
+  "sidebar.readSidebar.doc.List the boxes of the network": {
+    "message": "List the boxes of the network",
+    "description": "The label for the doc item 'List the boxes of the network' in sidebar 'readSidebar', linking to the doc api/read/post-core-boxes-list"
+  },
+  "sidebar.readSidebar.doc.Core cities bystate": {
+    "message": "Core cities bystate",
+    "description": "The label for the doc item 'Core cities bystate' in sidebar 'readSidebar', linking to the doc api/read/post-core-cities-bystate"
+  },
+  "sidebar.readSidebar.doc.Get cities": {
+    "message": "Get cities",
+    "description": "The label for the doc item 'Get cities' in sidebar 'readSidebar', linking to the doc api/read/post-core-cities-info"
+  },
+  "sidebar.readSidebar.doc.List cities": {
+    "message": "List cities",
+    "description": "The label for the doc item 'List cities' in sidebar 'readSidebar', linking to the doc api/read/post-core-cities-list"
+  },
+  "sidebar.readSidebar.doc.List couriers": {
+    "message": "List couriers",
+    "description": "The label for the doc item 'List couriers' in sidebar 'readSidebar', linking to the doc api/read/post-core-couriers-list"
+  },
+  "sidebar.readSidebar.doc.List deliveryareas": {
+    "message": "List deliveryareas",
+    "description": "The label for the doc item 'List deliveryareas' in sidebar 'readSidebar', linking to the doc api/read/post-core-deliveryareas-list"
+  },
+  "sidebar.readSidebar.doc.Core fees appless": {
+    "message": "Core fees appless",
+    "description": "The label for the doc item 'Core fees appless' in sidebar 'readSidebar', linking to the doc api/read/post-core-fees-appless"
+  },
+  "sidebar.readSidebar.doc.Core fees compute": {
+    "message": "Core fees compute",
+    "description": "The label for the doc item 'Core fees compute' in sidebar 'readSidebar', linking to the doc api/read/post-core-fees-compute"
+  },
+  "sidebar.readSidebar.doc.Core fees selfstorage": {
+    "message": "Core fees selfstorage",
+    "description": "The label for the doc item 'Core fees selfstorage' in sidebar 'readSidebar', linking to the doc api/read/post-core-fees-selfstorage"
+  },
+  "sidebar.readSidebar.doc.Core fees service": {
+    "message": "Core fees service",
+    "description": "The label for the doc item 'Core fees service' in sidebar 'readSidebar', linking to the doc api/read/post-core-fees-service"
+  },
+  "sidebar.readSidebar.doc.Find parcels": {
+    "message": "Find parcels",
+    "description": "The label for the doc item 'Find parcels' in sidebar 'readSidebar', linking to the doc api/read/post-core-parcels-search"
+  },
+  "sidebar.readSidebar.doc.List parcelstatuses": {
+    "message": "List parcelstatuses",
+    "description": "The label for the doc item 'List parcelstatuses' in sidebar 'readSidebar', linking to the doc api/read/post-core-parcelstatuses-list"
+  },
+  "sidebar.readSidebar.doc.List requesttypes": {
+    "message": "List requesttypes",
+    "description": "The label for the doc item 'List requesttypes' in sidebar 'readSidebar', linking to the doc api/read/post-core-requesttypes-list"
+  },
+  "sidebar.readSidebar.doc.Get the fees for sizes": {
+    "message": "Get the fees for sizes",
+    "description": "The label for the doc item 'Get the fees for sizes' in sidebar 'readSidebar', linking to the doc api/read/post-core-sizes-fees"
+  },
+  "sidebar.readSidebar.doc.Get sizes": {
+    "message": "Get sizes",
+    "description": "The label for the doc item 'Get sizes' in sidebar 'readSidebar', linking to the doc api/read/post-core-sizes-info"
+  },
+  "sidebar.readSidebar.doc.List sizes": {
+    "message": "List sizes",
+    "description": "The label for the doc item 'List sizes' in sidebar 'readSidebar', linking to the doc api/read/post-core-sizes-list"
+  },
+  "sidebar.readSidebar.doc.Get states": {
+    "message": "Get states",
+    "description": "The label for the doc item 'Get states' in sidebar 'readSidebar', linking to the doc api/read/post-core-states-info"
+  },
+  "sidebar.readSidebar.doc.List states": {
+    "message": "List states",
+    "description": "The label for the doc item 'List states' in sidebar 'readSidebar', linking to the doc api/read/post-core-states-list"
+  },
+  "sidebar.readSidebar.doc.List walletfundmodes": {
+    "message": "List walletfundmodes",
+    "description": "The label for the doc item 'List walletfundmodes' in sidebar 'readSidebar', linking to the doc api/read/post-core-walletfundmodes-list"
+  },
+  "sidebar.readSidebar.doc.Get cards": {
+    "message": "Get cards",
+    "description": "The label for the doc item 'Get cards' in sidebar 'readSidebar', linking to the doc api/read/post-customer-cards-info"
+  },
+  "sidebar.readSidebar.doc.List cards": {
+    "message": "List cards",
+    "description": "The label for the doc item 'List cards' in sidebar 'readSidebar', linking to the doc api/read/post-customer-cards-list"
+  },
+  "sidebar.readSidebar.doc.Get the dashboard customer": {
+    "message": "Get the dashboard customer",
+    "description": "The label for the doc item 'Get the dashboard customer' in sidebar 'readSidebar', linking to the doc api/read/post-customer-dashboard"
+  },
+  "sidebar.readSidebar.doc.Get customer": {
+    "message": "Get customer",
+    "description": "The label for the doc item 'Get customer' in sidebar 'readSidebar', linking to the doc api/read/post-customer-info"
+  },
+  "sidebar.readSidebar.doc.List all parcels": {
+    "message": "List all parcels",
+    "description": "The label for the doc item 'List all parcels' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-all"
+  },
+  "sidebar.readSidebar.doc.Customer parcels archived": {
+    "message": "Customer parcels archived",
+    "description": "The label for the doc item 'Customer parcels archived' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-archived"
+  },
+  "sidebar.readSidebar.doc.List the customer's cancelled parcels": {
+    "message": "List the customer's cancelled parcels",
+    "description": "The label for the doc item 'List the customer's cancelled parcels' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-cancelled"
+  },
+  "sidebar.readSidebar.doc.Customer parcels delivered": {
+    "message": "Customer parcels delivered",
+    "description": "The label for the doc item 'Customer parcels delivered' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-delivered"
+  },
+  "sidebar.readSidebar.doc.Customer parcels enroutetorecipient": {
+    "message": "Customer parcels enroutetorecipient",
+    "description": "The label for the doc item 'Customer parcels enroutetorecipient' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-enroutetorecipient"
+  },
+  "sidebar.readSidebar.doc.Get one customer parcel with its timeline": {
+    "message": "Get one customer parcel with its timeline",
+    "description": "The label for the doc item 'Get one customer parcel with its timeline' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-info-all"
+  },
+  "sidebar.readSidebar.doc.Get one customer parcel": {
+    "message": "Get one customer parcel",
+    "description": "The label for the doc item 'Get one customer parcel' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-info"
+  },
+  "sidebar.readSidebar.doc.Customer parcels inlocker": {
+    "message": "Customer parcels inlocker",
+    "description": "The label for the doc item 'Customer parcels inlocker' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-inlocker"
+  },
+  "sidebar.readSidebar.doc.List the customer's new parcel requests": {
+    "message": "List the customer's new parcel requests",
+    "description": "The label for the doc item 'List the customer's new parcel requests' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-newrequests"
+  },
+  "sidebar.readSidebar.doc.Report the customer's parcels in a date range": {
+    "message": "Report the customer's parcels in a date range",
+    "description": "The label for the doc item 'Report the customer's parcels in a date range' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-reports"
+  },
+  "sidebar.readSidebar.doc.Customer: Get the timeline of parcels": {
+    "message": "Customer: Get the timeline of parcels",
+    "description": "The label for the doc item 'Customer: Get the timeline of parcels' in sidebar 'readSidebar', linking to the doc api/read/post-customer-parcels-timeline"
+  },
+  "sidebar.readSidebar.doc.List the business's boxes with a free locker": {
+    "message": "List the business's boxes with a free locker",
+    "description": "The label for the doc item 'List the business's boxes with a free locker' in sidebar 'readSidebar', linking to the doc api/read/post-business-availableboxes-all"
+  },
+  "sidebar.readSidebar.doc.Business availableboxes city": {
+    "message": "Business availableboxes city",
+    "description": "The label for the doc item 'Business availableboxes city' in sidebar 'readSidebar', linking to the doc api/read/post-business-availableboxes-city"
+  },
+  "sidebar.readSidebar.doc.Business availableboxes state": {
+    "message": "Business availableboxes state",
+    "description": "The label for the doc item 'Business availableboxes state' in sidebar 'readSidebar', linking to the doc api/read/post-business-availableboxes-state"
+  },
+  "sidebar.readSidebar.doc.Get the balance business": {
+    "message": "Get the balance business",
+    "description": "The label for the doc item 'Get the balance business' in sidebar 'readSidebar', linking to the doc api/read/post-business-balance"
+  },
+  "sidebar.readSidebar.doc.List all boxes of the business": {
+    "message": "List all boxes of the business",
+    "description": "The label for the doc item 'List all boxes of the business' in sidebar 'readSidebar', linking to the doc api/read/post-business-boxes-all"
+  },
+  "sidebar.readSidebar.doc.List the boxes assigned to the business": {
+    "message": "List the boxes assigned to the business",
+    "description": "The label for the doc item 'List the boxes assigned to the business' in sidebar 'readSidebar', linking to the doc api/read/post-business-boxes-assigned"
+  },
+  "sidebar.readSidebar.doc.Business boxes city": {
+    "message": "Business boxes city",
+    "description": "The label for the doc item 'Business boxes city' in sidebar 'readSidebar', linking to the doc api/read/post-business-boxes-city"
+  },
+  "sidebar.readSidebar.doc.Business: Get boxes": {
+    "message": "Business: Get boxes",
+    "description": "The label for the doc item 'Business: Get boxes' in sidebar 'readSidebar', linking to the doc api/read/post-business-boxes-info"
+  },
+  "sidebar.readSidebar.doc.Business boxes state": {
+    "message": "Business boxes state",
+    "description": "The label for the doc item 'Business boxes state' in sidebar 'readSidebar', linking to the doc api/read/post-business-boxes-state"
+  },
+  "sidebar.readSidebar.doc.List the business's cancelled parcels": {
+    "message": "List the business's cancelled parcels",
+    "description": "The label for the doc item 'List the business's cancelled parcels' in sidebar 'readSidebar', linking to the doc api/read/post-business-cancelledparcels"
+  },
+  "sidebar.readSidebar.doc.List all cities": {
+    "message": "List all cities",
+    "description": "The label for the doc item 'List all cities' in sidebar 'readSidebar', linking to the doc api/read/post-business-cities-all"
+  },
+  "sidebar.readSidebar.doc.Business cities state": {
+    "message": "Business cities state",
+    "description": "The label for the doc item 'Business cities state' in sidebar 'readSidebar', linking to the doc api/read/post-business-cities-state"
+  },
+  "sidebar.readSidebar.doc.Get the dashboard business": {
+    "message": "Get the dashboard business",
+    "description": "The label for the doc item 'Get the dashboard business' in sidebar 'readSidebar', linking to the doc api/read/post-business-dashboard"
+  },
+  "sidebar.readSidebar.doc.List the delivery areas draft": {
+    "message": "List the delivery areas draft",
+    "description": "The label for the doc item 'List the delivery areas draft' in sidebar 'readSidebar', linking to the doc api/read/post-business-draft-deliveryareas"
+  },
+  "sidebar.readSidebar.doc.List the parcel types draft": {
+    "message": "List the parcel types draft",
+    "description": "The label for the doc item 'List the parcel types draft' in sidebar 'readSidebar', linking to the doc api/read/post-business-draft-parceltypes"
+  },
+  "sidebar.readSidebar.doc.List all parcels info": {
+    "message": "List all parcels info",
+    "description": "The label for the doc item 'List all parcels info' in sidebar 'readSidebar', linking to the doc api/read/post-business-parcels-info-all"
+  },
+  "sidebar.readSidebar.doc.Get parcels": {
+    "message": "Get parcels",
+    "description": "The label for the doc item 'Get parcels' in sidebar 'readSidebar', linking to the doc api/read/post-business-parcels-info"
+  },
+  "sidebar.readSidebar.doc.Report on parcels": {
+    "message": "Report on parcels",
+    "description": "The label for the doc item 'Report on parcels' in sidebar 'readSidebar', linking to the doc api/read/post-business-parcels-reports"
+  },
+  "sidebar.readSidebar.doc.Find a business parcel by reference": {
+    "message": "Find a business parcel by reference",
+    "description": "The label for the doc item 'Find a business parcel by reference' in sidebar 'readSidebar', linking to the doc api/read/post-business-parcels-search"
+  },
+  "sidebar.readSidebar.doc.Business: Get the timeline of parcels": {
+    "message": "Business: Get the timeline of parcels",
+    "description": "The label for the doc item 'Business: Get the timeline of parcels' in sidebar 'readSidebar', linking to the doc api/read/post-business-parcels-timeline"
+  },
+  "sidebar.readSidebar.doc.List parcels awaiting collection": {
+    "message": "List parcels awaiting collection",
+    "description": "The label for the doc item 'List parcels awaiting collection' in sidebar 'readSidebar', linking to the doc api/read/post-business-pendingpickups"
+  },
+  "sidebar.readSidebar.doc.Business pickedupparcels": {
+    "message": "Business pickedupparcels",
+    "description": "The label for the doc item 'Business pickedupparcels' in sidebar 'readSidebar', linking to the doc api/read/post-business-pickedupparcels"
+  },
+  "sidebar.readSidebar.doc.List the business's retrieved parcels": {
+    "message": "List the business's retrieved parcels",
+    "description": "The label for the doc item 'List the business's retrieved parcels' in sidebar 'readSidebar', linking to the doc api/read/post-business-retrievedparcels"
+  },
+  "sidebar.readSidebar.doc.List the sizes business": {
+    "message": "List the sizes business",
+    "description": "The label for the doc item 'List the sizes business' in sidebar 'readSidebar', linking to the doc api/read/post-business-sizes"
+  },
+  "sidebar.readSidebar.doc.List the states business": {
+    "message": "List the states business",
+    "description": "The label for the doc item 'List the states business' in sidebar 'readSidebar', linking to the doc api/read/post-business-states"
+  },
+  "sidebar.readSidebar.doc.Get the wallet transactions business": {
+    "message": "Get the wallet transactions business",
+    "description": "The label for the doc item 'Get the wallet transactions business' in sidebar 'readSidebar', linking to the doc api/read/post-business-transactionhistory"
+  },
+  "sidebar.readSidebar.doc.Box heartbeat": {
+    "message": "Box heartbeat",
+    "description": "The label for the doc item 'Box heartbeat' in sidebar 'readSidebar', linking to the doc api/read/post-kiosk-ping"
+  },
+  "sidebar.readSidebar.doc.Find a parcel for payment": {
+    "message": "Find a parcel for payment",
+    "description": "The label for the doc item 'Find a parcel for payment' in sidebar 'readSidebar', linking to the doc api/read/post-pay-search"
+  },
+  "sidebar.readSidebar.doc.Get payment status by reference": {
+    "message": "Get payment status by reference",
+    "description": "The label for the doc item 'Get payment status by reference' in sidebar 'readSidebar', linking to the doc api/read/post-pay-status"
+  },
+  "sidebar.readSidebar.doc.Parcel snapshot image": {
+    "message": "Parcel snapshot image",
+    "description": "The label for the doc item 'Parcel snapshot image' in sidebar 'readSidebar', linking to the doc api/read/get-parcel-snapshot-image"
+  },
+  "sidebar.readSidebar.doc.List businesses": {
+    "message": "List businesses",
+    "description": "The label for the doc item 'List businesses' in sidebar 'readSidebar', linking to the doc api/read/post-admin-businesses-list"
+  },
+  "sidebar.writeSidebar.category.core": {
+    "message": "core",
+    "description": "The label for category 'core' in sidebar 'writeSidebar'"
+  },
+  "sidebar.writeSidebar.category.customer": {
+    "message": "customer",
+    "description": "The label for category 'customer' in sidebar 'writeSidebar'"
+  },
+  "sidebar.writeSidebar.category.business": {
+    "message": "business",
+    "description": "The label for category 'business' in sidebar 'writeSidebar'"
+  },
+  "sidebar.writeSidebar.category.kiosk": {
+    "message": "kiosk",
+    "description": "The label for category 'kiosk' in sidebar 'writeSidebar'"
+  },
+  "sidebar.writeSidebar.category.pay": {
+    "message": "pay",
+    "description": "The label for category 'pay' in sidebar 'writeSidebar'"
+  },
+  "sidebar.writeSidebar.category.parcel": {
+    "message": "parcel",
+    "description": "The label for category 'parcel' in sidebar 'writeSidebar'"
+  },
+  "sidebar.writeSidebar.category.admin": {
+    "message": "admin",
+    "description": "The label for category 'admin' in sidebar 'writeSidebar'"
+  },
+  "sidebar.writeSidebar.doc.List wallettransactiontypes": {
+    "message": "List wallettransactiontypes",
+    "description": "The label for the doc item 'List wallettransactiontypes' in sidebar 'writeSidebar', linking to the doc api/write/post-core-wallettransactiontypes-list"
+  },
+  "sidebar.writeSidebar.doc.Add cards": {
+    "message": "Add cards",
+    "description": "The label for the doc item 'Add cards' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-cards-add"
+  },
+  "sidebar.writeSidebar.doc.Delete cards": {
+    "message": "Delete cards",
+    "description": "The label for the doc item 'Delete cards' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-cards-delete"
+  },
+  "sidebar.writeSidebar.doc.Customer cards setdefault": {
+    "message": "Customer cards setdefault",
+    "description": "The label for the doc item 'Customer cards setdefault' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-cards-setdefault"
+  },
+  "sidebar.writeSidebar.doc.Change the password of customer": {
+    "message": "Change the password of customer",
+    "description": "The label for the doc item 'Change the password of customer' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-changepassword"
+  },
+  "sidebar.writeSidebar.doc.Edit customer": {
+    "message": "Edit customer",
+    "description": "The label for the doc item 'Edit customer' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-edit"
+  },
+  "sidebar.writeSidebar.doc.Request a password reset for customer": {
+    "message": "Request a password reset for customer",
+    "description": "The label for the doc item 'Request a password reset for customer' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-forgotpassword"
+  },
+  "sidebar.writeSidebar.doc.Log in (returns a session token)": {
+    "message": "Log in (returns a session token)",
+    "description": "The label for the doc item 'Log in (returns a session token)' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-login"
+  },
+  "sidebar.writeSidebar.doc.Customer otp resend": {
+    "message": "Customer otp resend",
+    "description": "The label for the doc item 'Customer otp resend' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-otp-resend"
+  },
+  "sidebar.writeSidebar.doc.Verify otp": {
+    "message": "Verify otp",
+    "description": "The label for the doc item 'Verify otp' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-otp-verify"
+  },
+  "sidebar.writeSidebar.doc.Cancel a customer parcel": {
+    "message": "Cancel a customer parcel",
+    "description": "The label for the doc item 'Cancel a customer parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-parcels-cancel"
+  },
+  "sidebar.writeSidebar.doc.Place a hold on parcels": {
+    "message": "Place a hold on parcels",
+    "description": "The label for the doc item 'Place a hold on parcels' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-parcels-hold"
+  },
+  "sidebar.writeSidebar.doc.Release parcels hold": {
+    "message": "Release parcels hold",
+    "description": "The label for the doc item 'Release parcels hold' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-parcels-hold-release"
+  },
+  "sidebar.writeSidebar.doc.Create a customer parcel": {
+    "message": "Create a customer parcel",
+    "description": "The label for the doc item 'Create a customer parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-parcels-new"
+  },
+  "sidebar.writeSidebar.doc.Reset the password of customer": {
+    "message": "Reset the password of customer",
+    "description": "The label for the doc item 'Reset the password of customer' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-resetpassword"
+  },
+  "sidebar.writeSidebar.doc.Register customer": {
+    "message": "Register customer",
+    "description": "The label for the doc item 'Register customer' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-signup"
+  },
+  "sidebar.writeSidebar.doc.Submit a support request for customer": {
+    "message": "Submit a support request for customer",
+    "description": "The label for the doc item 'Submit a support request for customer' in sidebar 'writeSidebar', linking to the doc api/write/post-customer-support"
+  },
+  "sidebar.writeSidebar.doc.Card add callback (browser)": {
+    "message": "Card add callback (browser)",
+    "description": "The label for the doc item 'Card add callback (browser)' in sidebar 'writeSidebar', linking to the doc api/write/get-customer-cards-add-complete"
+  },
+  "sidebar.writeSidebar.doc.Cancel a business parcel": {
+    "message": "Cancel a business parcel",
+    "description": "The label for the doc item 'Cancel a business parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-business-parcels-cancel"
+  },
+  "sidebar.writeSidebar.doc.Create a business parcel": {
+    "message": "Create a business parcel",
+    "description": "The label for the doc item 'Create a business parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-business-parcels-create"
+  },
+  "sidebar.writeSidebar.doc.Retrieve a dropped-off parcel": {
+    "message": "Retrieve a dropped-off parcel",
+    "description": "The label for the doc item 'Retrieve a dropped-off parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-business-parcels-retrieve"
+  },
+  "sidebar.writeSidebar.doc.List parcels awaiting drop-off": {
+    "message": "List parcels awaiting drop-off",
+    "description": "The label for the doc item 'List parcels awaiting drop-off' in sidebar 'writeSidebar', linking to the doc api/write/post-business-pendingdropoffs"
+  },
+  "sidebar.writeSidebar.doc.Create wallettransaction": {
+    "message": "Create wallettransaction",
+    "description": "The label for the doc item 'Create wallettransaction' in sidebar 'writeSidebar', linking to the doc api/write/post-business-wallettransaction-new"
+  },
+  "sidebar.writeSidebar.doc.Reserve parcel appless": {
+    "message": "Reserve parcel appless",
+    "description": "The label for the doc item 'Reserve parcel appless' in sidebar 'writeSidebar', linking to the doc api/write/post-kiosk-parcel-appless-reserve"
+  },
+  "sidebar.writeSidebar.doc.Verify parcel appless": {
+    "message": "Verify parcel appless",
+    "description": "The label for the doc item 'Verify parcel appless' in sidebar 'writeSidebar', linking to the doc api/write/post-kiosk-parcel-appless-verify"
+  },
+  "sidebar.writeSidebar.doc.Collect a parcel from parcel": {
+    "message": "Collect a parcel from parcel",
+    "description": "The label for the doc item 'Collect a parcel from parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-kiosk-parcel-collect"
+  },
+  "sidebar.writeSidebar.doc.Drop off a parcel at parcel": {
+    "message": "Drop off a parcel at parcel",
+    "description": "The label for the doc item 'Drop off a parcel at parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-kiosk-parcel-drop"
+  },
+  "sidebar.writeSidebar.doc.Upload a snapshot for parcel": {
+    "message": "Upload a snapshot for parcel",
+    "description": "The label for the doc item 'Upload a snapshot for parcel' in sidebar 'writeSidebar', linking to the doc api/write/post-kiosk-parcel-snapshot"
+  },
+  "sidebar.writeSidebar.doc.Set up a box from its code": {
+    "message": "Set up a box from its code",
+    "description": "The label for the doc item 'Set up a box from its code' in sidebar 'writeSidebar', linking to the doc api/write/post-kiosk-setup"
+  },
+  "sidebar.writeSidebar.doc.Initialize a Paystack payment": {
+    "message": "Initialize a Paystack payment",
+    "description": "The label for the doc item 'Initialize a Paystack payment' in sidebar 'writeSidebar', linking to the doc api/write/post-pay-initialize"
+  },
+  "sidebar.writeSidebar.doc.Confirm a parcel payment": {
+    "message": "Confirm a parcel payment",
+    "description": "The label for the doc item 'Confirm a parcel payment' in sidebar 'writeSidebar', linking to the doc api/write/post-pay-success"
+  },
+  "sidebar.writeSidebar.doc.Verify a Paystack payment": {
+    "message": "Verify a Paystack payment",
+    "description": "The label for the doc item 'Verify a Paystack payment' in sidebar 'writeSidebar', linking to the doc api/write/post-pay-verify"
+  },
+  "sidebar.writeSidebar.doc.Payment return / landing page": {
+    "message": "Payment return / landing page",
+    "description": "The label for the doc item 'Payment return / landing page' in sidebar 'writeSidebar', linking to the doc api/write/get-pay-return"
+  },
+  "sidebar.writeSidebar.doc.Paystack webhook": {
+    "message": "Paystack webhook",
+    "description": "The label for the doc item 'Paystack webhook' in sidebar 'writeSidebar', linking to the doc api/write/post-pay-webhook-paystack"
+  },
+  "sidebar.writeSidebar.doc.List a parcel's snapshots": {
+    "message": "List a parcel's snapshots",
+    "description": "The label for the doc item 'List a parcel's snapshots' in sidebar 'writeSidebar', linking to the doc api/write/post-parcel-snapshots"
+  },
+  "sidebar.writeSidebar.doc.Create businesses wallettransaction": {
+    "message": "Create businesses wallettransaction",
+    "description": "The label for the doc item 'Create businesses wallettransaction' in sidebar 'writeSidebar', linking to the doc api/write/post-admin-businesses-wallettransaction-new"
+  }
+}

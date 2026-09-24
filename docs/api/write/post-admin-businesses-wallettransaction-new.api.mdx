@@ -1,11 +1,11 @@
 ---
 id: post-admin-businesses-wallettransaction-new
-title: "Businesses wallettransaction new"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Businesses wallettransaction new"
+title: "Admin: Wallettransaction New"
+description: "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network."
+sidebar_label: "Admin: Wallettransaction New"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVU1v2zAM/SuCTmmRxkGPGXZIhwHrDlvRZtihKBLZZhK1suTpI21g5L+PlO3aXtLussN6aF2RFKlHvseKmxKs8NLo65zPeGmcX4q8kHqZBic1OAdu+SyUAu+t0E5k5LvU8MzH3IuN47N7HgP4w5jn4DIrS3LBy+bBb0F7mcX7Z+z8XJQle4L9+TkbOQCGZjZ0YpsgczibsAWaLLjSaAdMOvZlsbhhl9PphxiElqA8nUsdD1KT79nKeeGDy0wOK7aWoPIJFvlyITAFloPJl5g8HlkQudFqz2droRyMuYVfAZy/wnv4rIr/SgsIibcBzZnRHqskE16jmmqTR0cPrbjLtlAI+vL7EjCXSR8h85iqtASwl+DqWEkVdH7OW6k3/DDmLdwyP2k+agF5vOu7DjovEIo3nHpXicKE+m1HXlrYejpOWjOE0UOennoRpZBe0dGcxuOqed/PWNyiy36NHbYeAyikbXlEC9tNf4ZDdVu3HvQOFEKLg/Ta9KT+LDCL2NAQfTP6YjWdrljngwOTU/fAMaEZWGssDck/6m+X5yReg/rex+wvcN02OEXYMAxesHyHZuJjxeOQtZM/5juhAvQYcBh3Lq9MeHWLjDggmwvwW9OqAr1VRB4lke5Jpw/J0XAmqA8JRmCpO7B1TcEqDN56X7pZkoi1lal5QUJMXCGsL4XNQE30Jtld8iMhqZ0Zgp2HmICNdpdnnIqkFt125P38IopSQZ9sLbxDjnWnb1LrT5c+ozrbCSJ1xh5/usMebXrDIfXaxJloWdM8en5zTb1BGOtrLifTyfRNiFKRPYHOKYqN7gjZm4gssmGuFNImL43UHqc/y6D07Ovd92/M4O3s5vvdgo2CVggQ0wYLpJihOqPg7qQg5qxqdFetADf6GYV4Rg7zjkaxGHQeM8HauWZlSNFeHxvbtzhAgDxZ6jUQpb+mDhUg1LPYu24XmOAzU8QlYaE0FgsfbAUqeLAZRlESPjIXEALnzrDavPVouLmaUEdo7AsRBQBb22clqsfR1LB6Jw7aUnXC8p9sw0ZxPApGUiqBaxsfGqlZNfxu13lHF9S2Eyyh6Y4vpsW/JYXA0KpKhYMfVh0OdIwzYXHK7x9IXKwUKU32/QOm3KLsgO2J1acaqIsFFTiQrKEad9o1jxP8rm9fxGi+6VHNhi+iSHMr6An0e8bxw8TGRS2PZxVXQm9ClGte30k/vwFexz9Y
+api: eJy9V91u2zYUfpUDXTmZI9lputUOduGmLdphaYPEQS/SIqKlY5uNRKok5cQzAuwh9oR7kp1DyZZcO+3FhhkBI1Mkz993vo9eBbpAI5zU6l0aDINCW3cr0lyq20lppUJr0d7eiyxD54xQViS89lbhfdANnJjZYHgT+A3B526Qok2MLHgJHfZOWTQOBFT7IdcLzFE5mGpDs2sDIVzi11IatODmCIeH/ji4w+Xh4SkYnJbkAzTugC6dlSmCdBYUuntt7kLy5uFIlG5OdpVW6L8bFKlW2TIYTkVmsRsYMoTWvdQpza38V7JLgTtT0utEK0f+8StRFJlMfGKiL5bDWQU2mWMu+MktCyRDevIFE0emCsNpdBJttVeS86111hmpZsFjN1hHIdO9r3cSzSv2re0GqMqcc9+n5+Pd3PfhVzij0KTrwjE9v8KJdCFcIUKUaIPRXlM2yqR1Udj4Mi1Vmuv0CSe2bb6htTQPvH7X1Pqkto2WeZHrskr9TlaUMBVE975NqMoO08m+hD92WzW+WReGkuWky3jhiKH2si7KR+/nuPGpAjAdUx1kC00TvsTHvR7/247/Em2ZOUC1wIzwAJ3YOuFKm1DUcVR/ycmQmGF8EELc68VUGlsmCU2eUkssRCZTqFEK99LNQWn6zudakLba4ueFAswLtwROzhI6SjuIBwOyo8os4+NHagmaOspA2w/oYDhj2ydxlza88OMgPgBJxSPAU38JmAqZlQa5q/6jnmg8+B6YKavdoMeQ7h3z8IyHEx6e8/AzD7/w8IKHAQ193tHnHQOeGwx2W6EuC9seQq/X5LvXP+o922R7QqRAcyeQS+pPgvFUYpbSzPOjfr+qjA/9FAYvgJmGslJng6YGMEOFRiaAxhC90V9Vnqp4Hu1bANiP1jUufwDJyxqLNTRPKEc7aLxWd0rfKygEoeXvP/8iT1xpVEWyv119eN8A1QNqCyQMiS4wpghnb8fnv9MxM/RRPN8H/WuFDwXVHVMg/xaEuSoN/8ru6OoifP96vDZNtvGBsGjJJMvOKvAsu+b9bkA1KnHN/4/d5v1GBzZrvB48ElRydHO9Vj5GrfASEnkNihrR2eXLiDQwoh1VvJVDpclo89y5wg6jSEyNnOgHYp3Q5sK4QpgEs1DNosXxDnmOqsVAbZOW3gB0FscHATvJzXbZSNfrB5EXGbalpmmltsI0s08Ki9ePXapvdu6h6OZli5mbyRYht2haqqn2mF8zbx3v6OIdl4UyWB1zHPbC3pPZmYjkDlXKu6BzxUm98EllussyQlZaaKmIKwX1eOEqvGnG48WHqzF0SpVRbhhgmPKerTZmgl1IwdCLq8TGxIoet22SGHpsNlzonaHFXSLOdd9CUU7o/c60RcqOq6apPTp8E4prsBEHC0ixYuEUNregEM5K63ROQTCQ20FmVq8jFdRIXHYqraYUxXXb0UGTJZlI6iOiTM/YVghjCuvteHwBVf9x8KRq0PEp24gdyQtWLU0eWc7LtgbEB6c+QXQnS+h8PsVgoQ1HUOeOc+bzui1D2+pHsVNZv9FIKtAPJHHNLU/pYgivKknbjuI8SqMlfWA+zPMh1WV0Hl2cx5vjnczxD2IR6HAANaNRaNfjs5/6FPFE6wzJkpeI6nS/0KOdzv8UjOlC+SkgNf4UvGGuoWfPnkwzufDSSf20uYIM4eO3HQrv/R17qw9WjRz/37frWqscUXBUZILu+xSN57tVTZrr3wENB5H076Ee5g0fGkv1nGmXtq5WE2Hx2mSPjzxN1TbEHzefmbGNFBPmjJvPZHJOLYCmRf9nVUaOxuxgIwI7l5VGEEa+Y767tq0MzBwcVP2jIfd3mMAIDoHHYUAP2lfIX3X83CrIhJqVXuiD6kz+/ANbOagN
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Businesses wallettransaction new"}
+  children={"Admin: Wallettransaction New"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"businessid":{"type":"string"},"wallettransactiontypeid":{"type":"string"},"walletfundmodeid":{"type":"string"},"transactionamount":{"type":"string"},"narration":{"type":"string"},"createdby":{"type":"string"}},"title":"AdminBusinessWalletTransactionInsert"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"businessid":{"type":"string"},"wallettransactiontypeid":{"type":"string","enum":["1","2"],"description":"1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."},"walletfundmodeid":{"type":"string","description":"Funding mode. See /core/walletfundmodes/list/."},"transactionamount":{"type":"string"},"narration":{"type":"string"},"createdby":{"type":"string"}},"required":["apikey"],"title":"AdminBusinessWalletTransactionInsert"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"BusinessWalletTransactionInsertResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"BusinessWalletTransactionInsertResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

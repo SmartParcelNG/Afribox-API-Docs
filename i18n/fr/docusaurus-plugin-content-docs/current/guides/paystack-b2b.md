@@ -40,6 +40,17 @@ Réponse (`00`) : `reference`, `authorizationurl` (paiement hébergé), `accessc
 | `parcelreference` | Marque le colis comme payé |
 | (aucun) | Enregistrement uniquement |
 
+Les trois cas sont **mutuellement exclusifs** : envoyez `fulfil: "wallet"` **ou**
+`parcelreference` **ou** aucun des deux. Pas les deux.
+
+### Montants
+
+`amount` est en **unités majeures XOF** (ex. `"5000"` = 5 000 F). Le XOF n'a **pas d'unité
+mineure** ; le « multiplié par 100 » interne à Paystack ne change ni ce que vous envoyez ni
+ce qui est débité. `/pay/verify` renvoie `amount` et `fees` dans la **même unité majeure**.
+Un crédit de portefeuille porte la `reference` Paystack dans le grand livre
+(`/business/transactionhistory/`).
+
 ## 2. Vérifier
 
 Après paiement, appelez `POST /pay/verify`

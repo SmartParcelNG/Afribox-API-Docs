@@ -1,11 +1,11 @@
 ---
 id: post-business-parcels-cancel
-title: "Business parcels cancel"
-description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Business parcels cancel"
+title: "Cancel a business parcel"
+description: "Cancels a business parcel awaiting drop-off, releases its locker and refunds the reservation fee to the wallet. Requires the **Business secret key**. The response carries `refundedamount`."
+sidebar_label: "Cancel a business parcel"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVk1vIjkQ/SuWTyQiNMqR1R6Y3ZE2q9VMlLCnKAru7gI847a9tpuBRfz3rbK7aRA0XOawOQRwPdeXq+rVjhsLTgRp9FPJJ9waHz7y2ksN3n9Y4QpQ/qMQGj/5kAex9HzyxlsEfx/yEnzhpCUVqGBahxXoIIuoc8Lu71sss3WuZHF/zwYegCGMnYLZspYl3I3YDEUOvDXaA5Oe/TGbPbPH8fiXeAkltQp0LnU8yE25ZXMfRKh9YUqYs4UEVY7Q382DQBPoVhdSdCKKHIjSaLXlk4VQHobcwT81+PAJ9fHJLv6UDjAtwdUoLowO6C2JhLWq8Tr75inwHffFCipB38LWAto0+TcoApqyjpIcJPh0V36H7RHOByf1ku8RGPNdQhBSyfICBDFBBkVHf5ml9Jg6/xwvPemFQTkh2tRFa5g2+jh9pJeUQtBrUOgaPsgheVn6WmGuxJIe44vRD/PxeM46DCa+pOjBM6EZOGccJfsn5aezczFHJ/5dyeJtQzezjbWNQRZYJwEuy5MKBwtwgC2i6yoHdxHZFmCPoVasRXUtqKZCSdqj6Ax3BZVSeVVRglx+CPlvnxMk6o0kN5u+JJjNtVuiLB3NnB5xIcO2XzFJrymnQPvCacW99x0U0kqs/dsIuzL6BgS7RKrLeQVdgus1ksT910ss/96+KoxS2CW9ckyCMsV3NN9f5GSAWuaagV55KjhRmTrNkDMACq2/2Ij9Y/F3EcStsfnSzMs4PsnOBp/a4+giqtvxOKxbJhnytVA1XGCU/bCDHpjlAI8Ms0e2rCCsTMu0NJJE5KesVZc1fZclzs04Patbg0vO1A6flq9CsH6SZWLhJDWGlSNfCRfS3ZFeZutHfsbMCcxwCJZ1EQl3sH684+QVzeiXjv0+b0RlFRyzVZvrc5I6eiFJJETP0yS7NTl9fqJUYBDJlcfReDTudTAXWGa6pFts8EpxpbdCMpoqhaxVWiN1QPIpCrCB/fn69QszqJ09f32dsUGtFa0b2uDUpjunSwbuDWspiLjmKbZ5u0c0QzPuExMCTDsWi84geMgE+3S60KRj444lnlgjkCRtM3GDSbOUHBDqh9j6bqUxNfZdFXcdB9Y4dPxkuSGHTxacQWTkX5mvMQXe36G3ZYtoqHE+ik2FVVaJyL9pbPDO+1Ro7LDcnbzGrqPz/9lO1/R+wDbNrBJSU5yxL3ZNNx3tpwceo/2kDZS21hW1HyJ3u1x4+Nup/Z6OsQIcVvvbO3WukyKnOn57Rwsr7Gkae4eJ8FvKz8OM/Onmwtnq0w2GaazXq9jjCUHVzGnwpnW0ipOZO/EDD+n/hOMXE98rkmI823El9LKOuxFPOunvP3BLLuY=
+api: eJzVVtty2zYQ/RUMn2RXFiXHbi1l+uC46SSdOPHY8pOTCSFyJSEhARYAbasaz/Qj+oX9kp4FqJvttA/tSzUaiAIXez17FsvE1GSlV0a/LZJRUhvnP08apzQ597mWNqfSfc6lxm/STbycuWR0k6wkkk/dpCCXW1WzCig4C6JOSLGSEVGLkHdSeaVnorCmPjDTaVdYKkk6ckJ5J0qTfyUrpC6wP2104YSfE54d2dvgoZgSCW/C9p0sS/I9cUm/NgoyYXN//9XKqKPckhdfabG/3xPjqKg22pHIpbUKJ7JohgpZmUb7rIcA7w9k4+eIY52DqCi8siQLo8tFMprK0lE3sTBOzr8yBfaW4S98QR69bfA6N9qT9vxK1nWp8hBF+sVxppaJy+dUSX7yi5pg00y+UM6mastV8XAynlUIY0vOeYs8Jg8QDKktyEtVquIZkYfullc3K1Womle+ZMF3ZqacV7m7CKre6qnBqXgu5iv4cNjv889urS/JNaUXpG+phMOikzkvfeNyU1CWtn8qJFHOKNvriazfz8SPwjV5js2XwMithNuiTaO4U34utOFKQS9Q4eKRsC+1oKr2C4HqyYXoaONFNhzCjm7KktWf6oUwgIEV236IDvVmbPso6+LASViH2Z5QuuCKEGN1ivw1lhgB/1HRNh48rUo3Id1UXA9ktZv0B7wc8vKClyNejnn5npcfeDnhZYhlwCcGfGLIe8Ph0xZsy8K2R6Lf3+S7Pzjov1hnewLUYu9IVMo57supApSwc3wwGMTKhNBfiuGJ4K5AVtpsYGsoZqTJqlyQtcYKfGN5YvF6jM4dADyL390OfB6/30BqJJrLFqQtZo+QvCcwvdZftbnT4CHA6M/f/4CLvrE6UsYvVx/ebxAckLaDHsZKVzDYAMA34/N3UDOjEN7xcz1xrem+BiCoEMxbAGPMz7+ye3p10Xv/erwyDdt0D5A6mGQ6XiaBH1bk1U1QvIaeIbGH7kZ0TWZr8UBqD4BTRX5uVtOAkS0DJaYrdWk7F9I4F1KIxFijM40tIT33vnajNJVTqybmHszTc5W0Pp7t6Vl6y5Dfzd5pFBbopaLJA+d3bg/3EvaKO/ByQ7iv72VVl7RNkJv+esyLW5BTzHAMtBZWK5OnF285FQgiunLY6/f633RwIjGsMKlwSnSuOK6ISqahskRhi9ooDQ6T6L3ax3IbhsPFh6ux6DS65CmF+lLBZ3bai4nvVkmufBZjy8BW7TTcNO8oQGPDUcEZCHdBaOs5WDcTvH+yvRmPXW7dzhRLlsqiUjoFN0qBpgzsWIiwyZI9cdY4byoEweDZDrJ0ZhWpBI5hAf54gxRlLeqhaLKAibxVkZZoZ9iKs/nNeHwhIvw5eEwb0QkpWw8h0D7FjoJHjvOyy83Z3suQINP4HPpZi6XaWI6gzR3nLOR1dzzsTqW9cAF5NLtQoH8YVavW/ta86omf4qjZjeI8LdIFPmI+qqoR6nJ6nl6cZ2v1XlX0m9EYrRxASygI7Xp89t0AEU+MwQ1KR+qO2oNgQDv0f0zGuIl8TDAlPyY/c3/jOZAXt3Ylw0jTsqL1ze3pxe1xDyw3I/L/fttrh40Hm6Z1KZXmzAT6Wrakt3XVXbEKP60vxDx958ySkFwuJwjv2pYPD7wNoFiQ0s0nJlir5ITp5uYTLMzRPWS3iPssJvRgzP5s6PvJ/WPD36eh2f5WdpvImXQgPGkvqlW4liRW3mGT11GCBxMKHG4vYW+ZlFLPmjC7k6iTP38BKOE4bQ==
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Business parcels cancel"}
+  children={"Cancel a business parcel"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Cancels a business parcel awaiting drop-off, releases its locker and refunds the reservation fee to the wallet. Requires the **Business secret key**. The response carries `refundedamount`.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **business public** (see the Authentication guide). The response
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"LogisticsParcelInfo"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"required":["apikey"],"title":"LogisticsParcelInfo"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}},"title":"LogisticsParcelInfoResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"refundedamount":{"type":"string"}},"title":"LogisticsParcelCancelResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

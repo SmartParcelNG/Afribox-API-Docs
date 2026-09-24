@@ -1,11 +1,11 @@
 ---
 id: post-admin-businesses-wallettransaction-new
 title: "Créer une transaction de portefeuille (entreprise)"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network."
 sidebar_label: "Créer une transaction de portefeuille (entreprise)"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVs1uGzcQfhWCl8iGohV8VNGDEwSoi6IRYgU9GIZE7c5KdLgkyx/FhqD3ifMaerHOcFfhylLcSy/VQVpxZji/3ze75caCE0EafVPxCbfGh7moGqnny+ilBu/Bz78KpSAEJ7QXJenONXzlQx7EyvPJHU8G/H7IK/Clk5ZU8LLrGNagg6xlmTywCbu8LNX+mVVvhLWqO768ZIONkY4pYKsoKyDxC9OLEftDMLd/tkZ7YOADA81+m82m7Go8Zr+QLUp9VEEEhhrBmbjBmzBkkpVr0Vi28CiNvjQVLFgVWWmc9SNM5PEtOcSQMaz5F3hKRw5EZbR64pNaKA9D7uDviJ7fmQrPtumvdIBlCy6iuDQ6YMwk6mVXPHgqxpb7cg2NoKfwZAF9meUDlAFdWUdNCBJ8ayspgqzng5N6xXdDfmiJrM6KT9pEGq/q1lFXDVbjJ0q9q0RjYpvbiZYWrp2gs9ISyxigWp7LiFzIoOjomkboXZffXym4WfZ+g013AQ3IxIFPU5Cqhd2nn+PB+6A3oIy12P/+WAxy+4v2sUFnYgU4XZ/1i+mQdb1/dthPumMxHi+Y1JXEAWBR4wA6B9HR6PxHXc++z1bxKNzXK/kvRfzUVS8VE83gEcP3KCYkb3kavQMehnwjVIQeLnbDrPIDHz/UEk52yAMNhLU58AnlKhK6ikQURWaW4mRkC2SWAi0w1A24NqboFBqvQ7B+UhSidnJpHhEmI98IF6xwJaiRXhWbK35CQa0yw2JXMTlArrm64BQktehThvSHR6QIBX0IHsp7jLx8+lPAvVTp4yzLzsArC3uoyoc9MPWGQ+rapJk4YKlL+np6Q73BMrbXXI3Go/FpiaY3xIVLUX4BXbGD8eCWijtNxUV8zEwkIvXMGqmDJ4ouy/03z/AHbEg4iez3249/EjFPP97OEG4i1gk1Hf0TVJxAyiQ2P6F4Yu1ayMA2UiDG2KLtwiJzOLE1oVHhJsC+7b8HwJVCcDxdKsN8buNSJeBWb9CfA+skujIxa3go3f5bONbAGIEl3IV20dDSCSY+mOj8ua1D8pYjKJijoCmlI3oZJEb5lfmYqnjBIBwUOpAvRtRawk8jEpPgjFBz36NDcCn23vxQWaxxAWqIEieODXIiFy9bvs2k9T/a0R3jBSSswiqBLxxYn0QN245fDi8iGa7IrWdQSuhK7y/0yrImhkLT7XYpPHx2arejY5wXhyi7uydyc1IsCVl39+hyjbQHrkeW79tivp1RgEeUebwNMndeJ8y8qtsnUUITJdW9dzRpSXAnKAX6nnB8MKm5aZeksy1XQq9iWhe8vZM+/wBCb46r
+api: eJy9Vl1u20YQvsqAL7ENWZQUu41k5MFxXdRBmhi2jD4YhrUih9La5C67P7INQUAP0UPEvYZv0pN0ZimGUqWkDy0qCCtqdnbn75tvOI90iUY4qdVZGg2iUlt3K9JCqtuxt1KhtWhvH0Seo3NGKCsS1r1V+BC1IicmNhpcR+FAdNOKUrSJkSWr0GVnyqJxIKA6D4WeYYHKQaYNSWsDbbjAX700aMFNEfb2wnVwj097e0dgMPPkAzTugPbOyhRBOgsK3YM2923y5nFfeDclu0orDP8NilSr/CkaZCK32IoMGULr3umUZPPwl+xS4M542k60cuQfb4myzGUSEhPfWQ5nHtlkioXgJ/dUIhnS4ztMHJkqDafRSbTVWUnOr+hZZ6SaRItWVEch063bG4lmjW26rQiVLzj3XXrubea+C2/hhEKTrgU9ev4Bx9K14RIR4kQbjLeasnEurYvbjS+ZV2mh0684sW7zR9IlObD+pqn6plUbK+ZFoX2V+o2sKGEqiG7dTajKDtPxtoQvWis1vq4LQ8ly0uWseMxQe7csyi/Bz2HjUwVguqa6yJaaBKHEvU6Hf9bjP1UzzHVZIhA4zcuz9bkTDnYsrd4mFHtcPRZkTExwtw1XCkbN9ghSmWUvz4abhO4YdTojkJRUQi14hYDGoDcM9v8Iqo3tb2GMgm1FHUZap8fLa14OeDnk5TtevuflDS99Wrp8ossn+izr9zcReoGcH2DbA+h0wPokobwcQae733kNy1aFMfUqyQ6gkNQ2hK5MYp6S5HC/24WZyGUaQj+C/htgAqCsLLNBoj5MUKGRCaeOWIe+WJTuia5n6wGEazXZDqIaLv+AlIslRJaIOaAcbYDkSt0r/aCgFG4Kf/72O3nivFEV972//PQRsIIRwoMklTV4jPr9UQuUJlJV8NPw5w90zQRDFIfbEHml8LGkumMK5N8MzTIN/8ru8eV5++PpsDZNtvGRsGjJJE+DeRTIr6bjVkQ18ljT8qLV7H+h5y86gaYXBJUC3VTXA4lRKwKzx2E0xM0s2KSxmEZTTCeqeCuHvMnp8NS50g7iWGRGjvUjkUHbFsK4UpgE87aaxLPeBqcdV8pAbZP6YAB2Zr3diJ3kZrtoJsrpoyjKHFcnQNNKq8TfSL/K94HWNxm4ObmFOZvNFcJshCs8ucKeUmU6YL4mxGW8x+dnXBbKYHVNr91pdzazc34GqYexSO5RpVAf3rnkvJ6HvBLJDbW3kNPgLrVUNLPTVyJJXj5boB8sXSA7X2MQzj9dDokzhc8C9VWtDMx3RhCR030fXtV9ntXbFiET0sFMCiJKGFUFID6lLJFpOm5Ky5Sai8AsL384hEHg1CR/eWaXGhZtNfLSj/PAvukrsmewNJJMad9oWEzMy2e3rkE+IoQGctSmw3NgJnPa32lvLNDwgCP2qpkRvF8RPTuz5jSHtNaMO2EsvA2ESVncBXq1Gq2R2CgwArdOIcI4IIxwcU/IIHEA+76CH05LqY3DDL0kxMFOE8ju30s+bybP//1+t6RlR2wTl7mgN04KMrT2fMkP9Zto02405bZ0GbdIeIHlqTRlhqGj8/lYWLwy+WLBYiq6oVa5vmFyMlKMuT2ub8jklGgLzQrTnVQZ2R+ygw3fbczlhvuOA/C/qbtKgtwSHNTytbUI4zoygkPgdRDRgw4VClM9yOZRLtTEh5kWVXfy5y8DNC7k
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"businessid":{"type":"string"},"wallettransactiontypeid":{"type":"string"},"walletfundmodeid":{"type":"string"},"transactionamount":{"type":"string"},"narration":{"type":"string"},"createdby":{"type":"string"}},"title":"AdminBusinessWalletTransactionInsert"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"businessid":{"type":"string"},"wallettransactiontypeid":{"type":"string","enum":["1","2"],"description":"1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."},"walletfundmodeid":{"type":"string","description":"Funding mode. See /core/walletfundmodes/list/."},"transactionamount":{"type":"string"},"narration":{"type":"string"},"createdby":{"type":"string"}},"required":["apikey"],"title":"AdminBusinessWalletTransactionInsert"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"BusinessWalletTransactionInsertResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"BusinessWalletTransactionInsertResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

@@ -6,6 +6,7 @@ const guidesSidebar = [
   'intro',
   'authentication',
   'response-and-errors',
+  'limits-and-versions',
   {
     type: 'category' as const,
     label: 'Guides',

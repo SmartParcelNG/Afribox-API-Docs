@@ -1,0 +1,69 @@
+---
+id: post-customer-parcels-cancel
+title: "Annuler un colis du client"
+description: "Cancels the customer's own parcel (status 1, awaiting drop-off) and releases its locker. The parcel must carry the caller's `customerid` (or a valid `sessiontoken`)."
+sidebar_label: "Annuler un colis du client"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVl1OI0cQvkppXgBp8A8Lm7VRHghCCtFm1wLzhBBuz9TYDTPdk/4xIMtSDpFDLLmGb5KTpKpnhrEXKy/JS5DVNjXV9fvVV7OMdIlGOKnVZRoNo1Jbd59463SB5r4UJsHc3idC0XcUR07MbDS8jRqN6C6OUrSJkSWbIAPnQdWCmyM0WnsW9JOCyhrsWyect9CPQTwJ6aSaQWp0eaiz7ACESsFgjsKiBeks5Dp5RNOBMRmsLRRkFxJhzEvlRuR5cDJpHMp0AvvagICFyGUKEzJmKT6nH1FNDjqUyfOh8G5OAYuyvH/ElyAyKFKt8pdomIncYhwZ/M2jdT/plGTL8K80SIVyxtPjhEyicvyIzOQyCYXsPlguxTKyyRwLwb/cS4nkS08fMHHkqjRcdifRVnclR9DqWWeoKtEqjtqMdj7ezGunQlWxFJ2Q+U4bq3gjq9smFGqrky5nxfM6glGwdKkyTZeqa7bUylYpHPV6/LWNhQu1wFyXJUKKYNav1ufU+gYAiU6xW/0sKA0xw4MO3Chq1tvjCaQyy9avhorMNia93gSkSiV1BbxCQGPQG+7nf9SK1vf7WsURKl9wlSjZOOr1+Tji4wMfx3yc8PGRjx/4+MTHgI4+3+jzjQHLBoP3k3OFXB9g30Po9cD6JKG6nEKvf9j7ADUUYUpYJNkxFJJ6T7OTSWowSU4O+/0K7yH1Uxh8AsY4VaWuBokGMENFcEq4dDQh9MGidC9knr13Aqg2e7ITVQYzr1JMRaF9VfP3qNqNn4oermro1Eg6ptq9A8+NelQVa7g5/PX7HxSh80ZVzPLL9dcvgBW8EJ4kqWzBZjIYTGJQ2hGfwM/jXz+TmRmG7E52IfVG4XNJeMAULJoFmro8/8rv2fWo8+Vi3Lgm3/hMGOWBZRJdRmHoGyaKI+qdxw1GWsWtyhszvakFhloRigp0c91wNwNaBF7rNtTRrVm8W7F4N2La4ByrILzJSXvuXGmH3a7IjJzqZ6KBji2EcdXdjpp1F4z07aqdVcpAI5T6hIWwvzg6iDgqHryrlj0vnkVR5rjJdu1YbZJcK93mtlb+PaVt4FIyOzEaa+w1AZ6NLrlwlHIV+FGn1+m9T2d0CamHqaCFQ1uoubx/zYWo4EsMNda0u3JaTqWWivZTuieSZP3NAn1h6QJT+QYoMPp6PSbCEz4LvFXNITBZGUGcS/Y+7zVDmjWPLUJGixEWUhDLwaSqGJGhUOyarpvSMh/mItDC+k+HMAyEmOTrVw6ppcC4lZd+mgfqTPfIn8HSSHKlfathMTHrb25bg2JECCh3NEvjETANOe0ftDcWiPnhlKNqCZ6fVyzNwWwFzSltTcx+4PQfA9tRFQ8AXaNQM9AkjC2DuxCBy5UoQnOV8rT3uUKJzqXlsie55CXwXWeX7Xb437yf1ITqiDK6ZS6k4iKEWV3WE77xFtYMheVhat7VeMPMmRJIc7mcUsA3Jl+tWEwYMDSBt3fMJkaKKU/L7R15mBPPkMGWnc6ryh2OOZ4tjtresS1ZnYU5+EfdTdbiCSHlaf2KVYTVGxnxREI+hxH90KGTYUMH2TLKhZr5sJ+iyib//Q3cG8PS
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Annuler un colis du client"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/cancel/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Cancels the customer's own parcel (status 1, awaiting drop-off) and releases its locker. The parcel must carry the caller's `customerid` (or a valid `sessiontoken`).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"sessiontoken":{"type":"string"},"parceldetailid":{"type":"string"}},"required":["apikey"],"title":"CustomerParcelInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"refundedamount":{"type":"string"}},"title":"CustomerParcelCancelResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+>
+  
+</StatusCodes>
+
+
+      

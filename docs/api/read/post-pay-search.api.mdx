@@ -1,11 +1,11 @@
 ---
 id: post-pay-search
-title: "Pay search"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Pay search"
+title: "Find a parcel for payment"
+description: "Looks a parcel up by `parcelreferencenumber` for the payment flow. `/core/parcels/search/` returns any parcel; this one is the payment-scoped search."
+sidebar_label: "Find a parcel for payment"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVk1zIjcQ/SsqnbALM5SPpHJgk1Tt7mGXssnJ5TLNqA3anZEUScOaUPz3dEvAQJYZX3KID/ZY/dTd6o/XvZPWoYeorfmk5EQ6G+KLg+1LQPDlWg5lhFWQkydJh/J5KBWG0mvHFwg+beIaTdRl0jARt7fgnPiO29tbMQiIgsTiEiRWjVZ4MxJzEnkMzpqAQgfxcT6fifvx+Jd0iSRNFflcm3SwtGorFiFCbEJpFS7Eq8ZKjcjFtzsgE+QOGX8h4+nIIyhrqq2cRN/gUHr8q8EQP5AaOdmlf7VHdRSX1kRykkWkpTo4W3wL/M6dDOUaa+CvuHVIpuzyG5aRLDnPEYwaQ76r2YEWF6LXZiX3BKSAYuXxFT2aEk1TL9FfQRI06ljx0Qy2jykPs3SXZCw9Bi0ZpIDxn8u0POTgodlgRd5RKk5hK/JnjSHAitPwxZq7xXi8EC2GQq44ABgEGIHeW89h/o9C1Nq5GqYL/3oC+b6hjNOqR4nCCLoLoigCJZVRxD4V7ye0RaYKZGmvU2e4HlSOU6+iDLkeZf03GqivG1jatz4ZKEUleF0vidlqt+5Sx22n0GOpnaYaex/h1ta8A6Fq1NX116NR6DuNZHG3hSzvVp+jD7Vtcrf8XFlUlhv02x7IyoNR0UboMxGa5UXjdwIdXC2UM6o555nfIUIfDz0cCCjxEcHwjRIeyAMeFDuZCPBIykO5garBM3LeD1vIiaRPMGbjPc2ZGuPaHicStzYkhi9oDBV5NhWSM+Epjtls4ylUch2jC5OigFevuVadHoUafMxxGJlVsbmXP42xDBbEH6op05QabO5vJDvC9PbQzo4/3qB2FZ5z/TGcnYxwlg5tXm1KxCGyR8vT2SeOAb0le3Q/Go/GnX4uofxONci3xOCRn5cTQ3Q+rSrifeWsNpHouyzRRfH58esXYUm7mH19nItBYypqYGEsURvfuRzQNHM3Gpj6F/mJi+MMPjBTmsUTBkzbOZCcIfBQgPhAxGTYgmuWJM/H1p9LAlNrZEneBNL0z4TFDkD1A7ahXQdsE0tbpz3Bo7OeHL9YDNjhi+VgkGbaryI0FIIQbshbdUQchstilBqE6quG1DyZELjaxWn9+Vd/nWbg/2T1OTR0pBYsXAXa8JNSJ+wOLZM3N26Vw4t4i1tzU5Fot1tCwD99td/zMWXXU0E/PXM7eg1LrtGnZ1K5pkblUj619285EHdzduCiyS8Xg7bbp6kWe7Hnfc+VKnmg5H2tTvuC9PCDDvn3RNKHTYlJoyid7WQFZtWkzUFmnfzzD/Vu0LA=
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Pay search"}
+  children={"Find a parcel for payment"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Looks a parcel up by `parcelreferencenumber` for the payment flow. `/core/parcels/search/` returns any parcel; this one is the payment-scoped search.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"}},"title":"PaySearchParcel"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"}},"required":["apikey"],"title":"PaySearchParcel"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"parcelpaid":{"type":"string"}},"title":"SearchParcelData"}},"title":"PaySearchParcelResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string","enum":["1","2","3","4","5","6"],"description":"1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string","format":"email"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"parcelpaid":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."}},"title":"SearchParcelData"}},"title":"PaySearchParcelResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

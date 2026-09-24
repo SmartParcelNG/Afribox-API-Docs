@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-parcel-appless-verify
-title: "Vérifier une réservation (appless)"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
-sidebar_label: "Vérifier une réservation (appless)"
+title: "Vérifier la disponibilité et le tarif (appless)"
+description: "Check availability and fee for **one** size (by `sizename`) for a walk-in user."
+sidebar_label: "Vérifier la disponibilité et le tarif (appless)"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVls1u2zgQx1+F4KVO4FpGji72kN0t0BRFazRuL0Fg09LIZiKRLD/cZAW/T7Kv4RfbGVK27MQbtEAv9cGWOSPO6D8zP6rh2oAVXmp1UfARN9r56a3U7nZqhM2hmgpjKnBuugIry3ve514sHB9d8ejFr/u8AJdbaWgP3OE8+CUoL0uZx23ZiJ2e5tXmkRWvaK92+fSU9VZaWlYBWwRZAJmf3HoyYB8Es5tHo5UDBs4zUOzdZDJmZ8Mhe0P3otWFygvP0MNbHVa4k1CObPlS1IbNHFqDy3UBM1YElmtr3AAf5O41BcSUMa3pLdzHJQui0Kq656NSVA763MK3gJH/1AWuNfGvtIBaeRvQnGvlMWcy7T1dduNIjIa7fAm1oCt/bwBj6fkN5B5DGUvKewku3Sspg87PeSvVgq/7fK7vZHHU4uQ/oEQNR4xo9dJXtHSeCvg11W+9JpsFFzWNsVFL+jks41u1gkobg2rui9zrxMzSZY17iwVgrb6oJ1rLstw8WlSH9pgNhzMmVSFRThYUltNaCJYK8Ys07GIfV2s/3aMeqeN/IBDq/vMliZV8ySaKAuviXkhN1DoknY7dX+n8Fot8PLGdXYV6DvYnWmYcQ/8tvPh/n89tP8X2Qie4w4I6LCKRouGxtbfz1ucrUQXYm7t1v3PZzd/OLc7hGjlTg1/qLaSoKCJObxZBlCWFshZXWcJVhm4OLP5JiQSL5eVL740bZZkorSTdjRy4WlifthioRbY648+4lpwZtkIR8ki23urshFNm1KmfO068vUPuVLA/11uVd+PcLXQts1cuqUoda7RVu41+Pr4gZfB5UlZng+Fg+DzX8QWRbi6w4Kpg25t7l/SUqZ44rxMdCJOOGS2VdwTgPN88OIY/YHyc28DeX376SNgdf7qc4PiLUMYpbuFOo2sFApFY/QzgxORSSM9WUuDMs1mSY9YRmlhMdKiQ8yjg5l8PeGAQHp4fGf1u3YR5FUFSvMJ4FoyVGEqHzsNBbjcP/tADcwQWOeDTMUJHitfhRgfrjp0pZE/MomQOkqZHOsBdLxLuD+ZCVPGEgd86tNCZDeIoY/fWIpKtLftXpCRqBjamT9GxZZOAvbafT57WuOmo+RsduS1yPPIhM5WQigSJQ9m047x9r9jRuM9bCVLfp3cQeu1YEgXQv2nmwsEXW63XtIxdYXHgrq4JIFaKOc3P1TXGWSJaiHw7IP2VFHw9oawOsHR4BnV8Oo+T8aLvPqhoZuLIp3eHOh5N3IrvuEjfI44XOlY0Yj+uNbwSahHiIcXTnvT5D9fdbXU=
+api: eJy1VttuGzcQ/ZUBX2IbsiQ7cRsp6IObGqiLXARf8mIEFrU7khityC0vsl1BQD+iHxH3N/wn/ZLOkLteKVaDFm0Ng5LIIWd45swcLoUp0UqvjD7NRV+UxvnrmTJudl1Km2FxLcuyQOeuF2jV+E60hJcTJ/pXIlqJjy2Ro8usKvkMOuH1FLMZyIVUhRypQvk7kDqHMSKMjYW9PaNxbw+c+gVhZ3QHQ/6m5RyHu9FAwo0sZvtKQ3Bo2+Twdl8GP6WjKZTrGd7FKYsyN7q4E/2xLBy2hMWfAzr/vclpbhl/Kot0J28DLWdGe9Sel/hGKot37nxyHPRSuGyKc8nf/F2J5MuMPmHmyVVpGSGv0KW9iiNo7Jy3Sk/EqiVG5lblW1fqG25ZXLXWIr2qjydQvfIFGx4n+D8k9FertMOVRrsU0WG3yx+bSTjRCyxMWSLkCPbh3oXCSw87jsbgMpNjJ32d09lygrttuNSUisflIeRqPH64t4QZnzHsdoegdK4IZAgaAa3FENPzHyHb+H4KU0ugDnMGiC7bEt0DHg55eM7DCx6OePiGh295eMlDj4YD3nHAO3o81+s9pewZMj7AvvvQ7YILWUa4vILuwX73OVTMghFRi+ZewFw5R2HBWGGR08zR/sEBLGSh8nj1V9B7CUxZQqVCg6Z6MEFNWcwYOuI5/eO8pOqw0Xs7EmU9J1uplIryb6BJlPvnbIwk/tqazHMK130lNDk3IZFh2/7CZDPCYHtgj+uU6xHa7dWytS4G0fUP0su/tjmrioY94a2clwV+SbvEri+SIM4TG8ahEOv41wgLplaDqRgguRdrSIrjsVX0C16bjJvTJpBPVzdxFEcxqA3sxJHYghbNrlJ/eEEV8aQlXOqZNjcaSumn8MevvxHvfLDaAfEUfjp//w4wNQ2EG0UmG81g2OsNW6CNp14OP168fUPHTDBy9mhb/7nUeFsSLzEHauIkHRXp/5Xf4/NB+93JRe065pE6jyOXLEhLETtzLRctQRUZcE02Vq3G5FE+Hs2ijKyoN8zRT02thTEfUXw6Ue86KTudShU7SRU7TIF4zxRIsEQRMfW+dP1OR6YMU29vu7m0Ph3R1pPOgnvYJnI1Haic85DxJOwsDncFR8Yt9ayRuZOGxbUsNQ2zUqNmYo2iTckpPTaxzuqKqbwfD04ZGbpPiuqw3W13n8Y6OIU8wEgSDUni680753zLVJMkLBcmOCCwoDRKewf5M5llD58d0AeWPgpMqJkAg/fnF6RTMoyj3KT2CawxVpJK0nlvntW9dVwvO3pbSOVhoSSJEwwTHKRhUrNr2m5LxzJWyNjNH373CP2oY1nxcM8hNcrVaubLMCqi4uXPyJ/F0ipyZUJj4TCzD5/9pgXFiBBp7KlYLgbA6uFN+GSCdUCCDa84qkaXeT2JKwezETRfaaMkdqIUfxdFilDcBfS1QdWzhrEumb1zGSW4SvsHknPCjIqRYMgVt0MVX2jklA4hl16SAexU5N79MuHLRuv/h2de1es9FXWnLKTSfItYScuqBus352Mbbokq1ETW9D5lfZ9y6ZL9cjmSDi9tsVrxNKXSUpVcfeSqt0qOmPRXH8nPlPoBN9HHLvI63XT/gqPa6CWbL5ymqRxHOn/Vdr27MNFjnab36jwpkJU3NMljX9AXE5GPehvnlqKQehKSMKUz+e9PB8wS5w==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Vérifier une réservation (appless)"}
+  children={"Vérifier la disponibilité et le tarif (appless)"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Check availability and fee for **one** size (by `sizename`) for a walk-in user.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizename":{"type":"string"}},"title":"ApplessVerify"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizename":{"type":"string"}},"required":["apikey"],"title":"ApplessVerify"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"parcelamount":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessVerifyParcelData"}},"title":"ApplessVerifyResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"parcelamount":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessVerifyParcelData"}},"title":"ApplessVerifyResponse"},"example":{"statuscode":"00","statusmessage":"Successful","parcel":{"sizeid":"1","sizename":"Petit","boxname":"Afribox Cocody","boxaddress":"Afribox Cocody","parcelamount":"500","boxlockerid":"5","boxlockernumber":"5"}}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

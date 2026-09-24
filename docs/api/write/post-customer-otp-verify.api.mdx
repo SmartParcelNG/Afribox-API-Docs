@@ -1,11 +1,11 @@
 ---
 id: post-customer-otp-verify
-title: "Customer otp verify"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Customer otp verify"
+title: "Otp Verify"
+description: "Verify the signup code and activate the account."
+sidebar_label: "Otp Verify"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVcGO2jAQ/RXLJxaxBHGk6oFdVer2sIt2aS+rFTjJAN51bNd26KKIf++MkxCi0qqHHsoBwszYfn7z5qXixoITQRp9l/MZt8aHVVb6YApwKxPsag9Obg58xIPYej575m2Wv4x4Dj5z0tJyXDwvww50kFncb8aGQ2Ete4PDcMgGHoBhmvWL2LaUOVyN2RJTDrw12gOTnn1eLhdsOpl8iIswU6pAcaljIDX5ga19EKH0mclhzTYSVD5GnO/XAo9AOHj4Cg+PIQciN1od+GwjlIcRd/C9BB9ucB8+q+Jf6QApCK7EdGZ0QJSUwm1UgzZ59XTRivtsB4Wgp3CwgGeZ9BWygEdZR4QGCb5eKwlBV+eDk3rLj1i4MxouZnBnqS5msB8X4pgIMigKPSwX3+p+HY8UbxmNYJBN+un37LFmFvQeFCLHPp04TerHArwXW+rRvdHX68lkzboa7EdO5IBnQjNwzjjqwT+irzvnIh09fH9JzGPDSCSIyH5HoB7BkbYrHrvVSmjE90KVcCal46grOUnqVBaldcSxKCDsTDtOdCsRBZm0o5NgI5N6sBJMe3D4pwZQOmw934Vg/SxJxMbJ1LyjjMa+EC5Y4TJQY71N9lP+y/jVxQw5zMssTtdgP73ihIiYf+wk/+ldFFbBuURb1k7K7AKNILtA1OFZI6TemMh/w3aLZL64I3bwbjXC6XgynvwWdyqyN9A5rWKDJ7ruIl4XlTdXCiWaWyN1QKVlGdjAvjw93DODu7PFw9OSDUqtUApMmwA5rekbDXrHXgpS6bq+8rr1ksYKoqfMqGDeSTaCweIRE+ym9FLTCbZMMV+HjTvPeMgcBMrUjhZdrJYpARDqhzj4ztZMGTLUA6UcWOMQeM/gCHDP5AZx/D4yXyIF3l8h2rytaOZgPY7ugsIrRBw2LQrqyW2jPYbNYydT73Wi6ub2P/HyZqADTmlilZCa7hZHpGqG6ux9VOsy6q2+HL2hdjSBWFVVqfDw1anjkcLYcYeif36h4XVSpKTb5xfcfYdjjZt1ZnBbc3K9JCw9S+j7WucN86jPP9aemwSpF4vT5lVURLvjTvzAIH3POF0t9ii6YoxVXAm9LaPx8XpP+vwE3su1BA==
+api: eJytVu9u2zYQf5UDPzmYI9lpstUuBizNOrTD0hiN0y9pENHS2WYjkSpJOfEMA3uIPeGeZHekHNtLugHbjICxyeP9/d3vuBKmRiu9MvpdIYaiNs7f5o3zpkJ7a3x9u0CrpkvRFV7OnBhei82puOmKAl1uVc3X6fLHIAp+juDUTDc15KZAkLoAmXu1kB7Docxz02ifkNKHQ9n4Od2VdX17h8uwZVEWRpdLMZzK0mFXWPzSoPOvTUF7q/BTWSR/vW3oODfao/Z8RGpKlYd40s+OvVoJl8+xkvzNL2skW2byGXNPpmrL0XuFLt5V7MFWznmr9EysSXBuND57QppV+fSkK6bGVpJ8aiVIlLL5jIp1dyee640TlFuvfMmCF+NRTCzJRmlXG+2iz0e9Hv/br8MHdE3pAfUCSwoQOpnz0jeOq5Gl7Y8KnZMzzA4SyHq9DL4H1+Q5bb4CCQtZqgLatMO98nPQhn6zXgfKxSthX2rAqvZLkNbKJXS08ZANBmRHN2XJ6k/1EgzV3cKuH9DBZMa2j7MuXXgZ1kF2AEoXXEF05MeUUtdYZKT8T0XeevBc0VA3FVeBstoVvT4vR7y84OWYlxNevuXlO15e8jKgpc83+nxjwHuDwdP2aMvCtofQ623z3esf9l48ZntCKKe9Y6iUc+QWTBWWBe2cHPb7sTIh9FcweAncPZSVNhu0NYAZaoJLDmitsUB/sTyxeAkDcQ8Az0PyCfg+tKhrQXhM2XiCuyt9p829hloSLv747Xey6RurXWj6ny8v3m8hGaCzBwcufhcYPYSot+PzX0jNDIO/J8+B/ErjQ00VxgIcWmKpNuD/ZPf0cpS8fzPemOb+fiDUOTLJ3LcSgSA2rNUVVI0Gd9hr3d2KPLLYo1hgszXhokI/Nxu6ZYjKwIHphlpTooo0Em9KxzG+6EBjiW3E3PvaDdNUTq2amAcijcRV0vpa2hzLRM/SBeN2P2OnURioIYom503oLI4OBHvEbfRhy7JvHmRVl7jLitsmaclwp2siB4qGHP0B49UkN5VoOW+HLpWemoC4Fl8bn05H7zhPFGX09SjpJb2vRjCR+R3SVKFb0LnkwEchcCabsqRqF7VRmpiKJg3WPmLAMEZGF5dj6DS6JPBz0bHgO3tNxPS2UJLhkMXgM+KkgKXdFh0GvGyZKDhDwl2irdcNNS5bqJsJnT/ZdpgTROM2QbZDswKyVBaV0ikxoIQCIwfS4ORNlkzgrEUHMLJ2gyyd2UQqCdxkgfzxhlKUta1AiiZLMvEIsNLM2FYCYwrr7Xg8gtgTHDzNFOiElD2OGiJ3jG1GHjnOyz4DZwevQoJM46nuyFos1sZyBG3uOGchr/tDYH/2HITHwl8mFBXoHwbSpt+/NpUS+DEOlP0oztMiXdIH5sOqGlJdTs/T0Xn2qN6rCn8lrEMnPGkiy1BoV+Ozb/oU8cSYEslSIOioPQgGtJP+T2JM75NPgmbhJ/ETNz99D4zGfV/JMLi0rALR+ho+bp5ae6hfbUffv3lhtdzuicjSupRKs/3AIquWd3aedLFhQyNGT3iKzZmkSGq1mkiHV7Zcr3mbSmGJF65vmN+skhNu6Osb0j4nfJKyLV+exQAOx+zLHmvuz/EtfZ4GOP+t7C6PcluT8KR9IFZhvAsr72mT16Hg0EJCwysg7K1EKfWsCTNQRJ38+RNEt8mK
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Customer otp verify"}
+  children={"Otp Verify"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Verify the signup code and activate the account.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"otp":{"type":"string"}},"title":"OTPVerify"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"},"otp":{"type":"string"}},"required":["apikey"],"title":"OTPVerify"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"OTPVerifyResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"OTPVerifyResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

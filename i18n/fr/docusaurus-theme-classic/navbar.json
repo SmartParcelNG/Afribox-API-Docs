@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "API Afribox",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Afribox",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Guides": {
+    "message": "Guides",
+    "description": "Navbar item with label Guides"
+  },
+  "item.label.API (interactive)": {
+    "message": "API (lecture)",
+    "description": "Navbar item with label API (interactive)"
+  },
+  "item.label.API (write)": {
+    "message": "API (écriture)",
+    "description": "Navbar item with label API (write)"
+  }
+}

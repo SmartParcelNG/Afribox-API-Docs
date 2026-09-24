@@ -1,11 +1,11 @@
 ---
 id: post-core-fees-service
-title: "Core fees service"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Core fees service"
+title: "Fees Service"
+description: "Send-parcel service fee per size."
+sidebar_label: "Fees Service"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVcFy2jAQ/RWNToQhmOFIpweSttP0kDCBnjIZkO0FlMiSK8kE6vG/d1c2GE+TTA49NIfE0a52n572PZXc5GCFl0bfpHzCc+P8MjEWlmsAt3RgdzIBPuBebByfPHCK8ccBT8ElVua0EbdNC78F7WUSKk1Yvy/ynD3Dod9nPQfAMMy6SWxTyBQuhmyBIQsuN9oBk459XyxmbDwafQqbMFIoT+tSh4XYpAe2cl74wiUmhRVbS1DpEDHuLwW2QDjYfInNw5IFkRqtDnzibQEDbuFXAc5fYRk+KcO/0kJ6DCdGewRJIayiGrDRk6NzltwlW8gEfflDDtjKxE+QeOyUW2LSS3D1XkkA2jznrdQbXlVIpfSKlr4hw/OG4KqiyJGGUAIpoD9dou9rOkDvQGE/JPdERFR/ZuCc2BCxt0ZfrkajFWtzkMSUjgSOCc3AWmOJuH906LbPKwcf8A6+VzNo5s4CwlpBlyg9ZO4D7WsusYhMXwcgf78X0iJ7A/ip8Icv9IvwgldvBO+baw63jimwR/YdMk4KK3kYnOMwD/hOqALOhroatCmn4T6l0RRXqM8M/NYcFU1UiaCMiPQbEc9Rc6qI1wcEW3cvrMK8rfe5m0SRWFsZmz2O89Blwvpc2ATUUG+i3Zj/5QJ1MsNrSYskiLy3G19wwkOzdN9K7+teZLmCc6mcES712gSqG+6OhaezGzopQq0bjoej4ehNGLFInkGntIv15oR+FtCjNKZKoYbS3EjtUQpJArlnP+Z3t8xgdTa7my9Yr9AKZ5Vp4yGlPV37QkfaSUEyWtUnWB0dqnGY4FQTSpi2mgpgMHnABLsqnNTUIS9ijNfLxp5HHCQWPEVqnwzeWOuIAAj1Ig6uNUtT+MRkwUUt5MYi8I5tEuCOdfaCP3xmrkAKnLtAtOkxoxHqakg3QlOUieAGtUz4NQ4So0Fi7SPRuYeytZX/5H1olOtRb1GuhNR0sjDvZaOP5n1rnOikfPyiN29LUsKcsoyFg59WVRUt421bnN+HRxKhlSKmmX14xNpblCfYM1Ff14xcLghJR9pd0201Pg2z+W7uudppcjE5bl63LHgxt+IFF+n3hOOHCTcUPDOslVwJvSmCK/O6Jv38ARdcz4g=
+api: eJytVm1v2zYQ/isEPzmYYtlpusUO9sFNW7RD0xqx8ykJIlo622wkUiMpJ65hYD9iv3C/ZHek/KLF6QpsRsDYp+O9PvecVlyXYISTWn3MeJ+X2rr7VBu4nwLYewtmIVPgEXdiZnn/htMzfhfxDGxqZEkX8doIVHZcCpNCzuo7DA0wtM2s/AZttPB0LCo3R2VRlvcPsPQiAyLTKl/yvjMVRNzA7xVY90ZnKFr5n9JAtnmcauVAOXqEVnKZ+sjjr5aiWHGbzqEQ9M0tS0BXevIVUoeeSkN5Ogk23JUUwE7POiPVjK/X0Z7Lm40epuuky0nxPVZlVBdlvQ76ttTKBsMnnQ79axbnCmyVOwZqATlGwVqJdcJVNtUZJHH9owBrxQySozZLOp2E/cpslaYoPGeCLUQuM1bXhj1KN2dK42+ya5m04YqXC8WgKN2SCWPEkrWUdizp9dCPqvKczA/Ukmk3x87sx8Fa0J6R79Mkwgtn/uwlR0yqjMoMFuOYCplXxnfzf+rELoLn3Yg4qKqgPmBVI97p0nFCxys6Tul4TcfPdPxCxxkdPTy6dKNLN3ok6/WeY7ZuC/nus05nV+9O97jzalvtCUIRZaeskNZiWGwqIc9Q8vq42w2d8amfs94ZI4RjVepqoKjHZqDAyJSBMdow/AvtCc1rc0RQAwAHQBlxmsW9B761mJV0UNgfqHHAKxqR2UHzNKHfeaREcTisneHDo3RgaN4KJ/j6hYdX9SjVk3WKLX42TNfqQelHxUqBYP/rjz+xkK4yyjIsPPtt9OXzbs78PDQwToiOGI0EjsmH8eUnNDMD34TXhyb3WsFTiSWFzLMajkzo4n/yOxgN25/fjTeu0Tc84ShZdEkMu+KemjZ0GXGEWAV7tLmOdipb+tyqEU+uEesFuLneMDpBQnjujYm/Y8JTXHcv5qGRYIL3yuSoN3eutP04FlMjJ/oJibBtC2Fc4Pi2msULmsRmuQZBmSH8siolIWstTo44xUPEcLUj93dPoihz2CfjPWBJNdUeUjVGNoYHw4+UKYYaHJ60O+3Oi2FMRPqAe4lusdaIoh/66IkD8xz7lZVaKiRQgYNfutBFTV0efhmNWatSOc4ktQ0yutOYbWLdhRTU0CRkkCBVejTsM0ffd3xHkD4YVI6QTd9UyCfkoawm+PyZ2EKKIAtiBF1rikcSi6yQKkZiFiyDQM0Z80LSbLOLyjpdYBKEjf0kc6s3mQqEJ3rAeJzGEiU1mNHQZIku0tpEnOsZ+WqzMab1YTwesoBqSh5XHWv5km03IO4cCIOCEVmqS3MxJEfnvkC6cinaJysGSm0og7p2VDNf1+Zuaq5EzB3b+o/FiQ36lz25mdiXlmWbvQ17rpnFZZzFS/yweb8o+tiXwWU8vEy25p0s4JtWuNcpgZonMLXr8cVPXcx4onUO6MnvjWDdK3q0o/1bPsaZveW4om/5e2wTffecRKNbCL9PAwd7smSj7UtZA/er3U7+ofexmq8dsk9c5kIqcumnf1WzRf22V++fLd/jN9qmcyIW1FmtJsLCtcnXaxJj7Q1O880dUZKRYkITfHOHtucISDB7FHcR4j0eUyQNomu+T+wYb+Dx+13dfe6jOUblSf02WfjXDG7EIwrp7HP8on39/Kb0shXPhZpVfhfzYJM+fwNz1NFH
 sidebar_class_name: "post api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Core fees service"}
+  children={"Fees Service"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Send-parcel service fee per size.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"FeesService"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"required":["apikey"],"title":"FeesService"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"array","items":{"type":"object","properties":{"servicefeeid":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"servicefee":{"type":"string"}},"title":"FeesServiceData"}}},"title":"FeesServiceResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"fees":{"type":"array","items":{"type":"object","properties":{"servicefeeid":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"servicefee":{"type":"string"}},"title":"FeesServiceData"}}},"title":"FeesServiceResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

@@ -1,11 +1,11 @@
 ---
 id: post-parcel-snapshots
 title: "Lister les instantanés de colis"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`."
 sidebar_label: "Lister les instantanés de colis"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVlFvIjcQ/iuWX45EHIvySNWHtD2pqU49dOGeoiiY3QGc89quPaaJEP/ncn+DP9YZ78JCoFEr9aURCotn7Bl/M983u5bOQ1Conb2p5Eh6F/HBq1CCeYhW+bh0GGVfolpEObqTjUne92UFsQza807ad51wCRb1XJf5MDESl5el2b6I6p3y3rTLl5eit3I6CANikXQFbH619WIgPioRti/e2QgCIgqw4tfJZCyuhkPxA+8la0wGFQrywODSik5SNrKtXKrai2kka4qlq2AqqiRKF3wc0E2e3nNASpnSevgKz3kpgKqcNc9yNFcmQl8G+CNR5J9cRWvr/FMHIIQwJDKXziLlzKaD2xWPkcFYy1guoVb8hM8eKJabPUKJFMoHxhs1xGav5gw6v4hB24Xc9FugK0Clja7OuJAPajS8NM6+t/tybTZsDRAzgjkSIcdfx0X7YFdgnPeE3SGkvQ66onmsIUa1AKrMF/sKWT2fb18CYcFnTIfDqdC20gSeSJaKFwKkwLD/R4h1sc+idpTueY89Sp1VhaC4DzRCHf9BDu0RZ8vSRYBVe9+/z4GbzJZvJ5qCOWvXNV2xUgio6/MnsLGkzkb4d/3zi0IlN284fG47KzcaucETlTZSOVki1jK39I5nfblSJsEB3zb9zmXPu71b5t+G9KUGXLqdJHENVGZt0RCj2GNYkC1CWEFoome85BLRx1FRqHnQM/dERBvEWgVsdg/solhdyRMRa5wFlbtKZZax3urqQnI63KifO1H48EQiY+CQxDtkT7l7WDU7d7kYLbK7kNfjG8aALtGkcjUYDoanCY5vWMtmqvwKthK7zb1bvlpTJOLoxCUWwii80xYjS2xZbr9FQV/gMXM1id9uP/3Owjr+dDshyqs0z8xt5ZvpGhRJHqvxiUSz6s6VRrHSingupg0G006DWW1ZEQwpOaG2/Y5AI4El4XQo9Lt1n2Ymi0f1juIF8EFTKJc6j0gtvf2Gxx6UI4jMfWwGBQ8NdOnRpRDPTQ22NzrFyRwlzVc6krheVrUfRUwZxQsBuHNohWY6yIpNfVqrrGZWMSXlRx0RQi6FtrTD0odSYFxKZ3R8Xd91p5L/o4Ha6gqSChTeKG0ZjFa1GtLuXxsO5bcv+S1iyeQmh/V6piJ8CWaz4WVqgUCUurtnXQhazZgsd/d08JIUA8KBzvzcQPZ+wmkcqc3xkOlk5zrT4E3fQ/1hgpDzrH0VqPPskUH9SYv8fyTpweUS5vGQ19bSKLtIeQrJ5kz++wuOPFnp
+api: eJzVVu9uGkcQf5XRqlKweuaAOG0gygc3jdRUdoJi/Mlyw3I3Bxvf7V5397BditSH6EMkfQ2/SZ+kM3vAQSBRpbYfitCy7M7O/5nfLIQp0UqvjH6VioEojfPvSmkTzN85LUs3M96JSHg5dWJwJeorcR2JFF1iVckv6d1b9JXVDvwMobTGZMf0TTFXc7T3sOEEmbEgYVyzSdFLlat0HAHKZAa3ys/4dk1e2XzcJuF3x7LyM5Iiy/LdDd6HI4syNTq/F4NM5g4jYfHnCp3/zqR0tgh/lUUyytuKrhOjPWrPV8QmV0kwOn7vWP+FcMkMC8k7f18iyTKT95h4EkXmkIu8Qle/VaxBQ+e8VXoqlpHYNeoAyTLa0upqzYp86ZXPmXAYOFxs/L5c1m9cabSr5fc6Hf7Z9f5LPcfclCVCimAfProq99JDy9FaucSkGNfbAp2TUzxqw6UmP2+ux5CqLHv4aMlDzGPc6YxB6VSRS6HSCGgtVpaD8S/5sZG976hIoK4KdhEZG4lOl5ceL495OeHlCS/f8PItL0956dPS5RddftHns37/UK6yf4BlD6DTAVclCfnlGXS6x53HsMojmFAi0dkJFMo5UgsyRdGlkyfH3S7MJcU4mP4M+k+BE5S8svIGHfVhihqtSth1lPT0xaL098Sepbc5YXZicjClmhJsbqW1kktAeSzc33D0isXBjGwk4HwV1M+FIiWuJsuYv0puqnLfr+u8hcBrAOPVkzG0KBn5DzWF7IhdMa551DeJyXPSnJgctXeM5kDo5IsJwoHu7avShefg5Q1quKWwhK6Um+QGLShH+Rz2FMrehkxmni6ZLjUmUCW5cZjuKET96KAPVUHxo2RAr4qD2pbSE3tW7KerznH/etGNest4b3uyhOZsUG+3NtA6Pf91eH70lfjU3O9JdszCQTpwaOeYDuA8TuN7+sBsUBQD5+D0PB6eR6ANMOkvhsq6FYiDvZejF1936wCwKQn1V48HcuZ/Zs3ys92VxEix/ALB21XfXbXhE2o8e533Ut9oc6uBfDKDP3/7ncq7AcIfL968Bqx7M9bottNzx/3+mC3wIDX8MDo/IzZTDCF4cqjNX2q8K6lSMIWVpXVv+UdyTy+G7dcvR2vRJBvvqME7EsmIvxAB7tYYHAlqfBVuYfEyakg2mLwhC9i8pPos0M/MesKok4gRPa5BM97UfEx3tXG19FBzYuZ96QZxLDOrJuaOkLPtCml9/bqtp/G8t5dHpzUxzyNpFfoLtOa9I8HqMFy9bQaGl3eyKHPcBvjtfN/F9e3K15kJJbLKoLXI0+Er9gEZUavSa3fanX0Fh68grWAiqRvpFNaPWxdsWp2MhNQjUznI0UFplKYRKn0kk+ThgwP6wdIHxK7WMYfhm4sRFYKssoDfNR4Bg7aVNHgQv7NHa7DK1tcOIZPKw1xJ6o4wrn1AQ4HULJqe29LxXJDLAI8Pf3iEQRgMkvzhI6vUjAJRc15WkzyMEOkjkmextIpEmaqhcNRoHj74XQrSESEkrKeyGA2B4dib6r2prAOagOAZa9UMOnxfTyuszI7SbNJO8rfCbPM8oD558QjQrwlWSDwOFch5Wsgw02jJbV2cKccgwaFQml5o+pIK7BeCMOU+je+imZX+2/l41aA9FW5c5lJp1n8FVnWdbQb37ZEiEgycM65HIlgsJtLhpc2XSz6mqFmqgqtrLmWr5ITz++qaGM+oyNFutYYXtZXHI1Zjp0HsTodNpzgNmftF2u2WwTlNxJPVZF+EoVFYeUuHvA4EbUzwehh5wtlC5FJPqzBZiZonf/4CFFpz9g==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"ParcelSnapshots"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"required":["apikey"],"title":"ParcelSnapshots"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshots":{"type":"array","items":{"type":"object","properties":{"snapshotid":{"type":"string"},"snapshotevent":{"type":"string"},"snapshotsequence":{"type":"string"},"snapshoturl":{"type":"string"},"imagedatetime":{"type":"string"},"datecreated":{"type":"string"}},"title":"ParcelSnapshotsData"}}},"title":"ParcelSnapshotsResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"snapshots":{"type":"array","items":{"type":"object","properties":{"snapshotid":{"type":"string"},"snapshotevent":{"type":"string","enum":["dropoff","pickup"],"description":"Snapshot event: `dropoff` (at drop-off) or `pickup` (at collection)."},"snapshotsequence":{"type":"string","enum":["1","2"],"description":"1 = taken when the locker is unlocked; 2 = taken after the door is closed."},"snapshoturl":{"type":"string"},"imagedatetime":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."}},"title":"ParcelSnapshotsData"}}},"title":"ParcelSnapshotsResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

@@ -1,11 +1,11 @@
 ---
 id: post-customer-otp-resend
-title: "Customer otp resend"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Customer otp resend"
+title: "Otp Resend"
+description: "Resend the signup verification code to the **registered** contact (no account-existence disclosure)."
+sidebar_label: "Otp Resend"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVcFuGjEQ/RXLJ4IIizhS9UCiSk0PCSL0FEVgdgdw4rVd20tAK/69M95dllVp1UMPzSEhnrFn5s17j5IbC04EafRDxifcGh+WaeGDycEtTbBLBx50xgc8iK3nkxfeRPnrgGfgUyctXcfL0yLsQAeZxvcmrN8X1rJ3OPb7rOcBGIZZN4ltC5nBzZAtMISlrNEemPTs62IxY+PR6FO8hJFCBTqXOh6sTXZkKx9EKHxqMlixjQSVDbHPw63AEtgOFl9i8XjkQGRGqyOfbITyMOAOfhTgwx2+wydl/Fc6QAiCKzCcGh2wSwrhM6ruNnnzNGjJfbqDXNCncLSAtcz6DdKApawjQIMEX92V1EGb54OTestPmLgzGq5G8GWprkQwFGRQdPS0mM2rvZxOdN4gF4siavSnu5t5hSDoPSjsEPdxxi6pPubgvdjSLh6Nvl2NRivW5iDuGYEAngnNwDnjCOt/BFNb5yognf6uZiBR/xKweY1UBI7APuAAHpsmbpc8bquh0IDvhSrggkqnQZtyptQ5LVLrhLLIIexMIyeaVkRCJo10Euw3qYSVYNiD24OrGigcrp7vQrB+kiRi4+TaHJBGQ58LF6xwKaih3ib7Mf9FflUyQ2yzIo3q6u3HN5w6oo3MW8p/OYjcKrikaIPamZntQU3IC7yl3pgIeA1vU3o6eyA4cJiqpfFwNBz9ttG1SN8RArrFes803yzOhxScKoVczayROiDl0hRsYN+enx6ZwdfZ7Ol5wXqFVsgJpk2AjO50nQXNYi8F0XVVzbhqzKPWfjSRCSVMW+7GZjB5wAS7K7zUVMEWa4xXx8ZdRjykDgJFKguLtlXxlRoQ6kMcfetjpggpEoBCDqxx2HjH0ajhjqv1og4/M18gBN7fYLdZk1ELYjWMdoJMy0VUnRY57eS+JhtDsrGzi3c2UbYC/k/Mu1ZwQFkmVgmpabaoibJW0cUXUKX76H7VcPSVtCPJYVZZroWH706dTnSMG3fI8pdXUquTYk28fXnF13eoY3ysVf99hcntgnrpeEDX4FozmEZ+/jH30hWIvZi8rr978uh73IkPmgV/TziNFncU7TGelVwJvS2iA/LqTfr5Cek1r7Q=
+api: eJy9Vl1uGzcQvsqAT7Ir70qO3UYKCtRJUyRFnQi2/GQbXmp3JDHZJTckV7YqCOghesKepDPkypJqp31oUcGgJXI4v998w5UwNVrpldHvCzEUtXH+Lm+cNxXaO+PrO4sOdSG6wsuZE8NrsTkVt11RoMutqvk6Xb4IouDnCE7NdFPDAq2aqjzoh9wUCN6E88NDizPlPFosDg/pSHuZe+hoAzLPTaP9ET7wuc4RCuXy0rjG4kFCjjwcycbPyZ6s67vPuAxbFmVhdLkUw6ksHXaFxS8NOv/aFLS3Cj8VGRNDbxs6ZouoPR+RmrL1Mf3kOJKVcPkcK8nf/LJGsmUmnzD3ZKq2nDGv0MW7ij3YyjlvlZ6JNQnOjcZnT0izKp+edMXU2EqST63Eet3d8ft6Y4zy7pUv+ebH8SgmnWSjtKuNdtG3416P/z2pUVN6QL3AkgKBTua89I3j4mRp+6NC5+QMs4MEsl4vg+/BNXlOm69AwkKWqoA2vXCv/ByoajbodaBcvBL2pQasar8Eaa1ccnU9ZIMB2dFNWbL6M70EQ4CwsOsHdDCZse2TrEsXXoZ1kB2A0gVXCh35MaUUESQYEf9RMbcePFcc1E3FVaCsdkWvz8sxLy94OeHllJdvefmOl5e8DGjp840+3xjw3mDwbOtwWdj2EHq9bb57/aPei8dsTwjNtHcClXKO3IKpwrKgndOjfj9WJoT+CgYvgbuEstJmg7YGMENNHZkDWmss0F8sTyxewtjcA8Az6F0/A76LFnUtCE8oG09wd6U/a3OvoZaEiz9++51s+sZqF9jg58uPH7aQDNDZgwMXvwuMHkLUu/H5L6RmhsHf0+dAfqXxoaYKYwEOLZFQG/C/snt2OUo+vB1vTHMfPxDqHJlkXlyJQAQbduoKqkaDOyy17m5FHtnqUSyw1ppwUaGfmw0VM0Rl4Lp0Q7spkXIaSTml4xhfdKCxxCpi7n3thmkqp1ZNzAORRuIqaX0tbY5lomfpgnG7n7GzKAzUEEWTB7ruLI4PBHvEbXSxZdO3D7KqS9xlv22TtKS30zWR60RDjv6A8WqSm4prp/TUBIi1gNo4cTZ6z4mhsKJzx0kv6X3V5YnMP/PYoVvQueRIRyFSZpeypPIWtVGaqIkGC9Y+Ft0wKEYfL8fQaXRJaOcqY8F39rqG+WyhJNc/i9FmREIBPLs9OQwA2VJPcIaEu8RTrxvqVLZQNxM6f7LtMCdMxm3CaIeGAGSpLCqlU6I8CQVG0isgbLJkAm9aOABDaTfI0plNpJLQTBbIH28oRVmLfVI0WZKJR0SVZsa2EhhTWO/G4xHEJuDgaYhAJ6TscbYQm2PsK/LIcV72KTc7eBUSZBpPhUbWYrE2liNoc8c5C3ndZ/39YUOxU1n/MpKoQP8wgTYN/rUxlMCPcYLsR3GeFumSPjAfVtWQ6nJ2no7Os0f1XlX4K4EbOuF9E2mFQrsav/mmTxFPjCmRLAVGjtqDYGgE0n8jxvTwuBE0/G7ET9zt9D1QGDd6JcOk0rIKzOpruNi8u/ZQv9rOuv/rudUOAE9sl9alVJp9DlSzaslp503YFURPIjxEovc86ubMZCS1Wk2kwytbrte8TeWzRB7Xt0yCVskJk8D1LWmfE6ZJ2ZZU38Sgj8bsyx617g/7LceehRb4W9ldsmUqIOFJ+1qswhtAWHnPsdA6FBxaKEJ4KoS9lSilnjVhUIqokz9/Airn4go=
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Customer otp resend"}
+  children={"Otp Resend"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Resend the signup verification code to the **registered** contact (no account-existence disclosure).
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"}},"title":"OTPResend"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"}},"required":["apikey"],"title":"OTPResend"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"OTPResendResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"OTPResendResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

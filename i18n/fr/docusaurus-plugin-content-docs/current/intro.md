@@ -10,9 +10,10 @@ L'API Afribox alimente le réseau de casiers intelligents SmartParcel : casiers,
 clients, entreprises, livraison, kiosques et paiements.
 
 - **URL de base** : `https://afriboxapi.smartparcel.ng/v2`
-- **Format** : JSON en `POST` (quelques points d'accès en `GET`)
+- **Format** : JSON en `POST` (quelques points d'accès en `GET`) ; le JSON est servi en `Content-Type: application/json`
 - **Devise** : XOF (Côte d'Ivoire)
 - **Paiements** : Paystack
+- **Spécification OpenAPI** : servie à `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json` (OpenAPI 3.1), versionnée à `https://smartparcelng.github.io/Afribox-API-Docs/openapi-2.0.0.json`. Importez-la dans votre générateur, Postman ou Insomnia.
 
 :::info Convention de réponse
 Chaque point d'accès JSON renvoie **HTTP 200**. Le résultat se trouve dans le corps :
@@ -22,7 +23,9 @@ Chaque point d'accès JSON renvoie **HTTP 200**. Le résultat se trouve dans le 
 ```
 
 `statuscode` `"00"` signifie succès ; toute autre valeur est une erreur
-(voir [Réponses et erreurs](./response-and-errors)).
+(voir [Réponses et erreurs](./response-and-errors)). Une **requête valide sans
+résultat** renvoie aussi `"00"`, avec un **tableau vide** (`[]`) plutôt que `null`
+ou `99` — ainsi « il n'y a rien » n'est jamais confondu avec « quelque chose est cassé ».
 :::
 
 ## Domaines

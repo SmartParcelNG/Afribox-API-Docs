@@ -32,6 +32,9 @@ All of them use the **Application key** (no provider secret in the client).
 
 For anonymous payers, collect **email** (required by Paystack) and phone first.
 
+`amount` is in **XOF major units** (`"1000"` = 1,000 F); XOF has no minor unit and no factor
+of 100 applies on the way in or out.
+
 ## Locker app — QR + polling
 
 1. `POST /pay/initialize` with `metadata` carrying the flow context

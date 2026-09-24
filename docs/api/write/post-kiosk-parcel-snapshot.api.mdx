@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-parcel-snapshot
-title: "Kiosk parcel snapshot"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Kiosk parcel snapshot"
+title: "Parcel Snapshot"
+description: "Upload a proof-of-delivery snapshot (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2)."
+sidebar_label: "Parcel Snapshot"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVk1vGjEQ/SuWTyQiLMqRqgdSVeqH1EYJPUVRMOsB3Hht1/bSIMR/74y9y7L5QKrUQznAMjO2xzPvvdkdtw68iMqaz5JPuLMhPjwqGx4fnPAl6IdghAtrG/mQR7EKfHLHk5/fD7mEUHrlaDWundZxDSaqMm03Yefnwjn2CNvzczYIAAzdrB/EVrWScDZiM3R5CM6aAEwF9mk2u2aX4/G7tAg9tY5kVyYZFlZu2TxEEetQWglztlSg5QiTfLoQeASmg4c/4OHJ5EFIa/SWT5ZCBxhyD79qCPEK9+GTXfqrPGAFoq/RXVoTMUty4Ta6ybb4GeiiOx7KNVSCnuLWAZ5lFz+hpBI5T/WMCkJeqyiDLi5Er8yK74d8YZ+UfNWT637SKSEKdTrEwxI8mBJMXS3Av5WDtuUj+BMxbfth09TjzYhAJcUDXw1SlVid8EgRIarqtQgMiSpqMt02J/1w2gqJLnK2qEkFR8TQTx+XNxk9YDagsTuIxQNuivxYQQiYBeLwmzUX8/F4zroYxJwkAEBgwjDw3nrC2T+CSHfO68U9zu9k+d9AQ+uuvf6b4t40VU1Fxih4wssGvCAJwI4nVLdUG/KN0DUcUW4/7EIO1DuEJQruUT4qiGvbqg5VRiTiFklfiozjor1AgQEB/AZ8TiFdiK9jdGFSFGLpFcIZCTcKlfAxLx6ZVbG55C+EKgcz7ISsy6RDg83lGaecqH83nTh8fBKV03BM5rZ4Bw53ho66z20dY597XhC1t3+fn53rGS1fOjo2dr6GhM8MHfeOWWmWNuGlQUdbsun1Z2okNiGX8nI0Ho3fLPBCYPZG0io2uKW+XKc7I9GmWiMjpbPKRCRWWYKL7Mvt92/M4u7s+vvtjA1qoxH5zOA9Ja3pzw4cBxsliJTz3Jt5Ox4adU9jYkIB046hKRkMHjLBruqgDJ3g6gX6s9n6Y0+A0kMkTx5SaTBlVlICQv8W29BNKlvH0lZphHlw1mPivZlFCffm1iCpzXsWaixBCGeYrWwjGtrPR0nWkSOVSNpiROrWV6IJyyhiR2O614tdJ1T/yYBuJCiipBROC2Xodo08ZQVo3zBaihzBGh/pxWNNgoFxu91CBPjh9X5PZuy6R4be3ZPWeCUWhN27e9x/jSpEDDpo14dclYsZZdNTsL6Ud1I2TRg9GXusaYTgxOH8hlElhede/EYjfU84PtjUpTQIkm3HtTCrOtM070mfPy44X7A=
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Kiosk parcel snapshot"}
+  children={"Parcel Snapshot"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Upload a proof-of-delivery snapshot (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2).
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"boxlockernumber":{"type":"string"},"snapshotevent":{"type":"string"},"snapshotsequence":{"type":"string"},"image":{"type":"string"},"imagedatetime":{"type":"string"}},"title":"SnapshotUpload"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"boxlockernumber":{"type":"string"},"snapshotevent":{"type":"string","enum":["dropoff","pickup"],"description":"Snapshot event: `dropoff` (at drop-off) or `pickup` (at collection)."},"snapshotsequence":{"type":"string","enum":["1","2"],"description":"1 = taken when the locker is unlocked; 2 = taken after the door is closed."},"image":{"type":"string"},"imagedatetime":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."}},"required":["apikey"],"title":"SnapshotUpload"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

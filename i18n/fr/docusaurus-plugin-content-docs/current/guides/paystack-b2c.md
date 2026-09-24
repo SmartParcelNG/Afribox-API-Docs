@@ -33,6 +33,9 @@ dans le client).
 
 Pour les payeurs anonymes, collectez d'abord **l'e-mail** (requis par Paystack) et le téléphone.
 
+`amount` est en **unités majeures XOF** (`"1000"` = 1 000 F) ; le XOF n'a pas d'unité mineure
+et aucun facteur de 100 ne s'applique à l'entrée ni à la sortie.
+
 ## Application casier — QR + sondage
 
 1. `POST /pay/initialize` avec `metadata` contenant le contexte du flux

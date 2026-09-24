@@ -16,6 +16,12 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-billingtypes-list",
+          label: "Lister les types de facturation",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-boxes-availability",
           label: "Disponibilité des casiers",
           className: "api-method post",
@@ -124,6 +130,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-parcelstatuses-list",
+          label: "Lister les statuts de colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-requesttypes-list",
           label: "Lister les types de demande",
           className: "api-method post",
@@ -156,6 +168,12 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-states-list",
           label: "Lister les États",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-walletfundmodes-list",
+          label: "Lister les modes d'alimentation du portefeuille",
           className: "api-method post",
         },
       ],
@@ -206,6 +224,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-cancelled",
+          label: "Client: Colis annulés",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-delivered",
           label: "Colis livrés",
           className: "api-method post",
@@ -219,7 +243,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-info-all",
-          label: "Client: Détails de tous les colis",
+          label: "Client: Détails d'un colis et son historique",
           className: "api-method post",
         },
         {
@@ -236,6 +260,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-newrequests",
+          label: "Nouvelles demandes de colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-reports",
           label: "Client: Rapports de colis",
           className: "api-method post",
@@ -245,12 +275,6 @@ const sidebar: SidebarsConfig = {
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-timeline",
           label: "Client: Chronologie d'un colis",
           className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/read/get-customer-cards-add-complete",
-          label: "Retour d'ajout de carte (navigateur)",
-          className: "api-method get",
         },
       ],
     },
@@ -318,6 +342,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-cancelledparcels",
+          label: "Entreprise: Colis annulés",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-cities-all",
           label: "Villes (toutes)",
           className: "api-method post",
@@ -349,7 +379,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-info-all",
-          label: "Entreprise: Détails de tous les colis",
+          label: "Entreprise: Détails d'un colis et son historique",
           className: "api-method post",
         },
         {
@@ -362,6 +392,12 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-reports",
           label: "Entreprise: Rapports de colis",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-search",
+          label: "Rechercher un colis d'entreprise par référence",
           className: "api-method post",
         },
         {
@@ -380,6 +416,12 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-pickedupparcels",
           label: "Colis retirés",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-retrievedparcels",
+          label: "Colis récupérés",
           className: "api-method post",
         },
         {
@@ -436,18 +478,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-status",
           label: "Statut du paiement par référence",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/read/get-pay-return",
-          label: "Page de retour de paiement",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-pay-webhook-paystack",
-          label: "Webhook Paystack",
           className: "api-method post",
         },
       ],

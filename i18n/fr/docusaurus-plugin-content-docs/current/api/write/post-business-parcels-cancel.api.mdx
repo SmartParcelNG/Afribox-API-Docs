@@ -1,11 +1,11 @@
 ---
 id: post-business-parcels-cancel
 title: "Annuler un colis"
-description: "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Cancels a business parcel awaiting drop-off, releases its locker and refunds the reservation fee to the wallet. Requires the **Business secret key**. The response carries `refundedamount`."
 sidebar_label: "Annuler un colis"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVs1uIzcMfhVBlzqB1zZydNFD2i7QFItusPGegiCWNbStrCyp+nGTGn6fTV/DL1ZS8mSceMa59NIcMuMhxZ+PIj9uuHXgRVTWXFV8zJ0N8X6WgjIQwr0TXoIO91IYfPI+j2IR+PiW1xr8rs8rCNIrRybQwGWKSzBRzZXMVtmYnZ9LvXtmLs20+jMBq35ABQ/OqwDn56y3tsozDWyRVEVS8cbE2YB9Eszvnp01ARiEyMCw3yaTa3YxGrEf6SxKQ9JRRIYa0du0RkvCBJLJpVg5Ng0oTUHaCqasSkxa78IAc3r8QA4x9CZtilRmkQdRWaOf+HgudIA+94AphPizrfDbJv9UHhC66BOKpTURYyeRcE7vMxg+BAJnw4NcwkrQW3xygD7t7AFkRFfOUyGiglDOqm/wdKAXoldmwbeomGtSQRRKq6pFBXWiipo+fbILFaKS4TofujJzi3LS8BAymtkbokiP14X8aNagrXOI4yG8vQbGYXldIWRiAVilr+YNymo+3z17xINsTEejKVOmyncgGSyk95A8leA/Qq3x3Yrcq3BPYPu+o3drgF0hIki8PRHa5cWEhzkgPhJMWs3At2rW17LDUS02YnUqqf29JWmHoSO9E1oFypOGikp7IdTfXUGQqDOTmX3sAsE+njolqsrTtOoQSxWfug2T9JRxSrQrnVrced6DVE7h3X9fwy2teUcFu0TpdlzBVOA7nRRx9/EKr39nX0mrNXZJpxxB0FZ+Q/fdl5wcUMucctApLxdOrGwqM+RIAYUutDZi97D8VUTx3jD9sp+ieaiSn0csdcDRRSS54XmE1/zS52uhE7TwzLbfqL7wzYt65p0t8uwK4tLWHE0jSWTWGtbmhvu+Gxa2HnIqq1+DL8Ekj6XlyxhdGA+HYu4VNYZTg7ASPpazA7MYri/4EacXZYZDsEoys3pvfXHGKSqa0V8aTvz4iFyr4ZDDaqyPqeugQoqoicqzB7t2eXl9RVBgEiWUi8FoMDoO8PqKKH0m8JaZitWHezeUWikX0tPEJtoHAnNWmRho05By9z0wfICLmaYS+/3m8x+0X1x/vpkg24k0z6S132aIqbxAxqel5GhToeVjLlRkayWQ4ti0YDBtVhFaOogMNS40iNrunwi4IREb5h0JQ2r4r998b92dmE2NRkC22X2PrzUwRmB5EMeyL9HuFG16sMmHtuWJ5IWiKZhXQVNKr9i9lwn9JxZSRvGMQawV9hw7HeTuxOu6EpnIy/zhl8YkDZ4QwtZW4W09N81C8D/cJ/cTJuIwGDotlCEQcvdt9j17sD+/sCVtQfWWTVv1kpocNTebmQjw1evtlj5jvh576vaO5oNXYkbdcnuHHpY4OWi4vsydXwqGHyYUTzN9jhasZvxc5j44qXs4h6hDOI33sgqv8vznXvyFH+n/mOOLzTXN1Ju/bbgWZpHyBsaLTfr7F5s3dAE=
+api: eJzVVttOI0cQ/ZXSvCwg4wsLydooD+wKKUTsrgXmCSHcnqmxG2a6J30xIMtSPiIfseQ3/Cf5klR1exh7IXlJXoJQM/RUd1WfPufULBJdoRFOanWWJYOk0tbdTryVCq29rYRJsbC3qVD0N2klTkxtMrhO6ojkppVkaFMjK96CNvgUQi0IqGMg7gLiQUgn1RQyo6t9nectMFigsGhBOguFTu/RgFAZzedeZRbcDOnZopmHCiFHBKfD9IMoCnRtuMBfvaSYMLm397FOajE16OAen/b22jCKG1VaWYRUGCNpxTimwUyU2is3btMBH/eFdzM6xwsGcaPwyqDItCqekkEuCoutxFBytO6jzmhuEf6lWghHZzy9TrVyqBy/ElVVyDSconNnGalFYtMZloKf3FOFlFNP7jDlVJXhW3FUZFwr6RgbcdYZwjFZUmCANkMnZCGzN0KWrY2qruut6NacdAUHnuuptE6mdhi2OlO5plVxXcQr1HDQ7fKf7bs+VXMsdFUhZATv6tn6wgkHO5ZGb1OdYSc+lgSkmOJuG64UjJvXY8hknq+eDaHEe4y73TFIlUmCFbxCQGPQG76Y/wjLJvdrsFoJKl8yTHTYVtLt8XDAw3seDnk44uEHHn7k4QMPfRp6vKLHK/o81++/VsYFMj7AuQfQ7YL1aUq4HEO3t999D2suwYTIRHOHUEprWS65pBummaP9Xg/mgu45HP0Y+h+AyUqorNGgqT5MUaGRKUOnDdAvlpV7YvZT9jaTZutO3qTVtjDeptXfECjq/2LNnTWVDgm8V+y5UvdKPyiyBzeDP3/7nUp03qio5F8uv34BjPwisUsK2eLNuN8ft0BpR34BP48+n9M2UwzHO3qLqlcKHysiBGbAdkI+E/H5V3lPLoftL6ejOjXlxkciqaWU7JKLJMi29pRWQpfn8Q1vWbaa0BePeQkPXrMkOpXoZro2aWa2CE7VqbfrrO26E+26QyHxrLEYbwqKnjlX2UGnI3IjJ/qRDKFtS2FcXNtW086cKb+N3kkMBtJS5tNgxTvzg92Eq2IFXjQ+ePooyqrATd9q9PW9XW1QTrLxMNHWtKpTngzPGAo6RCzloN1td18XODyDzMNEUAuh/lEv3rnko0VikvmMtKc2Q85faamo42TvRJquvlGzIiVWLpiQrykAw6+XI/Iy4fNgSVFiwD5kBPkp7Xf+rtZfXr+m9pJTm4O5FGRgMI4YkM8JxalpuaksW10hguJXfziEQfC6tFg9c0mNu7Wa+cpPiuCK2TvKZ7AyklJp30Qwl1bf3HYE1YgQ+OtIJaMhsMM47e+0NxbI1OGYq2q8m99HA+ZitormI21pYSfY9U/ByAjFXaB+O94yl3EQJNO1FMGmlSjD5SrlC9KgZzwLab+/z0Vj9//3D4q1cTpyhk5VCKkYkSDFxVrAG19TtUL46eWbizvJjBVPkYvFhI53ZYrlkqeJEIYEdn3DZmGkmLB0rm8ow4xsBM2GCX2KgO6PuJ7Gil710saLToIo/jF205RYLhQ8WX8LlaHFJkY80CSPg4QedLjg0InD3CIphJr60IeSuCf//AX+nLMI
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Cancels a business parcel awaiting drop-off, releases its locker and refunds the reservation fee to the wallet. Requires the **Business secret key**. The response carries `refundedamount`.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé publique d'entreprise** (voir le guide d'authentificat
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"title":"LogisticsParcelInfo"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"}},"required":["apikey"],"title":"LogisticsParcelInfo"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}},"title":"LogisticsParcelInfoResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"refundedamount":{"type":"string"}},"title":"LogisticsParcelCancelResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

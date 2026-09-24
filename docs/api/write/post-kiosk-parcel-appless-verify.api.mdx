@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-parcel-appless-verify
-title: "Parcel appless verify"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Parcel appless verify"
+title: "Appless Verify"
+description: "Check availability and fee for **one** size (by `sizename`) for a walk-in user."
+sidebar_label: "Appless Verify"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVU1vGjEQ/SuWTyQiLMqRqgfSVmp7aKKE9hJFYHYHcOO1XX+Q0BX/vTP2woJKolbqoRxg8cx6xu/Ne264seBEkEZ/qviIW+PD9FEa/zi1wpWgpsJaBd5P1+DkYsP7PIil56N7nrL4Q59X4EsnLe2BO4xjWIEOskybjtj5Oe7AHmFzfs56HoBhmB0nsWWUFZwN2ARDDrw12gOTnn2cTG7Y5XD4Jr2EkagCrUudFuam2rCZDyJEX5oKZmwhQVUDbPL5QmAJbAeLT7F4WnIgKqPVho8WQnnocwc/IvhwhfvwUZP+SgeIQ3ARw6XRAbukEKHQdlt893TQhvtyBbWgp7CxgLXM/DuUAUtZR6gGCT6/K6mDLs8HJ/WSb/t8bp5ldTLi5U/QooYTQYwGGRQtjTM53zI32y3FdgCm2gge/RxTdJuBBL0GhY0iLXsIi/xY46ZiSZR8MfpiNhzOWJeD8FeEBXgmNAPnjCPI/xFaXZ3TuBz2dzIjz+0fFEKE/x78xNlrMVFVyIB/pTVRm5hxOvW+MuUj0nm6sX1cx3oO7i+G4yaVfi+CeDnntp2cNEiYBM9IqEcSSe8NT0O8U1afr4WKcKCwbb9L2Sttn5YUt0W3qCGszM5qiBSRdFokOykyQkVrOkU2nQLTPDj8kxuJDunlqxCsHxWFWDhJuFs58LVwIW8x0Mtifcl/c6eczHAUqlgm8+mtL884dUaTets5wodnUVsFhwreobwXbrfQjcwBXVIvTOJoh3ZbfXzziZDB8+SuLgfDwfDFXucCGdcVvcV6d3TETCaqc6wUyriyRuqAaixLsIF9vrv+wgzuzm6u7yasFzVhybQJUNE7x96LdrqWgpQ8y8ec7ey1dcdksyNKGHeyTs1gcp8JdhW91FTBxjnG87JxhxEPpYNAkWzyydizlKkBoZ7ExndOb2IoTZ2uAAfWOGz8yPOp4SPf7yWLest8RAi8P8Nuq11G6xWzQVIgDl0tkiG1bGUsWTtxbH/NHXHRdO72n1xwrewDarSwSkhNp0vCaFpJ7W7ovSP2eXvIPHv5mHSBr0iJmN80c+Hhq1PbLS0j+w6H/v6BROykmNMM3z9gnRXKm9xnbwrvMjoXE+rqyBqO74HOI8ZpVl/NPTQLmuQku3xT1+l64E484SJ9jzg+mMRWst601nAl9DKmi4LnPenzC3UKHm0=
+api: eJy1V+9u2zYQfxWCn5zMsew02WoX++CmHdphaY3G6Ze0iGjpbLORSI2knLiGgT3EnnBPsjtSsqzG7TZsCwJGosj7+7vfXTZcF2CEk1q9TvmIF9q62zup7d1tIUwC2a0oigysvV2BkfM173InFpaPbrg/xT92eQo2MbIgGSjhYgnJHRMrITMxk5l0ayZUyuYAbK4NOz7WCo6PmZWfgXVmaxbTkxI5xEf+gGD3Irs7kYqVFkwPFT6ciNItUTSacnsHa79lQKRaZWs+movMQpcb+LUE657rFPc2/lUaQJ+cKfFzopUD5egTeSQT73P0yZLRG26TJeSCnty6ANSlZ58gcaiqMBQhJ8GGu5IsaM5ZZ6Ra8G2Xz/SDTA9+qT088HHb3bP0phaPQXXSZXRwHML/PkR/uw03bKGVDRad9vv0p52Ed2DLzDFQK8jQfNaJrROutIlOIY6qlxzligXGvcfifj9mPzJbJgluPsMkrEQmU1YFld1Lt2RK4zvJtUzacMXvC8UgLyjPxog16yjtWDwcoh5VZhmJH6s1024Jhu3bwTrQW5Dus7iLF576dYgwkCql/IBFO+aIo9IA4eA/SmFjweN8dDmoMqdMYFS7vD+g5ZSWJ7Sc0XJOy/e0/EDLU1qGuAzoxoBuDGlvOHxcG1VaSPeI9ftNvPuDk/6TXbRniGHcO2O5tBbNYnMJWYo75yeDQciMd/0ZGz5lVBsYlSoauDVkC1AIl4SBMVhQ+BvSE5LX84jcB8BBzIbq/xvRRGz/c9j7avnWN5GmaK79hmki12UAw6H7mU7uMAaHDdt9x1zPwBwuy4MFOPGqXwgnvn7mXVWdpAkeRF5k8CXsArq+SAK/CmiYlxnfj38dYU7QamLKJ4Dq+V4k+XhuJL6xC50QC7YD+fhrO4783BvVih0/5weihbvbQERnWBGPuOda3Sl9r1ghkBv++O13xJ0rjbIMccp+vnr7pqElTx8tSiAC6DJiEGSVV9PLX1DMAjxmzw8R3bWChwJxCSnDboE9qgL9v9I7vpr03ryc1qp9HpF5LKqkzrfhvgXUfanLsSJL2OtP225zZNendsd8v9oiN+Tglrpuuj4fvstFvrFGITtR1X6j0H4jgoD3MxhSGoQIXzpX2FEUiZBhbCI9mwvjgoieWkQr4rB25Go4YDmnZUKbrLM6PeJkGVHqu6afvmxQXPe/hjCrttds7EG0KTmp5trXWV0xlfbx5DVFBv0JVp32+r3+V22dCcQhDhN4i3WuyMVQkNRisgzzmxZaKuxPAiupcCHrmlAxeXs1ZZ1SUSwpzZDSnRZ1UlNbSUEAiIObMXYij559Yh55hDT9xxuDh7vYrJ6XSNekoShn+P3RtoUEQRm2EaQdmnfiSKS5VBH2PcFSCJ0vZX6TTvbYRWmdztEJwtK+k5nVtacC4Ywa0B6nMURxBX4URCNWlFQiokwvSFePTdGtV9PphIUqIOdxkmAdH7LdgIEtHUJhoUWW4tLuu/HRMx8gXboE5ZMUA4U25EEVO4qZj2u79bcnjiM/I34xl2CC/mIMqSv8a7NIj70IY0Tbi8sojdb4w5ajPB9hXsaX0eQy3ol3MofPOKayDjlQ8Qq6dj29+G6AHs+0zgA1+bYcpPuDHu0o/wOf4sz5geME9IH/ROWOz57DqNJz4ceVmrNDfbP39XjdQv6mGXr+h8G6anoO2S0qMiEVmegpZVORUT3l7/pRl1eEFKo2mEyDzpI4DM9vNjNh4dpk2y1tY94M0sXNR6I/I8WMqv/mI+pZIpipm+zo9CJ4ejIlq1qk2h71GnYde+x/8+w+zRIHeMIK/yHkoRUbcY+btI44PmgfeT94+L0Nz4RalKFDB5n08ydeFYeD
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Parcel appless verify"}
+  children={"Appless Verify"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Check availability and fee for **one** size (by `sizename`) for a walk-in user.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizename":{"type":"string"}},"title":"ApplessVerify"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizename":{"type":"string"}},"required":["apikey"],"title":"ApplessVerify"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"parcelamount":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessVerifyParcelData"}},"title":"ApplessVerifyResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"parcelamount":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessVerifyParcelData"}},"title":"ApplessVerifyResponse"},"example":{"statuscode":"00","statusmessage":"Successful","parcel":{"sizeid":"1","sizename":"Petit","boxname":"Afribox Cocody","boxaddress":"Afribox Cocody","parcelamount":"500","boxlockerid":"5","boxlockernumber":"5"}}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

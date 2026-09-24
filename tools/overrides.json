@@ -2,7 +2,7 @@
   "info": {
     "title": "Afribox API",
     "version": "2.0.0",
-    "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, or a Business secret key. The HTTP status is always 200; the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`."
+    "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
     "core": "Public reference data: states, cities, boxes, sizes, fees, couriers, delivery areas.",
@@ -22,7 +22,14 @@
     "POST /pay/initialize/": {
       "readonly": false,
       "summary": "Initialize a Paystack payment",
-      "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup)."
+      "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup).",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "reference": "PRN123-1234567890",
+        "authorizationurl": "https://checkout.paystack.com/abc123",
+        "accesscode": "abc123"
+      }
     },
     "POST /pay/verify/": {
       "readonly": false,
@@ -33,6 +40,599 @@
       "readonly": true,
       "summary": "Get payment status by reference",
       "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot."
+    },
+    "POST /business/pendingdropoffs/": {
+      "summary": "List parcels awaiting drop-off",
+      "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1)."
+    },
+    "POST /business/retrievedparcels/": {
+      "readonly": true,
+      "summary": "List the business's retrieved parcels",
+      "description": "The business's parcels retrieved from a locker."
+    },
+    "POST /business/cancelledparcels/": {
+      "readonly": true,
+      "summary": "List the business's cancelled parcels",
+      "description": "The business's cancelled parcels."
+    },
+    "POST /customer/parcels/cancelled/": {
+      "readonly": true,
+      "summary": "List the customer's cancelled parcels",
+      "description": "The customer's cancelled parcels."
+    },
+    "POST /customer/parcels/newrequests/": {
+      "readonly": true,
+      "summary": "List the customer's new parcel requests",
+      "description": "The customer's new parcel requests (status 1)."
+    },
+    "POST /parcel/snapshots/": {
+      "summary": "List a parcel's snapshots",
+      "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`."
+    },
+    "POST /business/parcels/create/": {
+      "summary": "Create a business parcel",
+      "description": "Creates a parcel on behalf of the business, reserves a locker and debits the reservation fee from the wallet (prepaid). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel.",
+      "example": {
+        "apikey": "<business secret key>",
+        "boxid": "4",
+        "sizeid": "1",
+        "recipientname": "Ama",
+        "recipientphone": "0104554198",
+        "recipientemail": "ama@example.com"
+      }
+    },
+    "POST /customer/parcels/new/": {
+      "summary": "Create a customer parcel",
+      "description": "Creates a parcel for the customer and reserves a locker. Supports an optional `Idempotency-Key` header."
+    },
+    "POST /customer/parcels/cancel/": {
+      "summary": "Cancel a customer parcel",
+      "description": "Cancels the customer's own parcel (status 1, awaiting drop-off) and releases its locker. The parcel must carry the caller's `customerid` (or a valid `sessiontoken`)."
+    },
+    "POST /business/parcels/cancel/": {
+      "summary": "Cancel a business parcel",
+      "description": "Cancels a business parcel awaiting drop-off, releases its locker and refunds the reservation fee to the wallet. Requires the **Business secret key**. The response carries `refundedamount`."
+    },
+    "POST /business/parcels/search/": {
+      "summary": "Find a business parcel by reference",
+      "description": "Find one of the business's parcels by `parcelreferencenumber`."
+    },
+    "POST /customer/login/": {
+      "summary": "Log in (returns a session token)",
+      "description": "Authenticates a customer and returns the profile, the dashboard counters and a dated, revocable `sessiontoken`. Customer read endpoints accept `sessiontoken` in place of `customerid`.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "customer": {
+          "customerid": "1",
+          "customername": "Ama",
+          "networkid": "2",
+          "networkname": "Afribox",
+          "emailaddress": "ama@example.com",
+          "phonenumber": "0104554198",
+          "passwordreset": "False",
+          "customeractive": "True"
+        },
+        "dashboard": {
+          "newrequests": "0",
+          "inlocker": "0",
+          "enroutetorecipient": "0",
+          "delivered": "0"
+        },
+        "sessiontoken": "<uuid>",
+        "sessionexpires": "2026-10-24 00:00:00"
+      }
+    },
+    "POST /pay/success/": {
+      "summary": "Confirm a parcel payment",
+      "description": "Marks a parcel paid only when a successful payment bound to that parcel is found. The parcel and its `collectcode` are returned **only** when the payment is confirmed."
+    },
+    "POST /core/boxes/info/": {
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "box": {
+          "boxid": "4",
+          "boxname": "Afribox Cocody",
+          "networkid": "2",
+          "networkname": "Afribox",
+          "boxonline": "True",
+          "datelastping": "9/22/2026 1:07:44 PM",
+          "lockersinuse": "5",
+          "lockersfree": "32"
+        },
+        "lockersizes": [],
+        "lockers": [
+          {
+            "boxlockerid": "1",
+            "boxlockernumber": "1",
+            "sizeid": "3"
+          }
+        ]
+      },
+      "description": "One box with its counters, its physical lockers (`lockers[]`) and its service state (`boxonline`, `datelastping`)."
+    },
+    "POST /core/boxes/list/": {
+      "summary": "List the boxes of the network",
+      "description": "All active boxes of the calling key's network."
+    },
+    "POST /core/boxes/available/list/": {
+      "summary": "List boxes with a free locker",
+      "description": "Boxes in the network that currently have at least one free locker."
+    },
+    "POST /business/boxes/all/": {
+      "summary": "List all boxes of the business",
+      "description": "All boxes of the business."
+    },
+    "POST /business/boxes/assigned/": {
+      "summary": "List the boxes assigned to the business",
+      "description": "The boxes assigned to the business (identical to `/business/boxes/all/` for a single-business key)."
+    },
+    "POST /business/availableboxes/all/": {
+      "summary": "List the business's boxes with a free locker",
+      "description": "The business's boxes that currently have at least one free locker."
+    },
+    "POST /business/pendingpickups/": {
+      "summary": "List parcels awaiting collection",
+      "description": "Parcels already dropped into a locker and not yet collected (status 2)."
+    },
+    "POST /business/parcels/retrieve/": {
+      "summary": "Retrieve a dropped-off parcel",
+      "description": "Business action to retrieve a parcel that is in a locker (status 2). Requires the secret key."
+    },
+    "POST /customer/parcels/info/": {
+      "summary": "Get one customer parcel",
+      "description": "Returns a single parcel of the customer, by `parceldetailid`, without its timeline."
+    },
+    "POST /customer/parcels/info/all/": {
+      "summary": "Get one customer parcel with its timeline",
+      "description": "Despite the `all` in the path, this takes a single `parceldetailid` and returns that one parcel **plus its `timelines`**."
+    },
+    "POST /customer/parcels/reports/": {
+      "summary": "Report the customer's parcels in a date range",
+      "description": "The customer's parcels created within a date range (`datefrom`/`dateto`, MM/DD/YYYY)."
+    },
+    "POST /kiosk/setup/": {
+      "summary": "Set up a box from its code",
+      "description": "Establishes a machine's identity from `boxcode` and returns the full box record. A write; safe to call again."
+    },
+    "POST /kiosk/ping/": {
+      "summary": "Box heartbeat",
+      "description": "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope."
+    },
+    "POST /pay/search/": {
+      "summary": "Find a parcel for payment",
+      "description": "Looks a parcel up by `parcelreferencenumber` for the payment flow. `/core/parcels/search/` returns any parcel; this one is the payment-scoped search."
+    },
+    "POST /core/states/list/": {
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "states": [
+          {
+            "stateid": "1",
+            "statecode": "AB",
+            "statename": "Abidjan",
+            "countcities": "4",
+            "countboxes": "4",
+            "statedescription": "Abidjan (4 Locations)"
+          }
+        ]
+      },
+      "description": "The state vocabulary."
+    },
+    "POST /core/parcelstatuses/list/": {
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "parcelstatuses": [
+          {
+            "parcelstatusid": "1",
+            "parcelstatus": "New parcel request",
+            "parcelstatusdescription": "Parcel request created"
+          }
+        ]
+      },
+      "description": "The parcel-status vocabulary (1 New request … 6 Archived)."
+    },
+    "POST /business/balance/": {
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "balance": "6,400.00"
+      },
+      "description": "The business wallet balance (formatted, e.g. `\"6,400.00\"`)."
+    },
+    "POST /customer/parcels/all/": {
+      "summary": "List all customer parcels",
+      "description": "All of the customer's parcels, newest first."
+    },
+    "POST /customer/parcels/archived/": {
+      "summary": "List archived parcels",
+      "description": "The customer's archived parcels (status 6)."
+    },
+    "POST /customer/parcels/delivered/": {
+      "summary": "List delivered parcels",
+      "description": "The customer's parcels collected by the recipient (status 4)."
+    },
+    "POST /customer/parcels/enroutetorecipient/": {
+      "summary": "List parcels enroute to the recipient",
+      "description": "The customer's parcels travelling to the recipient (status 3)."
+    },
+    "POST /customer/parcels/inlocker/": {
+      "summary": "List parcels in a locker",
+      "description": "The customer's parcels held in a locker and not yet collected (status 2 or 7)."
+    },
+    "POST /core/boxes/bycity/": {
+      "summary": "List boxes by city",
+      "description": "Boxes in a given city."
+    },
+    "POST /core/boxes/bystate/": {
+      "summary": "List boxes by state",
+      "description": "Boxes in a given state."
+    },
+    "POST /core/boxes/available/bycity/": {
+      "summary": "List available boxes by city",
+      "description": "Boxes that currently have at least one free locker, in one city."
+    },
+    "POST /core/boxes/available/bystate/": {
+      "summary": "List available boxes by state",
+      "description": "Boxes that currently have at least one free locker, in one state."
+    },
+    "POST /business/boxes/city/": {
+      "summary": "List the business's boxes by city",
+      "description": "The business's boxes in one city."
+    },
+    "POST /business/boxes/state/": {
+      "summary": "List the business's boxes by state",
+      "description": "The business's boxes in one state."
+    },
+    "POST /business/availableboxes/city/": {
+      "summary": "List the business's available boxes by city",
+      "description": "The business's boxes with a free locker, in one city."
+    },
+    "POST /business/availableboxes/state/": {
+      "summary": "List the business's available boxes by state",
+      "description": "The business's boxes with a free locker, in one state."
+    },
+    "POST /business/cities/all/": {
+      "summary": "List the cities of the business network",
+      "description": "The cities covered by the business's network."
+    },
+    "POST /business/states/": {
+      "summary": "List the states of the business network",
+      "description": "The states covered by the business's network."
+    },
+    "POST /core/billingtypes/list/": {
+      "summary": "Billingtypes List",
+      "description": "Billing types used by businesses (for example Prepaid, Postpaid)."
+    },
+    "POST /core/boxes/availability/": {
+      "summary": "Boxes Availability",
+      "description": "Free lockers by size for a box (counts only, no locker numbers)."
+    },
+    "POST /core/cities/bystate/": {
+      "summary": "Cities Bystate",
+      "description": "Cities of a given state."
+    },
+    "POST /core/cities/info/": {
+      "summary": "Cities Info",
+      "description": "One city, by id."
+    },
+    "POST /core/cities/list/": {
+      "summary": "Cities List",
+      "description": "All cities."
+    },
+    "POST /core/couriers/list/": {
+      "summary": "Couriers List",
+      "description": "Courier companies known to the network."
+    },
+    "POST /core/deliveryareas/list/": {
+      "summary": "Deliveryareas List",
+      "description": "Delivery areas, optionally filtered by state."
+    },
+    "POST /core/fees/appless/": {
+      "summary": "Fees Appless",
+      "description": "Walk-in (appless) reservation fee per size."
+    },
+    "POST /core/fees/compute/": {
+      "summary": "Fees Compute",
+      "description": "Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit."
+    },
+    "POST /core/fees/selfstorage/": {
+      "summary": "Fees Selfstorage",
+      "description": "Self-storage fee per size, per six hours and per hour."
+    },
+    "POST /core/fees/service/": {
+      "summary": "Fees Service",
+      "description": "Send-parcel service fee per size."
+    },
+    "POST /core/parcels/search/": {
+      "summary": "Parcels Search",
+      "description": "Find any parcel in the network by `parcelreferencenumber`."
+    },
+    "POST /core/requesttypes/list/": {
+      "summary": "Requesttypes List",
+      "description": "The parcel request types (for example Send parcel, Self storage)."
+    },
+    "POST /core/sizes/fees/": {
+      "summary": "Sizes Fees",
+      "description": "Fees by size for a box and request type (**type 6** returns the appless fees)."
+    },
+    "POST /core/sizes/info/": {
+      "summary": "Sizes Info",
+      "description": "One size, by id."
+    },
+    "POST /core/sizes/list/": {
+      "summary": "Sizes List",
+      "description": "The size vocabulary (Petit, Moyen, Grand, XGrand)."
+    },
+    "POST /core/states/info/": {
+      "summary": "States Info",
+      "description": "One state, by id."
+    },
+    "POST /core/walletfundmodes/list/": {
+      "summary": "Walletfundmodes List",
+      "description": "Wallet funding modes (for example Online/Card, Paystack)."
+    },
+    "POST /core/wallettransactiontypes/list/": {
+      "summary": "Wallettransactiontypes List",
+      "description": "Wallet transaction types: `1` Credit, `2` Debit."
+    },
+    "POST /customer/cards/add/": {
+      "summary": "Cards Add",
+      "description": "Start adding a saved card; returns the Paystack authorization URL to complete in the browser."
+    },
+    "POST /customer/cards/delete/": {
+      "summary": "Cards Delete",
+      "description": "Delete one of the customer's saved cards."
+    },
+    "POST /customer/cards/info/": {
+      "summary": "Cards Info",
+      "description": "One of the customer's saved cards."
+    },
+    "POST /customer/cards/list/": {
+      "summary": "Cards List",
+      "description": "The customer's saved cards."
+    },
+    "POST /customer/cards/setdefault/": {
+      "summary": "Cards Setdefault",
+      "description": "Mark one of the customer's cards as the default."
+    },
+    "POST /customer/changepassword/": {
+      "summary": "Customer Changepassword",
+      "description": "Change the customer's password; requires the current `oldpassword`."
+    },
+    "POST /customer/dashboard/": {
+      "summary": "Customer Dashboard",
+      "description": "The customer's dashboard counters (new requests, in locker, enroute, delivered).",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "dashboard": {
+          "newrequests": "0",
+          "inlocker": "0",
+          "enroutetorecipient": "0",
+          "delivered": "0"
+        }
+      }
+    },
+    "POST /customer/edit/": {
+      "summary": "Customer Edit",
+      "description": "Update the customer's display name."
+    },
+    "POST /customer/forgotpassword/": {
+      "summary": "Customer Forgotpassword",
+      "description": "Start a password reset; the code goes to the registered contact."
+    },
+    "POST /customer/info/": {
+      "summary": "Customer Info",
+      "description": "The customer's profile."
+    },
+    "POST /customer/otp/resend/": {
+      "summary": "Otp Resend",
+      "description": "Resend the signup verification code to the **registered** contact (no account-existence disclosure)."
+    },
+    "POST /customer/otp/verify/": {
+      "summary": "Otp Verify",
+      "description": "Verify the signup code and activate the account."
+    },
+    "POST /customer/parcels/hold/": {
+      "summary": "Parcels Hold",
+      "description": "Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker."
+    },
+    "POST /customer/parcels/hold/release/": {
+      "summary": "Hold Release",
+      "description": "Release a checkout hold and free its locker."
+    },
+    "POST /customer/parcels/timeline/": {
+      "summary": "Parcels Timeline",
+      "description": "The status timeline of one of the customer's parcels."
+    },
+    "POST /customer/resetpassword/": {
+      "summary": "Customer Resetpassword",
+      "description": "Reset the password. Declares `oldpassword`; for a forgotten password use the OTP flow."
+    },
+    "POST /customer/signup/": {
+      "summary": "Customer Signup",
+      "description": "Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists."
+    },
+    "POST /customer/support/": {
+      "summary": "Customer Support",
+      "description": "Submit a support request for the customer."
+    },
+    "POST /business/boxes/info/": {
+      "summary": "Boxes Info",
+      "description": "One business box (client-side box lookup)."
+    },
+    "POST /business/cities/state/": {
+      "summary": "Cities State",
+      "description": "The cities of one state, for the business."
+    },
+    "POST /business/dashboard/": {
+      "summary": "Business Dashboard",
+      "description": "The business dashboard counters (boxes, lockers, parcels, pending, cancelled, totals).",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "dashboard": {
+          "boxes": "5",
+          "lockers": "185",
+          "users": "1",
+          "parcelspendingdropoffs": "0",
+          "parcelspendingpickups": "0",
+          "parcelspickedup": "20",
+          "parcelsretrieved": "0",
+          "parcelscancelled": "0",
+          "parcelstotal": "20",
+          "lockersvacant": "175",
+          "lockersreserved": "8",
+          "lockersoccupied": "2",
+          "lockerstotal": "185"
+        }
+      }
+    },
+    "POST /business/draft/deliveryareas/": {
+      "summary": "Draft Deliveryareas",
+      "description": "Delivery areas for the parcel-creation selector."
+    },
+    "POST /business/draft/parceltypes/": {
+      "summary": "Draft Parceltypes",
+      "description": "Parcel request types for the parcel-creation selector."
+    },
+    "POST /business/parcels/info/all/": {
+      "summary": "Info All",
+      "description": "One business parcel **plus its `timelines`**, by `parceldetailid`."
+    },
+    "POST /business/parcels/info/": {
+      "summary": "Parcels Info",
+      "description": "One business parcel, by `parceldetailid`."
+    },
+    "POST /business/parcels/reports/": {
+      "summary": "Parcels Reports",
+      "description": "The business's parcels within a date range (`datefrom`/`dateto`, MM/DD/YYYY)."
+    },
+    "POST /business/parcels/timeline/": {
+      "summary": "Parcels Timeline",
+      "description": "The status timeline of one business parcel."
+    },
+    "POST /business/pickedupparcels/": {
+      "summary": "Business Pickedupparcels",
+      "description": "The business's parcels already collected by the business."
+    },
+    "POST /business/sizes/": {
+      "summary": "Business Sizes",
+      "description": "The size vocabulary available to the business."
+    },
+    "POST /business/transactionhistory/": {
+      "summary": "Business Transactionhistory",
+      "description": "The business wallet ledger (credit/debit lines with narration, parcel reference and Paystack reference).",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "transactions": [
+          {
+            "transactionid": "1",
+            "datecreated": "8/27/2026 5:27:26 PM",
+            "type": "Debit",
+            "amount": "250",
+            "parcelreferencenumber": "4084708791",
+            "parceldetailid": "1002",
+            "elapsed": "",
+            "narration": "Parcel booking Ref: 4084708791",
+            "reference": ""
+          }
+        ],
+        "total": "1",
+        "page": "1",
+        "pagesize": "1"
+      }
+    },
+    "POST /business/wallettransaction/new/": {
+      "summary": "Wallettransaction New",
+      "description": "Insert a wallet movement for the business. Requires the **secret key**; `wallettransactiontypeid` 1=credit, 2=debit."
+    },
+    "POST /kiosk/parcel/appless/reserve/": {
+      "summary": "Appless Reserve",
+      "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use)."
+    },
+    "POST /kiosk/parcel/appless/verify/": {
+      "summary": "Appless Verify",
+      "description": "Check availability and fee for **one** size (by `sizename`) for a walk-in user.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "parcel": {
+          "sizeid": "1",
+          "sizename": "Petit",
+          "boxname": "Afribox Cocody",
+          "boxaddress": "Afribox Cocody",
+          "parcelamount": "500",
+          "boxlockerid": "5",
+          "boxlockernumber": "5"
+        }
+      }
+    },
+    "POST /kiosk/parcel/collect/": {
+      "summary": "Parcel Collect",
+      "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`."
+    },
+    "POST /kiosk/parcel/drop/": {
+      "summary": "Parcel Drop",
+      "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`."
+    },
+    "POST /kiosk/parcel/snapshot/": {
+      "summary": "Parcel Snapshot",
+      "description": "Upload a proof-of-delivery snapshot (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2)."
+    },
+    "POST /admin/businesses/list/": {
+      "summary": "Businesses List",
+      "description": "List businesses with their balance and network. Requires the **admin key**; scoped to its network (or all networks for a global key)."
+    },
+    "POST /admin/businesses/wallettransaction/new/": {
+      "summary": "Wallettransaction New",
+      "description": "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network."
+    },
+    "GET /parcel/snapshot/image/": {
+      "summary": "Snapshot Image",
+      "description": "Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`)."
+    }
+  },
+  "propertyTypes": {
+    "snapshotevent": {
+      "enum": [
+        "dropoff",
+        "pickup"
+      ],
+      "description": "Snapshot event: `dropoff` (at drop-off) or `pickup` (at collection)."
+    },
+    "snapshotsequence": {
+      "enum": [
+        "1",
+        "2"
+      ],
+      "description": "1 = taken when the locker is unlocked; 2 = taken after the door is closed."
+    },
+    "wallettransactiontypeid": {
+      "enum": [
+        "1",
+        "2"
+      ],
+      "description": "1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."
+    },
+    "walletfundmodeid": {
+      "description": "Funding mode. See /core/walletfundmodes/list/."
+    },
+    "parcelstatusid": {
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
     }
   },
   "manualOperations": {
@@ -41,14 +641,32 @@
         "operationId": "get_pay_return",
         "summary": "Payment return / landing page",
         "description": "Hosted callback page. Verifies the payment, fulfils it, then redirects to `metadata.returnurl` when present. Returns an HTML page (not JSON). Query parameters: `reference` (or `trxref`).",
-        "tags": ["pay"],
-        "x-readonly": true,
+        "tags": [
+          "pay"
+        ],
+        "x-readonly": false,
         "parameters": [
-          { "name": "reference", "in": "query", "required": false, "schema": { "type": "string" } },
-          { "name": "trxref", "in": "query", "required": false, "schema": { "type": "string" } }
+          {
+            "name": "reference",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trxref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
-          "200": { "description": "HTML landing page (Payment successful / not completed)." }
+          "200": {
+            "description": "HTML landing page (Payment successful / not completed)."
+          }
         }
       }
     },
@@ -57,18 +675,38 @@
         "operationId": "post_pay_webhook_paystack",
         "summary": "Paystack webhook",
         "description": "Server-to-server webhook. Paystack signs the raw body with HMAC-SHA512 using the secret key; the signature is sent in the `x-paystack-signature` header and validated. Handles `charge.success` and `charge.failed`. Returns HTTP 200 on success, 403 on invalid signature. Not called by clients.",
-        "tags": ["pay"],
-        "x-readonly": true,
+        "tags": [
+          "pay"
+        ],
+        "x-readonly": false,
         "parameters": [
-          { "name": "x-paystack-signature", "in": "header", "required": true, "schema": { "type": "string" } }
+          {
+            "name": "x-paystack-signature",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "required": true,
-          "content": { "application/json": { "schema": { "type": "object", "description": "Paystack event payload." } } }
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Paystack event payload."
+              }
+            }
+          }
         },
         "responses": {
-          "200": { "description": "Acknowledged" },
-          "403": { "description": "Invalid signature" }
+          "200": {
+            "description": "Acknowledged"
+          },
+          "403": {
+            "description": "Invalid signature"
+          }
         }
       }
     },
@@ -77,14 +715,32 @@
         "operationId": "get_customer_cards_add_complete",
         "summary": "Card add callback (browser)",
         "description": "Browser landing page used as the Paystack `callback_url` after adding a card. Reads `reference`/`trxref`, verifies the transaction, and stores the card authorization code. Returns an HTML page with the outcome.",
-        "tags": ["customer"],
-        "x-readonly": true,
+        "tags": [
+          "customer"
+        ],
+        "x-readonly": false,
         "parameters": [
-          { "name": "reference", "in": "query", "required": false, "schema": { "type": "string" } },
-          { "name": "trxref", "in": "query", "required": false, "schema": { "type": "string" } }
+          {
+            "name": "reference",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trxref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
-          "200": { "description": "HTML page (Add Card Successful / Failed)." }
+          "200": {
+            "description": "HTML page (Add Card Successful / Failed)."
+          }
         }
       }
     }
@@ -95,6 +751,97 @@
     },
     "PaystackVerifyResponse": {
       "description": "Verified transaction details, including parcel collectcode when applicable."
+    },
+    "CustomerParcelNew": {
+      "required": [
+        "apikey",
+        "requesttypeid",
+        "customerid",
+        "sizeid",
+        "boxid",
+        "recipientname",
+        "recipientphone",
+        "recipientemail"
+      ],
+      "example": {
+        "apikey": "<application key>",
+        "requesttypeid": "3",
+        "customerid": "1",
+        "sizeid": "1",
+        "boxid": "4",
+        "recipientname": "Ama",
+        "recipientphone": "0104554198",
+        "recipientemail": "ama@example.com"
+      }
+    },
+    "LogisticsParcelNew": {
+      "required": [
+        "apikey",
+        "sizeid",
+        "boxid",
+        "recipientname",
+        "recipientphone",
+        "recipientemail"
+      ],
+      "example": {
+        "apikey": "<business secret key>",
+        "sizeid": "1",
+        "boxid": "4",
+        "recipientname": "Ama",
+        "recipientphone": "0104554198",
+        "recipientemail": "ama@example.com"
+      }
+    },
+    "PaystackInitialize": {
+      "required": [
+        "apikey",
+        "amount"
+      ],
+      "example": {
+        "apikey": "<business secret key>",
+        "email": "ama@example.com",
+        "amount": "5000",
+        "currency": "XOF",
+        "metadata": {
+          "fulfil": "wallet"
+        }
+      }
+    },
+    "ApplessReserve": {
+      "required": [
+        "apikey",
+        "boxid",
+        "sizeid",
+        "paymentreference"
+      ]
+    },
+    "CustomerLogin": {
+      "required": [
+        "apikey",
+        "email",
+        "password"
+      ],
+      "example": {
+        "apikey": "<application key>",
+        "email": "ama@example.com",
+        "password": "secret"
+      }
+    },
+    "CustomerSignup": {
+      "required": [
+        "apikey",
+        "name",
+        "phone",
+        "email",
+        "password"
+      ],
+      "example": {
+        "apikey": "<application key>",
+        "name": "Ama",
+        "phone": "0104554198",
+        "email": "ama@example.com",
+        "password": "secret"
+      }
     }
   }
 }

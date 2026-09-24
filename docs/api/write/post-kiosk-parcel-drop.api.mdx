@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-parcel-drop
-title: "Kiosk parcel drop"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Kiosk parcel drop"
+title: "Parcel Drop"
+description: "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`."
+sidebar_label: "Parcel Drop"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVktvIjkQ/iuWTyQiNMqR1RyYnZXmIc1ECXuKomDaBXjitr1+MGEQ/32rbJ473eSyh8khgL9yVbleX224deBFVNZ8knzEnQ3x+UXZ8PLshK9BP0tvHe/zKBaBjx55xvhTn0sItVeObuK9cYpLMFHVWdWIXV8L59gLrK+vWS8AMITZuRBbJCXhasAmCHkIzpoATAX2cTK5Y7fD4R/5EiJJRzpXJh/MrFyzaYgiplBbCVM2V6DlAJ18vRFoAt1B489oPB95ENIaveajudAB+tzDPwlCfI96+GiTfyoP+ProE8K1NRG9JAjV6J231fdAD93wUC+hEfQtrh2gLTv7DnVEU85TLKOCUO4q8uAoF6JXZsG3fT6zr0q2IsloW7/Qq1pgxKOKmo4+oKm7nB88JmAfv2waY0cf5xm6L3EEswKNfmJWDhGsytcGQhALyshXa26mw+GUHWUw+pJCAYEJw8B76yni/1OwjnZaw3LmX6tEKda3DRW5jugXUEIUqktEYgRqrKgIl1R4mIMHU4NJzQz8Rclci4RedOpErlWqtskr8EY0l+JT4tgeYvUTOm9jwV7ChJRYf+16ESar3bprFdedoIdaOYUF9raEW1rzhgiWotLtrwcjL0SvwN0WCt6tPgXwHemtU4i26YRL3kRjU2myXwQUvqruRHdpT7OzWdBW19glne2HOaSx1OnkAb9Q7kWgswBbZ9sHEUUHdL+bd3n8oQS8YokFfB2R1Ibnybungz5fCZ3ghBa2/aPIgR4OYpkmtkhxDcSl3bMijRKRyaXKHFiV2FYUuYpTDfgVPjCbTx7rgC9jdGFUVWLuFXWJU4PQCB/LxYFZVKtb/guRFmGGY0umOvNkb3V7xckfmqr3R/L661U0TsMp2ezjeeCY48EptZzWj5nbnI9diPf2x3efKCL4ouLX7WA4GHZ6OxOYXSPpFus90CNLmpBLxloj6UhnlYnIHXUNLrLPD9++Mova2d23hwnroXM4QJixOFfpzvmigNy/UoJ4Z1oeOt3vAruxmHeCEQmMjySUnUHhPhPsfQrKkAWXZoiXY+tPkUBzPRJSNpK8hZR6JQeE/iHW4biW2BRr7FuCPDjr0fGzBYUcPltSeplQ37GQMAQhXKG3ci+xY7bpIPcsFlsjcpuWgcS/UL2xUjZst4/9p6EPPPybbGK79o7Yl5XTQpk8Br0uHExttF8lD9xdhhB+0Ha5pI5Dmc1mJgL87fV2S8eYbY9l/vhEzeqVmFHNPj6h7iW2MY2eQ/P/WSJyMyFPzkbA+ZZynAXjXJsXZU+HAlVubrSyRjals7z4gYf0f8Txi80ZyhMvn224FmaR8hrDi076+xdLxget
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Kiosk parcel drop"}
+  children={"Parcel Drop"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"unlockcode":{"type":"string"}},"title":"DropParcel"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"unlockcode":{"type":"string"}},"required":["apikey"],"title":"DropParcel"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"userid":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"dropcode":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"},"lockerstatus":{"type":"string"}},"title":"DropParcelData"}},"title":"DropParcelResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"couriername":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string","format":"email"},"userid":{"type":"string"},"customerid":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"parcelsubdescription":{"type":"string"},"dropcode":{"type":"string"},"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"},"lockerstatus":{"type":"string"}},"title":"DropParcelData"}},"title":"DropParcelResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

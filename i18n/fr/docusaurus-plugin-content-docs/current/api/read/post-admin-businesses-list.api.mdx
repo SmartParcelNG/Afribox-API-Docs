@@ -1,11 +1,11 @@
 ---
 id: post-admin-businesses-list
 title: "Lister les entreprises"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "List businesses with their balance and network. Requires the **admin key**; scoped to its network (or all networks for a global key)."
 sidebar_label: "Lister les entreprises"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVlsFyGjkQhl9FpUuwizCUj2ztwdlNVZxKJVRMTi6XETMNyNZISksidlG8T7yvwYttt4bxgE2cy16WAwxSS+r+u/vTrKXzgCpqZy8qOZLehXijqlrbm1kK2kIIEG6MDlH2ZVSLIEdXMs/L676sIJSoPa+mtecpLsFGPddl3lCMxOlpabaPonqjvDe74dNT0Vs5jcKAWCRdAU8/W3oyEJ+UwO2jdzaAgBAFWPFhMhmLs+FQ/MFraTYkE1UUZBHRpRXtpGzguXKpai+mgWZTKF0FU1ElUTr0YUCB3L/lA8llcuvmDh7yEIKqnDUPchQxQV8ifE908DtX0dA6/9UIVTtdOhvJZZ7aC664DazFWoZyCbXip/jggY5ys1soWUWPLHnUEJq1mh3o7EJEbRdysyG9dTQ89O4pE584EZsNTyKELE7ehUThn8N8vLcrMM57kmVfrV6nStE81rS3WgCJ/s0+E03P59tHpDh5j+lwOBXaVpqEEclSXhAhISv6H6nRnX1Ekb48cPeoRVe0e9MKUXGOdYQ6/N6Jdg9dHT3CQvzh8M6q+nUXfmvwyzBLl2xsrWbu/iCYvX20MfTYjL9yzkwZZcvXbVQZ9eqYyZEy/FtFJTe/LtCvu8rMhUpWcE+lEagcGB5rmcu9bcG+XCmTYK8VN/3O5Kkln8y49zZEnhri0rXA4gyq3M9FRlPRVUHB6CrIIACuABsPEhqyXcbow6go1Bw1iUyNOAi1wugVlmAGdlGszuQLxjXGgiqmSmWmXG91diLZJy72rx003t8TgwzsN/me8NrOXZZ7J2G78fn4gqMlV5sDzwbDwfClG+MLBtpMlXdgK9Eu7l1yAOMcAHXzxCWmYRDeaRsDc7Ystz+DoB/wMXd1Eh8vv3xmuo6/XE4IDirNc4/vGM6NjYrAx0h+wWlG71zpKFZaERHEtIl02oGYkcvsMIRz0mb7TwS6FxgeL2+Gfjfu08xkzFRv6DwEj5qOcqmzCFDi9mc8tCAfQWRKxOa24JsjunTrEoZjVwfPN0RjZw6c5pAOYNjL/PtThJRVPBEQW4MdkqYDTi2XZK0y9xoGSO4KwJyKztfwPKvrjqL/o7t0x4tIXV54o+jFgCTIHbbedWX7wnBA577cvVTwe8SSm5js1uuZCvANzWbDw5R/pK65uub2R61m3ClX17T/ksAAuIeTvxrl3k7YmwOoHN5FHV3Ocw+8arvPGe4OjmD3NlBndktUP2iQv0eSHlzOZKZ1HltLIu8i5ctKNnvy51/8cFvF
+api: eJzNVl1SIzcQvkqXXhYoYxsWkrWpPEBCKmyRXQrME1BYnmnbAo00kTQG4nJVDpFDLLkGN8lJ0q2ZYeyFYh+Sh1CUPCO1+r+/b+bC5uhkUNYcpaIvcuvDtUwzZa5HhVcGvUd/rZUPoiWCnHjRvxDxXFy1RIo+cSrn23T3mKSguQV3KkwhTFE5GEktTYIgTQoGw511t204xd8K5UiQZGBjI2qFW3zY2NgDn5BfKQQLKvj6CqxZB1Lr+t3DmDdgoi0Z4KvrbXLzflMWYUoOGWswvjuUqTX6QfSDK7AlHFlGHw5sSlvz+EqOpPVxYk1AE/hI5rlWScxP58ZzmHPhkylmkp/CQ45kx45uMOEE5Y6zGRT68q4il5bkfHDKTMRi0VoyeVHLUT6DCpoFD56TyDmlC+UVn1vjS93b3S7/rBbg0MxQ2zxHSBHc06MvdJAB1jytBWU0xU75mJFuOcH1NpwbGDbHQ0jVePz06Ch61jHsdoegTKooXVAYBHQOC8dJ/o9y1Nh+maeWQFNknCEKtiW6W7xs8/Kelx1ednn5jpfvefnAS4+WLb6xxTd6vNfrvWzXU+T8ANvuQ7cLvkgSyssedLc2u++h6hEYUZPQ3g5kylNVJjBWqFPa2d3c2oKZ1CqNoe9B7wNw41FWqmzQVg8maNCphFNHzUr/mOXhgdSz9bagwq7U5JV2aYlmqJaOpXPygWJTATP/7UzXOlT6qolqpIzM3nbhmwKv13LBHVOYUEuN7P1KMEt6lNb0WO6/YaeClDdlZBLU7M3OGtDA0+vPUnt82SIH1mqUBjxVkAr9OyHS6CHCFe3MkLCnBK9SLVxGdZeCq3xZ6rwU7TjvX0/2TzJIsXjtpJz502rYq9nfoW5/Me7n5tbYOwO5JJz9+48/qadC4Uzp0sezz58AS0DAEopXBn3Y6w1bYGwgTIZfBr8ek5oJxn7cfQ1bzg3e59RXlIIq9rKh/5Xd/bOT9qfDQW2abOM9oYonk0w0cxHxswb0lqBpK7AG9kWrOX8G+GcZRvIFFTTDMLU1s/FQyEgNncg2nWawOsxxHRIooyvNF06T7DSE3Pc7HTl2ivqW4LrtM+lCLl2Cum0mnRmj0mq+9kthoCFMi4Q3YW22vS7YJwbJ04aCDu9llmtcpoylXlZmbGMHV31SK94/OeJoydXS4Ha72+6+dOPkCNKC+De5ReLe+vLaGQdwEgMgFhjYwoMmJs6tMsS36TuZJE9fPNAP5iGyQVGXFk4+nw2IVGQxjtxQYh0wIThJnEb6jt/VQDiujz3CWKoAMyWJSWBYRkqEIw2bpusu98w5WkbofforIPQj6ST66ZFdamim1eznxUhHekrfkT2HuVNkyhaNhMfEPX0JqxLkI48t9WWg7h+cAEN9sMWNLZwHYlfYY68aEuXzkgnZmRWnOaSVHl+LvPlDZBTK4jpgqAUqlB/GQeOWzGTkyxJW4ycUjRaXovHVf13VecO+/5uPrgpgAw1wJ9eSvg8pwDg/82rm6u/GFTprierbksF3yiNKcvP5SHo8d3qx4G2qrqOZuLji4SYgHvEcXFyR/imNPbolpPixzMvmgL1p8OLFF0qDHfuxw9+UXUYR7n2OoPpyzCLZCSfvaJPXvqAHG+sU6S3uzQUVYlJEdhelTv77B4dR/jo=
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/read/afribox-api
 custom_edit_url: null
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+List businesses with their balance and network. Requires the **admin key**; scoped to its network (or all networks for a global key).
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"BusinessesList"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"required":["apikey"],"title":"BusinessesList"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"businesses":{"type":"array","items":{"type":"object","properties":{"businessid":{"type":"string"},"networkname":{"type":"string"},"businessname":{"type":"string"},"businesscode":{"type":"string"},"countbusinessboxes":{"type":"string"},"billingtype":{"type":"string"},"businessbalance":{"type":"string"},"businessactive":{"type":"string"}},"title":"BusinessData"}}},"title":"BusinessesListResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"businesses":{"type":"array","items":{"type":"object","properties":{"businessid":{"type":"string"},"networkname":{"type":"string"},"businessname":{"type":"string"},"businesscode":{"type":"string"},"countbusinessboxes":{"type":"string"},"billingtype":{"type":"string"},"businessbalance":{"type":"string"},"businessactive":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."}},"title":"BusinessData"}}},"title":"BusinessesListResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

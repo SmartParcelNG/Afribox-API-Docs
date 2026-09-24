@@ -1,11 +1,11 @@
 ---
 id: post-customer-signup
-title: "Customer signup"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Customer signup"
+title: "Customer Signup"
+description: "Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists."
+sidebar_label: "Customer Signup"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVcFu2zgQ/RWCJydwLCNHF3twigXaPbRB4p6CIKalic2WIrkc0okh+N93hpIsC+stUGAP9cGWOUPO8M17T410HoKK2tnPlVxI7zC+lAmjqyG8oN7a5OVURrVFuXiSfUQ+T2UFWAbteSttXKa4Axt1mc9aiOtr5b34AYfrazFBAEFhMU4S26QruJqJFYUCoHcWQWgUn1are3E7n3/ImyiSTOR1bfPCxlUHscaoYsLSVbAWrxpMNaM+328UlaB2qPgLFc9LAVTlrDnIxasyCFMZ4O8EGO/oHLlo8l8dgK4fQ6Jw6WykLjlEx5iu2+I78kUbieUOasVP8eCBarnNdygjlfKBwYwasN2ruYMhD2PQdiuPU2lVDRcDfufs5QiV1ObyHoX45kJ1IUjRqKPhpY/d5B7bkR6PHOxBz/0S4PwzHutDCz7YPRi6HI3yBHvRPtaAqLY8xi/O3qzn87UYcmhkFeMHKJQVEIILPKb/CeGhzkVgRv1dzHDR/wpqDx1cGT2eyTvdAqlz1kYj87R7Ck7lXpkEZ1Q8ToeUEyVPaZmaR5JVDXHneinylVUmdNFLr2hFWVAIIewhtMVTIHbIXYweF0WhXoPeuHei4AxrFaJXoQQzs9tifyv/Jd02WRC4VSqzMif72yvJ3fBIHga5/Pmuam/gnN49bD2rh/8dmYeFjsNnGSfqng1F21eXp9LNoG9vef+Z4aILt23fzuaz+X9eZqPKH2Ar3iUmj4zBfcaAeLo0hghdeadtJF6WJfgo/nr8+kU4Ol3cf31ciUmyhogjrItQ8Z6xc5EZ7bViTq9bHNa9OXXekk1qwQnLgeC5GUqeCiXuEmrLFXzaULxdduE8glAGiBxpLTLbYktqbkCZN3XAwSddiiURhEMBvAvU+MgxueGRa06yWP8QmAgCxCvqtuozOtWsZ9lhiIm1ytLsZtzrQpzeEKMpNIPCf5MXQyfxSJItvFHa8r2yZppOYWcvN1JWfy1+0e1YiBRvmo1C+BbM8cjLNOdA/H96Zg0HrTbM1qdnOndH6qZjBk/42KJxs+IuRs4w9r7BIpaZlT/NPfcK5iwlb7o3Wp0tUQb1Rov8vZD04PJ0snPmtUYaZbcpm6Nsz+TPP+PrzTI=
+api: eJzNVm1v2zYQ/isHfnIyR5LTZKudbZjbtWiHpQ0a51NaVLR0sdVKpEZSTjzDwH7EfuF+ye5IyS+tu33YgM0IGJs83utzz3EldI1GukKrl7kYiVpb9z5rrNMVmve2mKmmFn3h5MyK0a3oTsS7vsjRZqao+SpdfIOzwjo0IKETugCLKre0oxWeuKJCyHSOEUzmCAZtrZVFyDVaOD5W2h0f07lyslDg5kG2D1LlQYQE6NICZQn3cyQB46VUU03ZamlQ5kvAB/LCRuTyw4ls3Jw8k3X9/iMu/RYLaVUuxehOlhb7wuAvDVr3ROe0t/I/C4OUCWcaOmZ/UDk+IjVlkflMxR8sx7wSNptjJfmbW9ZItvT0A2aOTNWG8+oKtOFuwR5s5awzhZqJdV8oWeHBg3pOWTt4QiaL8vOTvrjTppLkbCvBSqS199rkB/Ss+zvR3nYutg515jtjO5qo8vggq7rE3cjEtzv5Adr6vlM1EmNK0SYekQySs/Pzs8Hw8UY71aiSP7Rao0xXu/bIY8wMOg7HFY7Niqctwq4DPtfrEE1AlM/4aZLwv08xapvSAaoFllQe6KXWSddYRloatz8qtFbOMD2KIE2SFL4D22QZbV4QkBeyLHJoQQP3hZsTLhnLpNdCYcMVvy8VYFW7JUhj5BJ6jN90OCQ7qilLVj9WS9AeyLt+QA+jGds+S/t04bFfh+kRFCrn/CI31B2lrTHIOP+XILr14BCykNqMUUJZ7VMFeTnl5REvZ7yc8/I1L9/wwsVNhrQM+MaAb/iCD4eHqMOXhW2PIEm2+U4GJ8mjTban1KO0dwZVYS25BXcFljntnJ8MBqEyPvQLGD4G7n3KSpsN2hrCDBWaIgM0Rhugv1CeULyI4bUHgMMtcxiBb1rotUg8o5R8Br4b9VHpewW1JHD88dvvZNg1RlnPYj9dv361xaXHzx4mGAF9T4EEqxeTy59JzQy90+eHkH6j8KGmMmNOHGwWBLEQ9T+yO76+il49m3SmmYkeCHqWTPJwWInABC3x9gWVpMEdAl73tyIbIt6IeUJeEzgqInfdzSLPBJ7G426sxGEqxXQUYgvGG8NEMneutqM4lnemmOoHoqfIVtK4WpoMy0jN4gUDdz9b4yAM1BF5k3kG6y1OjwR7w330Zjsknv1X1FeoO+0h2QKw83l89ZJzSFkIsZxGSZR8McKpzD7STOZb0LvmxFz5xDAblSUhIa91oYjKJLVg7QI+NOPn6vX1BHqNKqk7GBCY8529LmP+WxSSoZKG5KTQzvLdHh55LO2kjJ0hYZr18KShzmYLdTOl88+2Qz7CNsG5RxMP0ljmVaFiokgJOQaSzMFvsmQEXbMCo243yNLqLlJJwCcL5I/TlKK0bRNSNF2SiQ34Sj1jW+ER82IyuYLQLxw8DR3o+ZRtZhGxP4YWJI8s52WfotOjC58g3TgqPrIWg7U2HEGbO86Zz+v+lNgfTkf+ofTJCKMC/c3E6rjgS2Mrgh/DxNmP4jLO4yV9YD6qqhHVZXwZX12mG/X81vuVMA89DqBlIArtZvL0qwFFPNW6RLLkGTxo94KeZ0n/WzGh59dbQcPyrXjOxEDfPdsxJ1TST7a2xTbFve4eq3vQX20H5P/vjdrOF0c8GtclKeUQPZGtWtrbeXIT3XUR8gydMzvS+Wo1lRZvTLle8zbV2RAp3b5jYjWFnDJb3L4jvXMyTmq2RP00JOZkwl7s0fX+K2LL22PfK38pu0vgzBkkPG0f15V/XAgj72mT15GgL9oXyr9B/N5KlFLNGj+BRdDJnz8B3hlSLg==
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Customer signup"}
+  children={"Customer Signup"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"}},"title":"CustomerSignup"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"},"password":{"type":"string"}},"required":["apikey","name","phone","email","password"],"example":{"apikey":"<application key>","name":"Ama","phone":"0104554198","email":"ama@example.com","password":"secret"},"title":"CustomerSignup"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"CustomerSignupResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"CustomerSignupResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

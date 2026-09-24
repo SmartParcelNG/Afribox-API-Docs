@@ -1,11 +1,11 @@
 ---
 id: post-core-fees-compute
 title: "Calculer les frais"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit."
 sidebar_label: "Calculer les frais"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVlc9u2zgQxl+F4KVO4FpGjl70kE272CwWrdG4pyCIaWlkM6VIln+8SQW/T9PX8IvtDCVFduwUPfTSHBKFM+IMv+H3U82NBSeCNPqy4BNujQ+3uXFwWwJ4fKpsDMCHPIil55NrTjF+M+QF+NxJSy/ia+cxrEAHWco87cUm7PQ0V9tHVrwS1qp2+fSUDdZGOqaALaMsgMLPXj0ZsX8Fc9tHa7QHBj4w0Ozv2WzKzsZj9ge9i1EfVRCBYUZwJq5xJ6E9xfKVqCybe4xGn5sC5qyIDNu2foTnuH9NBbFlbOv2MzykJQeiMFo98ElwEYbcwZeIhf80BS7V6V/poOjCudEBW6bQzuGyO09a1NznK6gEPYUHC1jKLO4gD1jJOlI7SPDNu5Ia6PN8cFIv+eapAVqXxdEML78eD2EsyKBo6S8c4UU7wc1mk/b1SdZUH+WkP/uTfKfXoIy1KOiuzoNez6x5rMB7sQQc1yf9TG5ZlttHhwrRHvPxeM6kLiSeiEWNE3UOoqNZ/CId+9rHldpt92gGXfWfKANuLXPA5BfKGIcFXgoHE4R6VujHI3srgngp9rGdYxorpsA9CulRPPJozdO16q76kK+FirBz5TfDPuXp6j+l0R3foMMrCCvTMYHUEMk3GREgo5NkLR0yDJI44Jrq0SnMW4Vg/STLROnkwtzjZR/5SrhghctBjfQyW5/xA440yQyVL2KeSDJYn51w6oeuxcfemO/u0ecKdo3UCXrgnz7Q2WZnMlKXJg2llbnr4Xx6SaLgqZrezkbj0fiw4+kl8WUh8s+gC9a9PLiis07TWdEiMxMJTp5ZI3XwhL08337zDP+ADckqkf1z9eE9wW764WqGjhOxTMZpkUpucQI5RIQ8wCaRsBQysLUUaDM2b0SZ91wkApIhFdIV5dl+D4CYJkcegnrYr9u4UMm7xSus58A6iaVM7DM85G77LexnYI/AkvVCA28CeTDxzkTnj5Gc4g0mqJm9pulIe4QZJKi8YT4mFU8YhC6h9fl8RKOlm1uJBBMtKhruhVB5VODSMEqU0z+faN1j6Tf6rLVECQiCzCohNR0/GbFujdt+ulvaEXy7Tzt9zlfkccyp64Xw8MmpzYaWce4OjXV9Q3RwUizIIdc3uPcKuQFuhzYXjWqvZ9TJHnP2wd7D5zzd/R/m7mKIXIHJi/ajXCXecyf+I7/j7wnHB5OmmCCb1mquhF7GRH7e7Ek//wOUWSs/
+api: eJzVVl1OI0cQvkppXviR8dgsbNZGeSCEKESbXQvME0K4PVO2G2a6J/1jIBZSDpFDLLmGb5KTpKpnhrHBG0VKXmJZ7XFXddfv99UsIl2gEU5qdZZG/ajQ1t0k2uDNBNHSU154h1ErcmJqo/5VxLLouhWlaBMjCz5Ix05KPXAzBDoIE21AgMFfPFoH7rFAECoFK3/FNuzunq8K3u/uwvbYW6nQWtg6F7mwVkwRrDdQZCLBrR26ynmjbDAgiiJjVYMWzTz4Hoy6mXAwiuur4kKYBDMbJwaFw3gE9zLLIMWxdG2K6GFPeDcj5+m+mzt8DFukmmqVPUZ9Zzy2oiqE73RKW4vwVxpMa3GilUPlWMReySR4E99azsoisskMc8FPHCmZ0uNbTBxZKgzn3Um05VnJDjR61hmpptHTiwO8L9ONGpzUjaLqdOnvVW2Eaueky1jxBypxVTnSLvVtoZUtvdrvdPhnvdKnao6ZLqhuKYJZPlufOUr7tqXV20SnGJePOYYq7rThUsGoEY8glZPJ8tlQ3viOUaczAqlSSXGCVwhoDHrDFfqPstvYfpukVoTK55weCrYVdbq87PPyjpcDXg55ec/LN7x84KVHS5dPdPlEj/d6vbe4OEfOD7DtPnQ61NJJQnk5gk53r/PuBSBjai/aO4BcWmreKUwkZintHO51uzAXmUxD6EfQ+wDctZSVKhu01YMpKjQy4dQR8OiLeeEeGSBkvR2aZLUmG9uI8f4PckmIkwmS8uZedNqQga+JnXYie2VopVs39OX3womvyc6rZq1694Cq9aZdL9Wd0vcKCuFm8Odvv68RyU8Xnz8Blg2NxA6kstaoo15v1AKlHZEX/Dj8+SNdM8WQz8NN2LhU+FBQ1pCYjvKEpirIv7J7fDFofzod1qbJNj4QKiyZZEJeRIE5ajZrRdQtHldY7anVqLyw24sa09gTtW2ObqbrAcBVF4EaY6b7mCsWV6MgJmEZXGndm4z0Zs4Vth/HYmLkWD8Q1bRtLowrKbitpvGcQbWeruNSGajDUp8EGt+e7+9E7A9j/Lzh3tMHkRcZrnJlg+BXFNkIamZc6UCpJjo0X9VOtQ/HgzNOCkVV+rbf7rQ7bz0enEHqYSySO6RxVh/evuBYByFW4ruh9hZoQkGhpXIW0i2RJMsvFugHCxd4z9dNAIPPF0OiT+EngQVLVANTnxFE3XTfx60a8pNabGnECulgLgVxJozKpBC1CsWm6bgpLLNrVk7h5R80nPuBXpNs+cwuNYTaavYLP84CEadbZM9gYSSZ0r7RsJiY5Re3rkE+0rjmDnaEk+EAwnDX/lZ7Y4HmCByxV824YHnJ+ezMmtMc0hoatsOE+DZwJ2VxB9DVChWfjQIkuXNzESaDEjkX90Rkic8IhlyMCaXTvq7oopkx/8t3mIpDHVFCTGak4kQESC4qCFdvbBW/80yt3+h4Ws0Y7aSzWIyFxUuTPT3xNkVmCGJX18wTRooxY+Xqmu6eEYOgWeGdkzJ/e0P2ZI191ud1Q0PHAQV/q7tKSIwPUh5Xb2B5GOOREfeMfFr7ET3oUM8wVsLeIsqEmvow66LyTv78BXdqyws=
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/read/afribox-api
 custom_edit_url: null
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"requesttypeid":{"type":"string"},"sizeid":{"type":"string"}},"title":"FeesCompute"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"requesttypeid":{"type":"string"},"sizeid":{"type":"string"}},"required":["apikey"],"title":"FeesCompute"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"object","properties":{"servicefee":{"type":"string"},"storagefee":{"type":"string"},"totalfees":{"type":"string"}},"title":"FeesComputeData"}},"title":"FeesComputeResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"fees":{"type":"object","properties":{"servicefee":{"type":"string"},"storagefee":{"type":"string"},"totalfees":{"type":"string"}},"title":"FeesComputeData"}},"title":"FeesComputeResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

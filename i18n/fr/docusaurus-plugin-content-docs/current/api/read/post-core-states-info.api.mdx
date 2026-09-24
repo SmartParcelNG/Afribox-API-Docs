@@ -1,11 +1,11 @@
 ---
 id: post-core-states-info
 title: "Détails d'un État"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "One state, by id."
 sidebar_label: "Détails d'un État"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVlc9uEzEQxl/F8oW0CtmoxyAOBSpRhCCi4VRVjeOdJC6ObfwntFrlAXiTltfIizHj3XSTNi0cuNBDk3jG9vgbfz9X3DrwIiprTks+4M6GeCmth8sQRYRwqczU8i6PYhb44JxTiF90eQlBeuVoHs46TnEOJqqpknkpNmCHh1Kv71j5Qjinm+HDQ9ZZWuWZBjZLqgQKP5h60GMfBfPrO2dNAAYhMjDs/Wg0ZEf9PntFczEaksb6GGZEb9MSVxImUEzOxcKxMVWfgrQljFmZGJbtQg/Pcf2SNsSSsazLb3CThzyI0hp9wwfRJ+hyD98TbvzGljhU5Z/KQ7kJS2silkyhrcMVV4G0qHiQc1gI+hZvHOBWdnIFMuJOzpPYUUGo5yoqoM0L0Ssz46suz9qrck8Mg1FFTUNnuUGn1J/VigIeQhYtr45i0cdun07MErR1DuXaVrHTqlXUXxcQgpgBNuOreSCmmk7Xdx7PT2uM+/0xU6ZUKBhLBvvlPSRPSv8jldq9n1Tqvtyntfy7ffZL3izxbAlgxGJ/VNpkolSbbfbHJ/b6iXBefKeJf7wS70QUT1yUL80NyRcGM+AaKw+4LHm74vk6bizS5UuhE2xZZdVtU+4tc59G3lghGRYQ53aDEpJZZL8VRI6ihkpBUCkwFsAvwdebJ68xbR6jC4OiEFOvUBX0SC8shI9OeAm6Z2bF8og/wk+dzLCjZZIZQJ3l0QGncui+fWn9fHKNeNCw7b+NkFu222pA5h+J3oi52et4eEpnx+rrGo56/V7/cWXDU8LPRMhvYEq2mdw5ozMN85nQYyObiF2BOatMDERFKde3geEHuJi9ltiHs8+fiIXDz2cjtKxI0+y8hrhkNy8QUwTQR1QlUE6FimypBPqUjevDj1tsEiDJ0Rrhi3Ktf0VAipOlH3O82467NNHZ/OUL3M+D8wq3sqnNCCD9+jbuZmCNwLJ3Y8124ny06comH/aBnuI1Z6iYnaLpSDuI6mQqvWYhZRUPGMRNQgOKcY9aSxd0IbKlavvyd+u7KJSmDqBI658452FLqxZs/9Gz1yAjouELp4UydP7suKoxaPO0NyYIvLn5XU6v/ZysjClVNREBvnq9WtEw9t2jgc4vCAJeiQk55PwCl54jHsBvQeVtLdrLERWyg5bdl6FlzHG++8/mbtOGXIHJk+bNXmRacy9+4CD9H3D8YnMTM2nzWMW1MLOUnw5er0l/vwHflzZz
+api: eJytVttOI0cQ/ZVSvyxIgy8sJGujPJAsUog2iwXmCSHcninbDePuSV8MyLKU17znI5b8hv8kX5KqnhnGDt4oUmJZ7XFVdVf16VOnZylMgVZ6ZfR5JvqiMM7fpcbinfPSo7tTemJEIrycOtG/EewSt4nI0KVWFTyPZl1ohBifwPgZVNaiGU8HMvgZOWVR3D3gczRZlJnR+bPoexswERZ/Cej89yYj0zL+VRaz2p0a7VF7dtEquUpjoe17x1mXwqUznEt+8s8FUiozvsfUU6bC8ra8QlfOVVxAE+e8VXoqVomIVatsh2+VbJRzU69BW/fK5xx4FQE6Z3xWqzLcFUa7Mudhp8M/2zid6QXmpigQMgS7fnEhp0Vgj6sILjUZtsvHOTonp7jfgmsNo8Y9gkxNJusXS6jwGqNOZwRKZ4pghECngNZisIz//4Rdk/stRolAHeaMDm02EZ0uD4c8vOfhiIdjHr7h4VsePvDQo6HLM7o8o8e2Xu8tqy6R8QHO3YdOB1xIU8LlBDrdg857qLgDYyIP2Y5grpyjsmCiMM/IcnzQ7cJC5iqLWz+B3gdgThIqFRpk6sEUNVqVMnTGAn1xXvhnWp6zt2qSvJ7J12n078DczbZqid04114t57u9qQnap6pOs9s/Nk9fccfFt7Df1Q1bvP8ovXxrjd1wWbVB1RVHxIM3jXCtH7R51FBIP4M/f/2d0PbBagd0OvDT1cVnwLJVEB4VhWy1wKjXGyWgjQep4cfhz59omSnGkzre1XXXGp8KOg7MwKFdoK2O+j/lPb0atD6fDevUlBuf6IQcpWShXIqoOLUKJoJ4GHBDDVdJE/Kqiq9hLH8raog5+pmpdZnpJKOktlmG26VCt1mh2+Qr91YmDzansJn3heu323JiFZ0+SVjLzaX1hbQp5i09bS+4W7fROi2DgZibhZSNsLc43BdcDovHZSPZZ09yXuS4KbGNNLxyfYNo8TJhclWkqXOdDs5571R9WcNhq9PqvK1scA5ZgLFMH1BnUE/eu+I9DeKeSDCHJjjI0UFhlPYOsncyTddfHNAPFj4KZ6jPGgYXV0PSXxkmUUZLWQDWTitJ+mm9T+9qzZjUbocwkcrDQkkSXRiVmydtlppT03RbOJbnXEaVWv/hEfpRn9N8/cIlNYqcNPYijPOo5Nk7ymexsIpSmdBEOEzt+ovfjqAay+s3eGqH4QBYFb0J9yZYB3QRwQlX1dw37C8vDS5mq2je0hbp9+IV810UX0JxH9DXAZUgjmLnMUHnMkpHKVPi4/rFS5XzCRBI699ozt+PdNncUjvfISoR8tRa7SKXSnOmyO1l1QrVG0lFNycqjiWCr5MZNw2FLJdj6fDa5qsVmwlhS1S9ueV2s0qOmYs3t7T0jBoR7Ub7/lCWdzDkQraaePtCbbr5NLLsH2M3+5r5R8Hj6gVoHvVfWPlIRh77gh5MhCtqd7QtRS71NMTLSJRr8ucvklhimw==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/read/afribox-api
 custom_edit_url: null
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+One state, by id.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"stateid":{"type":"string"}},"title":"StatesInfo"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"stateid":{"type":"string"}},"required":["apikey"],"title":"StatesInfo"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"state":{"type":"object","properties":{"stateid":{"type":"string"},"statecode":{"type":"string"},"statename":{"type":"string"},"countcities":{"type":"string"},"countboxes":{"type":"string"},"statedescription":{"type":"string"}},"title":"StateData"}},"title":"StatesInfoResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"state":{"type":"object","properties":{"stateid":{"type":"string"},"statecode":{"type":"string"},"statename":{"type":"string"},"countcities":{"type":"string"},"countboxes":{"type":"string"},"statedescription":{"type":"string"}},"title":"StateData"}},"title":"StatesInfoResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

@@ -1,0 +1,68 @@
+---
+id: post-core-billingtypes-list
+title: "Billingtypes List"
+description: "Billing types used by businesses (for example Prepaid, Postpaid)."
+sidebar_label: "Billingtypes List"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVs1y2zYQfpUdnOQpLUqO00by9OA46SSdONHE8sn2mBC5lhCTAAuAjlWNZvoQfcI+SXcByqJiuzk0OkDkEtjfb7/FSpgarfTK6PeFGIvaOH+dG4vXM1WWSs/9skZ3XSrnRSK8nDsxvhC8QVwlokCXW1XzaTr7Op6AcAQahwXMljBrnNLoHIl6N8YC3suqLhEmFmupigQmZJKf9vpk4X5fNn5BymRdX9/iMogsysLocinG3jaYCIt/NOj8a1OQaBVelcVi8zk32qP2/Im0lCoP4aVfHHu5Ei5fYCX5iR0lU2b2BXMOr7acDK/QxbOKHdjuc95SeGK9TjomLzb7KB1e+RK3iZhyHj5w5tbreMjVRruo/WAw4L/dDH5G15QeUN9hSa5AL3Ne+sblpsAsbV8qSqacY7bXh2wwyOBXcE2ek/AIJNzJUhXQJgi+Kr8Abeid9TpQLh4JcqkBq9ovQVorl9DTxkM2GpEd3ZQlqz/WSzB+gRa6fkAP+3O2fZgldOBVWEfZHihdcK6p0BJupCobi1zSH1SOrQePS5II1E3FxaCsJmIw5OWAlxe8HPLykpefefmFl1e8jGgZ8okhnxixbDR6DOy2LGx7DIPBNt+D4f7gxUO2Z4RHkh1CpZzjRrhRWBYkebk/HMbKhNCPYPQKGOaUlTYbJBrBHDValQNaS33CrRLKE4vXF4SgHQA8gcxEdLu2syGUmKJTHiv3/Vx3tKjie3ae7pAneuGN9FKsn/kYGuVz2yFtwxxS5R71yLm+1earhloShv/562/Kj2+sdkD5hN/PPn3ctk+A+Q50GagJMNIJ/e+mpx9IzRxDbl8+1ZDnGu9ryhBRmUN7R50Qi/O/7B6fTfof3043psk23lOHODLJ7LoSgXY2VJgIQk6DHUpcJ9stD9T4sI05cE0QrtAvzIbSucIy8GrK3J12YZIyuae0I0YYXWhsSZsX3tdunKbyxqqZuSem67tKWqJrm2PZ1/P0jrtsN2fHcTMQpIomZyH07g72BDvFTf95y95v4yzosm0HY0rfmACuFi0bxceT9xwuuRoNHvQH/cGzbsxkfou64FPQO2PvJ8F75reypKIVtVGayFFSU9c+ltJwqSefzqbQa3RJ/ca1w4LP7PQtM+qdklzVLEaQEQ0GSHRZYRzKviW/4AxtTogpX7fzEepmRt8fiR3mhLQoJuSFGZqlsqiUTol0JRQYabeAIOSdfThpnDcVBcEA6QZZOrOJVBJGyQL54w2lKGsRHcd2luatirQ0c7bVhymF9W46nUCENgdPYwx6IWUP043mCcZuIY8c52WX9LO9o5Ag0/ic9LMWugoYyxG0ueOchbzuzp3dcUexU1m/GYpUoO/MwE3bPjcI+/AmzrDdKE7TIl3SDxbjqhpTXY5P08lp9qDeqwr/NJpmNgfQkgWFdj49+WlIEc+MKZEshZkQtYeNAe2k/1JMqXEvBY3fS/EblYmfAzFx/1YyzEotqw5txnvWh3g12wH/ajt0f8itrKV3TzyV1qVUmv0KFLFqeaW9E34zgBLRXhx5pi6Yh2jjajWTDs9tuV6zmKpkqe8vrpjBrJIz7vWLKzKwIOii7TDiSQxqn+fFLi/u3iq2BHkckP6fe7tUyR3PMbQXyypcNoSVX0nI61jQgwlJDnMyyFailHrehIksok7+/Qvhrub/
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Billingtypes List"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/billingtypes/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Billing types used by businesses (for example Prepaid, Postpaid).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"required":["apikey"],"title":"BillingTypesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"billingtypes":{"type":"array","items":{"type":"object","properties":{"billingtypeid":{"type":"string"},"billingtype":{"type":"string"}},"title":"BillingTypeData"}}},"title":"BillingTypesListResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+>
+  
+</StatusCodes>
+
+
+      

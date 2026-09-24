@@ -1,11 +1,11 @@
 ---
 id: post-customer-signup
 title: "Inscription"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists."
 sidebar_label: "Inscription"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVV9v0zAQ/yqWX+im0lR7LOJhICSGEFSsPE3T6ibX1iOxzdkum6J+H8bX6BfjzkmWdquQkHihD03iO9vn+/1xLa0DVEFbc1HIiXTWh5s8+mArwBuvVyY6OZRBrbycXMkuIq+HsgCfo3Y8lSaex7AGE/RS52k1MRGnp3m5exDFC+Vc2Q6fnorBxmoUJYhV1AVw+MnUk5H4qATuHpw1HgT4IMCI97PZVJyNx+IVz6Woj2VQQVBGQBs3tJIynmP5WlVOzD1Fo89tAXNRRJFbdH5EZ7l7yRtSyVTWzTe4T0MIqrCmvJeTpSo9DCXC90g7v7EFjdXpUyNQiwJGCufWBKqZQ3uny249N6OWPl9Dpfgt3DugveziFvJAWznkhgcNvpmruYI+zwfUZiW3Q2lUBUcDbm3N8Qhtqcvjc5T3PywWR4IUDTqUPPS2RfeygX275SCCTzikeqn//DiE/p3ZQGmdIwT2gRn0AGTNawXeqxUQvl/NE3z0crl7QOoorzEfj+dCm0ITBCIaogAiRGTw/lHf+72Ptuug3KMZNri/6eWXtompp4zUHZ3CU+WsqlomDnTEHMqNKiPsEXQ77FMeifqYlgi7JUFWENa2EzEfWSWaZ51os0bOGYU84Aaw2TwicUauQ3B+kmVqiXph74iYI18pDE5hDuXIrLLNmXwm+iZZUHOLmCfZDzZnJ5KrYUi+9CJ6d0eiLGGf9F3bOq733y3F+4GW2XsZj4TeA0WbpU2otBh05Z1PL7hddOCm7LPReDR+fpjpBfvEQuXfwBSimzy45DZMUxuIuTMb2WS8cFab4Nm+8nz30wt6gAuJwVF8uPz8iU1r+vlyRkJQcZn43FojkxgV2Qk73TP7Y0dbKh3ERitiv5g3/Zr3/sZOxjopySWpw7tfAchuWSjPDXfYj7u4KJOkihe0H4JDTVvZ2Gd4yHH3MxxmUI0gkiJCY8JsyMHGWxvRH3Nkjjfq5WIOiuYjHQh/kLT+WviYungiIHQJrfzmo2RgROlKJY23ZLkwPXhPoKx7m/iP7qXWSwJ5Q+ZKpQ2fO4mzbqW8d/+ShLu7me/iNSue4nW9UB6+Yrnd8jCBjSS0q2s2C9RqwbK4uqZ112QjtExvPm+bjr2ccRUHFnRosr0XnSfC/zF335RYCpS8aC/UKnmvRPWDBvl/IunFJgSTRaexWpbKrGJyYdmsyb/f0D4UCg==
+api: eJzNVt1OKzcQfpWRb/hRSDYcaE9CW5UeIZXq9JwIwhVCxNmdJIZde2t7Q1AUqQ/Rhzj0NfImfZLOeHfZpES9aaUWIRPs8fx8883nLIXJ0UqvjL5MRF/kxvn7uHDeZGjvnZrqIhct4eXUif6tqE/EXUsk6GKrcr5KF69wqpxHCxJqozNwqBNHO0bjkVcZQmwSbMNwhmDR5UY7hMSgg8NDbfzhIZ1rL5UGPyttWyB1UpqQAV2ao0zhaYZkYIOVLrIxR00tyuQZcEFZuDalvDiShZ9RZjLP7x/xOWyxkdHps+hPZOqwJSz+UqDzP5iE9pbhX2WRkPC2oGPOB7XnI3KTqjgg1XlwXPNSuHiGmeRP/jlHimXGDxh7CpVbxtUrdOVdxRk0ds5bpadi1RJaZrjzIJ8RajtPKKRK3560xMTYTFKylQU7kc49GZvs8LNqbVR7W6dYJVSHr4NteKLO40JmeYqblYlvNvAB2vqudtUX5wTRaz0i6kYnp6cn3d77V+/Uo0x+X3ltxybbjEcZY2zRczleeQ4rPlQMuy75uVqV1ZSMCogfRxH/2ebohZ5javKcSEcEXL+4IvXSw76jtXDMt075MUPn5BQP2nCjYdQcjyBRk8n6xRIn2McoikagdKKIRFBoBLQWC8v0+5eY08Te1XAk9nPzqNgWAcvLMS/veDnh5ZSXr3j5mhfGPOrR0uUbXb4R+tDr7ZpoxieMYR+iCFwRx4TLGUTdo+gdVJMDYxod2juBTDlHacFEYZrQzulRtwtzmaoklH4GvffAI0moVGjQVg+mqNGqmKEzFugXs9w/sz5Q9DZ3fasnu5m8mxhXFSMqgpwQJG84caMftXnSkEs/gz9+/Y0C+8JqF8Tlp+vPnwBL1iA8KTLZYsOo1xu1gjJJDT8Of/5IbqYYkj7dRcAbjYuc2owJSaOdk26VVf+juOfXg/ani2EdmgViQdRzFJI1eynKAa30sCWoJQVu6OKq1Zi86uOrWdDJFZEjI8019RMRBjSoa6dW+075WHToqKytDF5Ynu+Z97nrdzpyYtXYLEg12i6T1ufSxpi29bQzZ+Juo3VeGgNNRFLEQVj258cHgrPhObpqtPviv1IkpScmULIiYJ3z+eCSMSQUylqO21E7elvh4BKSAsYyfqSXEurL+9eMzSBgQxo0NIWDlJ7A3CjtHSR7Mo7XX+hhpYHMfdCiouYMDD5fD0nSZDEJylTVz3JkJYk9+fu4V4/hpD6md3gilYe5kqRjMCpBJLmTmkPTdZs7VrxUhsFf/+4R+kHy4nT9wik1YLea/bwYp0Eckz2KZzG3ikKZorFgKNdf/LYF5YgQCO9prIYDYKHxpngwhXVA2g5nnFUj4Xxe6jAns5U0l7Q1PPtBtb8NekYoHgD62qDSmFGYYOZ5JoNaV7S51E3z/tLKZSP4/7+vQpVeetKFTp6SUy4vDOayGuONb3Y0vvW3Pn4TZjztdL5cjqXDG5uuVrxNPbU0ZLd3LBRWyTGz//aO/M4oOLlphOdDCczRkLPYkp/tV7HRofPA67+13RQkZjwZj6vvcFl4LIWVT7TJa1/QBxMaFd7UsLcUqdTTIrwoovTJP38CfavOSw==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"}},"title":"CustomerSignup"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"name":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"},"password":{"type":"string"}},"required":["apikey","name","phone","email","password"],"example":{"apikey":"<application key>","name":"Ama","phone":"0104554198","email":"ama@example.com","password":"secret"},"title":"CustomerSignup"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"CustomerSignupResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"CustomerSignupResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

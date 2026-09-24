@@ -1,11 +1,11 @@
 ---
 id: post-core-deliveryareas-list
-title: "Core deliveryareas list"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Core deliveryareas list"
+title: "Deliveryareas List"
+description: "Delivery areas, optionally filtered by state."
+sidebar_label: "Deliveryareas List"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVVFP2zAQ/iuWn0pVmqqPmfZQYNKYJqige0KodZOjNTh2ZjulVdT/vjsnaZqNgjTtYTxA8J19n++773PJTQ5WeGn0dcpjnhvn54mxME9ByQ3YnbAg3FxJ5/mAe7FyPH7glMEfBzwFl1iZ03bcPCn8GrSXSTgvZv2+yHP2Art+n/UcAMMw6yaxVSFTOBuyGYYsuNxoB0w69nU2m7LxaPQpbMJIoTytSx0WlibdsYXzwhcuMSks2JMElQ4R4/ZcYAmEg8XnWDws4SVSo9WOx94WMOAWfhbg/AUew+My/CstpE04MdojSArhKaoGGz07umfJXbKGTNCX3+WApczyGRJqUG6pn16Cq/ZKAtDmOW+lXvH9gBN00CKDN6IY9tIrWrqqWZgQC9+JhP2e4k2rQhlsE/3pknFXtQz0BhRiQgIOzYqqzwycEytq/o3R54vRaMHaHGx0StcGx4RmYK2x1Nx/1Ji2zsnmHPC9mdGZzqMMYa0gxqWHzH2M4/gYmX5Y6QRfNZsnDvgLpq+EF3z/7hzc1QMQ5gETYYtFHHJB+ix5GLtGCgO+EaqAI0nsB23KQRqHNNLAHtWdgV+bxhWodyLoKiL1Rx0GIvKHCFMcWFysMBRWYfba+9zFUSSerFyaLUpi6DJhfS5sAmqoV9FmzP9wkiqZIVtpkQSj6G3GZ5xQ0azdtfL9shVZruBYbk17O70/YkTqJxPIqJvbVJtMr6kJiL9CMR6OhqOT2JYieQGd0i7Wu6crTcOVUE8TpVB4aW6k9qifJIHcs2/3tzfM4Olsens/Y71CKxxwpo2HlPZ0fRGtbiMFaW9RXWvRWF9tXcECY0qYtEIMYDB5wAS7KJzUVCEvlhivlo09jjhILHiKVAYcTLcSHwEQ6lXsXOvCpvCJyYI9W8iNReAdPybAHU/uBVP5zFyBLXDuDNGmTUat7sWQGKEBy0SwkJqtS5wx1pkxVr9BHTbK1pH+k+enVrhHQUa5ElLT/YIUylpA9fP5u4kNeH1BeljXpDjMLMulcPDDqv2elpF5iwP+8EhatVIsaX4fHrHCGlUM9kj7l1VfzmeEp+MAXddurWAS5vTd3GNToCnG5GX9hGbBzLkVr7hIv2OOHybwFLw2rJVcCb0qgq3z6kz6+QVUpPj5
+api: eJytVt1u2zYUfhWCVw6mWHaabrGLXbhNh3ZI2iBxrpIioqUTmy1FaiTlxDMM7CH2hHuSnUPKsdQkC4bNCBjpiDz/33e45qYCK7w0+mPBx7wyzt/kxsJNAUouwa6EBeFulHSeJ9yLuePjK047+JeEF+ByKys6joePmyMsnEmYCR+EUit2K5UHCwWbrZjzwkMftd3vi9ov8KCoqptvsAoiPFoYrVZ87G0NCbfwWw3OvzUFitbhVaKi7efcaA/a0yfUomQeYkm/OvJozV2+gFLQk19VgKbM7CvkFEplKXIvwcWzkhzY7XPeSj3nm4QHd7Uo4Ymvm6Tl0NVWCybGS6+glZIJZeSEkrjZxFOuMtpF4weDAf3rJvMcXK08A70EhZ6yXkaO1C43BWRp81KCc2IO2V6fZYNBxn5mrs5zFL5hgi2FkgVr8sfupF8wbfCd9DomXTwS5EIzKCtPlbNixXraeJaNRmhH10qR+oleMeMXYFnbD9aD/pxsH2YJHjgK6yjbY1IXVApw6MetkKq2oeL/U7V2HjyuScJB1yVVA7Oa8MGQlgNaXtFySMtrWn6k5SdajmgZ4TKkE0M6MSLZaPS4x5uykO0xGwx2+R4M9wevHrI9w3ZF2SErpXPoFgIAVIGS1/vDYaxMCP0NGx0xQgFmpckGikZsDhqszBlYayzDv1ieWLz+ti0fGuDJxu0guLUj1BjDkx5K93Ky22pk8aKlZ5DS4OgZBS9g7Ck0HQsv+Oa5rwFr5w3IGswdYvEfwexSf9PmTrNKIAz++uNPTLGvrXYMS8J+vfj8aYfAgJRO91OvJ4zAggD6MD09QTVzCOV5/RSmLzXcV5hj5EEHFn1t6vuf7E4uzvqf3k+3ptE23GMyHZokrl7zQGxbsk04Nl8NLdLdJLstD+T7sI1YdoMoKMEvzHZCUI+IwNwpTYK002kpzYoUt8QQow+1Vbh74X3lxmkqbq2cmXuky74rhfWVsDmovp6nS0JqN2mTuJlhVxZ1TkLWWx7scfKKiON8NyDe34uyUtAm9B0ttHqs1XlS35rQdE0Tba1Nzj5SEtD/6MVBf9AfPOvbTOTfQBd0ivUuKKSzEBIRp1JYyqIyUiPrCmSLyscCG2qAs88XU9artUIgU0WhoDMdQiCqXkpBtc5iWBnya2iUNt2MQzPsWDU4g5sTpOC3NZIQWajqGX5/JHaQY/9FMfZj7xaXLBVFKXWKbC5YAZHPCxaEtLPP3tXOmxKDoLZpB6mc2UYqsHPRAvrjDaYoa/o83gSyNG9UpMrMyVafTTGsD9PpGYsNT8HjfGS9kLKHsUlXjIgh9MhRXrrTJNt7ExJkap+jftJioTKWImhyRzkLee0OtO4cxdixrN9NWyzQC8N1C+bnJmyfHcfh2I3iNC3SFf7YYlyWY6zL5DQ9O80e1HtZwu9G42WAAmgoBEO7nL77YYgRz4xRyMBx2ETtYWPodtR/zacI52uOc/2a/4JloudAV4TqUoQh3EDkuI1pdhLvf53uX+/G+b+++jUc75Gq0koJqcmJQBLrhlqaS+b3YyzhzVWURvOCuAh3rtcz4eDSqs2GxFgTi9C/+kIsZqWYEbKvvqCFBTYq2BYrvosR7E/Jnw43di8nO5KchL7+x71tuiR84+ZZc30tw52FW3GHQlrHHB9itsK0DbI1V0LP6zDYedRJv78B77IEiQ==
 sidebar_class_name: "post api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Core deliveryareas list"}
+  children={"Deliveryareas List"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Delivery areas, optionally filtered by state.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"statename":{"type":"string"}},"title":"DeliveryAreasList"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"statename":{"type":"string"}},"required":["apikey"],"title":"DeliveryAreasList"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"deliveryareas":{"type":"array","items":{"type":"object","properties":{"deliveryareaid":{"type":"string"},"deliveryareaname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"}},"title":"DeliveryAreaData"}}},"title":"DeliveryAreasListResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"deliveryareas":{"type":"array","items":{"type":"object","properties":{"deliveryareaid":{"type":"string"},"deliveryareaname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"}},"title":"DeliveryAreaData"}}},"title":"DeliveryAreasListResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

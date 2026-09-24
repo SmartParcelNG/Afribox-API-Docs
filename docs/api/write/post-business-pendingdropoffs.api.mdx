@@ -1,11 +1,11 @@
 ---
 id: post-business-pendingdropoffs
-title: "Business pendingdropoffs"
-description: "Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Business pendingdropoffs"
+title: "List parcels awaiting drop-off"
+description: "Parcels the business has created and that the sender has not yet dropped into a locker (status 1)."
+sidebar_label: "List parcels awaiting drop-off"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVk1vGzcQ/SsET7IhS4KPKnpQkgJNUSSGrZ4MI+IuRxITLsmSXEWqoP/eGVLrlapduYcc4oO95gzn43Fm3uy5deBFVNZ8lHzKnQ3xS1EHZSCELw6MVGYlvXV2uQx8yKNYBT595o0KfxlyCaH0ypENtDCr4xpMVGUyOmW3t40uc3WhVXl7ywYBgKEaO1dmq1pJuBmxOYo8BGdNAKYC+30+f2D3k8kv6RJKah3pXJl0UFi5Y4sQRaxDaSUs2FKBliOMd3sn0AWG1eaUgkgiD0Jao3d8uhQ6wJB7+LuGEN+hPT7dp3+VB8Ql+hrFpTURoyWRcE4fox5/DZT4nodyDZWgr7hzgD5t8RXKiK6cJ5SjgpDvqm+wO9EL0SPK/HBAfFXUdPSnXamAuISH/AQfmic4HEitASfZQ2Doz/kzPGaQwGxAo3OE/BWecf6sEA2xIrg/WXO3mEwWrNVBaCXlB4EJw8B76wnOH4RA66cDhSE/i69Twwlfgg4nMuG92KEjFaEKb0eQDUiIQmklO31IzL7EEonQLc8mPCzBgynB1FUBvlOzqb0eR43YiOpatsfiJGmPoQu9a9gljK8ayirdL6T+6QuCRL2ZFHbbB4LdXrslpPQ0bnrEpYq7fsMkvWacEu1LpxH33vdQKqewKd7WcGtr3lDB9lG6G1ccBOB7nWRx/3Wa4b0NV1qtsUt65QiCtuU3dN9f5OSAWuaag155LjhR2ToPlwsFFLrQ2YidQzOZ+yCi4If/M1Ufj+M0TVfytsUHDzjZiOv2PE3rhkqGfCN0DR2Uchi2qq/U8qqeKOaAdFlBXNuGa2kwiURQ48bc+D+sO+b0un4DPkdTe3xhvo7Rhel4LJZeUX84NQqV8DEjOTKr8eaeX3BzVmY4C2VdJsodbO5vOIVFM/yx5b/ftqJyGk756uQ5lFna9BZHYBvDs4ePlDGGmh3ejyajSW8YhcCaMpJuscETRZ8fDilppjVyl3RWmYgUVJbgIvvj6fMnZtE6e/j8NGeD2mhaK4zFEU13zpcJ3A82ShB9LXIGi2ZfOE7ItDdMSWHWclkKBpWHTLB354tLPrb+VBKIIiJJ8taSNpU8OCkAob+LXWhXF1tjk1Vpp/HgrMfAz5YYCvhskRkkXv6VhRohCOEGo5WNxpEgF6PUQVhMlUgsnGcEb6O/2OLOnmPfsvpPtrwdOz1iO46dFspQoqn898euOVlEEYKLPGk7XVOXoeJ+X4gAf3l9ONAxVoDHmn5+oQb1ShRUx88v6GCNrUsz7rXx32d47uYUTtv+FwtQ2/+zVK9XdU8HAVUzpymb184qjWHuxXc8pN9Tjh82PVdiwHS251qYVZ02JJ5t0s+/S7opHA==
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Business pendingdropoffs"}
+  children={"List parcels awaiting drop-off"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **business public** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Parcels the business has created and that the sender has not yet dropped into a locker (status 1).
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **business public** (see the Authentication guide). The response
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"LogisticsPendingDropoffs"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"page":{"type":"string"},"pagesize":{"type":"string"}},"required":["apikey"],"title":"LogisticsPendingDropoffs"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderemail":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string"},"collectdate":{"type":"string"},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}}},"title":"LogisticsPendingDropoffsResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"parceldetailid":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"parcelreferencenumber":{"type":"string"},"businessid":{"type":"string"},"businessname":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string","enum":["1","2","3","4","5","6"],"description":"1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."},"parcelstatus":{"type":"string"},"sizeid":{"type":"string"},"sizename":{"type":"string"},"boxid":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxcityid":{"type":"string"},"boxcityname":{"type":"string"},"boxstateid":{"type":"string"},"boxstatename":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"sendername":{"type":"string"},"senderemail":{"type":"string","format":"email"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"},"dropdate":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"collectdate":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"parcelamount":{"type":"string"},"elapsed":{"type":"string"}},"title":"LogisticsParcelData"}},"total":{"type":"string"},"page":{"type":"string"},"pagesize":{"type":"string"}},"title":"LogisticsPendingDropoffsResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-parcel-snapshot
 title: "Téléverser un instantané de colis"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Upload a proof-of-delivery snapshot (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2)."
 sidebar_label: "Téléverser un instantané de colis"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVttu4zYQ/RWCL+sEXsvIo4s+pMUCTVF0jY3zFAQxLY1sJhTJ8qImMPw/m/0N/1hnKCnyLQYK9KWBEcszQ3J4Zs4Zrbmx4ESQRt8UfMKt8eHxWRr//GiFy0E9ei2sX5nAhzyIpeeTe578/GHIC/C5k5ZW49rrGFaggyxlnjZkE3Z5mavtGys+CWtVa768ZIPaSMcUsGWUBZD7YOnFiP0hmNu+WaM9MPCBgWa/zWZTdjUes59oLXp9VEEEhhHBmVjjTkJ78uUrUVk29+iNPjcFzFkRWW6c9SO8yMtnOhBTxrQen+E1mRyIwmj1yielUB6G3MFfEU/+xRRoW6ef0gGiFFxEd250wJzJtXO77MkTGGvu8xVUgp7CqwU8yyyeICcYrSPMgwTfrJWUQR/ng5N6yTdDvjAvsjjpaWpz1llAEPJ8iIMSHOgcdKwW4D7KQZn8GdyZmK5FoG7x+DDCE6R44MkgWYnlGU8hAgRZnYrAkCCDItNte9KdVUYU6CKnA58aKQGODURf+737RdegjLXYQrudNeg7KGseK/Aek8EGvdMHDSbLcvuGeAbaYz4ez5nUhcQLs6ixh52D6Kj7/qPG6c8+DfluumeL8kGPdO7o1L+B/FuLdYIeo+AFL+vxgiQda556vSPgkNdCRdgh4mbYh7wT8j0sEXODwlNBWJlOrwgZkeicJWXKmu7OugtkGODB1eCaFNKF+CoE6ydZJkonscmRhiNfCReaxSO9zOorfiRxTTDDShQxTyI3qK8uOOVE9fvWS8aXF5QgBbsU78B7Z3Zv6Al9aOt5fOg5ou/e/vus7V0HZD129BztfS01Dww9I3e5qkuT+qXtjg6y6+kNFRKL0EB5NRqPxscAT29IqRcCk9cF6xYPbqk003RtpN7MRJJ5z6yROngaIHm+/e4ZfoENiYKR/X779U8aG9OvtzNksohlImQ7nIiFTqCg06w5GkA0U0ohA6ulQPqyeVPDeT9haJYQ0RXOKURs+yMADjxi+vHIG/Z2GxcqaULxCc9zYJ3Eo0zsIzzkbvs97EdgjsASpUMzBmkkBhOfTHT+1EwkfyM/lMxe0nSlPeUaJLH6mfmYULxgELqAVj/mozQ1kGyVSCKlRSr7bPuGKVNRwRFMUuMyjR86lM5T0h/WeN0L4P/olaGVv4ByllklpCZAWmls1Kd7L+rouUMpfKTXpRWJFcat1wvh4c6pzYbM2A0O1eH+gXTOSbEg3tw/4P4rVEBi77tu/tog93lG2eyp5/4Y6WX0OjHibOyunhJXkn407zxVmi7cib/RSP8nHB9MqmQaQsm25kroZWwkotmT/v4Bvr6veA==
+api: eJy1V11uGzcQvspgUSAyKnslxW4jGXlw0wBNESdCLD8ZrkXtzkqMVuSW5Mp2VQE9RA8R9xq6SU/SGVLrlSxHL20NgaY5Q87/98mLSBdohJNavUujXlRo626mUtvpTSFMgvmNVaKwE+2iZuTE2Ea9q8jLo+tmlKJNjCz4Nt29LHItUhBQGK2zQ/qkmMs5mnuoHoHGsNriHJUbQmp0obMsLmQyLYsmPMot/lqiSnAI7bhzcETm7w5F6SZkSBTFzRTv/ZFBkWqV30e9TOQWm5Hhe9b9oFM6W/g/pUGKzZmSxIlWjgyziJ7JZeJjjz9bDmER2WSCM8E7d18g2dKjz5hw8BQUZcpJtOGuZA9qPeuMVONo2YxG+k6mz0pCRvcKU3RC7lcxmKHhzKhyNkLzNR9ynUzR7NHZKsSuRjNiA1zudYk4B75Iu5W/qMrr3+rBcH1lCA3hfImpG7ID0AaG4Y0gSXSeU3bpESrwhktV7fd51aZ9Z9eVNrwGJ6ao4HZCi5sghEyAtFAqv09PofOoJjJHQtZLtfZaSa4tpt4hORPjZ7yoJKlw6OTsWT8L4ehhdumXq9Zh93rRbnaW8c72eAn1WS9sNzbQODv/vX9+8E30NNAfyXbMxkFYsGjmmPbgPE7je/qBSW8261kLZ+dx/7wJSgOr/qYVQsMr+0gvB2++bXPql82NQbmqupuS66TLcaPCYcbpQrhiC61smIhOq8W/tp18q+aY66Kg5CKY1YMtc0d1b1haS5voFOOwnaG1lNCDI7hUhAGPYgIImWWrB2p4x28MW60hSJVKahAqJwIag6VhePiPJru2va/7KNhm1OIebHV4ecnLMS8nvHzHy/e8vOKlS0ubb7T5RpfPut3d3v2EnB9g2z1otcCWSUJ5OYVW+7D1EtbIBiOCNjo7hpm0ltyCTBJw0MnJYbsNc0Hw4UM/he4rYMikrKyzQUddGKNCIxNOHTU8fXBWuHt6nq2HOdysyV7w+ApSVeLS5M/Il1/rq0/rhlr31zFldKelLtVU6VsFNF8T+PuPP8lvMqOsH+GfLz5+AAxNh3ArSWWrmYbd7pCnwYFQ8NPg/D09M0Yf88lz/Xup8K6gLsEU1lMTkvav7J5d9I8+vB1Upsk23lHnWjLJ9LqIPLNUdNeMqKIlbtDeslmrPNLfo5qnwSX11gzdRFecHgCJyTP27B0HLomrQsWkECIMLvjCRRPnCtuLY5EZSZRCsHBkZ8K4cPlIjeN5ZweYzoIyfwtISw/u0Jh3DiL2iYfxU03Qb+/ErMhxk1DrUVvz6CaiVvT59KxmzaeSHbLcen+bI2vRE2rcYMBdhvJEtOaJ+oUn9LBJHCrTfibWE1Cl66z/jotIBQhp7By1jlq7ye2/g7SEkSDHVQrV5cYFl6XvQyYMHejSQo4WCi2Vs5C+EEmy+mKBfmHhPJaWVdNC/+PFgCBZlJlH1oAUwHBqBDECvff+RQUjWSW2CJmQDuZSEA7DMNSP4FooNk3XTWEZsXPhgWv1l0PoechO8tUDu1SDdLM+L8pR7sE9fUH2DBZGkild1hoWE7P64rY1yEcEP3GO5nrQBwZKp8vPujQWiJvglL2qKYjlgUfYmS2nOaSt6W141nnt8ZiyeADoKoU1Rg49hPCgzYRnGyV82QerB3KZi0rQQWmSiq4p+rBRtpdL+7TGi5rJ/vev1GtgdgRAcZELqTiMNWgHvKi+7VcDtTEDtGUOmzC8kN5iMRIWL02+XPIxmTI0z1fXjExGihF3+9U1vT8hzOJ5e0S6NyHewwF7s4V32yxeA9+Z7+O9upsIyB3uJz78TzDz5B4ZcUuHvPYi2miff/8dwJ8tolyocRkGO7zJP/8Ave2Taw==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Upload a proof-of-delivery snapshot (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2).
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"boxlockernumber":{"type":"string"},"snapshotevent":{"type":"string"},"snapshotsequence":{"type":"string"},"image":{"type":"string"},"imagedatetime":{"type":"string"}},"title":"SnapshotUpload"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"boxlockernumber":{"type":"string"},"snapshotevent":{"type":"string","enum":["dropoff","pickup"],"description":"Snapshot event: `dropoff` (at drop-off) or `pickup` (at collection)."},"snapshotsequence":{"type":"string","enum":["1","2"],"description":"1 = taken when the locker is unlocked; 2 = taken after the door is closed."},"image":{"type":"string"},"imagedatetime":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."}},"required":["apikey"],"title":"SnapshotUpload"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

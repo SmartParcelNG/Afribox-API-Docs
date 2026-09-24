@@ -40,6 +40,16 @@ Response (`00`): `reference`, `authorizationurl` (hosted checkout), `accesscode`
 | `parcelreference` | Mark the parcel paid |
 | (neither) | Record only |
 
+The three cases are **mutually exclusive**: send `fulfil: "wallet"` **or** `parcelreference`
+**or** neither. Do not send both.
+
+### Amounts
+
+`amount` is in **XOF major units** (e.g. `"5000"` = 5,000 F). XOF has **no minor unit**; the
+"multiplied by 100" you may read about is internal to Paystack and does not change what you
+send or what is debited. `/pay/verify` returns `amount` and `fees` in the **same major unit**.
+A wallet credit carries the Paystack `reference` in the ledger (`/business/transactionhistory/`).
+
 ## 2. Verify
 
 After the customer pays, call `POST /pay/verify` `{ "apikey": "<BusinessSecretKey>", "reference": "<ref>" }`.

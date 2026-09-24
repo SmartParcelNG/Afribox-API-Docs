@@ -1,11 +1,11 @@
 ---
 id: post-customer-parcels-hold
-title: "Mettre un colis en attente"
-description: "Authentification : **clé secrète d'entreprise ou clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
-sidebar_label: "Mettre un colis en attente"
+title: "Mettre un colis en attente (paiement Paystack)"
+description: "Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker."
+sidebar_label: "Mettre un colis en attente (paiement Paystack)"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdls1uIzcMgF9F0GWdwGsbObroIS0W2BRtN9hkT0EQyxraVqKRVP24yRp+n82+hl+spGbsGdvjdA89NYfYFimRosiPXHHrwIuorLkq+Jg7G+KDTCHaEvyDE16CDg8Lqwve51HMAx/f8a2c3/d5AUF65egA3H6Z4gJMVDMl85lszM7Ppd68sgDSb75FYMU7VPDgvArAbGJZWrwTzul60/k56y2t8kwDmydV0B5xcPDZgP0umN+8OmvwHAiRgWEfb2+v2cVoxH6ivSgNSUcR0TiL3qYlniRMIJlciNKxSUBpCtIWMGEF+mK9CwO86fN7MkjxEC+oI58eiiR0FngQhTX6hY9nQgfocw9/JbT/iy1wbZV/Kg8YzOgTiqU1ET0nUeuOw8dAAVvxIBdQCvoWXxygRTt9BBnRlPP0NFFBqPaqJ3hp6YXolZnzdX/3HKroFNf+0foJjal9PiEJ6usbm7SVT+BNKqeYC106BWi1BP8iMGgnjsHLK90pcQtroNsrMAXaFeVb4n/bftqwB6mcwjc7aWGncdrITuUH7Iii8BBCdxRyCe5V2ZEWqkUVNS1dZ/WPVK/r9TobCblE8ulYGvSxX7MfzBK0dQ6Lo10zvaY2htXXEn0Uc8DS+2IOSkfNZptXj1ehMyaj0YQpUyjMO5YMVqf3kDzV1X9UDI3t7gduu9upQUCL9gm6okkxm2F+GNm9l8hgvfqaXU+++22FlGj+pIeitKkKw4885ef6DfOTUs08YxADWicar3jmwhZZfb4UOsERutb9RnGHsJ1yRtkacV4CXm7bCCjuImNwuGXMsG4JQ4rgkFMxeazwypEcDL6I0YXxcChmXiEkEFyDUAofq50DMx8uL/hR46iUGb5zkWRuHb3lxRknnyg7PjeQ/fCM6NbQhuI2fPssbFYPENgIavI1C1vg7ansc64RHeKtkdRF3yzUoGgZajHscPWE8tGhB6DqEByddIilDsmORi3vjyHUSmZlZjancp2427e8vL6iDMPsqHZcDEaD0fHLX19R651ipuIt2XZz74ZypqoBJM6tTdS3A3NWmRhoIpBy8y0wKjQXM3kS++3m0580B1x/urlFgIk0yxyqZxGCjxfYm2l4OJooaEiYCRXZUgmkFptUyTVpRgYaDohvGgcPTKjNd5xmxhlwxzNMv1l3aaozCg8nn51G52yEPgLLJIvVXEMzTrTp0SYfuoYcklfUJWf2nKYr7QG7lxn9MwspR/GMQdwq1NicDHL3QQqUIlOyzrE/IKKHFCBptQoUbREp/nD4squG9v+bubCmdUQCD50WylCQ6h5QobI1HW/rJvCq4eAHTcwLIivqrVZTEeCL1+s1LWOGeETZ3T1B2SsxpVq6u6dmhbgm8OxQ/2sV1/e35E0D/KOO2jD/MlfJm7pt+FP9ZPRVI22Z2xj34m/iBP4fc/xi8zvnfpzXVlwLM0+55fLqTPr7Byq3ZuM=
+api: eJzVV2tuGzcQvspg/8QGZEl2kjaSUaBuESAp8jBi+ZcRWNTurMV4l9zyYVsRBPQQPUTSa/gmPUlnyF2tZEnu808Ng5Y5M5zhPL6Pmie6QiOc1Op1lgyTSlt3mXrrdInmshImxcJeTnWRJZ3EiSubDC+SRp587CQZ2tTIig8g81MxO8ilsQ7SKabX2rshsLEFAYVOr9GAUBmQT8VbpG6dSK/BGaGsSPmULoymGIxAWki1ukHjMAOnySAGBJMZjHuVmPVIJvNZb3xM/zdR9eqoe3xGz2CBwmJvDLlBtODo8BhJl250dyC8m/K960guMy+KIDAoMq2KWTLMRWGxkxj82aN1P+iM9ubhX2mQkuaMJzFF6lA5FomqKmQaktr7ZDkx88RSQkrBn9ysQvKoJ58wdeSqMlwCJ9FGW3mNsxU964xUV8mis0y7zLaK6/h4f4fGRN/tkFj5+RGjmC/lywnVfJtOhoWkUswEJW3HMXR5WWxKOkmuTSkobbUGqVZTrXB7mKgyCkSUj4n/zPxvRGIwlZWkqu50udTY7XWp8k8ciywzaO3Wg2Ofrw3ghlbdF7FRL5ruorl10hUYJpYPecUDvlhEdVtpZWM3HvX7/Gd9yF/SSBa6qhAyBHP/1frCCQd7NEDO21Rn2IsfS4pcXOF+F84VjFvxGDKZ5/dfDV2Qzxj3+2OQKpPUwOAVAhqDPgzofzRVre9t+Udqbc4OXbaT9A95OeLlKS/PeHnOyze8fMvLC14GtByyxSFbDHhvMNiExA/I+QH2PYR+H6xPU8rLMfQPD/pPoZ5amBCs0N4zKKW1FBbkkmpLO88PDg/hRhQyC1c/hsELYNCirNTZoK0BXKEiZEg5ddoA/WJZuRkdz967oftXa7K1oRgwnb7GbY3EjZHT8Kh0uy2HpI38HCLyZkufs1K4+vYysLjUPtZ6s4s3+/VD3ah13z6jSm206rm6VvpWEW+4Kfz+y6+UD+eNijTw09n7d4CxmRFuJamsNel4MBh3QGlHnAWvRm/f0DFXGHL5fNtcnCu8q6j7iKwsGsLDuhj/yu/J2Wn33ctR45qR9I4mwpJL5uJ5EtiiIbJOQp3icYPQFp1WcUlsS+VAcAvq3BKpiM0zgIdIBHLcQa0JIyrfMwYSip5MnavssNcTuZFEHQQ4XVsK46JlV131bni21jN3EpWBhjbz4RUAezdH+wnHxKP+oaXel3eirApcpcp2kFcZst19QIytoObDdqOhwTWVdfZrRQ9JbwVPItAnntLzPcaAu6kukyW3rbhcobSHuzuUHzn+AWGt5mCdp7ZI/sqxSzpq7bew0MpIS5XrMND1+DaVPjl9zf1HvRMtjrr9bn+zL05fQ+ZhQn1MN4fGeO+MOyoiAZHLSHsLBb3tKi2Vs5A9IZy5/0IPTIKbygWS8c3Uwen7sxFxlfB5oJwIofzOpDco0SSd9+ZJg695I7YIuZAObqQggoJxbD3iMXq2kmsyN5VlKitEQPT73xzCMHBZWtx/5ZBa9uq0+5WfFIH1sifkz2BlJLnSvtWwmJr7L25dg2JECJDhCJhGp8AM4rT/pL2xQKQNxxxVy80sjwTLwawFzVdag5+9QMffBaKiLO4DukahJo9xwEDGiFIErqi77S06ipATlOqCHu+UbeE4/wh7lZBYcimaN//+w2rPW7L/332PqPnKETb3qkJIxQmqWTCC6Mq3pmZmbBIpl/7ws2HKmEt68/mEHJ2bYrHgbeoOQyB38ZHh2kgx4Tm6+Mh0TUDOkLQkgR9j/g5GHE1LBRsPp5YNTsKEPKq7Sgs8OwEU41egMhB5YsQtYwStw4Q+6FDP8OwKe/OkEOrKh0dHEs/knz8AmzcPJg==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Mettre un colis en attente"}
+  children={"Mettre un colis en attente (paiement Paystack)"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé secrète d'entreprise ou clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé secrète d'entreprise ou clé d'application** (voir le
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"requesttypeid":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"boxlockernumber":{"type":"string"},"deliveryareaid":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"parceldescription":{"type":"string"}},"title":"ParcelHold"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"requesttypeid":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"boxlockernumber":{"type":"string"},"deliveryareaid":{"type":"string"},"email":{"type":"string","format":"email"},"phone":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string","format":"email"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"recipientaddress":{"type":"string"},"parceldescription":{"type":"string"}},"required":["apikey"],"title":"ParcelHold"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"holdtoken":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"},"amount":{"type":"string"}},"title":"ParcelHoldResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"holdtoken":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"},"amount":{"type":"string"}},"title":"ParcelHoldResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

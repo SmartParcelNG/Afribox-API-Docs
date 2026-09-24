@@ -6,14 +6,24 @@ sidebar_position: 3
 
 # Kiosk & locker flows
 
-The locker device uses the `kiosk` endpoints (application key).
+The locker device uses the `kiosk` endpoints with the **application key**.
+
+## Bringing a machine into service
+
+- `POST /kiosk/setup/` — `{ apikey, boxcode }`; returns the full box record. Use it once to
+  establish a machine's identity from its box code. It is a **write**.
+- `POST /kiosk/ping/` — `{ apikey, boxid }`; a heartbeat. Returns only
+  `statuscode`/`statusmessage`; the server records the last-seen time (visible on the box as
+  `datelastping`).
 
 ## Appless reservation (walk-in users)
 
-1. `POST /kiosk/parcel/appless/verify` — returns available sizes and fees.
+1. `POST /kiosk/parcel/appless/verify` — takes a **`sizename`** and returns **one** available
+   size/fee/parcel for that size. To show a full price/availability menu, combine
+   `/core/fees/appless/` (prices by size) and `/core/boxes/availability/` (free lockers by size).
 2. Collect payment for the selected duration:
    - `POST /pay/initialize` (`flowtype: "appless"`, `metadata` with box/locker context).
-   - Show `authorizationurl` as a QR; customer pays.
+   - Show `authorizationurl` as a QR; the customer pays.
    - Poll `POST /pay/status` until `transactionstatus == "success"`.
 3. `POST /kiosk/parcel/appless/reserve` with `paymentreference`.
 
@@ -26,15 +36,26 @@ The locker device uses the `kiosk` endpoints (application key).
 - the amount matches,
 - then **claims** it atomically.
 
-A reference can fund **one** reservation. Replays are rejected
-(`"Payment already used"`).
+A reference can fund **one** reservation. Replays are rejected (`"Payment already used"`).
 
 ## Drop / collect
 
-- `POST /kiosk/parcel/drop` — drop a parcel using a drop code.
-- `POST /kiosk/parcel/collect` — collect using a collect code.
+- `POST /kiosk/parcel/drop/` — drop a parcel. Body: `{ apikey, boxid, unlockcode }`, where
+  `unlockcode` is the parcel's **`dropcode`**.
+- `POST /kiosk/parcel/collect/` — collect a parcel. Same body; `unlockcode` is the parcel's
+  **`collectcode`**.
+
+The codes are returned by the parcel endpoints as `dropcode` / `collectcode`; the kiosk
+endpoints read them under the single name `unlockcode`.
 
 ## Snapshots
 
-- `POST /kiosk/parcel/snapshot` — upload a proof-of-delivery snapshot.
-- `POST /parcel/snapshots` / `GET /parcel/snapshot/image` — list/fetch snapshots.
+- `POST /kiosk/parcel/snapshot/` — upload a proof-of-delivery image. Key fields:
+  - `snapshotevent` — **`dropoff`** (at drop-off) or **`pickup`** (at collection).
+  - `snapshotsequence` — **`1`** when the lock is unlocked, **`2`** after the door is closed.
+  - `image` — the image payload; provide the media type your camera produces.
+  - several parcel identifiers are accepted; `parceldetailid` is authoritative.
+- `POST /parcel/snapshots/` — list a parcel's snapshots (`snapshoturl` per snapshot).
+- `GET /parcel/snapshot/image/` — fetch an image: a signed link
+  (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated
+  `?apikey=..&snapshotid=..`.

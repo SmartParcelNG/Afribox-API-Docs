@@ -1,0 +1,69 @@
+---
+id: post-customer-parcels-cancel
+title: "Cancel a customer parcel"
+description: "Cancels the customer's own parcel (status 1, awaiting drop-off) and releases its locker. The parcel must carry the caller's `customerid` (or a valid `sessiontoken`)."
+sidebar_label: "Cancel a customer parcel"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVs1y2zYQfpUdXipPZVFy7NZSpgfHTSfp1InHlk9OxoRISGJMAiwA2lY1nulD9An7JP0WIEXJdtpDe6lGA1HLxWJ/vv0W60hX0giXa/U+iyZRpa27SWvrdCnNTSVMKgt7kwqF36gfObGw0eQ6ajWiz/0okzY1ecUmYODUq1pyS0mt1jeW9L2iYI161glXWxr1SdyL3OVqQZnR1b6ez/dIqIyMLKSw0lLuLBU6vZVmQFMYbCyUsEupMGYVjhFF4Q9J2gPzLKGeNiToThR5RgmMWfjn9K1Uyd4AkTzsi9ot4bCoqptbufIiI0WmVbGKJnNRWNmPjPy1lta90Rlka/83NxKJcqbG6xQmpXL8CmaKPPWJjL9YTsU6sulSloKf3KqSOEvPvsjU4ajKcNpdLm3Ym7MHnZ51BlmJHvtRF9GLr7fjelEhZCyTTuTFizYe+1tRXbeuoKwudwUrnjYenHtL79VcY1PYZiutbAjhYDjkn10sXEhbF46kupMF4qVeEkqf6kwmcfOnRAhiIVEVSobDhH4gW6cphK835WuqQPe5W5LS+M92AQ8btni5UCTLyq0IuBAr6intKBmPcY6qi4LNn6gVaQDG0LYf1JODBZ99mPSx4div42SPcpVxQQFDQXOkrzaSgfMf1bzz4HlR+pFUdcnlQFb70XDEywEvr3g55OWIl+94+Z6XY17GWEa8Y8Q7xiwbj5+3aFMWPntCw2GX7+Fof/hqk+0ZQA/ZIZU5QIYmnedAEiRH+6NRqIwP/TWNj4mbCVlpsgHRmBZSAbcpSWPQiviG8oTiDTx6twHwInyNnNcqk5kodR1y/hy+LwM18NBFg9EGsofI3TOUXqlbFegJKPrz9z/goauNChT28+XHDx2APdB2wMNQ6RNjDfh7Nz37BWYW0kd39FJLXCn5UAEPMiMrzR2wGNLzr849uTwffHg7bY/G2fIBGGVmYLZeR55dWsrrR6hdLbeo77HfqWwocKPmqfARKCqlW+p2SDCghSfQuOWouBkXcRgXccT8xDEGJ2pTQHvpXGUncSzmJp/pB/DNwJbCuLB3oBbxHSN9N2snQZnQQlmdspB6dwd7EXvFjXfR0fTbB1FWhdym1a6tttm0k+6SaCd/yp1buMyZBhmNDfZaB0/O33PiEHJw/GAwHAy/Gs5MYLRh3mEX9S45CwG7zFVFgfJnlc4ViE6gQSsXQKEZNOcfL6fUq1UB1xkFMuM9Oz3I7HiXC8ZHEjKRgNI8uLY7fOIB1BGZdwbKGM70pkbf8wlVPcP7Z2IrU2A2iIHh3hxLEouszFUMAhWEzvUUmpEXsuaA2j4lhtp2kIXVbaTiychuegOGZiscsUFcoRd8VrgdvJtOz6m5XCB4jCTq+ZRtJhVmgwx9B48s52WXwJO91z5BunYp7LMVIyttOIImd5wzn9fdGbI7usI15smAQ4H+YZ61BPC1oTagH8M82o3iLM7iFT60nJTlBHU5OYvPz5KNeZeX8jetMH85gIZ2ENrV9PTbESKeaY37lgr8Hqx7RY922P8UTXHb+RRhlH6KfmI2wLOnOCaCUvi5p0QpN9c/1K8tUXNne9oD626O/m+ujM3ocSDXuCpErjgFntXWDRduXYxb+rBMO+31mWfxkskTmuv1DA5fmeLxkcVAhAFXXX9m3jW5mDGvXH/GCUu0CQx2PH4aMrc/ZX922Hz3NtLR+onvqr/V3eZ3Zhcoz5pbb+kvKZER9xDyOonwoH0l/V3Gy9ZRIdSi9pM8Cjb58xfxREWl
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Cancel a customer parcel"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/customer/parcels/cancel/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Cancels the customer's own parcel (status 1, awaiting drop-off) and releases its locker. The parcel must carry the caller's `customerid` (or a valid `sessiontoken`).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"sessiontoken":{"type":"string"},"parceldetailid":{"type":"string"}},"required":["apikey"],"title":"CustomerParcelInfo"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"refundedamount":{"type":"string"}},"title":"CustomerParcelCancelResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+>
+  
+</StatusCodes>
+
+
+      

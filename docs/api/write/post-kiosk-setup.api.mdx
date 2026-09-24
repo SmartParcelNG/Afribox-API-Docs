@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-setup
-title: "Kiosk setup"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Kiosk setup"
+title: "Set up a box from its code"
+description: "Establishes a machine's identity from `boxcode` and returns the full box record. A write; safe to call again."
+sidebar_label: "Set up a box from its code"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVt9vGjkQ/lcsP5GIsCiPVH0gvZOud1IbJfQpisKwO4Abr+3zDwpC/O+d8bKB7WVTndSH8gCLZ+yZ+TzfN7uX1qGHqKz5WMmJdDbEp2dlw/NTwJicHMoIqyAnDzKvysehrDCUXjneQzumKa7RRFXmQybi8hKcE8+4u7wUg4AoyCy6TmKVVIUXIzEjk8fgrAkoVBB/zWa34no8fpc3kSXpyOvK5IWFrXZiHiLEFEpb4VwsFepqRElur4BCUDoU/ImC5yWPUFmjd3KyBB1wKD3+mzDEGzpHTvb5r/JIdUefyFxaEylLNtEx+pht8TVwoXsZyjXWwE9x55Bi2cVXLCOFcp5RjApDs1dxBie/EL0yK3kYyoXdcuKv2MgYVdS8dGO3GO4z+ocDG1qI8ukED/90L+GugQrNBjWlQsC/gFQ0jzWGACsG/ZM1V/PxeC5OPgRwxdViEGAEem89g/qL8DjFeRWTTn59qP08Cjmp6n+Cnm0G6l5bCQ5KFV+/TG3LZ/QBNqA0LHTvIVBVdIOhz6ytWamY+hPUBHuvnbPrqZtNvcUx6tizMdt6dx7LViaFNx2WHntL6nTvT7jwB0To4cfdkRiZJ+SBW8o70KEsWHuZWdhKw1BuQCc8k4jD8OTyIhUvblkyDiR3Nca1bbWR2w6y0BRZD4uskgUtB/QbqjoHTl6TxzpGFyZFAUuvuA2cGoUafHTgS9Qjsyo21/I/cto4C2ruKpVZLQeb6wvJmTDx7k4S9ucWate0XSs5LYRnTX8GvDJLm+E+AtnGmt5+5Lr5UnMO16PxaNyb2QLoek3Fu8Tgngu6zQWRtEy1Jg2qnFUmkpSUJboo/r7//ElYOl3cfr6fiUEymtggjI1Y8Z7uaCC13yhgGZo3Rc1b9T+Kd54CE3aYnjQpJ0POQwHiJlFvcgSXFmRvlq0/twQsPUa2NDMoz51GhzgB0N9gF06DyKZY2jpPKI/Oekq8M5I44c5YGmR9fS9CIghCuKBsq9bjKHTzEd8It1QNmQMN3+Q/3FWinb0/8ORFkH+TqXvkbSTeFU6DMlxTbv79kSbtawPzoymJ3yDWzCSy7fcLCPjF68OBl+l+PTXxwyOT0KtGUx8e6cw10RP9Gak/NEhczTiDDrW7Y+rE8Wnuxjd9z8nOvZpp1Lwq1A2XPHyjRf6eSHqw+Waysue1vdRgVinPMdmcyZ/v449DwQ==
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Kiosk setup"}
+  children={"Set up a box from its code"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Establishes a machine's identity from `boxcode` and returns the full box record. A write; safe to call again.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxcode":{"type":"string"}},"title":"BoxesSetup"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxcode":{"type":"string"}},"required":["apikey"],"title":"BoxesSetup"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}},"title":"BoxesSetupResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"networkid":{"type":"string"},"networkname":{"type":"string"},"boxonline":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"datelastping":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."}},"title":"BoxData"}},"title":"BoxesSetupResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

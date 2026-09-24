@@ -1,11 +1,11 @@
 ---
 id: post-core-boxes-info
-title: "Core boxes info"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Core boxes info"
+title: "Get boxes"
+description: "One box with its counters, its physical lockers (`lockers[]`) and its service state (`boxonline`, `datelastping`)."
+sidebar_label: "Get boxes"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVsFuGzcQ/RWCJ9mQtYKPKnqQ0wJxECSGrZ4Mw6KWYy0TLsmQXNmqoH/vDHdX0rai00MP9cFec4bkzJuZ97jj1oEXUVlzK/mMOxvic2k9PK/sG4RnZV4sH/Mo1oHPHjlZ+NOYSwilV4624aZ5EyswUZXpnBm7vBTOse+wvbxkowDA0MyGTmzdKAkXE7ZAk4fgrAnAVGAfF4s7dj2d/pI2oaXRkdaVSQsrK7dsGaKITSithCV7UaDlBGN8uxJ4BYaDlz/j5WnJg5DW6C2fRd/AmHv40UCIN3gMn+3Sv8qD7M2lNRGDJBOeortgi2+B8tzxUFZQC/qKWwd4lV19gzLiTc4TjlFBaPcqCuDoF6JXZs33Y46wKnnGgqaooqalG0L+loDf72m9hycdjdDQn2EB7luYwGxAYxwI+gGgov2sIQSxJsC/WHO1nE6X7OiD4EpKFQIThoH31hOg/xEYx3vOAjKILwfZz2/J4Zq2Zy9HmxF11lYKJ0oVz1dS2/I7+CA2Qmmx0tlDhJRYwZAza2vWKjb5ADXCnrVTdJm8yZRNjlCHzMZky+7s0lamCe86vHjIpjTo3p+Mwm8iiuOxD+pPOIVSeC9o0lWEOvyLXsTtuazRlIcLjRIiVvp8Hcn+qmSsyjprr0Ctq/iOgwSXOeAEkc8HGFpgzhLHfccYiUDQAd6woAHRJhLf8cRNPV+O+UboBk54cz8+uhz48+BGRLlHCaghVraXDAJaJPItSCKKJB4FiUeBpgB+gx2R7m68Rq8qRhdmRSFevKIRcWoSauGjE74EPTHrYnPN/yEzrTPDksqmTCoy2lxfcIqGSOn+yO2/v4natSPZc3EP5oGCT9BPKkewd0D2N83vbilxavcUwfVkOplm41oJLI2RtIuNHiidu5QOku5ca2Rn6awyEUm2LLHU7NPD1y/M4uns7uvDgo0ao5EnmLERJO0ZCiZq4EYJIuhlm9Ky18RO05I2zshhfmTrFAw6j5lgNw1OLd3gmhXa22XrTy0BSg+RLK0yJzVuGZoCEPpVbMNRnm0TS1sn3fbgrMfAB0JNAQ/EepSU51cWGoQghAuMVvYenQQsJ1QRaqpaJHZoh5J/wL5iqa9Y9yj5G4sc5Op/8h7pZjji8BVOC2Uor9T+u25YuvdU6kjkp64Px5xeWBVNFXrsdisR4A+v93taxkp7bObHJ5pHr1rdeXzCkyucVPAn8/2hxeNqQXEMpnwo5cdxn6e+fNf3dPCpa1Pw7VuqTiLLvXjFRfo94/hhU30Sa6a1HdfCrJuk9bw9k37+Aj24qNc=
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Core boxes info"}
+  children={"Get boxes"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+One box with its counters, its physical lockers (`lockers[]`) and its service state (`boxonline`, `datelastping`).
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"title":"BoxesInfo"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"required":["apikey"],"title":"BoxesInfo"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"},"lockerSizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"sizedetails":{"type":"string"},"sizewidthcm":{"type":"string"},"sizeheightcm":{"type":"string"},"sizedepthcm":{"type":"string"}},"title":"LockerSizeData"}}},"title":"BoxesInfoResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"box":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"networkid":{"type":"string"},"networkname":{"type":"string"},"boxonline":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"datelastping":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."}},"title":"BoxData"},"lockerSizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"sizedetails":{"type":"string"},"sizewidthcm":{"type":"string"},"sizeheightcm":{"type":"string"},"sizedepthcm":{"type":"string"}},"title":"LockerSizeData"}},"lockers":{"type":"array","items":{"type":"object","properties":{"boxlockerid":{"type":"string"},"boxlockernumber":{"type":"string"},"sizeid":{"type":"string"}},"title":"BoxLockerData"}},"lockersizes":{"type":"array","items":{"type":"object","properties":{"sizeid":{"type":"string"},"sizename":{"type":"string"},"sizedetails":{"type":"string"},"sizewidthcm":{"type":"string"},"sizeheightcm":{"type":"string"},"sizedepthcm":{"type":"string"}},"title":"LockerSizeData"}}},"title":"BoxesInfoResponse"},"example":{"statuscode":"00","statusmessage":"Successful","box":{"boxid":"4","boxname":"Afribox Cocody","networkid":"2","networkname":"Afribox","boxonline":"True","datelastping":"9/22/2026 1:07:44 PM","lockersinuse":"5","lockersfree":"32"},"lockersizes":[],"lockers":[{"boxlockerid":"1","boxlockernumber":"1","sizeid":"3"}]}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

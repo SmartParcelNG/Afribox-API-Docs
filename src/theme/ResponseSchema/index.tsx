@@ -1,0 +1,143 @@
+/* ============================================================================
+ * Copyright (c) Palo Alto Networks
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ * ========================================================================== */
+
+import React from "react";
+
+import { translate } from "@docusaurus/Translate";
+import Details from "@theme/Details";
+import Markdown from "@theme/Markdown";
+import MimeTabs from "@theme/MimeTabs"; // Assume these components exist
+import {
+  ExampleFromSchema,
+  ResponseExample,
+  ResponseExamples,
+} from "@theme/ResponseExamples";
+import SchemaNode from "@theme/Schema";
+import SchemaExpansionControl from "@theme/SchemaExpansion";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import type { MediaTypeObject } from "docusaurus-plugin-openapi-docs/src/openapi/types";
+
+interface Props {
+  style?: React.CSSProperties;
+  title: string;
+  body: {
+    content?: {
+      [key: string]: MediaTypeObject;
+    };
+    description?: string;
+    required?: string[] | boolean;
+  };
+}
+
+const ResponseSchemaComponent: React.FC<Props> = ({
+  title,
+  body,
+  style,
+}): any => {
+  if (
+    body === undefined ||
+    body.content === undefined ||
+    Object.keys(body).length === 0 ||
+    Object.keys(body.content).length === 0
+  ) {
+    return null;
+  }
+
+  // Get all MIME types, including vendor-specific
+  const mimeTypes = Object.keys(body.content);
+  if (mimeTypes && mimeTypes.length) {
+    return (
+      <MimeTabs className="openapi-tabs__mime" schemaType="response">
+        {mimeTypes.map((mimeType: any) => {
+          const mediaTypeObject = body.content?.[mimeType];
+          const responseExamples = mediaTypeObject?.examples;
+          const responseExample = mediaTypeObject?.example;
+          const firstBody = mediaTypeObject?.schema;
+
+          if (
+            !firstBody ||
+            (firstBody.properties &&
+              Object.keys(firstBody.properties).length === 0)
+          ) {
+            return (
+              // @ts-ignore
+              <TabItem key={mimeType} label={mimeType} value={mimeType}>
+                <div>
+                  {translate({
+                    id: "theme.openapi.schema.noSchema",
+                    message: "No schema",
+                  })}
+                </div>
+              </TabItem>
+            );
+          }
+
+          return (
+            // @ts-ignore
+            <TabItem key={mimeType} label={mimeType} value={mimeType}>
+              <SchemaTabs className="openapi-tabs__schema">
+                {/* @ts-ignore */}
+                <TabItem key={title} label={title} value={title}>
+                  <Details
+                    className="openapi-markdown__details response"
+                    data-collapsed={false}
+                    open={true}
+                    style={style}
+                    summary={
+                      <summary className="openapi-markdown__details-summary--with-control">
+                        <strong className="openapi-markdown__details-summary-response">
+                          {title}
+                          {body.required === true && (
+                            <span className="openapi-schema__required">
+                              {translate({
+                                id: "theme.openapi.schemaItem.required",
+                                message: "required",
+                              })}
+                            </span>
+                          )}
+                        </strong>
+                        <SchemaExpansionControl />
+                      </summary>
+                    }
+                  >
+                    <div style={{ textAlign: "left", marginLeft: "1rem" }}>
+                      {body.description && (
+                        <div
+                          style={{ marginTop: "1rem", marginBottom: "1rem" }}
+                        >
+                          <Markdown>{body.description}</Markdown>
+                        </div>
+                      )}
+                    </div>
+                    <ul style={{ marginLeft: "1rem" }}>
+                      <SchemaNode schema={firstBody} schemaType="response" />
+                    </ul>
+                  </Details>
+                </TabItem>
+                {firstBody &&
+                  ExampleFromSchema({
+                    schema: firstBody,
+                    mimeType: mimeType,
+                  })}
+
+                {responseExamples &&
+                  ResponseExamples({ responseExamples, mimeType })}
+
+                {responseExample &&
+                  ResponseExample({ responseExample, mimeType })}
+              </SchemaTabs>
+            </TabItem>
+          );
+        })}
+      </MimeTabs>
+    );
+  }
+  return undefined;
+};
+
+export default ResponseSchemaComponent;

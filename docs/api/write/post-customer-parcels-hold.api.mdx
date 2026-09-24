@@ -1,11 +1,11 @@
 ---
 id: post-customer-parcels-hold
-title: "Customer parcels hold"
-description: "Authentication: **paystack dual** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Customer parcels hold"
+title: "Parcels Hold"
+description: "Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker."
+sidebar_label: "Parcels Hold"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNls9vGjsQx/8VyycSERblyFMPtHpS20MbJbxTFAWzHsCN1976Bw1F/O+d8e6yCyx5PfTQHAJ4xp7xeL4fe8dtCU4EZc0nySe8tD4859EHW4B7LoXLQfvntdWSD3kQK88nj7yx86chl+Bzp0paAKdPY1iDCSpPK07Y9XUptj6I/IXJKPT1NRt4AIZO7NiVraKScDViMzQ58KU1Hpjy7ONsdsdux+N/0iS0RB1oXJk0sLByy+YYIUSfWwlztlSg5Qizfb0RGIL2VKfwTCkkgwMhrdFbPlkK7WHIHXyP4MN7XI1PdumncoAFCS6iObcmYK5kEmWp65yzb542veM+X0Mh6FvYloAR7eIb5AFDlY7KGxT4aq56gW3HzwenzIrvh4eSKtlrrvOj8QseC/t6weLVzzcmaZu/gDOxWOB59vlI0GoDbiuwaBeWwc0r3Wsp19ZAf1ZgJMYVxVvm/5t+ObCDXJUKz+xihIPH5SAHl9+II6TE5vT9VUgyOlLKmRe6BRU0Dd0l94+kuf1+n4JUekiroxbo41h395UuwGxAY8ehyg6KyKqvBSYnVqSwL9bczMfjOWt9UE2Smho8E4aBc9aRgv5Q27dx+o+ym1+vB+En2BfoqxtVZ4mdYPL+ucQA69TPlHp0/aco8hzDX8xQFDZWZfidQ7uvTysdHqnjFYvoMTqxc8cTARo4DflG6AhnkNoPW8cDrA7OCVp7hG8BuLkG21R3kYCXNTTJaoBnVMGMk2wcarlKJBWDr0Mo/STLxNIpxAEiauQL4UI1c2RW2eaWn2G+cmZ4zjLmid+Dze0Vp5yoO+5bnP77KopSQxd/TfmOqdeOnsCuNdSMawcatB25HBOtNZ2CrLXU8m4HaiR0AnVodTp6wfls0RMk9RjOVjoFUI/lwJ1O9ue46TSzMkubWrlu3OYsp3efqMOwO6oZt6PxaHzx5BfYqrhNmsUGD9QwlQCQL1OtEUSytMoE5AlKqwzs88PXL8zi6uzu68OMDaLRmDUzNoCkOcePAbzfN0oQi+ZV08yb+77ujXTvT8hh2oIpJYPOQybY++iVoQhlXKC9Graua/GQOwhkqV4d6aVRwYgSEPoHSrJ9etgYcuxVMjkorcPEjx4hlPDRQ2SQIPuO+ZjocoXZysajpt18lK4HFG8hEtzq1vhQ64LV+mX1A+zkCjnw+a96d9WMDMi9rNRCGdpjTd4KUJ0XZNOtnleYxw96Va6JZ+i32y2Eh/+c3u9pGM/eIUAenwiFTokFdfDjE10RCEmS+wGwH6ra3MwomxazZ/dYS9pp6tQ3fbvIpT5OwKmejEW6PLgTP0id+H/C8YtNZ5VuwTS241qYVUwXHa/WpL9f/o0JUQ==
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Customer parcels hold"}
+  children={"Parcels Hold"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **paystack dual** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **paystack dual** (see the Authentication guide). The response i
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"requesttypeid":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"boxlockernumber":{"type":"string"},"deliveryareaid":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"recipientaddress":{"type":"string"},"parceldescription":{"type":"string"}},"title":"ParcelHold"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"customerid":{"type":"string"},"requesttypeid":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"boxlockernumber":{"type":"string"},"deliveryareaid":{"type":"string"},"email":{"type":"string","format":"email"},"phone":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string","format":"email"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"recipientaddress":{"type":"string"},"parceldescription":{"type":"string"}},"required":["apikey"],"title":"ParcelHold"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"holdtoken":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"},"amount":{"type":"string"}},"title":"ParcelHoldResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"holdtoken":{"type":"string"},"reference":{"type":"string"},"authorizationurl":{"type":"string"},"accesscode":{"type":"string"},"amount":{"type":"string"}},"title":"ParcelHoldResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

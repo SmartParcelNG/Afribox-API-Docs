@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-parcel-appless-reserve
-title: "Parcel appless reserve"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Parcel appless reserve"
+title: "Appless Reserve"
+description: "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use)."
+sidebar_label: "Appless Reserve"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNV1Fv4zYM/iuCntoijYM+ZthD7jZgt4e7os2eiiJRbCbRVZY0Sc41C/LfR0p2HLex+7ID1oerT6RIivzIjz1wY8GJII3+UvApt8aHxYs0/mVhhctBLYS1CrxfOPDgdsBHPIiN59MnHtX484gX4HMnLRlBE7MqbEEHmUerU3ZzgybYC+xvbtiVB2AoZl0ltqlkAddjNkcROrJGe2DSsz/m83t2N5n8Ei+hpFKBzqWOBytT7NnSBxEqn5sClmwtQRVjDPL1VqALDAedL9B5PHIgCqPVnk/XQnkYcQd/V+DDJ7TDp4f4X+kAExFcheLc6IBRkojSUEebfff00AP3+RZKQV9hbwF9mdV3yAO6so7SGiT4dFdSBK2eD07qDT+O+Mq8yuKixMt/oEckSlOlqC7ZUyZ/AaercgXusmXQBSqIEgbEdmv0kBwfLtVFuYNcWolp6/Vw0uh3clLp92PFvkQFB2uMRueX7KBWkEHR0SzB+KFG8fF4jF4S1GKVEGb0qwvmhwQ50DtQWFIE8AlsWfos0arYEHi/Gn27nEyWrNVBoBaEGvBMaAbOGUfg/I9w1fq5XKjz+HpSSC3+saOk14PGJCwgYKF6VArMQI7NF2DIxKmSA9htNGPbknQwqDO9Aa2Up0FDSaW3T3uRju04JBNFgRC8bBfF5LXfdi7D/uMW+8lN+JNnScr+wLyTGFveKy0Qxb3tkRulEOy98o9Hae94uY9h/yaCGFB6qIdPnEWoBa9YbI9zgMj1wCNjNDQ24juhKjijs+OoVTnR2kkt0tsRqbmEsDUNsVNfi0iKWeTuLKU3qyk+qyk+41QY/HApksphcfg2BOunWSbWThJ0rRz7UriQbIz1Jtvd8Xe7QFJmOE6KKo9Uf7W7u+YUGk27h5Z/f38VpVVwzpdNok802R407NieNCDpXOoW8Oz6GWzfntZofXtcg7Q9ftNiFwTvLL1tqFbynszOQa7XJsKvwVGd1dn9Fyo51ill+248GU96a7ASmAtd0C129UilSzBF5pophRRXWCN1QKbKc7CB/fn47SszaJ3df3ucs6tKE0iYNjjF6U53g8OlbCcFsdwylW/ZLGn1EI7L2pQUZi3lxWBQecQE+4QzWJMHW61Qno6NO5d4YpFAkrQqxvUwzWYKQKgfYu/bfdFU2N1lXCQdWOMw8M7mSAF3tserSN+/Ml9hCry/xmiLRqPm0eU4ziXsplJEsq6rn3LJ6lZi7bbcKcahpf7/yZ5cj7SA0yezSkhNz4sdf6iHRbPon9aFEa9fGRHdvJP+ENjSkMELh8NKePjLqeORjrH+Dtv56Znmk5NiRSh+ekZHW5xc1Jmnefc5ped2TmF1pl53S2rH3yyidVD3fA4SluNsSBt/Gac/d+IHPQb/nXL8MLFckZfj2YEroTdVXKN4skk//wKw36YE
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Parcel appless reserve"}
+  children={"Appless Reserve"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use).
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"amount":{"type":"string"},"boxlockernumber":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"paymentreference":{"type":"string"}},"title":"ApplessReserve"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"},"sizeid":{"type":"string"},"amount":{"type":"string"},"boxlockernumber":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string","format":"email"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"paymentreference":{"type":"string"}},"required":["apikey","boxid","sizeid","paymentreference"],"title":"ApplessReserve"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessReserveParcelData"}},"title":"ApplessReserveResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string","enum":["1","2","3","4","5","6"],"description":"1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string","format":"email"},"parcelamount":{"type":"string"},"itemcount":{"type":"string"},"dropcode":{"type":"string"},"collectcode":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"ApplessReserveParcelData"}},"title":"ApplessReserveResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

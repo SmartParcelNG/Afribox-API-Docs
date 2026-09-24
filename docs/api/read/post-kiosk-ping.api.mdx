@@ -1,11 +1,11 @@
 ---
 id: post-kiosk-ping
-title: "Kiosk ping"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Kiosk ping"
+title: "Box heartbeat"
+description: "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope."
+sidebar_label: "Box heartbeat"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVVFv2jAQ/iuWnyiiBPGYaQ90mrRuUota9lRVYJIruDi2ZzsUFPHfd+ckhGjdtIc9jAcId2f7u8/fd6m4seBEkEbf5jzl1viw3Enjd0sr9YaPeBAbz9MnHoP8ecRz8JmTlpbgglkZtqCDzOIeKRsOhbVsB8fhkA08AMM06xexTSlzuBqzBaYceGu0ByY9+7JYzNl0MvkQF2GmVIHiUsfA2uRHtvJBhNJnJocVe5Gg8jGCPFwLPALh4OFLPDyGHIjcaHXkaXAljLiDHyX4cIPb8LSKf6WDvE1nRgcESSncRTVgk1dPfVbcZ1soBD2FowU8yqxfIQt4knXEYZDg67WSAHR1Pjhi8jTia3OQ+TsZTAUZFIVuzGFexyjakhM3RmLop0//Q00S6D0oRIGUn+lJ6scCvBcbovvO6OvVZLJiXQ1Sm1Oj4JnQDJwzjuj8R1R057xLRw/fX9Hy0PAR6cE0HBCmR2ik0IpH3lstjPheqBIuNHEadSVnbZzLSAQnlHcBYWtaK1BLIgorifpPyBQJRj24Pbj62NIpLNiGYH2aJOLFSbxolMHYF8IFK1wGaozL9lP+i3vqYoa85WUWzTHYT684ASG2HzrJfj6Iwiq4lFjL1FlZF+RK/WIipw2D7Umz+S31jNhrBNPxZDz5La61yHagc1rFBo/Uzjy2g2qaKYWyy62ROqB6sgxsYF8f7++Ywd3Z/P5xwQalVni9TJsAOa3pzwG09l4KUt6qbmnVWr2xarR8SgWzToYRDBaPmGA3pZeaTrDlGvN12LjLjIfMQaBMPXDikKmlRwCEehNH300dU4bMFHEcObDGIfDe/CHAvRk0iJb6yHyJFHh/hWjztqLR9mpMN0J6KkQ0kBYF3ck3khRr5mzvAqrOgv/JhG28GdByiVVCamopKr9qLNK+IrDTuiN6WWzJRJiqqrXw8N2p04nCeLsOBfz0TPZzUqxJo0/PuOUWjQnuws6faiKuFwSgZ+r+XOrcPYta/GPtpc9JqdFC9WuhiOOKO/GGQfpOOT6YeDFxqsVYxZXQmzIOLl7vSZ+fklmHLw==
+api: eJy9VttOI0cQ/ZVSv8QoxmOzkGCjPBiy0W4Udi0wT4CY9kxh9zLTPenuMXYsS/mIfGG+JFXdvgKbPCSKhRq7prqup07NQpgKrfTK6I+56InKOP/wpIx7eqiUHoum8HLsRO9WBKG4b4ocXWZVxVfowhVmxuYO/ARhZGbfOCik84cOUYNXJULDoq+txhykgzSXHlmBjadg9PreAUidQ1R1JC/m4QnqKRYUYYsCmR3K2k/IpayqhyecB5FFmbO26HlbY1NY/LVG589NTqJF+Kks5uvHmdEetedHZKVQWcg8+eI4l4Vw2QRLyd/8vEJyZUZfMPPkqbJcJ6/QxbuKA9jqOW+5WsumoFxU/saTZXMnmNu1BSqnV75gxXMzG0TNqOsqo110d9Ru87+XhXd14TcVgkbqvPS1y0yOabL6UaJzcozpQQvSdjuFH8DVWUbCM5AwlYXimoeKwbPyE9CGfrNdB8rFK0EuNWBZ+TlIa+UcGtp4SLtd8qPromDzfT0HQy2zsBsHNLA1Zt/HaZMunIazmx6A0jkXHx3F8ShVUdvQ4/+oP9sIXneiKVDXJfeAqtoU7Q4fR3y84+OYjxM+vuPjez5O+ejS0eEbHb7RZVm3+9Y8hLaw7x6029t6tzuH7Xebao8IoCQ7hlI5R2HBo8IiJ8nJYacTOxNSP4PuKTDuqSqrapCoC2PUaFUGaK2xQH+xPbF5LQbiHgDeBuQL6F2tMLeC4DHV4hXqbvSTNs8aKkmo+PP3PzYjy9P68/XnT1tABuDsgYFb3wTGDuHpw/DyFzIzxhDtyVsQv9E4q6i/xB0O7ZSwFdP9V37714PWp/fDtWvyjTPCnCOXzHMLESZ7zTZNQb2ocYd1ls2tyoZ9NmpMM0sCRYl+YtaEyviUgbqSwKIJs19C0phVdFvbghQm3leulyTy0SqiEqKJliul9ZW0GRYtujZlrO7XqR+VgYYgrzMWQmN6dCA4EB6dqy0pvp/Jsipwl8S2g7Hirh02U/rRBOyskLL21B985Jwp9hjBUavdan81rpHMnpDonW5B45rTGYR0mDaKgjqXV0Zp4hxJs1L52E/D/R58vh5Co9YFwZgbiDnf2RsHJqqpktzaNKaUErsEXOwOWy/0fsspIRhSbhIBndc0guyhqkf0/JXYYUZwi2KCX+ORjjSReal0QlwmIcfIZrTjWMiaLbionTclJcEo2U2ycGadqSSgkgeKxxsqUQqbZTmak4tsZSIpzJh9tWBIaX0YDgcQ8c3J03aARijZZmkQTWMcmbh1X3JpenAWCmRqn5F9tmKxMpYzUOudnM9DXffpfH+LxK39YtdQg/5htaxn92v7pQU/xtWwn8Vlkidz+sCkV5Y96kv/Mhlcphvz/Lrxm9G0CjmBFWNQajfDi287lPHImALJU6DaaD0oBrST/TsxpOm9E7TV7sRP1Cb+HtiJh7iUYQVpWa4oEyZISB6h9C+Bv9jusf/x/WjF757oLKkKqTRHHlhlsaKf9UscJRQHntfXhAmKHi0WI+nwxhbLJYupc5bI4faeqc0qOeL5v70nk5R2jnaHKi9isodDDmCPMPcX+JY5+wH9f6u7y6HMAoGe4ktdGfa6sPKZhHz2BH0xofhh/QfZQhRSj+uw/ES0yZ+/AHaWvzk=
 sidebar_class_name: "post api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Kiosk ping"}
+  children={"Box heartbeat"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"title":"BoxPing"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"boxid":{"type":"string"}},"required":["apikey"],"title":"BoxPing"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"BoxPingResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"BoxPingResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

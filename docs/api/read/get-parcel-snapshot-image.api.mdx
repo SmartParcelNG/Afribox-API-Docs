@@ -1,11 +1,11 @@
 ---
 id: get-parcel-snapshot-image
-title: "Parcel snapshot image"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Parcel snapshot image"
+title: "Snapshot Image"
+description: "Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`)."
+sidebar_label: "Snapshot Image"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVMFuGjEQ/RXLJ4I2LOJI1QOVqjY9JCiQUxSBWQ/gxGu7tpcGrfj3znh3gVXTnnvalefZ82bmvam5deBFVNbcST7lO4grJ3wBehWMcGFv40qVYgc841HsAp8+8ybOXzIuIRReObqNd2dV3IOJqkjPTdlwKJxjb3AcDtkgADAMsz6I7Sol4WbElhjyEJw1AZgK7PtyOWeT8fhTuoSRSkc6VyYdbKw8snWIIlahsBLWbKtAyxGyfL8VmALpYPIVJk9HHoS0Rh/5NPoKMt6lwnpqjmno0y/msUkJ5gAaW4QFnJPlzW8JIWBjkPy9Nbfr8XjNLhgkKqlGCEwYBt5bT+QKayJWT+mQnm67kL8GylnzUOyhFPQXjw6Qhd28QhHxovM0p6gaxpc8V9gQvTI7fsp4j9/HiHa2Sv4zXHn9QRwBUUVNR4sW+OS0FfKx7SpCToSCdyw2YIEkm5rTMKbdfDJ+ELqCqzmdsgvkPK8zjOZ2QsmVEPe2VSr1RaRZ540m8454njSbIyCAP4BvCKRy+D5GF6Z5LrZebey7cGoUSuFj88TI7PLDhP+h7QbMcA6yKpJ0B4fJDSdKymxtalPblA47m98Rf8zevDEZjUfjv768EcUbGEm32GBBhOaJEOprpjUKUTqrTEQ9FQW4yH4sHu6ZxdfZ/GGxZIPKaBw4MzaCpDt9n6F1DkqQFtdYMLZ53VnJw88KQkyWmhJgdhFmIoPgjAn2pQrKUAZXbTDeHFt/HQlQeIgUaQydTNyIkQgI/Uscw8XVtoqFLZPdPTjrkXjP30S45/FBMtlnFipsQQg3yFZ2iFbt6xHp19kQS5EsZURJM2l6yTp9sG6n9WZRX/z5nyyz1nkRnZQ7LZSh6lpXNtI/r+OLa/G3K4+W9B6bQbi63ogAT16fTnSMU/dotucXsphXYkPafX7B9/doPvBXlp0lxfUt299dPWd++7rEDfAbnLo0UA==
+api: eJzNVttu20YQ/ZUFHwoZlUnJsVtLRlC4adK4qBMjlp9sw1yRY2ljcpfZXSpWBQP9iH5hv6RnltSFddI+9KWGsZKWc58zZ7iKTEVWemX0WR6Noxn5u0rajIo7p2Xl5sbfqVLOKOpHXs5cNL6OmufRbT/KyWVWVawN3Tfks7mQYq0oguKYb9RMUy4KpR9EL/1hLaDyl3H8DT1WypLjr5DDR7onjIVWVUilhaz9nLRXmfQwYelTTc6zFVmpB1oGtV176V6MWB/3WQ9Byaq6g1i4siRzo4tlNPa2pn4Er5XRjpDVKjoYDPijm9IHcnXhBekFFSgU3Dovfe0yk1OatD9Kcg6JwrFIB4NUvBSuzjJcniCJhSzUNuzPys+FNvjNdp1QrlEJ91ILKiu/FNJauRQ9jRKmoxH86Loo2PypXgqDclixG4foUTxj34dpHwrH4RyhikrnoWwOcdxLVdSWuDaZ0R4V5WxRnYJFkG3y0XHKq8hlcyolf/PLilAEM/1ImYdiZRksXjUF20awI+u8VXoGWdJ1yWBBVfvRYMjHAR8v+Djk44iP7/j4no9jPkY4hqwxZI0R341Gz5HWtoV9j8VgsK33YLg/eLGp9tTkS9wdilI5h7DEvaIix83R/nDYdCakfiJGx7s4a65GYkaarMoEWQtA4r9pT9O8OHrqRx0APC8DS2yw+Y+Pa1t84TkEvPIFX122gldVYWT+oUUuRFjoEBV9ht0r/aDNZy0qCWz9+fsfiBtutBPIU/xy+f7dFtYBfh1IMYD6ghEIVL6dnP8KMzMKOR99aVCuNMYYKMGIOrILILQp2n/ye3p5Eb97PVm7hm96BHIdXDIRrSIe7PF61vsROlrTzsw/9bcim9nfiDEHPAFaJfm5abmPQS4DbyQNyyXrBiWBzBIINPk1AYS2RXPvKzdOEnlv1dQ8gphiV0rrGxOxniULxn63YqeNsMBQ5XXGl6K3ONiLOCSl702AQ9v8tezpxRnHD++NjYN4EA++ankqswfSOWuJ3iUHdBECYiIpCnQhr4zSYCGJ6al80xvDvbt4fzkRvVoXADY3g3LW6QwIU9dCSW5T2jBxCr4JPd4dv3Ho45ZlQjAQ7oOSfqwxlOyhqqd4/uzaUQboNNeAUu8eR5rIvFQ6AbtJkVPeroVwyZKxeFU7b0okwR3fTbJwZp2pBOjgAfF4gxKlLURhaLqEi6w1kRRmxr5iMUFabyeTC9FglZPHvhC9ULLNGgFxUwN/ROS4Ll12TfdOQoFM7TPYZyuWKmM5g7Z2XLNQ1y7Bd/cKckdb/7Z90KB/WTbrOfzaxonFT82y6GZxnuTJEn9iPi7LMfpyep5cnKcb816V9JvRWI6cQDv9SO1q8urbITKeGlMQPAXybawHwcBxsH8TTTCJNxH23E30Bm3i74FpKuN8KcNS0rLcZUFx1r6TdJC/2q62/9XLSMvqHuyVBDucXMv4Dd1sXqq2GwFf1y9evADnqAXLrVZT6ejKFk9PfI0ALAju+pZpzSo5Zb64voX9OeBPdocmTwP2uzTZXf4dNvz59QSU+xfe1XR5
 sidebar_class_name: "get api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Parcel snapshot image"}
+  children={"Snapshot Image"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`).
 
 <ParamsDetails>
   
@@ -50,7 +50,7 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"}},"title":"SnapshotUploadResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

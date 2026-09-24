@@ -1,11 +1,11 @@
 ---
 id: post-pay-success
-title: "Pay success"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Pay success"
+title: "Confirm a parcel payment"
+description: "Marks a parcel paid only when a successful payment bound to that parcel is found. The parcel and its `collectcode` are returned **only** when the payment is confirmed."
+sidebar_label: "Confirm a parcel payment"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVk1vGzcQ/SsET7IhS4KPKnpQ0gBND4lgqyfDsEa7I4nJLsmSXMWqoP/eGXJXKzXadYD0UB/sNedxZjjz5uMgjUUHQRn9MZdTaY0PLxb2L77KMvReDmWAjZfTJ0mn8nkoc/SZU5ZvEH5WhS3qoLKoYipub8Fa8RX3t7di4BEFicUlSGwqlePNSCxI5NBboz0K5cXvi8Vc3E8mv8RLJKmKwOdKx4OVyfdi6QOEymcmx6VYKyzyEbn4egdkgtwh4y9kPB45hNzoYi+nayg8DqXDvyr04R3pkdND/Fc5pFcHV5E4MzqQlywiNUXt7fiL54cepM+2WAJ/hb1FsmVWXzALZMo6jmFQ6NNdxR60OB+c0ht5JCC4DAuHa3SoM9RVuUJ3FRkcaA8ZO3CCXwEyUoWCj+awf6xTdjyyoIlsdIqiyn8uc/eQIox6hwW9gPJ1iu04fZakDjacq09G3y0nk6VoMZSXnIOEXoAW6JxxnIv/KIytnasBuvDvZ0LYZOVtjxJO5T1KcgyguiA5hSojUgbsU/Ej7GiQkc4s7XXqDNeDSgHtVZQg19Oh/kYN5XUDK/PaJ4M8d0zbDjFb7dadqbDvFDrMlFVExrcRdmv0GxCirSquvx51jq7TSBJ3W0jybvUp+lCaKpXV98wiWu7Q7XsgG6qGPJgAfSZ8tbroENfibYqCiqOzLhtXatJ1UL1BWegg3CnofeQ4PZuK6keb428QoEP0UDfM2D8Jga/EO0+B4Ol3kLGpN5NmKHdQVHg2cY7DFnKaPCdYnEBHmp4lhq1pBi23GIhza0zDdVyP3LFkSjh6WTJcOcqZ3IZg/XQ8hrVTXDRWjXwJLqTMjfRmvLuX303nBBbUyPIqtkIx2N3fSPaEG/JDOxE/vEJpCzyfYE0kO1tTC7jebM9ypfTaxBzVYW88m80/cpTorcnj+9FkNOl8xwqyr1QsfEsMHvn58+gZDahZUdAky61ROtBAokjaIP54/PxJGNIu5p8fF2JQ6YICLLQhYvKdy72EVo2dAh5myxSCZbN61GyOK8iUAbN2skVnCDwUIN5RB9VswVYrkqdj484lnmdAYElagOLSkzorOwDFN9j7dgsyFdVaGdcjh9Y4cvxiH2KHL3aiQZzSv4qaTDfkbd4g6nG5HMWSJwKWEKs8dS4uBdGuff/qBKex/j9Z+epiD1SlY1uA0vymWCqHuqjSxkq1dHoSr69brjuSHQ4r8PinK45HPqb8OqL80zOXrFOwYpY+PZPOLRUzk/3UAt6nSNwt2IOLRnC57LQdYRbZ2Is9bw3MVcmzL+2pZey10sE3OuTfU0kfJmYmNsZ4dpAF6E0VtyGZdPLPP1d7LEs=
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Pay success"}
+  children={"Confirm a parcel payment"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Marks a parcel paid only when a successful payment bound to that parcel is found. The parcel and its `collectcode` are returned **only** when the payment is confirmed.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"},"transactionreference":{"type":"string"}},"title":"PaySuccess"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parcelreferencenumber":{"type":"string"},"transactionreference":{"type":"string"}},"required":["apikey"],"title":"PaySuccess"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"transactionreference":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string"},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string"},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"collectcode":{"type":"string"},"deliveryrequested":{"type":"string"},"deliverypaid":{"type":"string"},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"}},"title":"PaySuccessData"}},"title":"PaySuccessResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"transactionreference":{"type":"string"},"parcel":{"type":"object","properties":{"parcelid":{"type":"string"},"parceldetailid":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"parcelreferencenumber":{"type":"string"},"parcelrequesttypeid":{"type":"string"},"parcelrequesttype":{"type":"string"},"parcelstatusid":{"type":"string","enum":["1","2","3","4","5","6"],"description":"1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."},"parcelstatus":{"type":"string"},"sizename":{"type":"string"},"boxname":{"type":"string"},"boxaddress":{"type":"string"},"boxstatename":{"type":"string"},"cityname":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"sendername":{"type":"string"},"senderphone":{"type":"string"},"senderemail":{"type":"string","format":"email"},"parcelamount":{"type":"string"},"deliveryamount":{"type":"string"},"grandtotal":{"type":"string"},"parcelsubdescription":{"type":"string"},"collectcode":{"type":"string"},"deliveryrequested":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"deliverypaid":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"recipientaddress":{"type":"string"},"deliveryarea":{"type":"string"}},"title":"PaySuccessData"}},"title":"PaySuccessResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

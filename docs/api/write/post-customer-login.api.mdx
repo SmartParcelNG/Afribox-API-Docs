@@ -1,11 +1,11 @@
 ---
 id: post-customer-login
-title: "Customer login"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Customer login"
+title: "Log in (returns a session token)"
+description: "Authenticates a customer and returns the profile, the dashboard counters and a dated, revocable `sessiontoken`. Customer read endpoints accept `sessiontoken` in place of `customerid`."
+sidebar_label: "Log in (returns a session token)"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVk1v2zgQ/SsET07gWEaOXuzBbRdoi0UbJO4pCGJKnNhsKJJLUk4Mwf+9M5RkWYjc9tDD+mDLnBnOm683qrl14EVU1nySfMGdDfGxqEK0JfhHbTfK8CmPYhP44p53Av4w5RJC4ZUjS7RbVnELJqoiXbVgl5fCOfYM+8tLNgkADMVsqMQ2lZJwMWMrFHkIzpoATAX2cbW6Ydfz+V/JCCWVjnSuTDrIrdyzdYgiVqGwEtbsSYGWM8T5eiXQBcJB54/oPB15ENIaveeLJ6EDTLmH/yoI8R3ewxd1+qs8YPTRVygurImIkkR4jW7RZt8DBVrzUGyhFPQU9w7Ql82/QxHRlfOUy6ggNLaKEPR6IXplNvww5Wiv9KjEiRBerJcjQpRGFTUdvW/L8G8qz+FAsi6ByTcmj36GJbptEglmBxqBYlmOKcyaxxJCEBsqyRdrrtbz+Zr1Oph+SbmAwIRh4L31lPI/lK3ez2heBvhGNY6t+UtXnaYay3J/kRHluCcDEUv0fMa8lZ61TrUXUmK9wngLbK0BU5X5IJa3LYIXQPxpBKKIajeG4lwrfRBR0AVShG1uxaANzyTTwEs7TuPRKKNt8XwmFDDeVhGi9VAop9o2eqMmQWMcaUJ/J5QPHfomnHPB3rYDk+aHwLxiHwfsXWK6mqfZ7QhlyndCV3BCLIdpr3IkmKNaIpoDkmQJcWs7XqXkiURPWVeiLDFshpIAHmNsfFce2YFvY3RhkWXiyavcviKfzEIpfHTCF6BnZpPtrvkbHm6UGVZJVkWi2cnu+oITGJrJ2577/nkVpdNwylVdWo8U1R/0zDSo7pNNRWkT3Hlf3nyiZGA8Darr2Xw2P4s1F9ghRpIVm9xRiDcpROShpdZIWNJZZSLyTlGAi+zz3dcvzOLt7Obr3YpNKqNxmJixESTZDLcMLo6dEsRZ6ybMdbdI2sZNC2VBCsuewBIYVJ4ywd5VQRny4Koc5c2x9aeSAIWHSJJmnaUV1pAWARD6RexDv9Ow6wssP4k8OOsR+GC7EeDBhpskMv6bhQpTEMIFopWdRsuK61liB+yzUiTqbSjo2PSsW+aDItQ9gf9Pdng74BHnMXNa0IKbNhNRt+Nz8h4y5V1U9EqypSFDcV3nIsA3rw8HOsYqe2zu+weaT69ETr16/4DXbnFyiZuO8/6+ScbVikAMpn642frxX6ae/KnuKQ9Qx6Jy3r57lGnhcS9e8JC+FxwfbCpOItR0VnMtzKZKq483d9LnB+9dZpo=
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Customer login"}
+  children={"Log in (returns a session token)"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Authenticates a customer and returns the profile, the dashboard counters and a dated, revocable `sessiontoken`. Customer read endpoints accept `sessiontoken` in place of `customerid`.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"}},"title":"CustomerLogin"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"email":{"type":"string","format":"email"},"password":{"type":"string"}},"required":["apikey","email","password"],"example":{"apikey":"<application key>","email":"ama@example.com","password":"secret"},"title":"CustomerLogin"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"customer":{"type":"object","properties":{"customerid":{"type":"string"},"customername":{"type":"string"},"networkid":{"type":"string"},"networkname":{"type":"string"},"emailaddress":{"type":"string"},"phonenumber":{"type":"string"},"passwordreset":{"type":"string"},"customeractive":{"type":"string"}},"title":"CustomerLoginData"},"dashboard":{"type":"object","properties":{"newrequests":{"type":"string"},"inlocker":{"type":"string"},"enroutetorecipient":{"type":"string"},"delivered":{"type":"string"}},"title":"CustomerDashboardData"}},"title":"CustomerLoginResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"customer":{"type":"object","properties":{"customerid":{"type":"string"},"customername":{"type":"string"},"networkid":{"type":"string"},"networkname":{"type":"string"},"emailaddress":{"type":"string","format":"email"},"phonenumber":{"type":"string"},"passwordreset":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"customeractive":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."}},"title":"CustomerLoginData"},"dashboard":{"type":"object","properties":{"newrequests":{"type":"string"},"inlocker":{"type":"string"},"enroutetorecipient":{"type":"string"},"delivered":{"type":"string"}},"title":"CustomerDashboardData"},"sessiontoken":{"type":"string"},"sessionexpires":{"type":"string"}},"title":"CustomerLoginResponse"},"example":{"statuscode":"00","statusmessage":"Successful","customer":{"customerid":"1","customername":"Ama","networkid":"2","networkname":"Afribox","emailaddress":"ama@example.com","phonenumber":"0104554198","passwordreset":"False","customeractive":"True"},"dashboard":{"newrequests":"0","inlocker":"0","enroutetorecipient":"0","delivered":"0"},"sessiontoken":"<uuid>","sessionexpires":"2026-10-24 00:00:00"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

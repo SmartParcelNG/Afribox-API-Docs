@@ -1,11 +1,11 @@
 ---
 id: post-core-fees-compute
-title: "Core fees compute"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Core fees compute"
+title: "Fees Compute"
+description: "Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit."
+sidebar_label: "Fees Compute"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVcFy2jAQ/RWNToQhmOFIpweSttP0kDAJPWUyQdgLKJElVZIp1MO/d1e2MTSQ6aGH5pA42pX26e2+p5IbC04EafRNxkfcGh+eU+PgeQHg8Su3RQDe40EsPR89corxpx7PwKdOWtqI28ZFWIEOMo0njVi3K6xlr7DtdlnHAzAMs+MktixkBhd9NsWQA2+N9sCkZ1+n0wkbDgYf4iaMFCrQutRxYW6yLZv5IELhU5PBjC0kqKyPGDeXAksgHCz+jMXjkgORGa22fBRcAT3u4EcBPlzhMXxUxn+lg6wJp0YHBEkhPEXVYJMXT/csuU9XkAv6ClsLWMrMXyANWMk6YjJI8NVeSQDaPB+c1Eu+2wOgdZmdzPDy1+kQxoIMipa+YHuu6+7sdrt4bsVhrI/80Z/jLt1XXIJeg0Kw2Jk9i0n1mYP3YklduTX6cjYYzFibgx3IiA/wTGgGzhlHrP8jxto6pzk5xHcygwb2L8qAW8sUMPlMGeOwwLlwMEGoPwq935xPIohzsfu6Y7GBmAIbJNIjeaS0kscBaoa6x9dCFXAw3Ltem7If8n0aTfMOdZpDWJlG2cSGiApJSMcJ3SSpNZ5gkMgBV1UvnMK8VQjWj5JELJycmw2Odd/nwgUrXAqqr5fJesjfuEGVzJD5rEij2Dvr4QUnPDQW960EP29EbhUcSqYh9I1S2kAjkIPOSL0wsSk1zQ2G8eSGSMFbVdiG/UF/cBbxXKSvoDPaxToPdNFJvCgKYqwUKiezRuqAAkhTsIF9e7i7ZQZPZ5O7hynrFFrhhDJtAmS059jx0MTWUpB4ZtVlZ42p1TeN5jaihHGrpAgGk3tMsKvCS00VbDHHeLVs3GHEQ+ogUKSy1minlXoIgFA/xda3/mqKgAMQjdeBNQ6BHzktAT5y2050hY/MF0iB9xeINmsyannO+tQRGrhcRA/QIqeeXOPMMZo51r4rR30oWzP5T56UWuMBpZlYJaSmm0VplLWU6iex9h+yw+Zq9EyuSHWYU5Zz4eG7U7sdLWO3HY764xPp1Ukxp5l9fMKzV6hkcAf6v64YuZwSkiMXOLba1g7GcTbfzT00BppcTJ7XD2IeHZg78ZMUiL9HHD9M7FC0vbhWciX0sohezKsz6ec3N0rilg==
+api: eJzVVt1u2zYUfhVCN3UyR7LTpKtd7CJNW7TD0gaJc5UWFS2d2GwlUiOpJK4RYA+xJ9yT7DuU5J8m2QZsNzMCxiYPz+93vsNlZCqy0iuj3+XROKqM858zY+nzFZHDt7KqPUX9yMuZi8aXEZ9Fn/pRTi6zquKLuHbcyAk/J4GL4spYIYWlX2tyXvhFRULqXDj1jWKxu3u2efBsd1f0prVTmpwTT85kKZ2TMxKutqIqZEZPdqDK11a7YEBWVcGilhzZ6+B7MOrn0os06VQllbQZFS7JLElPSSpuVFGInKbKx4jodk/Wfg7noe/zV1qELYjmRheLaOxtTf2oDeGlybG1DD+Vpbw7zoz2pD0fsVcqC94kXxxnZRm5bE6l5G8cKUyZ6RfKPCxVlvPuFbnmrmIH1nLOW6Vn0d3KAd5X+YMSnNQHj9rbjb+XnRHUzitfsOAblLitHKQbeVcZ7Rqv9gcD/rdd6TNydeEF6WsqEILopc5LX7vM5JQm7Y+SQgXTnVikg0EqfkItswybL4CKa1mofIWNG+XnQhsuJvQ6oVxzJexLLais/EJIa+VC9LRBgUcj2NF1UbD6I70QBqCwYtMP0aN4xrYP0j4uPA/rKN0RSudcI3Lw40qqorbEUPiPyrj24H41+hHpuuQ6IKv9aDDkZZ+Xp7wc8HLIyzNefuTlOS8jLEO+MeQbI94bje43YFsWtj0Wg8E634Ph3uDpKttT4Bh7B6JUDl0yE1eKihw7h3vDYVOZEPoLMXouuD2QlTYb2BqJGWmyKhNkLTocf015muLFAY2bAHgQr0ws/yCXaG2VEYQfBr03FgYeO/bGy+I7Qxtt8UADvJJePnZ21nZF2yQHqNa9vrjQX7W50aKSwO0fv/2+xVg/n394v26ZAO0tuDI4+4LRDcS/nZz8AjUzCvk8fKgJLzTdVsgagVKRJ6C/Kci/snt0fhq/fz3pTMM23aIrHEwy8y+jQFEdbfYjoKWmDfq8669FVjS6EmO+vANsS/Jz000arroMHJzwXEm4Ykk7cxIcNsE11mtbQG7ufeXGSSKvrJqaW3Ba7EppfcP1sZ4l19xU2+k6aoQFEJbXWZgXvev9nYj94R4/W5P861tZVgVtkvK6g7/j4vVBR8EbCFT6ygTwtXDqfDg6fcdJQVSNb/vxIB486vFUZl8JgxO3RO+cAz0NgTLzYZbhqDJKgzYl2r3yTcENA+L0w/lE9GodJiUqTDnf2epo5tprJbn2aRNsCoIMwNnki3EAx5oWgzMQ7oNDX3Zju6qnOL+37QjD1zfbwGeP3wVpIvNS6QR0LDGNG0LORdhkyVgc12jvEkEwjDaDLJzpIpVAMizAH2+QorTFPRRNFzCRtSqSwszYViwmCOvtZHIqmgbg4DHgRC+kbDX3MGmo6Sl45Dgv2+Mg3XkREmRqD5wSa7FUGcsRtLnjnIW8bk+k7UG4E95D341LFOhvpmPX3I+NyFi8aqbbdhQnSZ4s8BHzcVmOUZejk+T0JF2p96qkb0ZjmnMALaUgtIvJ8Q9DRDw1piBYCtOi0R4EA9qh/2M0QXt/jDCYP0ZvUCb+HuiLu7yUYYpqWXa8Ko5X78ot3C/Xk/h/+aRsJ40HcSYwozSnIBDXsiW69gHdTkF+eXSJ4Jk+Z06EzHI5lY4ubHF3x9uIzIKILj8xm1olp8wol5+ge44GIbvBzsdN/vYm7MkWR2+/atZkfRT66S9lN2mbeQXC0/ZBXIbHTmTlDfMj1nGELybUMwzfsLeMCqlndXgRRI1O/vwJ2vdLVA==
 sidebar_class_name: "post api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Core fees compute"}
+  children={"Fees Compute"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"requesttypeid":{"type":"string"},"sizeid":{"type":"string"}},"title":"FeesCompute"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"requesttypeid":{"type":"string"},"sizeid":{"type":"string"}},"required":["apikey"],"title":"FeesCompute"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"fees":{"type":"object","properties":{"servicefee":{"type":"string"},"storagefee":{"type":"string"},"totalfees":{"type":"string"}},"title":"FeesComputeData"}},"title":"FeesComputeResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"fees":{"type":"object","properties":{"servicefee":{"type":"string"},"storagefee":{"type":"string"},"totalfees":{"type":"string"}},"title":"FeesComputeData"}},"title":"FeesComputeResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

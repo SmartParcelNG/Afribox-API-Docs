@@ -8,6 +8,22 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "core",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/write/core",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-core-wallettransactiontypes-list",
+          label: "Lister les types de transaction du portefeuille",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "customer",
       link: {
         type: "doc",
@@ -70,14 +86,14 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-parcels-cancelled",
-          label: "Client: Colis annulés",
+          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-parcels-cancel",
+          label: "Annuler un colis du client",
           className: "api-method post",
         },
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-parcels-hold",
-          label: "Mettre un colis en attente",
+          label: "Mettre un colis en attente (paiement Paystack)",
           className: "api-method post",
         },
         {
@@ -90,12 +106,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-parcels-new",
           label: "Client: Créer un colis",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-parcels-newrequests",
-          label: "Nouvelles demandes de colis",
           className: "api-method post",
         },
         {
@@ -116,6 +126,12 @@ const sidebar: SidebarsConfig = {
           label: "Assistance",
           className: "api-method post",
         },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/write/get-customer-cards-add-complete",
+          label: "Retour d'ajout de carte (navigateur)",
+          className: "api-method get",
+        },
       ],
     },
     {
@@ -126,12 +142,6 @@ const sidebar: SidebarsConfig = {
         id: "fr/docusaurus-plugin-content-docs/current/api/write/business",
       },
       items: [
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-cancelledparcels",
-          label: "Entreprise: Colis annulés",
-          className: "api-method post",
-        },
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-parcels-cancel",
@@ -154,12 +164,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-pendingdropoffs",
           label: "Dépôts en attente",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-retrievedparcels",
-          label: "Colis récupérés",
           className: "api-method post",
         },
         {
@@ -187,7 +191,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-kiosk-parcel-appless-verify",
-          label: "Vérifier une réservation (appless)",
+          label: "Vérifier la disponibilité et le tarif (appless)",
           className: "api-method post",
         },
         {
@@ -240,6 +244,18 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-pay-verify",
           label: "Vérifier un paiement Paystack",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/write/get-pay-return",
+          label: "Page de retour de paiement",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-pay-webhook-paystack",
+          label: "Webhook Paystack",
           className: "api-method post",
         },
       ],

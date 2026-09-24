@@ -1,11 +1,11 @@
 ---
 id: post-customer-otp-resend
 title: "Renvoyer l'OTP"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Resend the signup verification code to the **registered** contact (no account-existence disclosure)."
 sidebar_label: "Renvoyer l'OTP"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVU1PGzEQ/SuWLwQUshHHVD3QCqlUVYkgnBAizu4kMXht1x9b0Cr/B/o38sc6492wCURVD72UA0k8Y3vmzXvPNTcWnAjS6POCj7g1Ptzl0QdTgrszwd458KAL3udBLDwf3fBNlN/2eQE+d9LSdtx8GsMSdJBzmacT2YgdHeVq/cKKA2GtapePjlivMtIxBWwRZQEUfrP1cMC+CebWL9ZoDwx8YKDZl8lkzE6GQ/aB9mLURxVEYJgRnIkVniS0p1i+FKVlU4/R6HNTwJQVkeXGWT/AXh6P6UIsGcu6e4CntORAFEarJz6aC+Whzx38iHjzJ1PgWp1+SgcIU3ARw7nRAWum0FZ32b0nMGru8yWUgr6FJwt4l5ndQx7wKusI9CDBN3slVdDl+eCkXvAVJi6Nhr0RPFmqPREMBRkULV1MxpfN7FYrWsdBJjDTpQgifezO70xXoIy1COM2ur0Oxaz5WoL3YgE4pGv9BmQ5n69fHMJCZ0yHwymTupCII4sa5+gcREcT+EfgdXfvhWmn3L0ZSPG/hPGyxS/BSSN4xAY8Fk2qqHma4YZYfV4JFWGLYKt+l/JKtNe0RLgVCqqEsDQbIVK3ItE024guw3qzRpIZhj24ClxTQHRICL4MwfpRlom5kzPziOQa+FK4YIXLQQ30IqtO+DvhNskMsS1inqTbq04OOVVEE7nshHD2iMJSsE3cDWqvfO0WWppu4S313CTAW3g3V5+OzwkObKYp6WQwHAzfFzo+Jx3PRP6ACLDN5t4VtThOLSIpJyaSCXhmjdTBk73k+frZM/wAGxI5I/t6dfGdTGV8cTVBjos4T1RtrYv46QTKnZzonT2R48yFDKySAonNpg0W085/yGlIAgpdDNFb/wqAdkgaeG+I/W7dxplKaikO8D4H1km8ysQuw0Pu1s9hNwNrBJbIHhqTJMMMJt6b6Pw+x6R4I0wqZqdoamlH070k44/Mx4TiIYOwSWiVNR0kt0LKliLJV4uShnsJujJPgE5/gDJ6O826M4H/6OlonSKg/DOrhNTUetJe3ap164ls/CV5b/OI0qO5JGljVl3PhIdrp1YrWsapO1TTzS25gpNiRvq4ucXTl+gXeFjnMp8b3I4nVMuO1+waaWc6p4n5f8zddh/SBCbP2pevTP7KnfhJveD/EafW0hyTDae1miuhFzE5LW/OpL/fqxT1jQ==
+api: eJy9VutOKzcQfpWR/3BRyIVzaE+CKpVWSKU6PUQQfiFEnN1JYti1XV8CKIrUh+hDHPoavEmfpDPeDUtK1D+titAQ7LHn4u/7JkthLDoZlNFnuRgIa3y4zaIPpkR3a4K9dehR56Ilgpx5MbgW611x0xI5+swpy8fp8EVyhTBH8Gqmo4UFOjVVWbofMpMjBJP29/cdzpQP6DDf36ctHWQWYFcbkFlmog4H+Mj7OkPIlc8K46PDvTYl8nggY5hTPGnt7T0+pSWHMje6eBKDqSw8toTDXyP68IPJaW2Z/lUUTAyCi7TNEVEH3qJrijrHzp3nSpbCZ3MsJX8KTxYplpncYRYolHXcsaDQV2cVZ9D4+eCUnokVOc6Nxq07dLMq3u+0xNS4UlJOtcdq1XqT9/U6GPU9qFDwyfPRsGo6+Vbe3hrtq9wOu13+s/lGp3qBhbGWuorgXp59LIKkxnuy0fMTdaqPJXovZ9RxuNIwbrbH9BzT6cuzo+7xHeNudwxK54raDVEjoHMYHT/Uf9TjJva2nqGOJTeHim2Jbo/NIZsPbD6yOWLzDZtv2Xxi0yfT4xM9PtHntX5/K6KpPwm5A+h2wccso74cQ7d30P0ANcZgQiCjtY9QKu8pLZgqLHJaOTro9WAhC5Wn0o+h/wkYvNSVuhu01IcZaiJKxq0zDugXSxue6HqO3mbIbLzJFlCttmDiogZDjY2P1I13cLjS99o8aLAyzOHP336nmCE67RNJf748/wJYAQbhQZHLBhDG/f64BdoEkBp+Gv3yma6ZYcr3aBv2rjQ+WnphzMGjI22oC/5XcU8uh+0vp6N1aKbXI6HOU0iWq6VI/FyLRkvQa0R8Ix6rVuPyKiKvbklMVoSLEsPcrBWSISqTBHXWatghrexUWtmh7aq+KoHoiOxiHoL1g05HTp2amEfictuX0gUrXYZFW886C8btZsdOKmcgQuQxSyq6uzjcE5wR0+iiEbnTR1naAt+KUkOSWovesKaSIBEp0e+xOtrOTMlvp/TUJIjVgFoncTI848ZQWVVyh+1uu/s+5eEZ5BEmMrvnYbA+vHvJxQ5TsaQpIxM9FOjBGqWDh3yHZP/lq2f1RxuStsQ1EGB4fjkiiZJxmpTmdZ7o4KTiqQCfd9a0eh03HmEqVYCFkqRLMK66QvIlNYem4856VrBCJiK//BEQBknCsuLlmVNqRKvVrNs4KZLY5TsUz6F1ikKZ2Hh4zNzL17DpQTnSWGQUB+LKaAgsHMHEOxOdB9JqOOasGknm/UpXOZmNpLmkDUbsJhX+LukTdXEPMKwdas0YJ1oyeEuZ1FfLEpPC6YV5IioWOyQcf3/NZaPh/9d0r4UtEIs7tpBKc96JQsuadG++grQE0U6kuVd9SWEJnzNDyWu5nEiPV65YrXiZnswRKa5vmNxOyQmD+/qGbp8T7emyRix+rIo+GHEuG5KxOcQa7ThJsP1H37ciwoAm50n95aRMs004+cC1kB0ILi09QhqBaW0pCqlnMQ0AUd3JP38BmJhg2A==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Resend the signup verification code to the **registered** contact (no account-existence disclosure).
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"}},"title":"OTPResend"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"}},"required":["apikey"],"title":"OTPResend"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"otp":{"type":"string"}},"title":"OTPResendResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"OTPResendResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

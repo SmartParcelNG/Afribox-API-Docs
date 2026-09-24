@@ -7,20 +7,53 @@ sidebar_position: 2
 # Authentification
 
 Tous les points d'accès s'authentifient avec un `apikey` envoyé **dans le corps JSON**
-de la requête (pas dans un en-tête). Il existe trois types de clés ; le point d'accès
+de la requête (pas dans un en-tête). Il existe quatre types de clés ; le point d'accès
 détermine lequel est attendu.
+
+```json
+{ "apikey": "<votre clé>", "...": "..." }
+```
 
 ## Types de clés
 
 | Clé | Utilisée pour | Identifie |
 | --- | --- | --- |
-| **Clé d'application** | `core`, `customer`, `kiosk`, `pay` (B2C) | L'application/le canal ; définit `NetworkID` |
-| **Clé publique d'entreprise** | la plupart des points `business` (lecture) | L'entreprise |
-| **Clé secrète d'entreprise** | `business/parcels/create`, `pay` (B2B) | L'entreprise |
+| **Clé d'application** | `core`, `customer`, `kiosk`, `dispatch`, `pay` (B2C) | L'application/le canal ; définit `NetworkID` |
+| **Clé publique d'entreprise** | la plupart des points `business` (**lecture**) | L'entreprise |
+| **Clé secrète d'entreprise** | `business/parcels/create`, `business/parcels/cancel`, `business/parcels/retrieve`, `business/wallettransaction/new`, `pay` (B2B) | L'entreprise |
+| **Clé d'administration** | `admin/*` | Le réseau (ou tous les réseaux) |
 
-```json
-{ "apikey": "<votre clé>", "...": "..." }
-```
+## Obtenir une clé
+
+- La **clé d'application** et la **clé d'administration** sont délivrées par l'équipe Afribox ;
+  elles ne sont pas en libre-service et n'apparaissent pas dans le tableau de bord. Contactez
+  votre interlocuteur d'intégration Afribox pour les obtenir ou les renouveler.
+- Les clés **publique** et **secrète** d'entreprise figurent sur la fiche de l'entreprise
+  (`BusinessDetails.aspx`). Gardez la **clé secrète** côté serveur.
+
+:::warning La bonne clé au bon endroit
+- La **clé secrète** ne doit jamais se trouver dans un client (web, mobile, application casier).
+- La **clé publique d'entreprise n'est pas une clé client** : traitez-la comme côté serveur.
+  Elle lit les colis et le portefeuille de l'entreprise et, avec la clé secrète, pilote les
+  écritures — elle ne doit pas être embarquée dans un navigateur.
+- La **clé d'application** est celle destinée aux applications et appareils clients. Elle est
+  liée à l'application/réseau, pas à un client en particulier.
+:::
+
+## Jeton de session client
+
+`POST /customer/login/` renvoie un `sessiontoken` daté et révocable (et `sessionexpires`) en
+plus du profil. Les points de lecture `customer` acceptent `sessiontoken` **à la place de**
+`customerid`, pour que le client n'ait pas à transporter l'identifiant client (non secret).
+Un identifiant client seul ne prouve pas l'identité — préférez le jeton de session. Un jeton
+invalide ou expiré renvoie `98 Authentication Failed`.
+
+## Idempotence
+
+Les points de création (`business/parcels/create`, `customer/parcels/new`, `pay/initialize`,
+`kiosk/parcel/appless/reserve`, et d'autres) acceptent un en-tête **`Idempotency-Key`**
+facultatif. Répétez le même appel avec la même clé : le serveur renvoie la première réponse
+au lieu de créer un second colis/casier/débit. Utilisez un UUID neuf par opération logique.
 
 ## Points à double authentification (`/pay/*`)
 
@@ -34,12 +67,16 @@ l'application (et au client si fourni) ; en B2B, à l'entreprise.
 
 ## Webhook Paystack
 
-`POST /pay/webhook/paystack` n'est **pas** authentifié par `apikey`. Paystack signe le
+`POST /pay/webhook/paystack/` n'est **pas** authentifié par `apikey`. Paystack signe le
 corps brut en **HMAC-SHA512** avec la clé secrète ; la signature est envoyée dans
 l'en-tête `x-paystack-signature`. Voir [Webhook Paystack](./guides/webhook).
 
-:::warning
-N'intégrez jamais une **clé secrète** de fournisseur dans un client (web, mobile,
-application casier). Seul le backend communique avec Paystack. Les clients appellent
-`/pay/initialize` et `/pay/verify`.
-:::
+## Chemins et en-têtes
+
+- Chaque chemin se termine par un **slash final** (`POST /core/states/list/`).
+- Envoyez **`Content-Type: application/json`** ; le serveur répond avec
+  `Content-Type: application/json`.
+- Un `GET` sur une route `POST` renvoie **HTTP 405**. Seules trois routes sont `GET`
+  (`/pay/return/`, `/parcel/snapshot/image/`, `/customer/cards/add/complete/`).
+- Un `User-Agent` de navigateur est exigé par la périphérie ; les clients serveur à serveur
+  doivent envoyer un `User-Agent` normal (voir [Réponses et erreurs](./response-and-errors)).

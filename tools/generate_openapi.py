@@ -49,7 +49,9 @@ def load_json(path, default):
 
 CLASS_RE = re.compile(r"Public\s+Class\s+([A-Za-z0-9_]+)")
 PROP_RE = re.compile(
-    r"Public\s+Property\s+([A-Za-z0-9_]+)(?:\(\))?\s+As\s+([A-Za-z0-9_\.]+(?:\(Of[^)]*\))?)"
+    r"(?:<[^>]*JsonProperty\(\s*\"([A-Za-z0-9_]+)\"\s*\)[^>]*>\s*)?"
+    r"Public\s+(?:ReadOnly\s+|WriteOnly\s+)?Property\s+([A-Za-z0-9_]+)(?:\(\))?\s+As\s+"
+    r"([A-Za-z0-9_\.]+(?:\(Of[^)]*\))?)"
 )
 LIST_RE = re.compile(r"List\(Of\s+([A-Za-z0-9_\.]+)\)")
 DICT_RE = re.compile(r"Dictionary\(Of\s+([A-Za-z0-9_\.]+)\s*,\s*([A-Za-z0-9_\.]+)\)")
@@ -69,6 +71,56 @@ PRIMITIVES = {
     "Object": {"type": "object"},
 }
 
+# ---------------------------------------------------------------- metadata
+# Fields served as .NET boolean strings ("True"/"False").
+BOOLEAN_PROPS = {
+    "parcelpaid", "processed", "customeractive", "isdefault", "deliverypaid",
+    "businessactive", "passwordreset", "deliveryrequested", "lockersavailable",
+    "sendwebhook", "sendwebhookonsuccess", "sendwebhookonfailure",
+    "notificationsent", "notificationread", "verified",
+    "courierassigned", "courierdispatchassigned", "boxonline", "boxactive",
+    "retrieved", "retrievecompleted", "retrieverequested", "dropcodeused",
+    "collectcodeused",
+}
+# Fields served as server-local strings: M/d/yyyy h:mm:ss AM/PM, no timezone (UTC+1).
+DATE_PROPS = {
+    "datecreated", "dropdate", "collectdate", "paidat", "expiry", "imagedatetime",
+    "datelastping", "dateexpires", "dateactivated", "datelastlogin",
+    "retrievedate", "retrievecompletedate", "deliveryrequesteddate",
+    "courierassigneddate", "courierdispatchdate", "pickedupdate", "delivereddate",
+    "verifieddate", "datecreatedshortdate", "datecreatedshorttime",
+    "datecreatedlongdate",
+}
+EMAIL_PROPS = {
+    "email", "emailaddress", "customeremailaddress", "senderemail",
+    "recipientemail", "businessemail",
+}
+STATUSCODE_ENUM = ["00", "01", "02", "03", "04", "05", "06", "07", "08",
+                   "09", "10", "11", "98", "99"]
+DATE_PATTERN = r"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$"
+
+ACTION = {
+    "list": "List", "all": "List all", "search": "Find", "available": "List available",
+    "info": "Get", "details": "Get", "dashboard": "Get the dashboard",
+    "balance": "Get the balance", "transactionhistory": "Get the wallet transactions",
+    "create": "Create", "new": "Create", "add": "Add", "signup": "Register",
+    "login": "Log in", "cancel": "Cancel", "delete": "Delete", "retrieve": "Retrieve",
+    "reserve": "Reserve", "verify": "Verify", "initialize": "Initialize",
+    "status": "Get the status of", "success": "Confirm", "hold": "Place a hold on",
+    "release": "Release", "drop": "Drop off a parcel at", "collect": "Collect a parcel from",
+    "snapshots": "List the snapshots of", "snapshot": "Upload a snapshot for",
+    "timeline": "Get the timeline of", "reports": "Report on", "report": "Report on",
+    "support": "Submit a support request for", "edit": "Edit",
+    "changepassword": "Change the password of", "resetpassword": "Reset the password of",
+    "forgotpassword": "Request a password reset for", "otp": "Verify the OTP for",
+    "wallettransaction": "Create a wallet transaction", "fees": "Get the fees for",
+    "parceltypes": "List the parcel types", "deliveryareas": "List the delivery areas",
+    "couriers": "List the couriers", "cities": "List the cities", "states": "List the states",
+    "sizes": "List the sizes", "boxes": "List the boxes", "availableboxes": "List the available boxes",
+    "cards": "List the saved cards", "ping": "Ping", "setup": "Set up",
+    "webhook": "Handle the Paystack webhook",
+}
+
 
 def parse_classes(app_code):
     classes = {}
@@ -81,7 +133,8 @@ def parse_classes(app_code):
             props = []
             seen = set()
             for pm in PROP_RE.finditer(body):
-                pname, ptype = pm.group(1), pm.group(2)
+                pname = pm.group(1) or pm.group(2)   # JSON name override, else VB name
+                ptype = pm.group(3)
                 if pname in seen:
                     continue
                 seen.add(pname)
@@ -208,9 +261,26 @@ def discover_endpoints(backend):
 
 def derive_summary(path):
     segs = [s for s in path.strip("/").split("/") if s]
+    tag = segs[0] if segs else ""
+    rest = segs[1:]
+    last = rest[-1] if rest else ""
+    obj = " ".join(rest[:-1]) if len(rest) > 1 else tag
+    verb = ACTION.get(last)
+    if verb:
+        return (f"{verb} {obj.replace('-', ' ')}".strip()).strip()
     words = segs[-3:] if len(segs) > 3 else segs
     title = " ".join(words).replace("-", " ")
     return title[:1].upper() + title[1:]
+
+
+def derive_description(path, tag, method):
+    summary = derive_summary(path)
+    return (
+        f"{summary}. Family: `{tag}`. Authentication and outcome follow the "
+        "standard envelope: HTTP 200, with the result in `statuscode` "
+        "(`00` = success). A valid request with no results returns `00` with an "
+        "empty array (not `99`/`null`)."
+    )
 
 
 def classify_readonly(ep, overrides):
@@ -234,12 +304,7 @@ def build_operation(ep, classes, name_map, overrides):
     op["operationId"] = ep["method"] + "_" + "_".join(segs)
     op["summary"] = o.get("summary") or derive_summary(ep["path"])
     op["tags"] = [ep["tag"]]
-    desc = o.get("description")
-    if not desc:
-        desc = (
-            "Authentication: **" + ep["auth"].replace("_", " ") + "** (see the Authentication guide). "
-            "The response is HTTP 200; the result is in the body `statuscode` field."
-        )
+    desc = o.get("description") or derive_description(ep["path"], ep["tag"], ep["method"])
     op["description"] = desc
     op["x-auth"] = ep["auth"]
     op["x-readonly"] = bool(readonly)
@@ -247,20 +312,33 @@ def build_operation(ep, classes, name_map, overrides):
         op["deprecated"] = True
 
     if ep["method"] == "post" and ep["request"]:
-        op["requestBody"] = {
-            "required": True,
-            "content": {"application/json": {"schema": {"$ref": f'#/components/schemas/{ref_name(ep["request"], name_map)}'}}},
-        }
+        media = {"schema": {"$ref": f'#/components/schemas/{ref_name(ep["request"], name_map)}'}}
+        if o.get("example") is not None:
+            media["example"] = o["example"]
+        op["requestBody"] = {"required": True, "content": {"application/json": media}}
 
     resp_schema = None
     if ep["response"]:
         resp_schema = {"$ref": f'#/components/schemas/{ref_name(ep["response"], name_map)}'}
-    op["responses"] = {
-        "200": {
-            "description": "Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.",
-            **({"content": {"application/json": {"schema": resp_schema}}} if resp_schema else {}),
-        }
-    }
+    resp200 = OrderedDict()
+    resp200["description"] = (
+        "Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request "
+        "with no results is `00` with an empty array (not `99`/`null`). Any other "
+        "`statuscode` (e.g. `04`, `98`, `99`) indicates a failure."
+    )
+    if resp_schema:
+        media = OrderedDict([("schema", resp_schema)])
+        if o.get("responseExample") is not None:
+            media["example"] = o["responseExample"]
+        resp200["content"] = {"application/json": media}
+    elif o.get("responseExample") is not None:
+        resp200["content"] = {"application/json": {"example": o["responseExample"]}}
+
+    op["responses"] = OrderedDict([
+        ("200", resp200),
+        ("404", {"description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."}),
+        ("500", {"description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}),
+    ])
     return op
 
 
@@ -286,11 +364,15 @@ def apply_i18n(spec, fr):
                 op["summary"] = t["summary"]
             if t.get("description"):
                 op["description"] = t["description"]
-            elif templates.get("operationDescription"):
+            elif templates.get("operationDescription") and (
+                "Family: `" in (op.get("description") or "")
+                or (op.get("description") or "").startswith("Authentication:")
+            ):
                 auth = op.get("x-auth", "")
                 label = auth_labels.get(auth, auth)
                 op["description"] = templates["operationDescription"].replace("{auth}", label)
-            if templates.get("response200") and "200" in op.get("responses", {}):
+            if (templates.get("response200") and "200" in op.get("responses", {})
+                    and (op["responses"]["200"].get("description") or "").startswith("Result envelope")):
                 op["responses"]["200"]["description"] = templates["response200"]
     for sname, schema in out.get("components", {}).get("schemas", {}).items():
         t = fr.get("schemas", {}).get(sname, {})
@@ -335,16 +417,43 @@ def main():
 
     schemas = OrderedDict()
     ov_schemas = overrides.get("schemas", {})
+    ov_props = overrides.get("propertyTypes", {})
     for cname in reachable:
         props = OrderedDict()
         for pname, ptype in classes[cname]:
             props[pname] = type_to_schema(ptype, name_map)
+        sname = ref_name(cname, name_map)
+        schema_ov = ov_schemas.get(sname, {})
+        for pname, ps in props.items():
+            low = pname.lower()
+            if ps.get("type") == "string":
+                if low in BOOLEAN_PROPS:
+                    ps.setdefault("enum", ["True", "False"])
+                    ps.setdefault("description", 'Boolean serialized by the server as the string "True" or "False".')
+                if low in DATE_PROPS:
+                    ps.setdefault("pattern", DATE_PATTERN)
+                    ps.setdefault("description", "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1).")
+                if low in EMAIL_PROPS:
+                    ps.setdefault("format", "email")
+                if low == "statuscode":
+                    ps.setdefault("enum", STATUSCODE_ENUM)
+                    ps.setdefault("description", "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result.")
+            for k, v in (ov_props.get(pname) or {}).items():
+                ps[k] = v
+            for k, v in ((schema_ov.get("properties") or {}).get(pname) or {}).items():
+                ps[k] = v
         schema = OrderedDict()
         schema["type"] = "object"
         schema["properties"] = props
-        sname = ref_name(cname, name_map)
-        if sname in ov_schemas and ov_schemas[sname].get("description"):
-            schema["description"] = ov_schemas[sname]["description"]
+        req = list(schema_ov.get("required", []))
+        if "apikey" in props and "apikey" not in req:
+            req.insert(0, "apikey")
+        if req:
+            schema["required"] = req
+        if schema_ov.get("example") is not None:
+            schema["example"] = schema_ov["example"]
+        if schema_ov.get("description"):
+            schema["description"] = schema_ov["description"]
         schemas[sname] = schema
 
     # tag order
@@ -418,6 +527,14 @@ def main():
 
     split(spec, "openapi.")
     split(spec_fr, "openapi.fr.")
+
+    # Publish the spec at a stable, versioned address (served from static/).
+    import shutil
+    static_dir = os.path.join(REPO, "static")
+    os.makedirs(static_dir, exist_ok=True)
+    shutil.copyfile(os.path.join(OUT, "openapi.json"), os.path.join(static_dir, "openapi.json"))
+    version = str(info.get("version", "0"))
+    shutil.copyfile(os.path.join(OUT, "openapi.json"), os.path.join(static_dir, f"openapi-{version}.json"))
 
     classification = [
         {

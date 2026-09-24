@@ -1,11 +1,11 @@
 ---
 id: post-core-boxes-list
-title: "Core boxes list"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Core boxes list"
+title: "List the boxes of the network"
+description: "All active boxes of the calling key's network."
+sidebar_label: "List the boxes of the network"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVktv2zgQ/isET07gWEaOXuzB6S6wXSzaIHFPQRCPpYnNliK5fLgxDP33zlBSbLVRe9nD+mDLnOHMN69vdJTWoYeorHlfyYV0NsSn0np82tgXDE9ahSinMsI2yMWDZIl8nMoKQ+mV42t0aZniDk1UZbazEJeX4Jz4gofLSzEJiILEYqgktklVeDETKxJ5DM6agEIF8ddqdSuu5/Pf8iWSJB35XJl8sLHVQaxDhJhCaStci2eFupoRxpcrIBcEh5w/kfN85BEqa/RBLqJPOJUe/00Y4g2ZkYtj/qs8Vr24tCYSSBaRFd2BLT4HjvMoQ7nDGvgpHhySK7v5jCUnyHnOY1QY2ruKAZz0QvTKbGXTUCpV1Hx0w/n9h9PbNHzeJyEboATwzzDNd20y0OxRkzdK7WsaivaxxhBgy2n9YM3Vej5fi5MOpbDigDAIMAK9t57T9h+FfPLzRthTOcD3pkbutzMJeA9cQxWxDr/2T9dVNWZ4FBbJDNSjshIclCq+Vcmp1Lb8gj7AHpSGjR41AlVFtQ1jYm3NVsU0DlBTQUbljG4kbhaNBsf1wJGLWTZ6swtbmRR+qvDscTSkQV//Ykj+gAiyeXNy7rqRyRNECvhCuAMZZa46yjyCPS1M5R50wjN6aKYnlVeaeFVjPmiI6WqMO9szI3cdZI4pmAmL3LMFc2RBooB+T4Fn38lr0trF6MKiKODZK+4Ep2ahBh8d+BL1zGyL/bX8gU1bZUH9XaUyk+Vkf30hGQ1P5d2Jwv58gdq1nddTzlmilXm2Ob1d3nrDy9v3HCcXMTu8ns1n81EYG6Bymopvick9o7/N6IlklloTG1XOKhOJVMoSXRR/33/8ICxZF7cf71dikoym7hfGRqz4znANELPvFTAhrdsI1j3Td0ydGX/BCssTO2UwpDwVIG4S9SJ7cGlD8vbY+nNJwNJjZEm7b/KOaRmJAYD+CodwWjo2xdLWeRt5dNYT8MH6YcCDFTTJTPu7CIlSEMIFoa16jY7y1jOuCPdQDbnn2/mS76iNRG4j0a3a72bjlZ7/J1u2m9VIs1Y4DcpwXLnbj91sdG8JPaMTIbSB8XvDjoeINI7HDQT85HXT8DFV2lPvPjzy+HnVsunDI1ne0WCiPxvnd20+rlaMYzDUw9V1mu5l7suf6p7POXdtBt++IdR5dUgPX+mQvxeSHmyuT+b0fHaUGsw25d0mW5v8+QauyUDs
+api: eJzVV91u2zYUfhWCGDAHUyQ7TbbawS6ctkM7NK3ROFdJFtESbbOhSI2knLiegT3EnnBPsnNI+S+xUgzbxWYEjHRIHp4/fufTguqSG+aEVu9y2qOltu4204bfjvQDt7dSWEcj6tjE0t4VxRl6E9Gc28yIErfBpr6UhGVOzDjxu4geEzflJGNSCjUhd3z+rSWKu3tt7mJQ93DIKjeFnawsb2HWiwxnuVZyTnvOVDyihv9acevOdA6ihX8Vhuer6Uwrx5XDKdAiReadSD5bNGlBbTblBcMnNy85HKVHn3mGvpQGXXaC27BXoAGbddYZsJkul9HWkVerdeC7E07iwjN09T3GZ7kMq22plQ1qj9pt/Lcbp0/cVtIRrmZcgg2klVrHXGUznfM0qV8Kbi2b8PQgJmm7nZIfia2yDISnhJEZkyIndWTIvXBTojS8o15LhA1bvJwpwovSzQkzhs1JS2lH0m4XzlGVlKi+r+ZEQ54M2baDtHg8wbOP0wg2vPRjNz0gQuUYZEgvI2MmZGU45vJfysPGgqe5iChXVYFZgKhGtN3B4QiHFzgc43CCw/c4/IDDSxy6MHRwRwd3dFHW7T4t3zoteHaPtNubeLc7h+0X62iPoBBBdkwKYS2W9VhwmYPk5LDTCZnxrp+S7kuC9Q1RqaMBoi6ZcMWNyAg3RhsCfyE9IXkxhQraKYA9JRlRf722ZnxuwS3heGG/HmTYLvImxftjH+YUKxrnMlayTLh9dyiiUmd33Fg2g4JhI/lscodwr+H1JybtHpA501pyKGoLQYRYf+E5Gc09zIBkBkXMbHjzasm1V3dNMdDXQec1jWuTWZ5D2G2TR1KriXBVczgkZLVxHmPREGWcagwlZp83bPRzjTvrIAtV2WcXjA1vdGkn2HuWQG3zDCDa8T0WQp0x57jBPP1y1T7s3iw60dEyefJ4vCQbWS88bj2QVv/8t8H5wTf0cfZfw8GJEwXHNPuE5z1ynuTJHH5k2iuKnrWkf54MziOERFz6RSvA2Lo6ABsvh6++6xz4Gqh7UUO069nnih4alVD/hWrGvEhmXYmn/98Ts9zprqCa0eUjYWi5n+peW7feY+gBT7rtpbpT+l4RiMCU/Pn7H4C0rjIqxPXni48fNo3YN8ydJogtD+112EffDs/fg5oJ9xE/2dfaLxV/KAFyIY+1XwHm/9G5/YtB/OHNcHU0nM0fAAYsHIlsbEE9c1mxqYhCD6r4FqtaRpsla3a1XoY0agmFWXA31SvuFyoGqVmCXC/xDSdBFpjAVHAtnF0ZCaumzpW2lyRsbAQCayliWzDjSmYyLmM1SWZHT2qmHxYTaE55laGQtGZHBxStQd7wacP83jywogxtY8XUti6iUGPti76uj5Xi/uAd+omY6A88ittxu9GMEQN0VDnuIq0LtH7grUeKBMwWpkotFPArBrygdCGHGnM8+HgxJK1KSWgmmDSe456d1o/1PRMM05kGD1JgUr4WtolFz+d7w5+8MbA4ArJ1VgG04wllNYL5J2KLwOyCGEquNYYhTVheCJUAb2Mk54G55cQLcWVMXlXW6QKcwMrYdlJavfKUQXHCCWCP0xCitC7lAFZpktUqEqkneFZMhuDW2+FwQEJNo/PAhEnLh2xNkIGS1jiXI2qkj3ljenDqA6Qrl4F+1GJ4qQ16UMcOY+bjuktddxkz+A5pfcSrIUFfodGr+9rEpWPyOtDgXS/2g166Vr9Bvi2YX6PfKbgUWoKnlUH7pgOA/lUPAAa/bgGpRyS8uAXzfTv0LIoYWcdp63us7muPL8Jiw+H//qdc3W8cIFNSSiYUGuSxYVEjSf3VuCKvwEbCNyU2xSlCDqxYLEbM8ksjl0sUQ14M3PSrGwQraJCeOF7dgOYpFCs3W+D3Kph+OEQ7diBw91Nkg4V9X9vPrt1GRbzj3vjwGVp4lkwNuwchjj0KD9qH0hNKL1tQydSk8jSeBp34+wvLdT/6
 sidebar_class_name: "post api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Core boxes list"}
+  children={"List the boxes of the network"}
 >
 </Heading>
 
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+All active boxes of the calling key's network.
 
 <Heading
   id={"request"}
@@ -53,13 +53,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"title":"BoxesList"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"required":["apikey"],"title":"BoxesList"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"},"boxes":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string"},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"}},"title":"BoxData"}}},"title":"BoxesListResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"boxes":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"boxcode":{"type":"string"},"boxname":{"type":"string"},"boxcapacity":{"type":"string"},"lockersavailable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"boxaddress":{"type":"string"},"boxlongitude":{"type":"string"},"boxlatitude":{"type":"string"},"cityid":{"type":"string"},"cityname":{"type":"string"},"stateid":{"type":"string"},"statename":{"type":"string"},"lockersinuse":{"type":"string"},"lockersfree":{"type":"string"},"boxdescription":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"networkid":{"type":"string"},"networkname":{"type":"string"},"boxonline":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"datelastping":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."}},"title":"BoxData"}}},"title":"BoxesListResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

@@ -1,11 +1,11 @@
 ---
 id: post-customer-parcels-hold-release
 title: "Lever la mise en attente"
-description: "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps."
+description: "Release a checkout hold and free its locker."
 sidebar_label: "Lever la mise en attente"
 hide_title: true
 hide_table_of_contents: true
-api: eJzVVcFu2zgQ/RWClzqBaxk5uughuyjQLIqtkbinILBpaWwzpUjukPQmMPw/zf6Gf2xnKKmyk6BAgV7qgy1zhsPhm/eedtJ5QBW1s1eVnEjvQpyXKURXA869whJMmG+cqeYIBlQAOZRRrYOc3MouT94NZQWhRO25EJW5THEDNuqVLnNtMRHn56U5PInqjfLetMvn52KwdRqFAbFOugIOP9t6NhKflMDDk3c2gIAQBVjxcTabiovxWLzjvRQNyUQVBWVEdGlLlZQNHCs3qvZiESiaQukqWIgqidKhDyO6y8NbPpBaprbmX+ExLyGoylnzKCcrZQIMJcI/iU7+w1W0tst/NQIBFjFRuHQ2Us8cOrpdcR8YjJ0M5QZqxU/x0QOd5Zb3UEY6yiPDHzWEZq/mDvq8EFHbtdwPJU8guq9gX4lSOOpoeGmaB/aRkq/bae33HEcIGb58DMHGP6cT+2C3YJz3BNwxnoMet6J5rCEEtQYayxf7DFa9Wh2ekIDgGovxeCG0rTQhJ5KlySFCQsb8F8HVn/0qZCft/iRs1y1eGT5KhAdqOFCTzPudzFPqqDOUW2USHFFoP+xTvlPpe1qm1J4kU0PcuE50fDuViVh0sipa+RU8/KKVX0GJAXAL2LSS0NCeTYw+TIpCrVAv3QMRaRRqhbGpMLLrYnshX4i0SRaEapXKLNPB9uJMcm88i+ue9B8eSEQGjkna4XjCzSP4tV25jHqLcXfa5fSKsaD+my4uRuPR+GVv0yuW6VKVVLcS3ebBDd+qGRcxcOYSazwI77SNgd2jLA/fgqAf8DEzMYm/bj7/zZ4x/XwzI0KrtMq8bJ2JyYiK1MxG88J92FBWSkex1YpYLBbN9Re9vbCRMN8NmRQBdvgvArkdE/6l3w37dZ+WJkujekPnIXjUdJRLfUaAEg/f4mkG9QgiMzs2Hsh+GF26dwnDa4bI8UaF3MxJ03ylEwEPsmbfi5AyimcCYpfQymgx4tEyX2uVtWpVzcP9BDRQhqDmWxDWKjL68Hyuu177v9E7ojWOSC5QeKO0ZRCy8HataI/ehazjLNtWGZLdt3tz8ptyw2qnHbvdkha/oNnveZm4gCSr2zs2CtRqyaq5vWPvJwuhwr3x/Nlg+HbGfZ3Yz6mX9j50mfXww9xjQ2KlUPKyfd3V2WIlqn/5MvQ9kfTg8kyzE+e1nTTKrlM2W9nU5M//Xkz4tg==
+api: eJytVttOI0cQ/ZVSvwDS4AvLbtZGeSAR0hKRXQvME0K4PVO2G2a6J30xIMtSPiIfseQ3/Cf5klT1zOzYgUSKEmSVh57qupw+ddorYUq00iujzzMxFKVx/i4NzpsC7V0pbYq5u1uYPLuzmKN0KBLh5dyJ4Y1o/MRtIjJ0qVUlB6Iwl5UvSEgXmD6Y4IFjgNQZzCwiKO8gN+kD2g4FfDqUwS9onyzLuwd8jksWZWZ0/iyGM5k7TITFXwI6/4PJaG0V/1UWqWpvA71OjfaoPb+iMLlKY1fde8cVrYSjSgrJT/65RMplpveYekpVWsbAK3TVXsUVtH7OW6XnYp0IbsGbB9RvvF0nWwXdNFEIGK98zo6jiOUnClGDQ3uqXa402lXJj3o9/toF80wvMTdliZAh2M2LC7mXHvYd2eBSk2G3eizQOTnHgw5ca5i0ryeQqdls82IJHo4x6fUmoHSmCE8IGgGtxRBP4n8Csc39GqpEoA4Fg0TNJqLXZ3PE5h2bYzbv2Xxg8x2bj2wGZPq8o887Brw2GLxFPcYHOPcQej1wIU0JlxPo9Q9776AmEUyJRbR2DIVyjsqCmcI8o5X3h/0+LGWustj6CQw+ArOTUKnRoKUBzFGjVSlDZyzQB4vSP1N4zt5htuycyduM+VtuXNakqDlyTKi8osW1ftDmUUMp/QL++PU3yu2D1Q6oVvjp6stnwIo4CI+KXHYIMRkMJglo42kk4dP45wsKM8dY9/u3OHit8amkk8YMHNol2rrx/5T39GrU+Xw2blJTbnwi9jlKyfqyEnEQG3VIBJ1KwC2VWCetyze1+OYWVWNN/CjQL0wjbkxVGbWm28hXt5a5Ls93t5a5LjlWnValBJvTnoX3pRt2u3Jm1dQ80ZR3XCGtryJ09Ly7ZCbvYndaOQONSBZSXoT95dGB4Np4sC5bXTt7kkWZ47YOtWOzJT9boqT0zER21Vxqsp2OzhkLqr+q4qjT6/Re1zY6hyzAVJIUkzY3m/evuKuKliQnYxNIrtFBaZQm5c72ZJpuvjqgLyx9lJXQnD2MvlyNSZ1kmEWRqYYGWFmsJH2keBd7zUTNmtd0Wcyk8rBUkiQJJlX7pFxSc2rabkvH4pXLOMOb3z3CMKpXmm9euKRWr5J2vQzTPOpctkf5LJZWUSoTWg+Hqd189bseVCNCJK6n8RiPgDXDm3BvgnVAMg0nXFWrxvy+klQuZqdobmlnCPajAH8fpYlQPAD0jUMtF5M4iczXQkbh1bLgw71AHj2CoOAuCGvpGX3867muWiH/t3dxrVKeRrFb5lJpriSyf1VPztbFz8MUZ6emp+D7rPmZwNq84JGjHavVlBavbb5e8zIdiCVu39zytFolp0zdm1u+Y2mOKXA7/T9WjRyOua4dDdi9nVoxOI2k/EffbVVgupLztP5ZUcRLS1j5yM2QHQp6MBHYeLfFtZXIpZ6HqOyiisl/fwJnUzlH
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.
+Release a checkout hold and free its locker.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentification : **clé d'application** (voir le guide d'authentification). La
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"holdtoken":{"type":"string"}},"title":"ParcelHoldRelease"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"holdtoken":{"type":"string"}},"required":["apikey"],"title":"ParcelHoldRelease"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"ParcelHoldReleaseResponse"}}}}}}
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"ParcelHoldReleaseResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

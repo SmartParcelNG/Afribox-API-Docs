@@ -1,11 +1,11 @@
 ---
 id: post-customer-parcels-hold-release
-title: "Parcels hold release"
-description: "Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field."
-sidebar_label: "Parcels hold release"
+title: "Hold Release"
+description: "Release a checkout hold and free its locker."
+sidebar_label: "Hold Release"
 hide_title: true
 hide_table_of_contents: true
-api: eJzNVU1v2kAQ/SurPRFEMOJI1QOpKiU9JIjQUxTB2h5gk/Wuux8EZPHfO7O2Y6ymlSr1UA5gdmZn375581xxU4IVXhp9l/MZL43z6yw4bwqw61LYDJRb743K1xYUCAd8xL3YOT574m0efx7xHFxmZUmFsMw8+D1oL7NYecaGQ1GW7BVOwyEbOACGYdZPYrsgc7gasxWGLLjSaAdMOna7Wi3YdDL5FDdhJChP61LHhdTkJ7ZxXvjgMpPDhm0lqHyMOI/XAo9AOHj4Gg+PSxZEbrQ68dlWKAcjbuFHAOdvsA6fVfGvtIBkeBswnBntESWFsIxq0CYvji5acZftoRD05E8l4FkmfYHM41GlJWq9BFfvlYSgy3PeSr3j5xEndr15Bf1BFMNeekVLi9iMW0xeNp04nynechWPQZ7op9+NZc0Z6AMoxIQdeGcrqR8LcE7siP17o683k8mGdTnIdE7XBseEZmCtscTuPyKmO+dDcnr4/pKgZcNMJAoT4YiAHYIk9VY89qMVyYgfhApwIZbzqEt5F817WhTPGYVfgN+bdnTodiJKLmmHI2mGKKE2J80QJZjowB7A1lCCVbhn733pZkkitlam5oiSGbtCWF9XGOtdcpjyX0atTmbIah6yOEmDw/SKEzbqxbKT99ejKEoFl3Jseeyp8IJ+qbcmst5w3J42X9wRF4i/RjEdT8aT32JLRYaFc9rFBo90pbpXqLe5UijMvDRSe9RXlkHp2bfHh3tmsDpbPDyu2CBohQJg2njIaU/fONALDlKQNjf1tTatNzSjHT1iRgnzTqgRDCaPmGA3wUlNJ5QhxXi9bOxlxEFmwVOkdqjoSrU4CYBQb+LkOpsywWfYfQpZKI1F4D3DIsA90xrEofvMXEAKnLtCtHmb0ah/M6aOkMwKEUdMi6LTvWPUQda5dK8VVTeu/4k5N3PscSiTUgmp6XJxDqpmhi5eMDRW8ZKNUDnZXntRev3safhwR1WluPjdqvOZlrH9FlX+9Exza6VIScRPz2S6ONFYuPOBLzU/1yvC1XODvrV1tjCPYv1j7qU/kJQxOW3eM0V0PG7FG10Gv2ccH0zsVzTGuFZxJfQuRO/jdU36/ARYVa9I
+api: eJytVm1PIzcQ/isjfwpqyCYctJegfuDoVVx13CEIn7gT6+xOEh9ee2t7OdIIqT+iv7C/pDP25u2AVlUbIbM7a8/rM894KWyNTgZlzbtSjERtfbgtGh9she62lq5A7W/nVpe3DjVKj6Irgpx5MboRq33ic1eU6AunalZEai7TXpBQzLG4s00A1gHSlDB1iKCCB22LO3Q9UviwL5swp3Oyrm/vcBFFDmVpjV6I0VRqj13h8NcGfXhjS5It46tySF4H19DnwpqAJvAnUqNVEaPKvnj2aCk8eVJJfgqLGsmWnXzBIpCp2nEOgkKfzir2YLPPB6fMTDx2BYcQ7B2aZ74+drccullpocQEFTRvvIi5PCMVbXLoTDrla2t8Mn7Q7/O/b5PpGx0AzT1q8hQ6uQ8yNL6wJeZZ+1Kh93KG+V4P8n4/hx/BN0VBwmMqwr3UqoQ2f/BVhTkYS++s14Py6UiUSwNY1WEB0jm5gI6xAfLhkOyYRmtWf2IWYMMcHWz7AR3szdj2Yd6lA6/jOsz3QJmSS4Ge/JhKpRuHXPL/qVobD57WpCvQNBVXg7LaFf0BLwe8vOLlkJcjXr7n5QdeXvMypGXAJwZ8Ysiy4fA5jMeysO0R9PubfPcH+/1X62xPCK4kO4RKeU9uwVShLklytD8YpMrE0I9h+Bq4DSgrbTZINIQZGnSqAHTOOqC/VJ5UvB7DcgcAz0PzRRBetuhrwXhIWXmCv2tzZ+xXA7UkfPz5+x9kOzTOeCBf4Zerjx820IwQ2oEFg6ALjCJC1tn4/D2pmWH0++g5sF8bfKip0liCR3dPKEuB/ye7J1cXvQ9vxyvTZBsfCH2eTDKRLUXs+BUNdQVVpcEtOnrsbrasaWm9LdLTI+GjwjC3KxZlqMpIatmKJ7OWTzMmkqzl04w2pkiTK43TdGYeQu1HWSanTk3sA9FJz1fShaShZ2bZPSN5N3cnaTNQi5RNwULo3B/sCfaNG+tyQ6BvH2RVa9wmvE3bbPHcFvspM7URXS2WVtZOLt5xLsj/5MVBr9/rv+jbRBLp0xSgU9C54pASJplYtKaKlrVVhlhJUjfVIdXZMg4uPl6NodMYTUDnwmLJZ3YahqnsXkkueZ7Cyol/Il6223EUMbFhnegMbe4SRb1pqEnZQt1M6PsTsceCYJjEBMvOlJY8k2WlTEZsJ6HExHc07FjIO3tw2iIAGD3bQWpvV5FKAjBZIH9i7vMW7qRosiATaxBpO2NbPRhTWGfj8QUk3HPwND+gE1O2HitE5JhaiTzynJddts33jmOCaEYXpJ+1OKyt4wja3HHOYl53CX93zuzF4f7NNKIC/cPwWfX0SxOoBz+l4bEbxXlWZgv6wXxUVSOqy8l5dnGer9UHVeFv1tCw5ABaJqHQrsen3w0o4om11H0mkXHSHjdGtJP+T2JMl4pPgubeJ/EzNzg9R9bi3q5kHFJGVtwITKdwub4d7eB+uRl0//ZS1LJ4IKrKai2VYeuRHZYts2zdwJhsIre07Sv4YrHyiGfXnCmJTiyXExJeO/34yGIqiqPev/nMbOaUnHBr33zmyw4hlRRv2PE0BbI/Zr92OHJ3em/I8iQC+2/3brMmNzhtnrT3uyoOdeHkVw6G1pGgBxsTG2d/lC2FlmbWxMknkk7+/QVkZbds
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Parcels hold release"}
+  children={"Hold Release"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Authentication: **app key** (see the Authentication guide). The response is HTTP 200; the result is in the body `statuscode` field.
+Release a checkout hold and free its locker.
 
 <Heading
   id={"request"}
@@ -54,13 +54,13 @@ Authentication: **app key** (see the Authentication guide). The response is HTTP
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"holdtoken":{"type":"string"}},"title":"ParcelHoldRelease"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"holdtoken":{"type":"string"}},"required":["apikey"],"title":"ParcelHoldRelease"}}}}}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (statuscode/statusmessage). Non-`00` statuscode indicates an error.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string"},"statusmessage":{"type":"string"}},"title":"ParcelHoldReleaseResponse"}}}}}}
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"}},"title":"ParcelHoldReleaseResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
 >
   
 </StatusCodes>

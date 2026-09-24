@@ -93,7 +93,7 @@
       "summary": "Détails d'un colis"
     },
     "post_business_parcels_info_all": {
-      "summary": "Détails de tous les colis"
+      "summary": "Détails d'un colis et son historique"
     },
     "post_business_parcels_reports": {
       "summary": "Rapports de colis"
@@ -258,7 +258,7 @@
       "summary": "Colis en route vers le destinataire"
     },
     "post_customer_parcels_hold": {
-      "summary": "Mettre un colis en attente"
+      "summary": "Mettre un colis en attente (paiement Paystack)"
     },
     "post_customer_parcels_hold_release": {
       "summary": "Lever la mise en attente"
@@ -267,7 +267,7 @@
       "summary": "Détails d'un colis"
     },
     "post_customer_parcels_info_all": {
-      "summary": "Détails de tous les colis"
+      "summary": "Détails d'un colis et son historique"
     },
     "post_customer_parcels_inlocker": {
       "summary": "Colis en casier"
@@ -297,7 +297,7 @@
       "summary": "Réserver un casier (appless)"
     },
     "post_kiosk_parcel_appless_verify": {
-      "summary": "Vérifier une réservation (appless)"
+      "summary": "Vérifier la disponibilité et le tarif (appless)"
     },
     "post_kiosk_parcel_collect": {
       "summary": "Retrait de colis"
@@ -345,6 +345,24 @@
     "post_pay_webhook_paystack": {
       "summary": "Webhook Paystack",
       "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients."
+    },
+    "post_core_parcelstatuses_list": {
+      "summary": "Lister les statuts de colis"
+    },
+    "post_core_wallettransactiontypes_list": {
+      "summary": "Lister les types de transaction du portefeuille"
+    },
+    "post_core_walletfundmodes_list": {
+      "summary": "Lister les modes d'alimentation du portefeuille"
+    },
+    "post_core_billingtypes_list": {
+      "summary": "Lister les types de facturation"
+    },
+    "post_business_parcels_search": {
+      "summary": "Rechercher un colis d'entreprise par référence"
+    },
+    "post_customer_parcels_cancel": {
+      "summary": "Annuler un colis du client"
     }
   },
   "schemas": {

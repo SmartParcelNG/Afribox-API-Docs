@@ -13,6 +13,10 @@
   ],
   "tags": [
     {
+      "name": "core",
+      "description": "Données de référence publiques : États, villes, casiers, tailles, frais, coursiers, zones de livraison."
+    },
+    {
       "name": "customer",
       "description": "Comptes clients : inscription/connexion/OTP, profil, cartes enregistrées, colis, assistance."
     },
@@ -45,8 +49,8 @@
         "tags": [
           "admin"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
-        "x-auth": "app_key",
+        "description": "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network.",
+        "x-auth": "none",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -68,40 +72,12 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/business/cancelledparcels/": {
-      "post": {
-        "operationId": "post_business_cancelledparcels",
-        "summary": "Entreprise: Colis annulés",
-        "tags": [
-          "business"
-        ],
-        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
-        "x-auth": "business_public",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LogisticsCancelledParcels"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LogisticsCancelledParcelsResponse"
-                }
-              }
-            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -113,8 +89,8 @@
         "tags": [
           "business"
         ],
-        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
-        "x-auth": "business_public",
+        "description": "Cancels a business parcel awaiting drop-off, releases its locker and refunds the reservation fee to the wallet. Requires the **Business secret key**. The response carries `refundedamount`.",
+        "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -132,10 +108,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LogisticsParcelInfoResponse"
+                  "$ref": "#/components/schemas/LogisticsParcelCancelResponse"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -147,7 +129,7 @@
         "tags": [
           "business"
         ],
-        "description": "Authentification : **clé secrète d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Creates a parcel on behalf of the business, reserves a locker and debits the reservation fee from the wallet (prepaid). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel.",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -156,6 +138,14 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/LogisticsParcelNew"
+              },
+              "example": {
+                "apikey": "<business secret key>",
+                "boxid": "4",
+                "sizeid": "1",
+                "recipientname": "Ama",
+                "recipientphone": "0104554198",
+                "recipientemail": "ama@example.com"
               }
             }
           }
@@ -170,6 +160,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -181,8 +177,8 @@
         "tags": [
           "business"
         ],
-        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
-        "x-auth": "business_public",
+        "description": "Business action to retrieve a parcel that is in a locker (status 2). Requires the secret key.",
+        "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -204,6 +200,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -215,7 +217,7 @@
         "tags": [
           "business"
         ],
-        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1).",
         "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
@@ -238,40 +240,12 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/business/retrievedparcels/": {
-      "post": {
-        "operationId": "post_business_retrievedparcels",
-        "summary": "Colis récupérés",
-        "tags": [
-          "business"
-        ],
-        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
-        "x-auth": "business_public",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LogisticsRetrievedParcels"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LogisticsRetrievedParcelsResponse"
-                }
-              }
-            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -283,8 +257,8 @@
         "tags": [
           "business"
         ],
-        "description": "Authentification : **clé publique d'entreprise** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
-        "x-auth": "business_public",
+        "description": "Insert a wallet movement for the business. Requires the **secret key**; `wallettransactiontypeid` 1=credit, 2=debit.",
+        "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
           "required": true,
@@ -306,6 +280,52 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/core/wallettransactiontypes/list/": {
+      "post": {
+        "operationId": "post_core_wallettransactiontypes_list",
+        "summary": "Lister les types de transaction du portefeuille",
+        "tags": [
+          "core"
+        ],
+        "description": "Wallet transaction types: `1` Credit, `2` Debit.",
+        "x-auth": "app_key",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletTransactionTypesList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletTransactionTypesListResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -317,7 +337,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Start adding a saved card; returns the Paystack authorization URL to complete in the browser.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -340,6 +360,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -351,7 +377,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Delete one of the customer's saved cards.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -374,6 +400,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -385,7 +417,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Mark one of the customer's cards as the default.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -408,6 +440,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -419,7 +457,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Change the customer's password; requires the current `oldpassword`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -442,6 +480,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -453,7 +497,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Update the customer's display name.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -476,6 +520,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -487,7 +537,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Start a password reset; the code goes to the registered contact.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -510,6 +560,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -521,7 +577,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Authenticates a customer and returns the profile, the dashboard counters and a dated, revocable `sessiontoken`. Customer read endpoints accept `sessiontoken` in place of `customerid`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -541,9 +597,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CustomerLoginResponse"
+                },
+                "example": {
+                  "statuscode": "00",
+                  "statusmessage": "Successful",
+                  "customer": {
+                    "customerid": "1",
+                    "customername": "Ama",
+                    "networkid": "2",
+                    "networkname": "Afribox",
+                    "emailaddress": "ama@example.com",
+                    "phonenumber": "0104554198",
+                    "passwordreset": "False",
+                    "customeractive": "True"
+                  },
+                  "dashboard": {
+                    "newrequests": "0",
+                    "inlocker": "0",
+                    "enroutetorecipient": "0",
+                    "delivered": "0"
+                  },
+                  "sessiontoken": "<uuid>",
+                  "sessionexpires": "2026-10-24 00:00:00"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -555,7 +639,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Resend the signup verification code to the **registered** contact (no account-existence disclosure).",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -578,6 +662,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -589,7 +679,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Verify the signup code and activate the account.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -612,18 +702,24 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
     },
-    "/customer/parcels/cancelled/": {
+    "/customer/parcels/cancel/": {
       "post": {
-        "operationId": "post_customer_parcels_cancelled",
-        "summary": "Client: Colis annulés",
+        "operationId": "post_customer_parcels_cancel",
+        "summary": "Annuler un colis du client",
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Cancels the customer's own parcel (status 1, awaiting drop-off) and releases its locker. The parcel must carry the caller's `customerid` (or a valid `sessiontoken`).",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -631,7 +727,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomerParcelCancelled"
+                "$ref": "#/components/schemas/CustomerParcelInfo"
               }
             }
           }
@@ -642,10 +738,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CustomerParcelCancelledResponse"
+                  "$ref": "#/components/schemas/CustomerParcelCancelResponse"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -653,11 +755,11 @@
     "/customer/parcels/hold/": {
       "post": {
         "operationId": "post_customer_parcels_hold",
-        "summary": "Mettre un colis en attente",
+        "summary": "Mettre un colis en attente (paiement Paystack)",
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé secrète d'entreprise ou clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker.",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
@@ -680,6 +782,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -691,7 +799,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Release a checkout hold and free its locker.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -714,6 +822,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -725,7 +839,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Creates a parcel for the customer and reserves a locker. Supports an optional `Idempotency-Key` header.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -748,40 +862,12 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/customer/parcels/newrequests/": {
-      "post": {
-        "operationId": "post_customer_parcels_newrequests",
-        "summary": "Nouvelles demandes de colis",
-        "tags": [
-          "customer"
-        ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
-        "x-auth": "app_key",
-        "x-readonly": false,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CustomerParcelNewRequests"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CustomerParcelNewRequestsResponse"
-                }
-              }
-            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -793,7 +879,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Reset the password. Declares `oldpassword`; for a forgotten password use the OTP flow.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -816,6 +902,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -827,7 +919,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -850,6 +942,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -861,7 +959,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Submit a support request for the customer.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -884,6 +982,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -895,7 +999,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use).",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -918,6 +1022,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -925,11 +1035,11 @@
     "/kiosk/parcel/appless/verify/": {
       "post": {
         "operationId": "post_kiosk_parcel_appless_verify",
-        "summary": "Vérifier une réservation (appless)",
+        "summary": "Vérifier la disponibilité et le tarif (appless)",
         "tags": [
           "kiosk"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Check availability and fee for **one** size (by `sizename`) for a walk-in user.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -949,9 +1059,28 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApplessVerifyResponse"
+                },
+                "example": {
+                  "statuscode": "00",
+                  "statusmessage": "Successful",
+                  "parcel": {
+                    "sizeid": "1",
+                    "sizename": "Petit",
+                    "boxname": "Afribox Cocody",
+                    "boxaddress": "Afribox Cocody",
+                    "parcelamount": "500",
+                    "boxlockerid": "5",
+                    "boxlockernumber": "5"
+                  }
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -963,7 +1092,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -986,6 +1115,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -997,7 +1132,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1020,6 +1155,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -1031,7 +1172,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Upload a proof-of-delivery snapshot (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2).",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1054,6 +1195,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -1065,7 +1212,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Establishes a machine's identity from `boxcode` and returns the full box record. A write; safe to call again.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1088,6 +1235,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -1099,7 +1252,7 @@
         "tags": [
           "parcel"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1122,6 +1275,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -1153,9 +1312,22 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaystackInitializeResponse"
+                },
+                "example": {
+                  "statuscode": "00",
+                  "statusmessage": "Successful",
+                  "reference": "PRN123-1234567890",
+                  "authorizationurl": "https://checkout.paystack.com/abc123",
+                  "accesscode": "abc123"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -1167,7 +1339,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "description": "Marks a parcel paid only when a successful payment bound to that parcel is found. The parcel and its `collectcode` are returned **only** when the payment is confirmed.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1190,6 +1362,12 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -1224,6 +1402,120 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/pay/return/": {
+      "get": {
+        "operationId": "get_pay_return",
+        "summary": "Page de retour de paiement",
+        "description": "Page de retour hébergée. Vérifie le paiement, exécute le traitement, puis redirige vers `metadata.returnurl` si présent. Renvoie une page HTML (pas de JSON). Paramètres : `reference` (ou `trxref`).",
+        "tags": [
+          "pay"
+        ],
+        "x-readonly": false,
+        "parameters": [
+          {
+            "name": "reference",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trxref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTML landing page (Payment successful / not completed)."
+          }
+        }
+      }
+    },
+    "/pay/webhook/paystack/": {
+      "post": {
+        "operationId": "post_pay_webhook_paystack",
+        "summary": "Webhook Paystack",
+        "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients.",
+        "tags": [
+          "pay"
+        ],
+        "x-readonly": false,
+        "parameters": [
+          {
+            "name": "x-paystack-signature",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Paystack event payload."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acknowledged"
+          },
+          "403": {
+            "description": "Invalid signature"
+          }
+        }
+      }
+    },
+    "/customer/cards/add/complete/": {
+      "get": {
+        "operationId": "get_customer_cards_add_complete",
+        "summary": "Retour d'ajout de carte (navigateur)",
+        "description": "Browser landing page used as the Paystack `callback_url` after adding a card. Reads `reference`/`trxref`, verifies the transaction, and stores the card authorization code. Returns an HTML page with the outcome.",
+        "tags": [
+          "customer"
+        ],
+        "x-readonly": false,
+        "parameters": [
+          {
+            "name": "reference",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trxref",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTML page (Add Card Successful / Failed)."
           }
         }
       }
@@ -1235,7 +1527,24 @@
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1259,7 +1568,9 @@
             "type": "string"
           },
           "paidat": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "authorizationcode": {
             "type": "string"
@@ -1283,7 +1594,12 @@
             "type": "string"
           },
           "processed": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         },
         "description": "Détails de la transaction vérifiée, y compris le code de retrait du colis le cas échéant."
@@ -1297,13 +1613,33 @@
           "reference": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "PaySuccessResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1326,7 +1662,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelreferencenumber": {
             "type": "string"
@@ -1338,7 +1676,16 @@
             "type": "string"
           },
           "parcelstatusid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string"
@@ -1365,7 +1712,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "sendername": {
             "type": "string"
@@ -1374,7 +1722,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "parcelamount": {
             "type": "string"
@@ -1392,10 +1741,20 @@
             "type": "string"
           },
           "deliveryrequested": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "deliverypaid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "recipientaddress": {
             "type": "string"
@@ -1417,13 +1776,33 @@
           "transactionreference": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "PaystackStatusResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1444,10 +1823,17 @@
             "type": "string"
           },
           "paidat": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "processed": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "flowtype": {
             "type": "string"
@@ -1472,13 +1858,33 @@
           "reference": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "PaySearchParcelResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1498,7 +1904,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelreferencenumber": {
             "type": "string"
@@ -1510,12 +1918,24 @@
             "type": "string"
           },
           "parcelstatusid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string"
           },
           "sizename": {
+            "type": "string"
+          },
+          "boxid": {
             "type": "string"
           },
           "boxname": {
@@ -1537,7 +1957,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "sendername": {
             "type": "string"
@@ -1546,7 +1967,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "parcelamount": {
             "type": "string"
@@ -1561,7 +1983,12 @@
             "type": "string"
           },
           "parcelpaid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -1574,13 +2001,33 @@
           "parcelreferencenumber": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "PaystackInitializeResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1604,7 +2051,8 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "phone": {
             "type": "string"
@@ -1636,13 +2084,43 @@
               "type": "string"
             }
           }
+        },
+        "required": [
+          "apikey",
+          "amount"
+        ],
+        "example": {
+          "apikey": "<business secret key>",
+          "email": "ama@example.com",
+          "amount": "5000",
+          "currency": "XOF",
+          "metadata": {
+            "fulfil": "wallet"
+          }
         }
       },
       "ParcelSnapshotsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1662,19 +2140,33 @@
             "type": "string"
           },
           "snapshotevent": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "dropoff",
+              "pickup"
+            ],
+            "description": "Snapshot event: `dropoff` (at drop-off) or `pickup` (at collection)."
           },
           "snapshotsequence": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "description": "1 = taken when the locker is unlocked; 2 = taken after the door is closed."
           },
           "snapshoturl": {
             "type": "string"
           },
           "imagedatetime": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           }
         }
       },
@@ -1687,13 +2179,33 @@
           "parceldetailid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "SnapshotUploadResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1715,13 +2227,33 @@
           "snapshotid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BoxesSetupResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1747,7 +2279,12 @@
             "type": "string"
           },
           "lockersavailable": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "boxaddress": {
             "type": "string"
@@ -1778,6 +2315,30 @@
           },
           "boxdescription": {
             "type": "string"
+          },
+          "datecreated": {
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
+          },
+          "networkid": {
+            "type": "string"
+          },
+          "networkname": {
+            "type": "string"
+          },
+          "boxonline": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "datelastping": {
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           }
         }
       },
@@ -1790,13 +2351,33 @@
           "boxcode": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BoxPingResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1812,7 +2393,10 @@
           "boxid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "SnapshotUpload": {
         "type": "object",
@@ -1836,24 +2420,56 @@
             "type": "string"
           },
           "snapshotevent": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "dropoff",
+              "pickup"
+            ],
+            "description": "Snapshot event: `dropoff` (at drop-off) or `pickup` (at collection)."
           },
           "snapshotsequence": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "description": "1 = taken when the locker is unlocked; 2 = taken after the door is closed."
           },
           "image": {
             "type": "string"
           },
           "imagedatetime": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "DropParcelResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1873,7 +2489,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelreferencenumber": {
             "type": "string"
@@ -1912,7 +2530,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "sendername": {
             "type": "string"
@@ -1921,7 +2540,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "userid": {
             "type": "string"
@@ -1964,13 +2584,33 @@
           "unlockcode": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CollectParcelResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -1990,7 +2630,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelreferencenumber": {
             "type": "string"
@@ -2029,7 +2671,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "sendername": {
             "type": "string"
@@ -2038,7 +2681,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "customerid": {
             "type": "string"
@@ -2078,13 +2722,33 @@
           "unlockcode": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "ApplessVerifyResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2132,13 +2796,33 @@
           "sizename": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "ApplessReserveResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2158,7 +2842,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelreferencenumber": {
             "type": "string"
@@ -2170,7 +2856,16 @@
             "type": "string"
           },
           "parcelstatusid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string"
@@ -2197,7 +2892,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "sendername": {
             "type": "string"
@@ -2206,7 +2902,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "parcelamount": {
             "type": "string"
@@ -2250,7 +2947,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "recipientname": {
             "type": "string"
@@ -2259,18 +2957,42 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "paymentreference": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey",
+          "boxid",
+          "sizeid",
+          "paymentreference"
+        ]
       },
       "CustomerSupportResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2290,7 +3012,8 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "subject": {
             "type": "string"
@@ -2298,18 +3021,35 @@
           "message": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerSignupResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
-            "type": "string"
-          },
-          "otp": {
             "type": "string"
           }
         }
@@ -2327,18 +3067,50 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "password": {
             "type": "string"
           }
+        },
+        "required": [
+          "apikey",
+          "name",
+          "phone",
+          "email",
+          "password"
+        ],
+        "example": {
+          "apikey": "<application key>",
+          "name": "Ama",
+          "phone": "0104554198",
+          "email": "ama@example.com",
+          "password": "secret"
         }
       },
       "CustomerResetPasswordResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2352,7 +3124,8 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "oldpassword": {
             "type": "string"
@@ -2360,13 +3133,33 @@
           "newpassword": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelTimelineResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2392,7 +3185,16 @@
             "type": "string"
           },
           "parcelstatusid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string"
@@ -2401,7 +3203,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           }
         }
       },
@@ -2414,16 +3218,39 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "parceldetailid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelReportsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2433,6 +3260,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2446,16 +3282,24 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "datecreatedshortdate": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "datecreatedshorttime": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "datecreatedlongdate": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelreferencenumber": {
             "type": "string"
@@ -2470,12 +3314,36 @@
             "type": "string"
           },
           "parcelstatusid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string"
           },
           "sizename": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          },
+          "courierid": {
+            "type": "string"
+          },
+          "boxstateid": {
+            "type": "string"
+          },
+          "deliveryareaid": {
+            "type": "string"
+          },
+          "boxid": {
             "type": "string"
           },
           "boxname": {
@@ -2497,7 +3365,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "recipientaddress": {
             "type": "string"
@@ -2512,7 +3381,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "customerid": {
             "type": "string"
@@ -2536,7 +3406,12 @@
             "type": "string"
           },
           "parcelpaid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "authorizationotp": {
             "type": "string"
@@ -2552,19 +3427,48 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "datefrom": {
             "type": "string"
           },
           "dateto": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelNewRequestsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2574,6 +3478,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2585,14 +3498,43 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelNewResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2627,7 +3569,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "recipientaddress": {
             "type": "string"
@@ -2638,13 +3581,50 @@
           "parceldescription": {
             "type": "string"
           }
+        },
+        "required": [
+          "apikey",
+          "requesttypeid",
+          "customerid",
+          "sizeid",
+          "boxid",
+          "recipientname",
+          "recipientphone",
+          "recipientemail"
+        ],
+        "example": {
+          "apikey": "<application key>",
+          "requesttypeid": "3",
+          "customerid": "1",
+          "sizeid": "1",
+          "boxid": "4",
+          "recipientname": "Ama",
+          "recipientphone": "0104554198",
+          "recipientemail": "ama@example.com"
         }
       },
       "CustomerParcelInLockerResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2654,6 +3634,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2665,14 +3654,43 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2691,16 +3709,39 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "parceldetailid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelInfoAllResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2725,16 +3766,39 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "parceldetailid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "ParcelHoldReleaseResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2750,13 +3814,33 @@
           "holdtoken": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "ParcelHoldResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2803,7 +3887,8 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "phone": {
             "type": "string"
@@ -2815,7 +3900,8 @@
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "recipientname": {
             "type": "string"
@@ -2824,7 +3910,8 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "recipientaddress": {
             "type": "string"
@@ -2832,13 +3919,33 @@
           "parceldescription": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelEnrouteToRecipientResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2848,6 +3955,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2859,14 +3975,43 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelDeliveredResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2876,6 +4021,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2887,14 +4041,43 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelCancelledResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2904,6 +4087,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2915,6 +4107,49 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "CustomerParcelCancelResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "refundedamount": {
+            "type": "string"
           }
         }
       },
@@ -2922,7 +4157,24 @@
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2932,6 +4184,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2943,14 +4204,43 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerParcelAllResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2960,6 +4250,15 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -2971,14 +4270,43 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "OTPVerifyResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -2995,23 +4323,41 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "otp": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "OTPResendResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
-            "type": "string"
-          },
-          "otp": {
             "type": "string"
           }
         }
@@ -3026,15 +4372,36 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerLoginResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3044,6 +4411,12 @@
           },
           "dashboard": {
             "$ref": "#/components/schemas/CustomerDashboardData"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "sessionexpires": {
+            "type": "string"
           }
         }
       },
@@ -3080,16 +4453,27 @@
             "type": "string"
           },
           "emailaddress": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "phonenumber": {
             "type": "string"
           },
           "passwordreset": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "customeractive": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -3100,18 +4484,46 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "password": {
             "type": "string"
           }
+        },
+        "required": [
+          "apikey",
+          "email",
+          "password"
+        ],
+        "example": {
+          "apikey": "<application key>",
+          "email": "ama@example.com",
+          "password": "secret"
         }
       },
       "CustomerInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3129,14 +4541,37 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerForgotPasswordResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3150,15 +4585,36 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerEditResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3174,16 +4630,39 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerDashboardResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3201,14 +4680,37 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerChangePasswordResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3224,19 +4726,42 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "oldpassword": {
             "type": "string"
           },
           "newpassword": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerCardsSetDefaultResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3252,16 +4777,39 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "cardid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerCardsListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3293,10 +4841,17 @@
             "type": "string"
           },
           "expiry": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "isdefault": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -3308,14 +4863,37 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerCardsInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3334,16 +4912,39 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "cardid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerCardsDeleteResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3359,16 +4960,39 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "cardid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CustomerCardsAddResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3387,6 +5011,9 @@
           "customerid": {
             "type": "string"
           },
+          "sessiontoken": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -3394,15 +5021,154 @@
             "type": "string"
           },
           "email": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "WalletTransactionTypesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "wallettransactiontypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WalletTransactionTypeData"
+            }
+          }
+        }
+      },
+      "WalletTransactionTypeData": {
+        "type": "object",
+        "properties": {
+          "wallettransactiontypeid": {
+            "type": "string",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "description": "1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."
+          },
+          "wallettransactiontype": {
             "type": "string"
           }
         }
+      },
+      "WalletTransactionTypesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "WalletFundModesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "walletfundmodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WalletFundModeData"
+            }
+          }
+        }
+      },
+      "WalletFundModeData": {
+        "type": "object",
+        "properties": {
+          "walletfundmodeid": {
+            "type": "string",
+            "description": "Funding mode. See /core/walletfundmodes/list/."
+          },
+          "walletfundmode": {
+            "type": "string"
+          }
+        }
+      },
+      "WalletFundModesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "StatesListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3444,13 +5210,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "StatesInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3469,13 +5255,33 @@
           "stateid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "SizesListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3514,13 +5320,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "SizesInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3539,13 +5365,33 @@
           "sizeid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "SizesFeesResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3596,13 +5442,33 @@
           "boxid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "RequestTypesListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3635,13 +5501,101 @@
           "apikey": {
             "type": "string"
           }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "ParcelStatusesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "parcelstatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParcelStatusData"
+            }
+          }
         }
+      },
+      "ParcelStatusData": {
+        "type": "object",
+        "properties": {
+          "parcelstatusid": {
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+          },
+          "parcelstatus": {
+            "type": "string"
+          },
+          "parcelstatusdescription": {
+            "type": "string"
+          }
+        }
+      },
+      "ParcelStatusesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "FeesServiceResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3677,13 +5631,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "FeesSelfStorageResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3722,13 +5696,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "FeesComputeResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3764,13 +5758,33 @@
           "sizeid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "FeesApplessResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3806,13 +5820,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "DeliveryAreasListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3851,13 +5885,33 @@
           "statename": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CouriersListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3887,13 +5941,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CitiesListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3935,13 +6009,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CitiesInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3960,13 +6054,33 @@
           "cityid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "CitiesListByStateResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -3988,13 +6102,33 @@
           "stateid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BoxesListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4013,13 +6147,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BoxesInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4028,6 +6182,18 @@
             "$ref": "#/components/schemas/BoxData"
           },
           "lockerSizes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LockerSizeData"
+            }
+          },
+          "lockers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BoxLockerData"
+            }
+          },
+          "lockersizes": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LockerSizeData"
@@ -4058,6 +6224,20 @@
           }
         }
       },
+      "BoxLockerData": {
+        "type": "object",
+        "properties": {
+          "boxlockerid": {
+            "type": "string"
+          },
+          "boxlockernumber": {
+            "type": "string"
+          },
+          "sizeid": {
+            "type": "string"
+          }
+        }
+      },
       "BoxesInfo": {
         "type": "object",
         "properties": {
@@ -4067,13 +6247,33 @@
           "boxid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BoxesListByStateResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4095,13 +6295,33 @@
           "stateid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BoxesListByCityResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4123,13 +6343,33 @@
           "cityid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BoxAvailabilityResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4173,11 +6413,84 @@
           }
         }
       },
+      "BillingTypesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "billingtypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingTypeData"
+            }
+          }
+        }
+      },
+      "BillingTypeData": {
+        "type": "object",
+        "properties": {
+          "billingtypeid": {
+            "type": "string"
+          },
+          "billingtype": {
+            "type": "string"
+          }
+        }
+      },
+      "BillingTypesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
       "BusinessWalletTransactionInsertResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4191,10 +6504,16 @@
             "type": "string"
           },
           "wallettransactiontypeid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "description": "1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."
           },
           "walletfundmodeid": {
-            "type": "string"
+            "type": "string",
+            "description": "Funding mode. See /core/walletfundmodes/list/."
           },
           "transactionamount": {
             "type": "string"
@@ -4205,13 +6524,33 @@
           "createdby": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsTransactionHistoryResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4221,6 +6560,15 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsTransactionHistoryData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -4231,7 +6579,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "type": {
             "type": "string"
@@ -4250,6 +6600,9 @@
           },
           "narration": {
             "type": "string"
+          },
+          "reference": {
+            "type": "string"
           }
         }
       },
@@ -4258,14 +6611,40 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsRetrievedParcelsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4275,6 +6654,15 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -4285,7 +6673,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelreferencenumber": {
             "type": "string"
@@ -4303,7 +6693,16 @@
             "type": "string"
           },
           "parcelstatusid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string"
@@ -4342,13 +6741,15 @@
             "type": "string"
           },
           "recipientemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "sendername": {
             "type": "string"
           },
           "senderemail": {
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "dropcode": {
             "type": "string"
@@ -4360,10 +6761,14 @@
             "type": "string"
           },
           "dropdate": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "collectdate": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "parcelamount": {
             "type": "string"
@@ -4378,14 +6783,40 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsPickedUpParcelsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4395,6 +6826,15 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -4403,14 +6843,40 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsPendingPickupsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4420,6 +6886,15 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -4428,14 +6903,40 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsPendingDropoffsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4445,6 +6946,15 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -4453,14 +6963,40 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsParcelTimelineResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4486,7 +7022,16 @@
             "type": "string"
           },
           "parcelstatusid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string"
@@ -4495,7 +7040,9 @@
             "type": "string"
           },
           "datecreated": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           }
         }
       },
@@ -4508,13 +7055,33 @@
           "parceldetailid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsParcelInfoResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4533,13 +7100,33 @@
           "parceldetailid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsParcelReportsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4549,6 +7136,15 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -4563,14 +7159,40 @@
           },
           "dateto": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsParcelInfoAllResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4595,13 +7217,33 @@
           "parceldetailid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsParcelNewResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4630,6 +7272,54 @@
             "type": "string"
           },
           "recipientemail": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "required": [
+          "apikey",
+          "sizeid",
+          "boxid",
+          "recipientname",
+          "recipientphone",
+          "recipientemail"
+        ],
+        "example": {
+          "apikey": "<business secret key>",
+          "sizeid": "1",
+          "boxid": "4",
+          "recipientname": "Ama",
+          "recipientphone": "0104554198",
+          "recipientemail": "ama@example.com"
+        }
+      },
+      "LogisticsParcelCancelResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "refundedamount": {
             "type": "string"
           }
         }
@@ -4638,7 +7328,24 @@
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4698,13 +7405,33 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsCancelledParcelsResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4714,6 +7441,15 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelData"
             }
+          },
+          "total": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
         }
       },
@@ -4722,14 +7458,40 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "pagesize": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsBalanceResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4745,7 +7507,10 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "AdminBusinessWalletTransactionInsert": {
         "type": "object",
@@ -4757,10 +7522,16 @@
             "type": "string"
           },
           "wallettransactiontypeid": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "description": "1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."
           },
           "walletfundmodeid": {
-            "type": "string"
+            "type": "string",
+            "description": "Funding mode. See /core/walletfundmodes/list/."
           },
           "transactionamount": {
             "type": "string"
@@ -4771,13 +7542,33 @@
           "createdby": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "BusinessesListResponse": {
         "type": "object",
         "properties": {
           "statuscode": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
           },
           "statusmessage": {
             "type": "string"
@@ -4815,7 +7606,12 @@
             "type": "string"
           },
           "businessactive": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -4825,7 +7621,10 @@
           "apikey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "apikey"
+        ]
       }
     }
   }
