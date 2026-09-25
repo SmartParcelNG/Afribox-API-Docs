@@ -201,7 +201,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/read/post-customer-cards-list",
-          label: "Cards List",
+          label: "List the customer's saved cards",
           className: "api-method post",
         },
         {

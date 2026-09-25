@@ -33,7 +33,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-cards-add",
-          label: "Ajouter une carte",
+          label: "Ajouter une carte enregistrée",
           className: "api-method post",
         },
         {

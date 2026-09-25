@@ -62,6 +62,16 @@ the customer, so a client does not carry the (non-secret) customer id around.
   `/customer/resetpassword/` takes `{email, otp, newpassword}` and sets the new password in one
   step.
 
+## Saved cards
+
+`/customer/cards/add/` starts a **card verification** to tokenise a card: it initialises a
+Paystack transaction of **1 XOF** (`metadata.purpose="AddCard"`, `channels=["card"]`) and
+returns `cardaddurl`; after the customer completes it, `/customer/cards/add/complete/` stores
+the authorization. It does **not** debit the customer. A customer may keep up to **3** cards.
+The stored `token` (Paystack `authorization_code`) is **never returned** — card responses
+expose only `first6digits`, `last4digits`, `type`, `expiry` and `isdefault`. Cards are reused
+for future charges.
+
 ## Snapshot links
 
 Proof-of-delivery images are **not** fetched with a key. `/parcel/snapshots/` (application key)

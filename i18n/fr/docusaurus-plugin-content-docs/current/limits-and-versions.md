@@ -44,6 +44,14 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-08
+
+- **Cartes enregistrées documentées :** ajouter une carte (`/customer/cards/add/`) est une
+  **vérification de carte de 1 XOF** qui la tokenise (`metadata.purpose="AddCard"`) — cela **ne
+  débite pas**. Un client peut conserver **3** cartes ; le `token` Paystack n'est **jamais
+  renvoyé** (les réponses de cartes portent uniquement `first6digits`, `last4digits`, `type`,
+  `expiry`, `isdefault`). Voir *Authentification* → **Cartes enregistrées**.
+
 ### 2026-10-07
 
 - **`dispatch` clarifié :** il existe dans le backend mais **ne fait pas encore partie de ce

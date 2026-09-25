@@ -201,7 +201,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-cards-list",
-          label: "Lister les cartes",
+          label: "Lister les cartes enregistrées du client",
           className: "api-method post",
         },
         {

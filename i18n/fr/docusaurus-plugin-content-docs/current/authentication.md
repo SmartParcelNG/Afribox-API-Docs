@@ -63,6 +63,16 @@ transporter l'identifiant client (non secret).
   l'existence du compte) ; `/customer/resetpassword/` prend `{email, otp, newpassword}` et
   définit le nouveau mot de passe en une étape.
 
+## Cartes enregistrées
+
+`/customer/cards/add/` démarre une **vérification de carte** pour la tokeniser : elle initialise
+une transaction Paystack de **1 XOF** (`metadata.purpose="AddCard"`, `channels=["card"]`) et
+renvoie `cardaddurl` ; une fois complétée par le client, `/customer/cards/add/complete/`
+enregistre l'autorisation. Cela **ne débite pas** le client. Un client peut conserver jusqu'à
+**3** cartes. Le `token` stocké (`authorization_code` Paystack) n'est **jamais renvoyé** — les
+réponses de cartes n'exposent que `first6digits`, `last4digits`, `type`, `expiry` et
+`isdefault`. Les cartes sont réutilisées pour de futurs paiements.
+
 ## Liens d'instantanés
 
 Les images de preuve de livraison ne se récupèrent **pas** avec une clé. `/parcel/snapshots/`

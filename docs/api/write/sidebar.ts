@@ -33,7 +33,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/write/post-customer-cards-add",
-          label: "Cards Add",
+          label: "Add a saved card",
           className: "api-method post",
         },
         {

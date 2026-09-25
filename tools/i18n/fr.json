@@ -233,7 +233,8 @@
       "summary": "Retour d'ajout de carte (navigateur)"
     },
     "post_customer_cards_add": {
-      "summary": "Ajouter une carte"
+      "summary": "Ajouter une carte enregistrée",
+      "description": "Démarre une **vérification de carte** pour la tokeniser : initialise une transaction Paystack de **1 XOF** (`metadata.purpose=\"AddCard\"`) et renvoie `cardaddurl` ; le client la complète dans le navigateur, puis appelez `/customer/cards/add/complete/`. Cela **ne débite pas** le client. Max **3** cartes."
     },
     "post_customer_cards_delete": {
       "summary": "Supprimer une carte"
@@ -242,7 +243,8 @@
       "summary": "Détails d'une carte"
     },
     "post_customer_cards_list": {
-      "summary": "Lister les cartes"
+      "summary": "Lister les cartes enregistrées du client",
+      "description": "Les cartes enregistrées du client : `first6digits`, `last4digits`, `type`, `expiry`, `isdefault`. Le `token` Paystack n'est **pas renvoyé**."
     },
     "post_customer_cards_setdefault": {
       "summary": "Définir la carte par défaut"

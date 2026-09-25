@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.6",
+    "version": "2.1.7",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -375,8 +375,8 @@
       "description": "Wallet transaction types: `1` Credit, `2` Debit."
     },
     "POST /customer/cards/add/": {
-      "summary": "Cards Add",
-      "description": "Start adding a saved card; returns the Paystack authorization URL to complete in the browser."
+      "summary": "Add a saved card",
+      "description": "Starts a **card verification** to tokenise a card: initialises a Paystack transaction of **1 XOF** (`metadata.purpose=\"AddCard\"`) and returns `cardaddurl`; the customer completes it in the browser, then call `/customer/cards/add/complete/`. It does **not** debit the customer. Max **3** cards."
     },
     "POST /customer/cards/delete/": {
       "summary": "Cards Delete",
@@ -387,8 +387,8 @@
       "description": "One of the customer's saved cards."
     },
     "POST /customer/cards/list/": {
-      "summary": "Cards List",
-      "description": "The customer's saved cards."
+      "summary": "List the customer's saved cards",
+      "description": "The customer's saved cards: `first6digits`, `last4digits`, `type`, `expiry`, `isdefault`. The Paystack `token` is **not returned**."
     },
     "POST /customer/cards/setdefault/": {
       "summary": "Cards Setdefault",

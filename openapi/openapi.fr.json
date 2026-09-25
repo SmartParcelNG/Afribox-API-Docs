@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.6",
+    "version": "2.1.7",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -2720,11 +2720,11 @@
     "/customer/cards/add/": {
       "post": {
         "operationId": "post_customer_cards_add",
-        "summary": "Ajouter une carte",
+        "summary": "Ajouter une carte enregistrée",
         "tags": [
           "customer"
         ],
-        "description": "Start adding a saved card; returns the Paystack authorization URL to complete in the browser.",
+        "description": "Démarre une **vérification de carte** pour la tokeniser : initialise une transaction Paystack de **1 XOF** (`metadata.purpose=\"AddCard\"`) et renvoie `cardaddurl` ; le client la complète dans le navigateur, puis appelez `/customer/cards/add/complete/`. Cela **ne débite pas** le client. Max **3** cartes.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -2840,11 +2840,11 @@
     "/customer/cards/list/": {
       "post": {
         "operationId": "post_customer_cards_list",
-        "summary": "Lister les cartes",
+        "summary": "Lister les cartes enregistrées du client",
         "tags": [
           "customer"
         ],
-        "description": "The customer's saved cards.",
+        "description": "Les cartes enregistrées du client : `first6digits`, `last4digits`, `type`, `expiry`, `isdefault`. Le `token` Paystack n'est **pas renvoyé**.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {

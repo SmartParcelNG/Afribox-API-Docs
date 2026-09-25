@@ -42,6 +42,14 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-08
+
+- **Saved cards documented:** adding a card (`/customer/cards/add/`) is a **1-XOF card
+  verification** that tokenises it (`metadata.purpose="AddCard"`) — it does **not** debit. A
+  customer may keep **3** cards; the Paystack `token` is **never returned** (card responses
+  carry only `first6digits`, `last4digits`, `type`, `expiry`, `isdefault`). See *Authentication*
+  → **Saved cards**.
+
 ### 2026-10-07
 
 - **`dispatch` clarified:** it exists in the backend but is **not part of this contract yet** —
