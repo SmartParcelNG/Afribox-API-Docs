@@ -42,6 +42,14 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-03
+
+- **Authentication docs clarified:** the page now lists **all four** dual-auth endpoints
+  (`/pay/initialize/`, `/pay/verify/`, `/pay/status/`, `/customer/parcels/hold/`), states that
+  `business` reads use the **public** key and writes the **secret** key, notes that
+  `/business/boxes/info/` is **business-scoped**, and records the hard-coded application
+  context in the business auth procedures as a known leftover.
+
 ### 2026-10-02
 
 - **Transport edges:** an unknown path now returns the JSON envelope with **HTTP 404** instead

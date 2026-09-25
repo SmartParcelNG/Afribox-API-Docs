@@ -79,15 +79,30 @@ Creating endpoints (`business/parcels/create`, `customer/parcels/new`, `pay/init
 Repeat the same call with the same key and the server returns the first response instead of
 creating a second parcel/locker/debit. Use a fresh UUID per logical operation.
 
-## Dual-auth endpoints (`/pay/*`)
+## Dual-auth endpoints
 
-`/pay/initialize`, `/pay/verify`, and `/pay/status` accept **either**:
+`/pay/initialize`, `/pay/verify`, `/pay/status` **and `/customer/parcels/hold/`** accept
+**either**:
 
 - a **Business secret key** (B2B), or
 - an **Application key** plus an optional `customerid` (B2C).
 
-The backend resolves the key automatically. For B2C, the payment is attributed to
-the application (and customer when provided); for B2B, to the business.
+The backend resolves the key automatically (secret key first, then application key). For B2C,
+the payment is attributed to the application (and customer when provided); for B2B, to the
+business. `/customer/parcels/hold/` is the pay-first checkout: it returns a Paystack
+`reference`/`authorizationurl`/`accesscode` like `/pay/initialize/`, and the reference is
+**verified** (never trusted) via `/pay/verify/`, `/pay/return/` or the webhook.
+
+:::note Business auth, precisely
+- **`business` reads** use the **public** key; **`business` writes** (`parcels/create`,
+  `parcels/cancel`, `parcels/retrieve`, `wallettransaction/new`) use the **secret** key.
+- `/business/boxes/info/` is **business-scoped**: it returns a box only if it is assigned to
+  the calling business (`BUS_BusinessBoxes`). The owner's any-box lookup is `/core/boxes/info/`
+  with the application key.
+- Known leftover: the business authentication procedures resolve the request's application
+  context through a hard-coded application key. It is harmless today (endpoints use the
+  business's own network) and is slated for cleanup.
+:::
 
 ## Paystack webhook
 

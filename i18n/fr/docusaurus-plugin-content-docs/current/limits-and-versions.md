@@ -44,6 +44,15 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-03
+
+- **Documentation d'authentification clarifiée :** la page liste désormais **les quatre**
+  points à double authentification (`/pay/initialize/`, `/pay/verify/`, `/pay/status/`,
+  `/customer/parcels/hold/`), indique que les lectures `business` utilisent la clé **publique**
+  et les écritures la clé **secrète**, précise que `/business/boxes/info/` est **limité à
+  l'entreprise**, et consigne le contexte d'application codé en dur dans les procédures
+  d'authentification d'entreprise comme reliquat connu.
+
 ### 2026-10-02
 
 - **Cas limites du transport :** un chemin inconnu renvoie désormais l'enveloppe JSON avec

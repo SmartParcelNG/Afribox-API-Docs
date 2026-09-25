@@ -81,15 +81,31 @@ Les points de création (`business/parcels/create`, `customer/parcels/new`, `pay
 facultatif. Répétez le même appel avec la même clé : le serveur renvoie la première réponse
 au lieu de créer un second colis/casier/débit. Utilisez un UUID neuf par opération logique.
 
-## Points à double authentification (`/pay/*`)
+## Points à double authentification
 
-`/pay/initialize`, `/pay/verify` et `/pay/status` acceptent **soit** :
+`/pay/initialize`, `/pay/verify`, `/pay/status` **et `/customer/parcels/hold/`** acceptent
+**soit** :
 
 - une **clé secrète d'entreprise** (B2B), soit
 - une **clé d'application** avec un `customerid` facultatif (B2C).
 
-Le backend résout la clé automatiquement. En B2C, le paiement est attribué à
-l'application (et au client si fourni) ; en B2B, à l'entreprise.
+Le backend résout la clé automatiquement (clé secrète d'abord, puis clé d'application). En B2C,
+le paiement est attribué à l'application (et au client si fourni) ; en B2B, à l'entreprise.
+`/customer/parcels/hold/` est le paiement d'abord : il renvoie une `reference` Paystack,
+`authorizationurl` et `accesscode` comme `/pay/initialize/`, et la référence est **vérifiée**
+(jamais présumée) via `/pay/verify/`, `/pay/return/` ou le webhook.
+
+:::note Authentification `business`, précisément
+- Les **lectures `business`** utilisent la clé **publique** ; les **écritures `business`**
+  (`parcels/create`, `parcels/cancel`, `parcels/retrieve`, `wallettransaction/new`) utilisent
+  la clé **secrète**.
+- `/business/boxes/info/` est **limité à l'entreprise** : il ne renvoie une boîte que si elle
+  lui est affectée (`BUS_BusinessBoxes`). La recherche de n'importe quelle boîte par le
+  propriétaire est `/core/boxes/info/` avec la clé d'application.
+- Reliquat connu : les procédures d'authentification d'entreprise résolvent le contexte
+  d'application via une clé d'application **codée en dur**. Inoffensif aujourd'hui (les points
+  utilisent le réseau de l'entreprise), à nettoyer.
+:::
 
 ## Webhook Paystack
 
