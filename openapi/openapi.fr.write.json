@@ -209,7 +209,7 @@
         "tags": [
           "business"
         ],
-        "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1).",
+        "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {

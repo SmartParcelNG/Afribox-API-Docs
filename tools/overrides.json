@@ -43,17 +43,17 @@
     },
     "POST /business/pendingdropoffs/": {
       "summary": "List parcels awaiting drop-off",
-      "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1)."
+      "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1). Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
     },
     "POST /business/retrievedparcels/": {
       "readonly": true,
       "summary": "List the business's retrieved parcels",
-      "description": "The business's parcels retrieved from a locker."
+      "description": "The business's parcels retrieved from a locker. Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
     },
     "POST /business/cancelledparcels/": {
       "readonly": true,
       "summary": "List the business's cancelled parcels",
-      "description": "The business's cancelled parcels."
+      "description": "The business's cancelled parcels. Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
     },
     "POST /customer/parcels/cancelled/": {
       "readonly": true,
@@ -166,7 +166,7 @@
     },
     "POST /business/pendingpickups/": {
       "summary": "List parcels awaiting collection",
-      "description": "Parcels already dropped into a locker and not yet collected (status 2)."
+      "description": "Parcels already dropped into a locker and not yet collected (status 2). Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
     },
     "POST /business/parcels/retrieve/": {
       "summary": "Retrieve a dropped-off parcel",
@@ -237,7 +237,7 @@
     },
     "POST /customer/parcels/all/": {
       "summary": "List all customer parcels",
-      "description": "All of the customer's parcels, newest first."
+      "description": "All of the customer's parcels, newest first. Requires a valid **`sessiontoken`** (from `/customer/login/`); a bare `customerid` is not accepted."
     },
     "POST /customer/parcels/archived/": {
       "summary": "List archived parcels",
@@ -341,7 +341,7 @@
     },
     "POST /core/parcels/search/": {
       "summary": "Parcels Search",
-      "description": "Find any parcel in the network by `parcelreferencenumber`."
+      "description": "Find any parcel in the network by `parcelreferencenumber`. Runs under the **application key** (a client key), so recipient/sender contact details are **masked** (`\"****\"`); it returns tracking fields only (status, size, box, city/state, amounts, dates)."
     },
     "POST /core/requesttypes/list/": {
       "summary": "List the request types",
@@ -496,11 +496,11 @@
     },
     "POST /business/parcels/info/all/": {
       "summary": "Info All",
-      "description": "One business parcel **plus its `timelines`**, by `parceldetailid`."
+      "description": "One business parcel **plus its `timelines`**, by `parceldetailid`. Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
     },
     "POST /business/parcels/info/": {
       "summary": "Parcels Info",
-      "description": "One business parcel, by `parceldetailid`."
+      "description": "One business parcel, by `parceldetailid`. Requires the **business public key**; the opening codes `dropcode`/`collectcode` are served as `\"****\"` (real codes are returned only under the secret key, e.g. the create response)."
     },
     "POST /business/parcels/reports/": {
       "summary": "Parcels Reports",
@@ -512,7 +512,7 @@
     },
     "POST /business/pickedupparcels/": {
       "summary": "Business Pickedupparcels",
-      "description": "The business's parcels already collected by the business."
+      "description": "The business's parcels already collected by the business. Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
     },
     "POST /business/sizes/": {
       "summary": "Business Sizes",

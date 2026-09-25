@@ -34,6 +34,20 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-29
+
+- **Durcissement de la clé publique d'entreprise :** les codes d'ouverture de casier
+  (`dropcode`/`collectcode`) sont désormais masqués en `"****"` aussi sur
+  `/business/parcels/info/` et `/business/parcels/info/all/` (ils l'étaient déjà sur les cinq
+  listes). Les vrais codes ne reviennent que sous la **clé secrète**. La clé publique reste
+  réservée au côté serveur.
+- **`/core/parcels/search/`** (clé d'application) ne renvoie plus les coordonnées
+  destinataire/expéditeur — elles sont masquées ; seuls les champs de suivi sont renvoyés.
+- **Les lectures client exigent désormais `sessiontoken` :** `/customer/parcels/*` (et lectures
+  associées) n'acceptent plus un `customerid` seul ; un jeton absent/invalide renvoie
+  `98 Authentication Failed`. Cela ferme la faille « n'importe qui avec un identifiant client
+  (non secret) peut lire codes/OTP/données personnelles ».
+
 ### 2026-09-28
 
 - **Vide ou erreur :** chaque point d'accès de **liste** renvoie désormais `00` avec un tableau

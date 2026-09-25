@@ -18,7 +18,7 @@ All endpoints authenticate with an `apikey` sent **in the JSON request body**
 | Key | Where used | How it identifies |
 | --- | --- | --- |
 | **Application key** | `core`, `customer`, `kiosk`, `dispatch`, `pay` (B2C) | The application/channel; sets `NetworkID` |
-| **Business public key** | most `business` endpoints (**read-only**) | The business |
+| **Business public key** | most `business` endpoints (**read-only**; opening codes masked) | The business |
 | **Business secret key** | `business/parcels/create`, `business/parcels/cancel`, `business/parcels/retrieve`, `business/wallettransaction/new`, `pay` (B2B) | The business |
 | **Admin key** | `admin/*` | The network (or all networks) |
 
@@ -34,19 +34,21 @@ All endpoints authenticate with an `apikey` sent **in the JSON request body**
 :::warning Keep the right key in the right place
 - The **secret key** must never live in a client (web, mobile, locker app).
 - The **business public key is not a client key**: treat it as server-side. It reads the
-  business's parcels and wallet, and (with the secret key) drives writes — it must not be
-  shipped in a browser bundle.
+  business's parcels and wallet and must not be shipped in a browser bundle. It never returns
+  the locker opening codes — `dropcode`/`collectcode` are served as `"****"` under the public
+  key (the real codes come back only under the secret key, e.g. the create response).
 - The **application key** is the one intended for client apps and devices. It is scoped to the
-  application/network, not to a single customer.
+  application/network, not to a single customer. Contact details are masked on
+  `/core/parcels/search/` for this key.
 :::
 
 ## Customer session token
 
 `POST /customer/login/` returns a dated, revocable `sessiontoken` (and `sessionexpires`)
-alongside the customer profile. Customer read endpoints accept `sessiontoken` **in place of**
-`customerid`, so a client does not have to carry the (non-secret) customer id around. A
-customer id by itself is not proof of identity — prefer the session token for real clients. An
-invalid or expired token returns `98 Authentication Failed`.
+alongside the customer profile. **Customer read endpoints require `sessiontoken`** — a bare
+`customerid` is not proof of identity and is no longer accepted on its own; an absent, invalid
+or expired token returns `98 Authentication Failed`. The session fixes both the identity and
+the customer, so a client does not carry the (non-secret) customer id around.
 
 ## Idempotency
 

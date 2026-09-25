@@ -131,7 +131,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-parcels-search",
-          label: "Rechercher un colis",
+          label: "Recherche de colis",
           className: "api-method post",
         },
         {
@@ -219,7 +219,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-all",
-          label: "Tous les colis",
+          label: "Lister tous les colis du client",
           className: "api-method post",
         },
         {
@@ -249,13 +249,13 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-info-all",
-          label: "Client: Détails d'un colis et son historique",
+          label: "Détails d'un colis et son historique",
           className: "api-method post",
         },
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-customer-parcels-info",
-          label: "Client: Détails d'un colis",
+          label: "Détails d'un colis",
           className: "api-method post",
         },
         {
@@ -385,13 +385,13 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-info-all",
-          label: "Entreprise: Détails d'un colis et son historique",
+          label: "Info complet",
           className: "api-method post",
         },
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-info",
-          label: "Entreprise: Détails d'un colis",
+          label: "Info colis",
           className: "api-method post",
         },
         {

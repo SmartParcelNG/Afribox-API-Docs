@@ -75,7 +75,8 @@
       "description": "Les boîtes affectées à l'entreprise dans un État, quel que soit leur état de service."
     },
     "post_business_cancelledparcels": {
-      "summary": "Colis annulés"
+      "summary": "Colis annulés",
+      "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`."
     },
     "post_business_cities_all": {
       "summary": "Villes (toutes)"
@@ -102,10 +103,12 @@
       "description": "Crée un colis pour le compte de l'entreprise et réserve un casier. Le type de demande est toujours **6** (Ramassage sur place / réservation appless) — ce n'est pas un champ de la requête. Débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif. Pour une entreprise prépayée avec un solde insuffisant : `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE`. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement)."
     },
     "post_business_parcels_info": {
-      "summary": "Détails d'un colis"
+      "summary": "Info colis",
+      "description": "Un colis de l'entreprise, par `parceldetailid`. Requiert la **clé publique** de l'entreprise ; les codes d'ouverture `dropcode`/`collectcode` sont servis en `\"****\"` (les vrais codes ne sont renvoyés que sous la clé secrète, p. ex. la réponse de création)."
     },
     "post_business_parcels_info_all": {
-      "summary": "Détails d'un colis et son historique"
+      "summary": "Info complet",
+      "description": "Un colis de l'entreprise **et ses `timelines`**, par `parceldetailid`. Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`."
     },
     "post_business_parcels_reports": {
       "summary": "Rapports de colis",
@@ -118,16 +121,20 @@
       "summary": "Chronologie d'un colis"
     },
     "post_business_pendingdropoffs": {
-      "summary": "Dépôts en attente"
+      "summary": "Dépôts en attente",
+      "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`."
     },
     "post_business_pendingpickups": {
-      "summary": "Retraits en attente"
+      "summary": "Retraits en attente",
+      "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`."
     },
     "post_business_pickedupparcels": {
-      "summary": "Colis retirés"
+      "summary": "Colis retirés",
+      "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`."
     },
     "post_business_retrievedparcels": {
-      "summary": "Colis récupérés"
+      "summary": "Colis récupérés",
+      "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`."
     },
     "post_business_sizes": {
       "summary": "Tailles disponibles"
@@ -198,7 +205,8 @@
       "summary": "Frais de service"
     },
     "post_core_parcels_search": {
-      "summary": "Rechercher un colis"
+      "summary": "Recherche de colis",
+      "description": "Trouve n'importe quel colis du réseau par `parcelreferencenumber`. S'exécute sous la **clé d'application** (clé client) : les coordonnées destinataire/expéditeur sont **masquées** (`\"****\"`) ; seuls les champs de suivi sont renvoyés (statut, taille, boîte, ville/région, montants, dates)."
     },
     "post_core_requesttypes_list": {
       "summary": "Lister les types de demande",
@@ -263,7 +271,8 @@
       "summary": "Vérifier l'OTP"
     },
     "post_customer_parcels_all": {
-      "summary": "Tous les colis"
+      "summary": "Lister tous les colis du client",
+      "description": "Tous les colis du client, du plus récent au plus ancien. Requiert un **`sessiontoken`** valide (de `/customer/login/`) ; un `customerid` seul n'est pas accepté."
     },
     "post_customer_parcels_archived": {
       "summary": "Colis archivés"

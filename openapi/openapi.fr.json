@@ -494,7 +494,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's cancelled parcels.",
+        "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -831,11 +831,11 @@
     "/business/parcels/info/all/": {
       "post": {
         "operationId": "post_business_parcels_info_all",
-        "summary": "Entreprise: Détails d'un colis et son historique",
+        "summary": "Info complet",
         "tags": [
           "business"
         ],
-        "description": "One business parcel **plus its `timelines`**, by `parceldetailid`.",
+        "description": "Un colis de l'entreprise **et ses `timelines`**, par `parceldetailid`. Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -871,11 +871,11 @@
     "/business/parcels/info/": {
       "post": {
         "operationId": "post_business_parcels_info",
-        "summary": "Entreprise: Détails d'un colis",
+        "summary": "Info colis",
         "tags": [
           "business"
         ],
-        "description": "One business parcel, by `parceldetailid`.",
+        "description": "Un colis de l'entreprise, par `parceldetailid`. Requiert la **clé publique** de l'entreprise ; les codes d'ouverture `dropcode`/`collectcode` sont servis en `\"****\"` (les vrais codes ne sont renvoyés que sous la clé secrète, p. ex. la réponse de création).",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -1075,7 +1075,7 @@
         "tags": [
           "business"
         ],
-        "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1).",
+        "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {
@@ -1115,7 +1115,7 @@
         "tags": [
           "business"
         ],
-        "description": "Parcels already dropped into a locker and not yet collected (status 2).",
+        "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -1155,7 +1155,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's parcels already collected by the business.",
+        "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -1195,7 +1195,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's parcels retrieved from a locker.",
+        "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -2255,11 +2255,11 @@
     "/core/parcels/search/": {
       "post": {
         "operationId": "post_core_parcels_search",
-        "summary": "Rechercher un colis",
+        "summary": "Recherche de colis",
         "tags": [
           "core"
         ],
-        "description": "Find any parcel in the network by `parcelreferencenumber`.",
+        "description": "Trouve n'importe quel colis du réseau par `parcelreferencenumber`. S'exécute sous la **clé d'application** (clé client) : les coordonnées destinataire/expéditeur sont **masquées** (`\"****\"`) ; seuls les champs de suivi sont renvoyés (statut, taille, boîte, ville/région, montants, dates).",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -3232,11 +3232,11 @@
     "/customer/parcels/all/": {
       "post": {
         "operationId": "post_customer_parcels_all",
-        "summary": "Tous les colis",
+        "summary": "Lister tous les colis du client",
         "tags": [
           "customer"
         ],
-        "description": "All of the customer's parcels, newest first.",
+        "description": "Tous les colis du client, du plus récent au plus ancien. Requiert un **`sessiontoken`** valide (de `/customer/login/`) ; un `customerid` seul n'est pas accepté.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -3552,7 +3552,7 @@
     "/customer/parcels/info/all/": {
       "post": {
         "operationId": "post_customer_parcels_info_all",
-        "summary": "Client: Détails d'un colis et son historique",
+        "summary": "Détails d'un colis et son historique",
         "tags": [
           "customer"
         ],
@@ -3592,7 +3592,7 @@
     "/customer/parcels/info/": {
       "post": {
         "operationId": "post_customer_parcels_info",
-        "summary": "Client: Détails d'un colis",
+        "summary": "Détails d'un colis",
         "tags": [
           "customer"
         ],

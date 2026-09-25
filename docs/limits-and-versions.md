@@ -33,6 +33,18 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-29
+
+- **Business public key hardening:** the locker opening codes (`dropcode`/`collectcode`) are
+  now masked as `"****"` on `/business/parcels/info/` and `/business/parcels/info/all/` too
+  (they were already masked on the five list endpoints). Real codes are returned only under
+  the **secret key**. The public key remains server-side only.
+- **`/core/parcels/search/`** (application key) no longer returns recipient/sender contact
+  details — they are masked; only tracking fields are returned.
+- **Customer reads now require `sessiontoken`:** `/customer/parcels/*` (and related reads) no
+  longer accept a bare `customerid`; an absent/invalid token returns `98 Authentication Failed`.
+  This closes the "anyone with a (non-secret) customer id can read codes/OTP/PII" hole.
+
 ### 2026-09-28
 
 - **Empty vs. error:** every **list** endpoint now returns `00` with an empty array (`[]`) when

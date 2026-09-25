@@ -209,7 +209,7 @@
         "tags": [
           "business"
         ],
-        "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1).",
+        "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1). Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`.",
         "x-auth": "business_public",
         "x-readonly": false,
         "requestBody": {

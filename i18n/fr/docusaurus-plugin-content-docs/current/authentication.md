@@ -19,7 +19,7 @@ détermine lequel est attendu.
 | Clé | Utilisée pour | Identifie |
 | --- | --- | --- |
 | **Clé d'application** | `core`, `customer`, `kiosk`, `dispatch`, `pay` (B2C) | L'application/le canal ; définit `NetworkID` |
-| **Clé publique d'entreprise** | la plupart des points `business` (**lecture**) | L'entreprise |
+| **Clé publique d'entreprise** | la plupart des points `business` (**lecture** ; codes d'ouverture masqués) | L'entreprise |
 | **Clé secrète d'entreprise** | `business/parcels/create`, `business/parcels/cancel`, `business/parcels/retrieve`, `business/wallettransaction/new`, `pay` (B2B) | L'entreprise |
 | **Clé d'administration** | `admin/*` | Le réseau (ou tous les réseaux) |
 
@@ -34,19 +34,22 @@ détermine lequel est attendu.
 :::warning La bonne clé au bon endroit
 - La **clé secrète** ne doit jamais se trouver dans un client (web, mobile, application casier).
 - La **clé publique d'entreprise n'est pas une clé client** : traitez-la comme côté serveur.
-  Elle lit les colis et le portefeuille de l'entreprise et, avec la clé secrète, pilote les
-  écritures — elle ne doit pas être embarquée dans un navigateur.
+  Elle lit les colis et le portefeuille de l'entreprise et ne doit pas être embarquée dans un
+  navigateur. Elle ne renvoie **jamais** les codes d'ouverture de casier — `dropcode`/
+  `collectcode` sont servis en `"****"` sous la clé publique (les vrais codes ne reviennent que
+  sous la clé secrète, p. ex. la réponse de création).
 - La **clé d'application** est celle destinée aux applications et appareils clients. Elle est
-  liée à l'application/réseau, pas à un client en particulier.
+  liée à l'application/réseau, pas à un client en particulier. Les coordonnées sont masquées sur
+  `/core/parcels/search/` pour cette clé.
 :::
 
 ## Jeton de session client
 
 `POST /customer/login/` renvoie un `sessiontoken` daté et révocable (et `sessionexpires`) en
-plus du profil. Les points de lecture `customer` acceptent `sessiontoken` **à la place de**
-`customerid`, pour que le client n'ait pas à transporter l'identifiant client (non secret).
-Un identifiant client seul ne prouve pas l'identité — préférez le jeton de session. Un jeton
-invalide ou expiré renvoie `98 Authentication Failed`.
+plus du profil. **Les points de lecture `customer` exigent `sessiontoken`** — un `customerid`
+seul ne prouve pas l'identité et n'est plus accepté ; un jeton absent, invalide ou expiré
+renvoie `98 Authentication Failed`. La session fixe à la fois l'identité et le client, sans
+transporter l'identifiant client (non secret).
 
 ## Idempotence
 
