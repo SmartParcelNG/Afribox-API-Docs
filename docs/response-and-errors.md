@@ -71,6 +71,22 @@ The contract types most fields as strings. What the strings contain:
   **array** (`/core/fees/service/`, `/core/fees/selfstorage/`, `/core/fees/appless/`), or a
   **string** (`sizes[].fees`, `/pay/verify/`). Model them per endpoint, not by field name.
 
+## Locker counters
+
+The unit is the **compartment** — one locker door. `boxcapacity` counts compartments, and one parcel occupies exactly one. On a box, `lockersinuse` + `lockersfree` = `boxcapacity`; on the dashboard, `lockers` = `lockerstotal` = Σ `boxcapacity`, `lockersvacant` = Σ `lockersfree`, and `lockersreserved` + `lockersoccupied` = Σ `lockersinuse`. Vocabulary:
+
+- `boxcapacity` — the number of compartments the box is configured for.
+- `lockers` / `lockerstotal` (dashboard) — the compartments across all the business's boxes (same count).
+- `lockersvacant` (dashboard) — compartments across the business's boxes that are free.
+- `lockersreserved` — compartments held by a parcel created but not yet dropped off.
+- `lockersoccupied` — compartments holding a dropped-off parcel.
+- `lockersinuse` (box) — compartments not free: reserved plus occupied.
+- `lockersfree` (box) — compartments neither reserved nor occupied.
+- `lockersavailable` (box) — a **boolean flag**, not a counter: `"True"` iff the box has at least one free compartment (`lockersfree > 0`), `"False"` at zero. It is independent of whether the box is in service.
+- `users` (dashboard) — the staff accounts attached to the business, not its customers.
+
+A `lockersreserved` count higher than `parcelspendingdropoffs` is not a defect: reserved counts compartments by state and includes customer holds and stale reservations, while pending drop-offs counts the business's parcels; the rule is one pending drop-off reserves one compartment.
+
 ## Dates and time zones
 
 - **Zone.** All dates are the **server's local time**, with no offset in the value. On the current

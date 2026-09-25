@@ -75,6 +75,22 @@ Le contrat type la plupart des champs en chaînes. Ce qu'elles contiennent :
   `/core/fees/selfstorage/`, `/core/fees/appless/`) ou une **chaîne** (`sizes[].fees`,
   `/pay/verify/`). Modélisez-les par point d'accès, pas par nom de champ.
 
+## Compteurs de casiers
+
+L'unité est le **compartiment** — une porte de casier. `boxcapacity` compte les compartiments, et un colis occupe exactement un. Sur une boîte, `lockersinuse` + `lockersfree` = `boxcapacity` ; sur le tableau de bord, `lockers` = `lockerstotal` = Σ `boxcapacity`, `lockersvacant` = Σ `lockersfree`, et `lockersreserved` + `lockersoccupied` = Σ `lockersinuse`. Vocabulaire :
+
+- `boxcapacity` — le nombre de compartiments pour lesquels la boîte est configurée.
+- `lockers` / `lockerstotal` (tableau de bord) — les compartiments de toutes les boîtes de l'entreprise (même nombre).
+- `lockersvacant` (tableau de bord) — les compartiments libres des boîtes de l'entreprise.
+- `lockersreserved` — les compartiments détenus par un colis créé mais pas encore déposé.
+- `lockersoccupied` — les compartiments contenant un colis déposé.
+- `lockersinuse` (boîte) — les compartiments non libres : réservés plus occupés.
+- `lockersfree` (boîte) — les compartiments ni réservés ni occupés.
+- `lockersavailable` (boîte) — un **indicateur booléen**, pas un compteur : `"True"` si et seulement si la boîte a au moins un compartiment libre (`lockersfree > 0`), `"False"` à zéro. Indépendant de l'état de service de la boîte.
+- `users` (tableau de bord) — les comptes du personnel rattachés à l'entreprise, pas ses clients.
+
+Un `lockersreserved` supérieur à `parcelspendingdropoffs` n'est pas un défaut : réservé compte les compartiments par état et inclut les réservations client et les réservations périmées, alors que les dépôts en attente comptent les colis de l'entreprise ; la règle est qu'un dépôt en attente réserve un compartiment.
+
 ## Dates et fuseaux horaires
 
 - **Fuseau.** Toutes les dates sont à l'**heure locale du serveur**, sans décalage dans la valeur.
