@@ -23,7 +23,12 @@ L'appareil casier utilise les points `kiosk` avec la **clé d'application**.
    /colis pour cette taille. Pour un menu complet, combinez `/core/fees/appless/` (prix par
    taille) et `/core/boxes/availability/` (casiers libres par taille).
 2. Collectez le paiement pour la durée choisie :
-   - `POST /pay/initialize` (`flowtype: "appless"`, `metadata` avec le contexte casier).
+   - `POST /pay/initialize` avec **`flowtype: "appless"` au niveau supérieur** (pas dans
+     `metadata`) et un objet `metadata` avec le contexte du casier. Les clés de contexte
+     envoyées par l'application casier sont **`boxid`**, **`sizeid`** et **`boxlockernumber`** ;
+     elles sont recommandées mais **facultatives** — la réservation s'achève à partir de
+     `paymentreference`, pas de `metadata` (le serveur ajoute lui-même `applicationid` et
+     `flow`). Envoyer un **`phone`** fait envoyer le lien de paiement par SMS.
    - Affichez `authorizationurl` en QR ; le client paie.
    - Sondez `POST /pay/status` jusqu'à `transactionstatus == "success"`.
 3. `POST /kiosk/parcel/appless/reserve` avec `paymentreference`.

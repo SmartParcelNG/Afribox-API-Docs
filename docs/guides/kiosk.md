@@ -22,7 +22,12 @@ The locker device uses the `kiosk` endpoints with the **application key**.
    size/fee/parcel for that size. To show a full price/availability menu, combine
    `/core/fees/appless/` (prices by size) and `/core/boxes/availability/` (free lockers by size).
 2. Collect payment for the selected duration:
-   - `POST /pay/initialize` (`flowtype: "appless"`, `metadata` with box/locker context).
+   - `POST /pay/initialize` with **`flowtype: "appless"` at the top level** (not inside
+     `metadata`) and a `metadata` object with the locker context. The context keys the locker
+     app sends are **`boxid`**, **`sizeid`** and **`boxlockernumber`**; they are recommended
+     but **optional** — the reservation is completed from `paymentreference`, not from
+     `metadata` (the server adds `applicationid` and `flow` itself). Sending a
+     **`phone`** makes the server SMS the payment link.
    - Show `authorizationurl` as a QR; the customer pays.
    - Poll `POST /pay/status` until `transactionstatus == "success"`.
 3. `POST /kiosk/parcel/appless/reserve` with `paymentreference`.

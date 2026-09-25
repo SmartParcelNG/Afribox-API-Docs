@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.4",
+    "version": "2.1.5",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -4387,7 +4387,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure — francs XOF ; le `×100` de la passerelle est appliqué en interne. Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil=\"wallet\"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack).",
+        "description": "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure — francs XOF ; le `×100` de la passerelle est appliqué en interne. Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil=\"wallet\"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack). `flowtype` est un champ de **niveau supérieur** (pas dans `metadata`) ; il est recopié dans `metadata.flow` et renvoyé comme `flowtype` de la transaction. Clés `metadata` traitées par le serveur : `parcelreference` (marquer un colis payé), `fulfil: \"wallet\"` (créditer le portefeuille), `holdtoken` (finaliser une réservation), `returnurl` (redirection depuis `/pay/return/`) et `narration` (libellé du crédit) ; le serveur remplit aussi `applicationid`/`businessid`/`customerid`. Avec `flowtype: \"appless\"` et un `phone` de niveau supérieur, le serveur envoie le lien de paiement par SMS.",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.4",
+    "version": "2.1.5",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "servers": [
@@ -1240,7 +1240,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units — XOF francs; the gateway's `×100` is applied internally. Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup).",
+        "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units — XOF francs; the gateway's `×100` is applied internally. Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup). `flowtype` is a **top-level** field (not inside `metadata`); it is mirrored to `metadata.flow` and returned as the transaction's `flowtype`. Server-acted `metadata` keys: `parcelreference` (mark a parcel paid), `fulfil: \"wallet\"` (credit a business wallet), `holdtoken` (finalize a checkout hold), `returnurl` (redirect from `/pay/return/`) and `narration` (wallet-credit text); the server also fills `applicationid`/`businessid`/`customerid`. With `flowtype: \"appless\"` and a top-level `phone`, the server SMSes the payment link.",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {

@@ -44,6 +44,15 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-06
+
+- **Métadonnées de paiement et `flowtype` documentés.** `flowtype` est un champ de **niveau
+  supérieur** de `/pay/initialize/` (recopié dans `metadata.flow`) ; les clés de contexte du flux
+  appless sont `boxid`, `sizeid`, `boxlockernumber` (**facultatives**). Une nouvelle section
+  *Métadonnées de paiement et `flowtype`* dans *Listes de référence* recense chaque clé
+  `metadata` traitée par le serveur (`parcelreference`, `fulfil`, `holdtoken`, `returnurl`,
+  `narration`).
+
 ### 2026-10-05
 
 - **Les colis de type 6 n'ont plus qu'un seul débit, à l'avance.** Les frais de réservation

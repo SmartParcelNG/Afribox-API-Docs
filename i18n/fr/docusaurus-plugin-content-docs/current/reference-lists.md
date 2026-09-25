@@ -182,7 +182,25 @@ l'identifiant).
   Chaque appel `/pay/status/` se confirme auprès de Paystack. Préférez le webhook de succès
   quand il est disponible.
 
-## Flux de paiement — `flowtype` (champ de requête, `/pay/initialize/`)
+## Métadonnées de paiement et `flowtype` — `/pay/initialize/`
 
-Informatif et libre — l'API ne le valide pas. Les valeurs documentées sont `web` (paiement web
-B2B/B2C) et `appless` (flux appless au casier).
+`flowtype` est un champ de **niveau supérieur** (pas dans `metadata`), p. ex.
+`"flowtype": "appless"`. Le serveur le recopie dans `metadata.flow`, le stocke comme `FlowType`
+de la transaction et le renvoie comme `flowtype` ; les valeurs documentées sont `web` (paiement
+web B2B/B2C) et `appless` (casier). Il est informatif, sauf que `appless` **avec un `phone` de
+niveau supérieur** fait envoyer le lien de paiement par SMS.
+
+`metadata` est une table de chaînes. Clés traitées par le serveur :
+
+| clé | lue par | effet |
+| --- | --- | --- |
+| `parcelreference` | `/pay/verify/` (+ `/pay/return/`, webhook) | marque ce colis payé |
+| `fulfil` = `"wallet"` | `/pay/verify/` (+ `/pay/return/`, webhook) | crédite le portefeuille de l'entreprise (B2B) |
+| `holdtoken` | `/pay/verify/` (+ `/pay/return/`, webhook) | finalise la réservation de paiement (`/customer/parcels/hold/`) |
+| `returnurl` | `/pay/return/` | où rediriger après paiement |
+| `narration` | crédit du portefeuille | libellé du mouvement |
+
+Le flux appless du casier envoie les clés de contexte **`boxid`**, **`sizeid`** et
+**`boxlockernumber`** — recommandées mais **facultatives** ; la réservation s'achève à partir de
+`paymentreference`, pas de `metadata`. Le serveur remplit aussi `applicationid`/`businessid`/
+`customerid` et `flow`.

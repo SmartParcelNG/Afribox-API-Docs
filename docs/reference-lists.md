@@ -177,7 +177,25 @@ Upload (`/kiosk/parcel/snapshot/`) validates:
   stop on a terminal value, give up after ~5 min. Each `/pay/status/` call self-confirms with
   Paystack. Prefer the success webhook where available.
 
-## Payment flow — `flowtype` (request field, `/pay/initialize/`)
+## Payment metadata and `flowtype` — `/pay/initialize/`
 
-Informational and free-form — the API does not validate it. The documented values are
-`web` (B2B/B2C web checkout) and `appless` (kiosk appless flow).
+`flowtype` is a **top-level** field (not inside `metadata`), e.g. `"flowtype": "appless"`. The
+server mirrors it to `metadata.flow`, stores it as the transaction's `FlowType` and returns it
+as `flowtype`; the documented values are `web` (B2B/B2C web checkout) and `appless` (kiosk). It
+is informational, except that `appless` **with a top-level `phone`** makes the server SMS the
+payment link.
+
+`metadata` is a string map. Keys the server acts on:
+
+| key | read by | effect |
+| --- | --- | --- |
+| `parcelreference` | `/pay/verify/` (+ `/pay/return/`, webhook) | marks that parcel paid |
+| `fulfil` = `"wallet"` | `/pay/verify/` (+ `/pay/return/`, webhook) | credits the business wallet (B2B) |
+| `holdtoken` | `/pay/verify/` (+ `/pay/return/`, webhook) | finalizes the checkout hold (`/customer/parcels/hold/`) |
+| `returnurl` | `/pay/return/` | where to redirect after payment |
+| `narration` | wallet credit | label for the wallet movement |
+
+The **appless** locker flow sends the context keys **`boxid`**, **`sizeid`** and
+**`boxlockernumber`** — recommended but **optional**; the reservation is completed from
+`paymentreference`, not from `metadata`. The server also fills `applicationid`/`businessid`/
+`customerid` and `flow`.

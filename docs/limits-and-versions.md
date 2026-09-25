@@ -42,6 +42,14 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-06
+
+- **Payment `metadata` and `flowtype` documented.** `flowtype` is a **top-level** field of
+  `/pay/initialize/` (mirrored to `metadata.flow`); the appless locker flow's context keys are
+  `boxid`, `sizeid`, `boxlockernumber` (**optional**). A new *Payment metadata and `flowtype`*
+  section in *Reference lists* lists every server-acted `metadata` key (`parcelreference`,
+  `fulfil`, `holdtoken`, `returnurl`, `narration`).
+
 ### 2026-10-05
 
 - **Type-6 parcels now have a single upfront charge.** The reservation fee debited at
