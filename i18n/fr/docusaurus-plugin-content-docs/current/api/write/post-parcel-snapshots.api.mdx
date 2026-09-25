@@ -1,11 +1,11 @@
 ---
 id: post-parcel-snapshots
-title: "Lister les instantanés de colis"
-description: "Renvoie les instantanés de preuve de livraison d'un `parceldetailid`, chacun avec un `snapshoturl`. `imagedatetime`/`datecreated` ont des companions ISO 8601."
-sidebar_label: "Lister les instantanés de colis"
+title: "Lister les instantanés d'un colis"
+description: "Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601."
+sidebar_label: "Lister les instantanés d'un colis"
 hide_title: true
 hide_table_of_contents: true
-api: eJzdV2tuGzcQvsqAKGAZXWslxUkjBfnhpgHqIE6EWP5luFlqd2Qx3iW3JFe2qwroIXqIpNfwTXqSznD12kgJCrR/WkGgKXI478fnuTAlWumV0aeZGIjSOP++lDbF/L3TsnRT452IhJfXTgwuRX0lriKRoUutKvklvXuHemYUQo4OlHZeavo+fHKQIZQWqxnyLlczK5UzGrKDSkNSc8vQS5WrLIkgncqULuQMU2CClQqVzZM2JKqQ15hJj14VmMQJb1OLtGYJGO1JhoPUFKXUpJaD0/O38PRJp9smC+6OZOWnpKosy/c3eB+O6G1mdH4vBhOZO4yExZ8rdP57k9HZPPxUFskz3lZ0nZIQ1J6viE2u0uC5+INjJ8yFS6dYSN75+xJJlhl/wNSTqNKyn71CV79VrMGGznmr9LVYRKLpkj0ki2hLq8sVKwqIVz5nwmHgcL4O3mJRv3EluaSW3+t0+E8zhC/1DHNTliFSlmJX5V56aFEwfeVSk2Fcbwt0juJw2IYLDtH6OoFMTSYPnyyGSEDS6SSUDJkil1I0EdBSJlgOxr/kx43sXUdFAnVVsIvI2Eh0urz0eHnEyzEvj3l5wst3vDzlpU9Ll190+UWfz/r9fQnP/gGWPYBOB1yVpuSXZ9DpHnUewTKPYEyJRGfHUCjnSC2YKIounTw+6nZhJinGwfRn0H8KnKDklaU36KgP16jRqpRdZyzQF4vS3xN7lt7mhGnEZG9Kbep4cyutlVwCymPh/oajlyz2ZuRGAs6WQf1SKDLiaiYT5q/Sm6rc9esqbyHwGkCyfJJAi5KRfxzRr0N2RVLzqG9Sk+ekOTE5bDeM5kDo9KsJwoHu7arShefg5Q1quKWwAMUGcpPeoAXlKJ/DnkLZW5PJiadLpsuMCVRpbhxmDYWole31YaO37dO2lJ7Ys2I/XXaO+lfzbtRbxDvb4wVszgb1dmsDrZOzX4dnh9+Iz839gWTHLBykA4d2htkAzuIsvqcPTAdFMXAOTs7i4VkE2gCT/mKorFuBONh7MXrxbbcOwFZv/h9Y04gOTbC9IdwyeT/J4otdmtSVYvEVgnfL/r1s58fUwHY6+IW+0eZWA/l2Cn/+9ju1CUo3moOckq/O374BrHs8wq0ikkbvTvr9hD3hQWr4cXT2mthcYzD+8b5xcaHxrqSKwwyWHqt71D+Se3I+bL95OVqJJtl4R4PC8TSnSp2LMDZXszwS1EAr3Jrpi2hDsp7ta7Iw4xdU5wX6qVnBnToZGRnE9fCN170jprvauFp6qF0x9b50gziWE6vG5o4mcNsV0vr6dVtfx7PeTj6e1MQEhkxWhT4FrVnvULA6PPbebYDHyztZlDluA4Xtumnig+0Ooid10i0zaCXyZHjKPiAjalV67U67s6vg8BSyCsaSuprOYPW4dc6m1clIE39kKhdAXmmU9gTvDmSaPnx0QH+w9GHyV6uYw/Dt+YgKSlaTgAPquQY8/AkGWkYQrw9WQ2+yunYIE6k8zJQMGLD2AYELqVk0PbdlwJW5DGP24Q+PMAgAI80fPrFKG0gRbc7LapwHKJIdkDyLpVUkylQbCkfV+/DRNylIR4SQsJ7KYjQEHuveVB9MZR0QkoJnrNUGMPF9jXpYmYbSbFIj+VsBIz0P6IG8eAjoVwTLiZ6ECuQ8LWTARlryeBCvleNhsw9v0yhU7vP4zjeY6z8A1pd901P1x2UulWYnLCdnXazrf0W28U0keIpPuaiJYD4fS4cXNl8s+JhCb6mULq+4H1glx1wkl1fEeEqdAu1Wf3lRu+poxGo0ukwTqm7azUlI/6/SbvcdLgwiHi//zSgCghVW3tIhrwNBGxNCF/BXOJuLXOrrKsA8UfPkz18GOMAc
+api: eJztV11uGzcQvspgUcAyKusvThopyIObBqiLOBEi+8lws9TuyGK8S7IkV7arCugheoA+xr2GbtKTdIa70kqRahRoH4qihkHtkkPOL7/5dh5pg1Z4qdVpGg0io53/YIRNMPvglDBuqr2LmpEX1y4aXEblUnTVjFJ0iZWGd9K+96hmWiJk6EAq54Wi/+WDgxTBWCxmyE+ZnFkhnVZgdGGhUBCXB6bohcxkGjchmYqEFsQMExJAiFdmFDaLW/UrzlD5GNB5iFOrjZ5MYtAFnSiTm8LE8KKWdfhDgSrBSrwbQ2P5K2QHmuyydDAehp09mhfGLj85mKDNkVeC2YLstR4PW3Bu5fIByGiIvxEeX1mkMY3BFNJBPKr0jdb6GmkBJiscCJVIJLeqV7t8SMj+JnTJUwoW9HjJoVSQHpD7y4fZ8kFhTjKkNZa5uMaUVHmZY9yO+TFZ6da0nbIBic6NUJQPB6ejd/D8WafbotTdHYnCTylHwpgPN3gfpmhvqlV2Hw0mInPYjCyb7PzXOqW5eXiVFqkkvC1oOSElZAsv0TGZTELJtD86zv48cskUc8FP/t4g6dLjj5h4UmUsF5iX6Mq9ki2o5Zy3Ul1Hi2a0XQh7RBbNDasuV0dRJXrpMxYchhNG66pdLMo9zlBISv29Tod/tmv3tZphpo0JuabEuCLzwkODqtgXLtEptsvHHJ2jPFBCLqhy6+UYUjmZLB8shkxA3OnEdAtSSSENNYyWroDlZPxDcax17waqGaEqcg4ROduMOl0eejw84eGYh6c8POPhKx6e89Cnocs7uryjz3P9/r6bzvEB1j2ATgdckSQUlxfQ6R51nkBVRzCmQqK5Y8ilc2QWTCRll2aeHnW7MBOU4+D6C+g/By5QikoVDZrqwzUqtDLh0GkL9I+58fd0PGtvccFs5WRvSdUAVq8KawVfAekxd38h0NUReyuy1hDA6LFUVAjF5wd42o3rqm4hnDXYALUGFSO/HNHbIYdiDXG8kugsI8vpkMPWltMVBj1mFSe6t2tKF16CFzcEV7eUFqDcQKaTG7RAIFeo8Eyp7K3FxMTTIsulWgepJNMO0y2DCL/3xnAL2/ZZa4Sn49mw7y87R/2rebfZW7R3Ho8XUM8NyseNB2icnP00PDv8IvrcXQbyNisH4QiC7QzTAZy10/Y9/cF0kOcD5+DkrD08a4LSwKI/arrWjSAc/L04f/Vlt0zABjb/B7zZyg617r0p3HB5v8jiT1GazBXR4hGB9xV+V3B+TAC2g+AX6kbpW2IVwk/h959/IZigcqM+yCX53ejdW8AS4xFuJYlsYXfc78ccCU89Gr49P3tDx1xjcP7pvnZxofDO0I3DFKqIlRj1t/SejIatt6/PV6pJN95Ro3DczemmzqPQNle9vBkRgBa40dMXzVpk3dvXYqHHL+ieE6eZ6hXPK4uRmUG7bL7tNXa0aa10rtQe7m409d64QbstJlaO9R114JbLhfXl7pa6bs96O/V4UgoTC9RpEXAKGrPeYcTmcNt7XxOP13ciNxluEoXNe7PNDzYRRE3KoqsqaKXyZHjKMSAnSlN6rU6rs2vg8BSIpY0FoZpKYbW5MWLXymJk4qeJtTG7NVoqT7z2QCQJM0X6QeND5y9WOYfhu9E5XShRTAIPKPsacPMn/muZQbw5WDW9yWrZIUyE9DCTIlDjMgZELoRi1bTdGlfxUW6zy988wiAQjCQjVkom1ZSiWc+bYpwFKpIekD6LxkpSRYR3LeHo9i4/+W0JshEhFKyna3E+DNzZ6+IjUXcHxKSIYWebhInXS9bDxmwZzS5tFX8jcKSXgT1QFA8B/Uqg6uhxuIFcp7kI3EgJbg/RG+m42ex+aDBtpmYo3ecZntes6//vlH/vd0rVMjwBX9tkQirOf0UaSpxaf35uUrtmxARmynhGAvP5WDi8sNliwdPkniUUubxiKLRSjBkfLq/o4CmBJNoNaH1V1sjROZuxBbDbLL1G2pNw8x+V3YRcxgQSHldfWHkg75EVtzTJ4yCiBx1qNlDPMDePMqGui8Bwo/JM/vsDTIZ6vg==
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Lister les instantanés de colis"}
+  children={"Lister les instantanés d'un colis"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Renvoie les instantanés de preuve de livraison d'un `parceldetailid`, chacun avec un `snapshoturl`. `imagedatetime`/`datecreated` ont des companions ISO 8601.
+Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601.
 
 <Heading
   id={"request"}

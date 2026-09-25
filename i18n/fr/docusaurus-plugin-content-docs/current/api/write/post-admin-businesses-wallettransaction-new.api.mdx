@@ -1,11 +1,11 @@
 ---
 id: post-admin-businesses-wallettransaction-new
-title: "Créer une transaction de portefeuille (entreprise)"
-description: "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network."
-sidebar_label: "Créer une transaction de portefeuille (entreprise)"
+title: "Créer une écriture de portefeuille pour une entreprise (admin)"
+description: "Insère un mouvement de portefeuille pour une entreprise. Requiert la **clé admin** ; refuse les entreprises hors de son réseau. `wallettransactiontypeid` 1 = Credit, 2 = Debit ; `walletfundmodeid` 1/2/3. `createdby` est facultatif (identifiant utilisateur numérique ; défaut : 0)."
+sidebar_label: "Créer une écriture de portefeuille pour une entreprise (admin)"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9Vl1u20YQvsqAL7ENWZQUu41k5MFxXdRBmhi2jD4YhrUih9La5C67P7INQUAP0UPEvYZv0pN0ZimGUqWkDy0qCCtqdnbn75tvOI90iUY4qdVZGg2iUlt3K9JCqtuxt1KhtWhvH0Seo3NGKCsS1r1V+BC1IicmNhpcR+FAdNOKUrSJkSWr0GVnyqJxIKA6D4WeYYHKQaYNSWsDbbjAX700aMFNEfb2wnVwj097e0dgMPPkAzTugPbOyhRBOgsK3YM2923y5nFfeDclu0orDP8NilSr/CkaZCK32IoMGULr3umUZPPwl+xS4M542k60cuQfb4myzGUSEhPfWQ5nHtlkioXgJ/dUIhnS4ztMHJkqDafRSbTVWUnOr+hZZ6SaRItWVEch063bG4lmjW26rQiVLzj3XXrubea+C2/hhEKTrgU9ev4Bx9K14RIR4kQbjLeasnEurYvbjS+ZV2mh0684sW7zR9IlObD+pqn6plUbK+ZFoX2V+o2sKGEqiG7dTajKDtPxtoQvWis1vq4LQ8ly0uWseMxQe7csyi/Bz2HjUwVguqa6yJaaBKHEvU6Hf9bjP1UzzHVZIhA4zcuz9bkTDnYsrd4mFHtcPRZkTExwtw1XCkbN9ghSmWUvz4abhO4YdTojkJRUQi14hYDGoDcM9v8Iqo3tb2GMgm1FHUZap8fLa14OeDnk5TtevuflDS99Wrp8ossn+izr9zcReoGcH2DbA+h0wPokobwcQae733kNy1aFMfUqyQ6gkNQ2hK5MYp6S5HC/24WZyGUaQj+C/htgAqCsLLNBoj5MUKGRCaeOWIe+WJTuia5n6wGEazXZDqIaLv+AlIslRJaIOaAcbYDkSt0r/aCgFG4Kf/72O3nivFEV972//PQRsIIRwoMklTV4jPr9UQuUJlJV8NPw5w90zQRDFIfbEHml8LGkumMK5N8MzTIN/8ru8eV5++PpsDZNtvGRsGjJJE+DeRTIr6bjVkQ18ljT8qLV7H+h5y86gaYXBJUC3VTXA4lRKwKzx2E0xM0s2KSxmEZTTCeqeCuHvMnp8NS50g7iWGRGjvUjkUHbFsK4UpgE87aaxLPeBqcdV8pAbZP6YAB2Zr3diJ3kZrtoJsrpoyjKHFcnQNNKq8TfSL/K94HWNxm4ObmFOZvNFcJshCs8ucKeUmU6YL4mxGW8x+dnXBbKYHVNr91pdzazc34GqYexSO5RpVAf3rnkvJ6HvBLJDbW3kNPgLrVUNLPTVyJJXj5boB8sXSA7X2MQzj9dDokzhc8C9VWtDMx3RhCR030fXtV9ntXbFiET0sFMCiJKGFUFID6lLJFpOm5Ky5Sai8AsL384hEHg1CR/eWaXGhZtNfLSj/PAvukrsmewNJJMad9oWEzMy2e3rkE+IoQGctSmw3NgJnPa32lvLNDwgCP2qpkRvF8RPTuz5jSHtNaMO2EsvA2ESVncBXq1Gq2R2CgwArdOIcI4IIxwcU/IIHEA+76CH05LqY3DDL0kxMFOE8ju30s+bybP//1+t6RlR2wTl7mgN04KMrT2fMkP9Zto02405bZ0GbdIeIHlqTRlhqGj8/lYWLwy+WLBYiq6oVa5vmFyMlKMuT2ub8jklGgLzQrTnVQZ2R+ygw3fbczlhvuOA/C/qbtKgtwSHNTytbUI4zoygkPgdRDRgw4VClM9yOZRLtTEh5kWVXfy5y8DNC7k
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Créer une transaction de portefeuille (entreprise)"}
+  children={"Créer une écriture de portefeuille pour une entreprise (admin)"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network.
+Insère un mouvement de portefeuille pour une entreprise. Requiert la **clé admin** ; refuse les entreprises hors de son réseau. `wallettransactiontypeid` 1 = Credit, 2 = Debit ; `walletfundmodeid` 1/2/3. `createdby` est facultatif (identifiant utilisateur numérique ; défaut : 0).
 
 <Heading
   id={"request"}
@@ -54,7 +54,7 @@ Insert a wallet movement for a business. Requires the **admin key**; refuses bus
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"businessid":{"type":"string"},"wallettransactiontypeid":{"type":"string","enum":["1","2"],"description":"1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."},"walletfundmodeid":{"type":"string","description":"Funding mode. See /core/walletfundmodes/list/."},"transactionamount":{"type":"string"},"narration":{"type":"string"},"createdby":{"type":"string"}},"required":["apikey"],"title":"AdminBusinessWalletTransactionInsert"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"businessid":{"type":"string"},"wallettransactiontypeid":{"type":"string","enum":["1","2"],"description":"1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."},"walletfundmodeid":{"type":"string","enum":["1","2","3"],"description":"1 = Online / Card, 2 = Back Office, 3 = Paystack. See /core/walletfundmodes/list/. Manual adjustments use 2 (Back Office); 3 is set automatically by the Paystack wallet top-up."},"transactionamount":{"type":"string"},"narration":{"type":"string"},"createdby":{"type":"string","description":"Numeric SYS_Users.UserID of the staff user performing the action; optional on wallet writes (defaults to the business's primary user, or 0). Discover via /business/users/list/."}},"required":["apikey"],"title":"AdminBusinessWalletTransactionInsert"}}}}}
 >
   
 </RequestSchema>

@@ -43,6 +43,9 @@ Renvoyé par les réponses de dépôt/collecte au casier comme `lockerstatus` (l
 | 1 | Credit |
 | 2 | Debit |
 
+Sur `/business/wallettransaction/new/` seul **Debit** est permis — **Credit réservé à
+l'admin** (`/admin/businesses/wallettransaction/new/`).
+
 ## Mode de financement du portefeuille — `/core/walletfundmodes/list/`
 
 | `walletfundmodeid` | `walletfundmode` |
@@ -50,6 +53,29 @@ Renvoyé par les réponses de dépôt/collecte au casier comme `lockerstatus` (l
 | 1 | Online / Card |
 | 2 | Back Office |
 | 3 | Paystack |
+
+Les ajustements manuels doivent utiliser `2` (Back Office). `3` (Paystack) est défini
+automatiquement par `/pay/initialize` + `/pay/verify` avec `metadata.fulfil="wallet"`.
+`1` est hérité.
+
+## Champs d'écriture du portefeuille — `createdby`
+
+`createdby` est un **`SYS_Users.UserID`** numérique (l'utilisateur du personnel qui effectue
+l'action), découvrable via `/business/users/list/` (`userid`, `fullname`, `email`). Il est
+**facultatif** sur les écritures de portefeuille : omis, `/business/wallettransaction/new/`
+prend l'utilisateur principal de l'entreprise et le point d'accès admin prend `0`. S'il est
+fourni, il doit être numérique.
+
+## Instantanés — `snapshotevent` / `snapshotsequence`
+
+Le dépôt (`/kiosk/parcel/snapshot/`) valide :
+
+- `snapshotevent` ∈ **`dropoff`** (au dépôt), **`pickup`** (à la collecte)
+- `snapshotsequence` ∈ **`1`** (prise quand le casier s'ouvre), **`2`** (prise après
+  fermeture de la porte)
+
+`/parcel/snapshots/` renvoie le tableau trié par **`DateCreated` puis `SnapshotSequence`**
+(du plus ancien au plus récent ; au sein d'un événement, la séquence 1 précède toujours 2).
 
 ## Type de facturation — `/core/billingtypes/list/`
 

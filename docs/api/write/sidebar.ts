@@ -169,7 +169,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/write/post-business-wallettransaction-new",
-          label: "Business: Wallettransaction New",
+          label: "Create a wallet transaction for the business",
           className: "api-method post",
         },
       ],
@@ -287,7 +287,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/write/post-admin-businesses-wallettransaction-new",
-          label: "Admin: Wallettransaction New",
+          label: "Create a wallet transaction for a business (admin)",
           className: "api-method post",
         },
       ],

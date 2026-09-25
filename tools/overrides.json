@@ -67,7 +67,7 @@
     },
     "POST /parcel/snapshots/": {
       "summary": "List a parcel's snapshots",
-      "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `imagedatetime`/`datecreated` carry ISO 8601 companions."
+      "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `snapshotevent` is `dropoff` or `pickup`; `snapshotsequence` is `1` (at unlock) or `2` (after the door closed). Ordered by `DateCreated` then `SnapshotSequence` (oldest first, 1 before 2 within an event). `imagedatetime`/`datecreated` carry ISO 8601 companions."
     },
     "POST /business/parcels/create/": {
       "summary": "Create a business parcel",
@@ -549,8 +549,8 @@
       }
     },
     "POST /business/wallettransaction/new/": {
-      "summary": "Wallettransaction New",
-      "description": "Insert a wallet movement for the business. Requires the **secret key**; `wallettransactiontypeid` 1=credit, 2=debit."
+      "summary": "Create a wallet transaction for the business",
+      "description": "Insert a wallet movement for the business. Requires the **secret key**. `wallettransactiontypeid` 2 = Debit only — **Credit is admin-only** (`99` otherwise). `walletfundmodeid` 1/2/3; manual adjustments use 2 (Back Office). `createdby` is optional (numeric user id; defaults to the business's primary user)."
     },
     "POST /kiosk/parcel/appless/reserve/": {
       "summary": "Appless Reserve",
@@ -590,8 +590,8 @@
       "description": "List businesses with their balance and network. Requires the **admin key**; scoped to its network (or all networks for a global key)."
     },
     "POST /admin/businesses/wallettransaction/new/": {
-      "summary": "Wallettransaction New",
-      "description": "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network."
+      "summary": "Create a wallet transaction for a business (admin)",
+      "description": "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network. `wallettransactiontypeid` 1 = Credit, 2 = Debit; `walletfundmodeid` 1/2/3. `createdby` is optional (numeric user id; defaults to 0)."
     },
     "GET /parcel/snapshot/image/": {
       "summary": "Snapshot Image",
@@ -608,6 +608,21 @@
             "lockerstatusid": "1",
             "lockerstatus": "Vacant",
             "lockerstatusdescription": "Locker is empty. No parcel is in it."
+          }
+        ]
+      }
+    },
+    "POST /business/users/list/": {
+      "summary": "List the business's staff users",
+      "description": "The active staff users (`SYS_Users`) of the business — `userid`, `fullname`, `email`. Use a `userid` as `createdby` on wallet writes. Requires the **business public key**.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "users": [
+          {
+            "userid": "1",
+            "fullname": "Ama Diallo",
+            "email": "ama@afribox.ci"
           }
         ]
       }
@@ -636,7 +651,12 @@
       "description": "1 = Credit, 2 = Debit. See /core/wallettransactiontypes/list/."
     },
     "walletfundmodeid": {
-      "description": "Funding mode. See /core/walletfundmodes/list/."
+      "enum": [
+        "1",
+        "2",
+        "3"
+      ],
+      "description": "1 = Online / Card, 2 = Back Office, 3 = Paystack. See /core/walletfundmodes/list/. Manual adjustments use 2 (Back Office); 3 is set automatically by the Paystack wallet top-up."
     },
     "parcelstatusid": {
       "enum": [
@@ -677,6 +697,9 @@
     },
     "flowtype": {
       "description": "Informational payment flow, free-form: `web` (B2B/B2C) or `appless` (kiosk). The API does not validate it."
+    },
+    "createdby": {
+      "description": "Numeric SYS_Users.UserID of the staff user performing the action; optional on wallet writes (defaults to the business's primary user, or 0). Discover via /business/users/list/."
     }
   },
   "manualOperations": {

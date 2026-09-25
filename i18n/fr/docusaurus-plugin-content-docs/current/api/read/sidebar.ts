@@ -448,6 +448,12 @@ const sidebar: SidebarsConfig = {
           label: "Historique des transactions",
           className: "api-method post",
         },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-users-list",
+          label: "Lister les utilisateurs du personnel de l'entreprise",
+          className: "api-method post",
+        },
       ],
     },
     {

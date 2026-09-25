@@ -169,7 +169,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-wallettransaction-new",
-          label: "Créer une transaction de portefeuille",
+          label: "Créer une écriture de portefeuille pour l'entreprise",
           className: "api-method post",
         },
       ],
@@ -271,7 +271,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-parcel-snapshots",
-          label: "Lister les instantanés de colis",
+          label: "Lister les instantanés d'un colis",
           className: "api-method post",
         },
       ],
@@ -287,7 +287,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-admin-businesses-wallettransaction-new",
-          label: "Créer une transaction de portefeuille (entreprise)",
+          label: "Créer une écriture de portefeuille pour une entreprise (admin)",
           className: "api-method post",
         },
       ],

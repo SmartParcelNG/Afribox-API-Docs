@@ -33,6 +33,16 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-26
+
+- Wallet writes: `createdby` is now **optional** (numeric `SYS_Users.UserID`; defaults to the
+  business's primary user); `wallettransactiontypeid` and `walletfundmodeid` are validated
+  with clear field errors; **Credit is admin-only** on `/business/wallettransaction/new/`.
+- Added `/business/users/list/` (business staff users, for `createdby` discovery).
+- `/parcel/snapshots/` is now ordered by `DateCreated` then `SnapshotSequence` (sequence 1
+  before 2 within an event); `snapshotevent`/`snapshotsequence` documented on the reference
+  lists page.
+
 ### 2026-09-25
 
 - Parcel status vocabulary now includes **7 — Dispatch collected parcel from locker**;

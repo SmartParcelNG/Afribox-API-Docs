@@ -36,7 +36,8 @@
       "summary": "Lister les entreprises"
     },
     "post_admin_businesses_wallettransaction_new": {
-      "summary": "Créer une transaction de portefeuille (entreprise)"
+      "summary": "Créer une écriture de portefeuille pour une entreprise (admin)",
+      "description": "Insère un mouvement de portefeuille pour une entreprise. Requiert la **clé admin** ; refuse les entreprises hors de son réseau. `wallettransactiontypeid` 1 = Credit, 2 = Debit ; `walletfundmodeid` 1/2/3. `createdby` est facultatif (identifiant utilisateur numérique ; défaut : 0)."
     },
     "post_business_availableboxes_all": {
       "summary": "Casiers disponibles (tous)",
@@ -135,7 +136,8 @@
       "summary": "Historique des transactions"
     },
     "post_business_wallettransaction_new": {
-      "summary": "Créer une transaction de portefeuille"
+      "summary": "Créer une écriture de portefeuille pour l'entreprise",
+      "description": "Insère un mouvement de portefeuille pour l'entreprise. Requiert la **clé secrète**. `wallettransactiontypeid` 2 = Debit uniquement — **Credit réservé à l'admin** (`99` sinon). `walletfundmodeid` 1/2/3 ; les ajustements manuels utilisent 2 (Back Office). `createdby` est facultatif (identifiant utilisateur numérique ; défaut : utilisateur principal de l'entreprise)."
     },
     "post_core_boxes_availability": {
       "summary": "Disponibilité des casiers"
@@ -330,8 +332,8 @@
       "summary": "Image d'instantané de colis"
     },
     "post_parcel_snapshots": {
-      "summary": "Lister les instantanés de colis",
-      "description": "Renvoie les instantanés de preuve de livraison d'un `parceldetailid`, chacun avec un `snapshoturl`. `imagedatetime`/`datecreated` ont des companions ISO 8601."
+      "summary": "Lister les instantanés d'un colis",
+      "description": "Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601."
     },
     "get_pay_return": {
       "summary": "Page de retour de paiement",
@@ -381,6 +383,10 @@
     "post_core_lockerstatuses_list": {
       "summary": "Lister les statuts de casier",
       "description": "Le vocabulaire des statuts de casier : 1 Vacant, 2 Réservé, 3 Occupé."
+    },
+    "post_business_users_list": {
+      "summary": "Lister les utilisateurs du personnel de l'entreprise",
+      "description": "Les utilisateurs actifs (`SYS_Users`) de l'entreprise — `userid`, `fullname`, `email`. Utilisez un `userid` comme `createdby` sur les écritures de portefeuille. Requiert la **clé publique** de l'entreprise."
     }
   },
   "schemas": {

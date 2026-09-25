@@ -448,6 +448,12 @@ const sidebar: SidebarsConfig = {
           label: "Business Transactionhistory",
           className: "api-method post",
         },
+        {
+          type: "doc",
+          id: "api/read/post-business-users-list",
+          label: "List the business's staff users",
+          className: "api-method post",
+        },
       ],
     },
     {

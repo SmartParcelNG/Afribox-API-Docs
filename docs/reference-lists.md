@@ -43,6 +43,9 @@ Returned by the kiosk drop/collect responses as `lockerstatus` (the label).
 | 1 | Credit |
 | 2 | Debit |
 
+On `/business/wallettransaction/new/` only **Debit** is permitted — **Credit is admin-only**
+(`/admin/businesses/wallettransaction/new/`).
+
 ## Wallet fund mode — `/core/walletfundmodes/list/`
 
 | `walletfundmodeid` | `walletfundmode` |
@@ -50,6 +53,27 @@ Returned by the kiosk drop/collect responses as `lockerstatus` (the label).
 | 1 | Online / Card |
 | 2 | Back Office |
 | 3 | Paystack |
+
+Manual adjustments should use `2` (Back Office). `3` (Paystack) is set automatically by
+`/pay/initialize` + `/pay/verify` with `metadata.fulfil="wallet"`. `1` is legacy.
+
+## Wallet write fields — `createdby`
+
+`createdby` is a numeric **`SYS_Users.UserID`** (the staff user performing the action),
+discoverable via `/business/users/list/` (`userid`, `fullname`, `email`). It is **optional**
+on the wallet write endpoints: when omitted, `/business/wallettransaction/new/` defaults to
+the business's primary user and the admin endpoint to `0`. If supplied it must be numeric.
+
+## Snapshots — `snapshotevent` / `snapshotsequence`
+
+Upload (`/kiosk/parcel/snapshot/`) validates:
+
+- `snapshotevent` ∈ **`dropoff`** (at drop-off), **`pickup`** (at collection)
+- `snapshotsequence` ∈ **`1`** (taken when the locker is unlocked), **`2`** (taken after the
+  door is closed)
+
+`/parcel/snapshots/` returns the array ordered by **`DateCreated` then `SnapshotSequence`**
+(oldest first; within an event, sequence 1 always precedes 2).
 
 ## Billing type — `/core/billingtypes/list/`
 

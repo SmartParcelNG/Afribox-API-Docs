@@ -34,6 +34,17 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-26
+
+- Écritures de portefeuille : `createdby` est désormais **facultatif** (`SYS_Users.UserID`
+  numérique ; défaut : utilisateur principal de l'entreprise) ; `wallettransactiontypeid` et
+  `walletfundmodeid` sont validés avec des erreurs de champ claires ; **Credit réservé à
+  l'admin** sur `/business/wallettransaction/new/`.
+- Ajout de `/business/users/list/` (utilisateurs du personnel, pour découvrir `createdby`).
+- `/parcel/snapshots/` est désormais trié par `DateCreated` puis `SnapshotSequence`
+  (séquence 1 avant 2 au sein d'un événement) ; `snapshotevent`/`snapshotsequence` documentés
+  sur la page des listes de référence.
+
 ### 2026-09-25
 
 - Le vocabulaire des statuts de colis inclut désormais **7 — Dispatch collected parcel from

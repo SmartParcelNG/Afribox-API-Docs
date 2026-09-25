@@ -85,11 +85,11 @@
     "/admin/businesses/wallettransaction/new/": {
       "post": {
         "operationId": "post_admin_businesses_wallettransaction_new",
-        "summary": "Créer une transaction de portefeuille (entreprise)",
+        "summary": "Créer une écriture de portefeuille pour une entreprise (admin)",
         "tags": [
           "admin"
         ],
-        "description": "Insert a wallet movement for a business. Requires the **admin key**; refuses businesses outside its network.",
+        "description": "Insère un mouvement de portefeuille pour une entreprise. Requiert la **clé admin** ; refuse les entreprises hors de son réseau. `wallettransactiontypeid` 1 = Credit, 2 = Debit ; `walletfundmodeid` 1/2/3. `createdby` est facultatif (identifiant utilisateur numérique ; défaut : 0).",
         "x-auth": "none",
         "x-readonly": false,
         "requestBody": {
@@ -1374,14 +1374,65 @@
         }
       }
     },
-    "/business/wallettransaction/new/": {
+    "/business/users/list/": {
       "post": {
-        "operationId": "post_business_wallettransaction_new",
-        "summary": "Créer une transaction de portefeuille",
+        "operationId": "post_business_users_list",
+        "summary": "Lister les utilisateurs du personnel de l'entreprise",
         "tags": [
           "business"
         ],
-        "description": "Insert a wallet movement for the business. Requires the **secret key**; `wallettransactiontypeid` 1=credit, 2=debit.",
+        "description": "Les utilisateurs actifs (`SYS_Users`) de l'entreprise — `userid`, `fullname`, `email`. Utilisez un `userid` comme `createdby` sur les écritures de portefeuille. Requiert la **clé publique** de l'entreprise.",
+        "x-auth": "business_public",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessUsersList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessUsersListResponse"
+                },
+                "example": {
+                  "statuscode": "00",
+                  "statusmessage": "Successful",
+                  "users": [
+                    {
+                      "userid": "1",
+                      "fullname": "Ama Diallo",
+                      "email": "ama@afribox.ci"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/business/wallettransaction/new/": {
+      "post": {
+        "operationId": "post_business_wallettransaction_new",
+        "summary": "Créer une écriture de portefeuille pour l'entreprise",
+        "tags": [
+          "business"
+        ],
+        "description": "Insère un mouvement de portefeuille pour l'entreprise. Requiert la **clé secrète**. `wallettransactiontypeid` 2 = Debit uniquement — **Credit réservé à l'admin** (`99` sinon). `walletfundmodeid` 1/2/3 ; les ajustements manuels utilisent 2 (Back Office). `createdby` est facultatif (identifiant utilisateur numérique ; défaut : utilisateur principal de l'entreprise).",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -4230,11 +4281,11 @@
     "/parcel/snapshots/": {
       "post": {
         "operationId": "post_parcel_snapshots",
-        "summary": "Lister les instantanés de colis",
+        "summary": "Lister les instantanés d'un colis",
         "tags": [
           "parcel"
         ],
-        "description": "Renvoie les instantanés de preuve de livraison d'un `parceldetailid`, chacun avec un `snapshoturl`. `imagedatetime`/`datecreated` ont des companions ISO 8601.",
+        "description": "Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -8280,7 +8331,12 @@
         "properties": {
           "walletfundmodeid": {
             "type": "string",
-            "description": "Funding mode. See /core/walletfundmodes/list/."
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ],
+            "description": "1 = Online / Card, 2 = Back Office, 3 = Paystack. See /core/walletfundmodes/list/. Manual adjustments use 2 (Back Office); 3 is set automatically by the Paystack wallet top-up."
           },
           "walletfundmode": {
             "type": "string"
@@ -9731,7 +9787,12 @@
           },
           "walletfundmodeid": {
             "type": "string",
-            "description": "Funding mode. See /core/walletfundmodes/list/."
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ],
+            "description": "1 = Online / Card, 2 = Back Office, 3 = Paystack. See /core/walletfundmodes/list/. Manual adjustments use 2 (Back Office); 3 is set automatically by the Paystack wallet top-up."
           },
           "transactionamount": {
             "type": "string"
@@ -9740,6 +9801,67 @@
             "type": "string"
           },
           "createdby": {
+            "type": "string",
+            "description": "Numeric SYS_Users.UserID of the staff user performing the action; optional on wallet writes (defaults to the business's primary user, or 0). Discover via /business/users/list/."
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "BusinessUsersListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessUserData"
+            }
+          }
+        }
+      },
+      "BusinessUserData": {
+        "type": "object",
+        "properties": {
+          "userid": {
+            "type": "string"
+          },
+          "fullname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "BusinessUsersList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
             "type": "string"
           }
         },
@@ -10776,7 +10898,12 @@
           },
           "walletfundmodeid": {
             "type": "string",
-            "description": "Funding mode. See /core/walletfundmodes/list/."
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ],
+            "description": "1 = Online / Card, 2 = Back Office, 3 = Paystack. See /core/walletfundmodes/list/. Manual adjustments use 2 (Back Office); 3 is set automatically by the Paystack wallet top-up."
           },
           "transactionamount": {
             "type": "string"
@@ -10785,7 +10912,8 @@
             "type": "string"
           },
           "createdby": {
-            "type": "string"
+            "type": "string",
+            "description": "Numeric SYS_Users.UserID of the staff user performing the action; optional on wallet writes (defaults to the business's primary user, or 0). Discover via /business/users/list/."
           }
         },
         "required": [
