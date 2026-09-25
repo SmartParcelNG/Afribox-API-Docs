@@ -382,7 +382,7 @@
     },
     "post_pay_webhook_paystack": {
       "summary": "Webhook Paystack",
-      "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients."
+      "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est vérifiée dans l'en-tête `x-paystack-signature`. Sur `charge.success` : enregistre et exécute le paiement. **Non appelé par les clients.** Une signature invalide renvoie HTTP 403 avec l'enveloppe JSON (`errorcode AUTHENTICATION_FAILED`)."
     },
     "post_core_parcelstatuses_list": {
       "summary": "Lister les statuts de colis",

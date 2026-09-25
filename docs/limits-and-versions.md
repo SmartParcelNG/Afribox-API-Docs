@@ -42,6 +42,14 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-02
+
+- **Transport edges:** an unknown path now returns the JSON envelope with **HTTP 404** instead
+  of an HTML page, and a `GET` on an unknown path is a `404` (only an existing `POST` route
+  answers `405`). The Paystack webhook returns the envelope on an invalid signature.
+  Confirmed live: JSON `Content-Type`, `Strict-Transport-Security`, CORS, **port 80 → 301
+  HTTPS**, no browser `User-Agent` required, and `X-RateLimit-*` on every response.
+
 ### 2026-10-01
 
 - **Per-key quota and rate-limit headers.** Each API key is limited to **600 requests/minute**

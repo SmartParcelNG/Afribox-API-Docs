@@ -80,12 +80,19 @@ actual failure.
 
 ## Transport edges
 
-- **Unknown path** and **unexpected server error** return the usual envelope with
-  `statuscode` `99` — never an HTML page.
-- A `GET` on a `POST` route returns **HTTP 405** with the envelope. Only `/pay/return/`,
-  `/parcel/snapshot/image/` and `/customer/cards/add/complete/` are `GET`.
-- The edge refuses requests **without a browser `User-Agent`** (Cloudflare error 1010, HTTP
-  403). Server-to-server clients should send a normal `User-Agent`.
+- **Unknown path** returns **HTTP 404** with the envelope — never an HTML page; an
+  **unexpected server error** returns the envelope too.
+- A `GET` on an existing `POST` route returns **HTTP 405** with the envelope. Only
+  `/pay/return/`, `/parcel/snapshot/image/` and `/customer/cards/add/complete/` are `GET`.
+- JSON responses are served with `Content-Type: application/json`.
+- **HSTS** is set (`Strict-Transport-Security: max-age=31536000; includeSubDomains`) and
+  **port 80 redirects (`301`) to HTTPS**.
+- **CORS**: the docs console origin (`https://smartparcelng.github.io`) is allowed for
+  `POST, GET, OPTIONS`.
+- **Rate limiting**: every response carries `X-RateLimit-Limit`/`-Remaining`/`-Reset`, and a
+  `429` also carries `Retry-After` (see *Limits, versions & changelog*).
+- No browser `User-Agent` is required. Server-to-server clients may still send a normal
+  `User-Agent` — a harmless stop-gap.
 - Every path ends with a **trailing slash**.
 
 ## Values and formats

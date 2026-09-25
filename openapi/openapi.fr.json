@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -4625,7 +4625,7 @@
       "post": {
         "operationId": "post_pay_webhook_paystack",
         "summary": "Webhook Paystack",
-        "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients.",
+        "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est vérifiée dans l'en-tête `x-paystack-signature`. Sur `charge.success` : enregistre et exécute le paiement. **Non appelé par les clients.** Une signature invalide renvoie HTTP 403 avec l'enveloppe JSON (`errorcode AUTHENTICATION_FAILED`).",
         "tags": [
           "pay"
         ],

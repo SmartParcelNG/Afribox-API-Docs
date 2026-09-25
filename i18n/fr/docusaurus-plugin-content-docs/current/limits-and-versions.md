@@ -44,6 +44,15 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-02
+
+- **Cas limites du transport :** un chemin inconnu renvoie désormais l'enveloppe JSON avec
+  **HTTP 404** au lieu d'une page HTML, et un `GET` sur un chemin inconnu est un `404` (seule
+  une route `POST` existante répond `405`). Le webhook Paystack renvoie l'enveloppe en cas de
+  signature invalide. Confirmé en direct : `Content-Type` JSON, `Strict-Transport-Security`,
+  CORS, **port 80 → 301 HTTPS**, aucun `User-Agent` de navigateur requis, et `X-RateLimit-*`
+  sur chaque réponse.
+
 ### 2026-10-01
 
 - **Quota par clé et en-têtes de limite.** Chaque clé d'API est limitée à **600 requêtes /

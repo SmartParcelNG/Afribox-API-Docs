@@ -1,11 +1,11 @@
 ---
 id: post-pay-webhook-paystack
 title: "Webhook Paystack"
-description: "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients."
+description: "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est vérifiée dans l'en-tête `x-paystack-signature`. Sur `charge.success` : enregistre et exécute le paiement. **Non appelé par les clients.** Une signature invalide renvoie HTTP 403 avec l'enveloppe JSON (`errorcode AUTHENTICATION_FAILED`)."
 sidebar_label: "Webhook Paystack"
 hide_title: true
 hide_table_of_contents: true
-api: eJztVk1vIkcQ/SulvhhLMLAkubDaA1lFsaNkF9lEe7CspZkpoO1hetLdg0Ej/kuOdv4Gfyyv5gPisD7lGh8M0/2q+nVVvTeUyubsdDA2u07USOXWh6+53n194vnK2kf57oOOH1VXJexjZ3LBAvmlBpBnt+HC0eHP9mtEkyaIvFlmTClTbF3uae6KQJzR1W/jj73bq/EP74akNxxTqilODy/IELvDc2B6L0sSrUPhmNhL3MbuDi9Mic48pRec9cLhL2Bn217LsncMmREH2ujUJAiJ6OfDM9LM4pV2S458EcfsfYVp1xbapJzMIrqRgwzT1XQ6oeFgIIRj7SlhkrjDs+/S94PvwO6co8mqI3HgJ5uRznOWW+XaoQYeVzScBR+hlkEvvRrdKRBX91217TnWic3SnRotdOq5ix2n1xzYCa5UGR5Q9W9dFemMdGSFFOzw5PiPwjhGP4MrkMrHK15rNSpV2OWSxQdnsqXa7+9rMKj/aJOdIP4dG9ssgLRs4TqpiatZ6T94GYLyPLWdP3AczqblOBG8QTZUZJdanUSgsN8LB5/bzLOXRCi5fLyOH8ePmX1Cg5aghgg04Bx0XVf/1BMlyXmLC3gg6kI+8q6q47HgXYWogpvCS0lQ9pVt1aCkFWGFpz5Y9xtd9Ns29LFfzX3Tp8Kl0ooQcj/q9/XCmbnd6txEfq1dQFNjTqNs2d8Mz2o0rsGUO5sUsSxSZzO8VEJJ6n1z6tRPW73OU3Au99L8ha06YIIsHfOMJ9dyOTCr8w+jd9Hg/NTJNSUFzXEXzhJqgzu3wndS8b2MaGoLX81wbg1GmJILXUmB8MG5TIgk+eX28yeRy+Tz7ZQ6XhcLKCJpZoZklJzGcCHfrxe6CCuEmUW77ZmgQYjWaCoymqFo6NWskXtrIVAhVCdTWml/BCjX3gFKpwHtntbzYp4aVA4AnOc4dwZH2eKEOLrOPxHgCMEHzFGorUD0HWzxYAvnK194L6zc4cUXKWCN/hMcJWRekZYrzapcPrYJvKkzGwxm9KE1lMvKiGrAGsaklzyLZMxlANe6UlpjAK3tTt7w5fKk2P8t+r9ZdG1oAf7Rz1MNi0VDKnmXjSPU9t1VjSdUTnHsitj6SvwDsLKca8+/u3S/l2UMo4MJ3d2L9Tij5yLbu3ukbyxcjCQxXjaS4wvhzTZ3bhrPvqS3aLem982XR2N/CsDWHj/WyXtTSXZCnL0BXrmlqB7gefMmWWPSser0k7yS8B8ndPFzI9RWXNZrpUp1tiww8divc8rf3zW3Dgg=
+api: eJztls1y4kYQx1+lSxd/FAjbSS5s5UAcp0xqY1MLrj24XNYgNTC20CgzIwyl4l1yXPIavFj+LQnILutrTvHBoJnu1n/64zeUgcnZKq9N1k+CbpAb559ztXp+4/HMmFf57ryKX4NWkLCLrc7FFpafawNybBdcWNr+tfsa0qBxIqenGVPKFBubOxrbwhNndPtH77o9vO39dHlFasExpYridLtBhNhuv3imD7Ik3soXlomdp8V2Y/VEbzdMicocpSectf32b1hHy/ZOZ3vvFIU0hK4onik75dAVcczORdSFAstT7bwEhp7ldhMXvpKZK81zznxI5+d3JiOV5yy6cmWx7SBSY9eF5+f0gIMdBOpsoVKdMFnOFkYz3Y5GA/rx4ofmfNC64NQgHP0+vL+j04itNTY2cOk9jG5v7kb9696of3/3/Fuv//Hm1+gsRMq9mrqg+xjgdMFTK1i2LavEZOkq6E5U6riFHavm7NmKXRlkeEBxvpcPhNNSuBlCsMWT5T8LbRll97ZAKBfPeK6Cbhn4VS5RkCGdTYP1+qk2RhV+MclKLL71jU3mkRnZQs5SHVct1Xlx0ivlcWgzfuHYHzXVvnF4gWhI+yo1KgkhYb0WDS43mWMnga4uLuTja/9e/JqZt5STKaTBAwU4NurXtTpUL5DgvMQBHCzqRL7yqsrjPuGtAF4FN4mXlCDtM7MbmkBK4Wd46kB1pxmfzq4MHexX49HUqbCplML73HU7HTWxemyWKtehmyvrUdSY0zCbdhZXRznq1caUW5MUsSzS6eLqLBBJku9Ph0rdLNU8T6G5XEvxJ6aqgPaytI/TG/TlcFBWx78KL8PL47cO+pQUNMZZOEto53w6FL2DSu9ZSCNTuGpQcqMxJ5ScqDjefnGED86lQyRINQHAwOB+OKJTp4oJ5idpeoaklaxCcyHexxNV+BncMPjNtmOaKA0caEVFRhGShlpFDRN2pMFYASDSpRUgujDlGjGQdGjQ1mE9L8apRuZggPdZzq3Gq0xxsNjD6d8W0AgOePSRr2deUOVN8WIK6whNKigDFrYbV6Qwq/bltFC2+Ua0HCmqYjkBQwRKXFxE9DMJu5DFM8FVYzAHy9QUkJM2lwacq2rSGgDs6Dx4B9/lYWL/J/l/QvKaex6Y6eSpAolRt4oCZQOOmvKtoEFHBZR98YT+M8EMzMpyrBw/2HS9lmX0rAWrHp+EUFarsUz34xPCN6QX3iTayUayvzfe7YbTTw3az+g92Ts2fveOaSgZwHBH0es6eHskwQ4WRxfFV1AVOMB43Fw4c+QXq1a9yc2F/3hDCz9efE3ssl4rg1Rl0wKDgf06pvz9AzR8Jnc=
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients.
+Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est vérifiée dans l'en-tête `x-paystack-signature`. Sur `charge.success` : enregistre et exécute le paiement. **Non appelé par les clients.** Une signature invalide renvoie HTTP 403 avec l'enveloppe JSON (`errorcode AUTHENTICATION_FAILED`).
 
 <Heading
   id={"request"}

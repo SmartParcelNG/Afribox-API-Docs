@@ -80,12 +80,19 @@ réservé à un échec réel.
 
 ## Cas limites du transport
 
-- Un **chemin inconnu** et une **erreur serveur** renvoient l'enveloppe habituelle avec
-  `statuscode` `99` — jamais une page HTML.
-- Un `GET` sur une route `POST` renvoie **HTTP 405** avec l'enveloppe. Seules `/pay/return/`,
-  `/parcel/snapshot/image/` et `/customer/cards/add/complete/` sont `GET`.
-- La périphérie refuse les requêtes **sans `User-Agent` de navigateur** (Cloudflare erreur
-  1010, HTTP 403). Les clients serveur à serveur doivent envoyer un `User-Agent` normal.
+- Un **chemin inconnu** renvoie **HTTP 404** avec l'enveloppe — jamais une page HTML ; une
+  **erreur serveur** renvoie aussi l'enveloppe.
+- Un `GET` sur une route `POST` existante renvoie **HTTP 405** avec l'enveloppe. Seules
+  `/pay/return/`, `/parcel/snapshot/image/` et `/customer/cards/add/complete/` sont `GET`.
+- Les réponses JSON sont servies avec `Content-Type: application/json`.
+- **HSTS** est défini (`Strict-Transport-Security: max-age=31536000; includeSubDomains`) et le
+  **port 80 redirige (`301`) vers HTTPS**.
+- **CORS** : l'origine de la console de documentation (`https://smartparcelng.github.io`) est
+  autorisée pour `POST, GET, OPTIONS`.
+- **Limitation de débit** : chaque réponse porte `X-RateLimit-Limit`/`-Remaining`/`-Reset`, et
+  un `429` porte aussi `Retry-After` (voir *Limites, versions et changelog*).
+- Aucun `User-Agent` de navigateur n'est requis. Les clients serveur à serveur peuvent tout de
+  même envoyer un `User-Agent` normal — un pis-aller inoffensif.
 - Chaque chemin se termine par un **slash final**.
 
 ## Valeurs et formats
