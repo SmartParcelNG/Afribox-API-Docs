@@ -1,7 +1,7 @@
 ---
 id: post-core-boxes-available-list
 title: "List boxes with a free locker"
-description: "Boxes in the network that currently have at least one free locker."
+description: "Active boxes in the network that have at least one free compartment (`lockersavailable` is `True`, i.e. `lockersfree` > 0). Availability is a free compartment, not the box's service state."
 sidebar_label: "List boxes with a free locker"
 hide_title: true
 hide_table_of_contents: true
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Boxes in the network that currently have at least one free locker.
+Active boxes in the network that have at least one free compartment (`lockersavailable` is `True`, i.e. `lockersfree` > 0). Availability is a free compartment, not the box's service state.
 
 <Heading
   id={"request"}

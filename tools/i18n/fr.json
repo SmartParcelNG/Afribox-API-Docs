@@ -39,31 +39,39 @@
       "summary": "Créer une transaction de portefeuille (entreprise)"
     },
     "post_business_availableboxes_all": {
-      "summary": "Casiers disponibles (tous)"
+      "summary": "Casiers disponibles (tous)",
+      "description": "Les boîtes affectées à l'entreprise qui sont en service et ont au moins un compartiment libre."
     },
     "post_business_availableboxes_city": {
-      "summary": "Casiers disponibles par ville"
+      "summary": "Casiers disponibles par ville",
+      "description": "Les boîtes affectées à l'entreprise, en service et ayant un compartiment libre, dans une ville."
     },
     "post_business_availableboxes_state": {
-      "summary": "Casiers disponibles par État"
+      "summary": "Casiers disponibles par État",
+      "description": "Les boîtes affectées à l'entreprise, en service et ayant un compartiment libre, dans un État."
     },
     "post_business_balance": {
       "summary": "Solde du portefeuille"
     },
     "post_business_boxes_all": {
-      "summary": "Casiers de l'entreprise (tous)"
+      "summary": "Casiers de l'entreprise (tous)",
+      "description": "Toutes les boîtes affectées à l'entreprise, quel que soit leur état de service et qu'elles aient ou non un compartiment libre."
     },
     "post_business_boxes_assigned": {
-      "summary": "Casiers attribués"
+      "summary": "Casiers attribués",
+      "description": "Les boîtes affectées à l'entreprise qui sont en service."
     },
     "post_business_boxes_city": {
-      "summary": "Casiers par ville"
+      "summary": "Casiers par ville",
+      "description": "Les boîtes affectées à l'entreprise dans une ville, quel que soit leur état de service."
     },
     "post_business_boxes_info": {
-      "summary": "Détails d'un casier"
+      "summary": "Détails d'un casier",
+      "description": "Une boîte affectée à l'entreprise (clé d'entreprise). Pour n'importe quelle boîte du réseau, utilisez `/core/boxes/info/` avec la clé d'application."
     },
     "post_business_boxes_state": {
-      "summary": "Casiers par État"
+      "summary": "Casiers par État",
+      "description": "Les boîtes affectées à l'entreprise dans un État, quel que soit leur état de service."
     },
     "post_business_cancelledparcels": {
       "summary": "Colis annulés"
@@ -138,7 +146,8 @@
       "summary": "Casiers disponibles par État"
     },
     "post_core_boxes_available_list": {
-      "summary": "Lister les casiers disponibles"
+      "summary": "Lister les casiers disponibles",
+      "description": "Boîtes actives du réseau ayant au moins un compartiment libre (`lockersavailable` vaut `True`, c.-à-d. `lockersfree` > 0). « Disponible » signifie un compartiment libre, non l'état de service de la boîte."
     },
     "post_core_boxes_bycity": {
       "summary": "Casiers par ville"
@@ -150,7 +159,8 @@
       "summary": "Détails d'un casier"
     },
     "post_core_boxes_list": {
-      "summary": "Lister les casiers"
+      "summary": "Lister les casiers",
+      "description": "Toutes les boîtes actives du réseau de la clé appelante."
     },
     "post_core_cities_bystate": {
       "summary": "Villes par État"

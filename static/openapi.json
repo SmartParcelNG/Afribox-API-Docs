@@ -129,7 +129,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's boxes that currently have at least one free locker.",
+        "description": "The boxes assigned to the business that are in service and have at least one free compartment.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -169,7 +169,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's boxes with a free locker, in one city.",
+        "description": "The boxes assigned to the business that are in service and have a free compartment, in one city.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -209,7 +209,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's boxes with a free locker, in one state.",
+        "description": "The boxes assigned to the business that are in service and have a free compartment, in one state.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -294,7 +294,7 @@
         "tags": [
           "business"
         ],
-        "description": "All boxes of the business.",
+        "description": "Every box assigned to the business, whatever its service state and whether or not it has a free compartment.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -334,7 +334,7 @@
         "tags": [
           "business"
         ],
-        "description": "The boxes assigned to the business (identical to `/business/boxes/all/` for a single-business key).",
+        "description": "The boxes assigned to the business that are in service.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -374,7 +374,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's boxes in one city.",
+        "description": "The boxes assigned to the business in one city, whatever their service state.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -414,8 +414,8 @@
         "tags": [
           "business"
         ],
-        "description": "One business box (client-side box lookup).",
-        "x-auth": "app_key",
+        "description": "One box assigned to the business (business key). For any box in the network, use `/core/boxes/info/` with the application key.",
+        "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
           "required": true,
@@ -454,7 +454,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's boxes in one state.",
+        "description": "The boxes assigned to the business in one state, whatever their service state.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -1581,7 +1581,7 @@
         "tags": [
           "core"
         ],
-        "description": "Boxes in the network that currently have at least one free locker.",
+        "description": "Active boxes in the network that have at least one free compartment (`lockersavailable` is `True`, i.e. `lockersfree` > 0). Availability is a free compartment, not the box's service state.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -1763,7 +1763,7 @@
         "tags": [
           "core"
         ],
-        "description": "All active boxes of the calling key's network.",
+        "description": "Every active box in the calling key's network.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {

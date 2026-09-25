@@ -50,6 +50,10 @@ Une référence ne peut financer **qu'une seule** réservation. Les rejeux sont 
 Les codes sont renvoyés par les points de colis sous `dropcode` / `collectcode` ; les points
 kiosque les lisent sous le nom unique `unlockcode`.
 
+Pour un **colis entreprise**, l'entreprise reçoit le **code de dépôt** à la réservation (réponse
+et tableau de bord) et dépose avec celui-ci, tandis que le **destinataire** n'est notifié — SMS,
+e-mail et WhatsApp, avec le code de retrait — qu'au dépôt du colis dans la boîte.
+
 ## Instantanés
 
 - `POST /kiosk/parcel/snapshot/` — téléverser une image de preuve de livraison. Champs clés :

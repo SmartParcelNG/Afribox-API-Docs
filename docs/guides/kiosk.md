@@ -48,6 +48,10 @@ A reference can fund **one** reservation. Replays are rejected (`"Payment alread
 The codes are returned by the parcel endpoints as `dropcode` / `collectcode`; the kiosk
 endpoints read them under the single name `unlockcode`.
 
+For a **business parcel** the business receives the **drop code** at booking (the response and
+the dashboard) and deposits with it, while the **recipient** is notified — SMS, email and
+WhatsApp, with the collect code — only when the parcel is dropped off at the box.
+
 ## Snapshots
 
 - `POST /kiosk/parcel/snapshot/` — upload a proof-of-delivery image. Key fields:

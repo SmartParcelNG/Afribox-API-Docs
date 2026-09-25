@@ -154,23 +154,23 @@
     },
     "POST /core/boxes/list/": {
       "summary": "List the boxes of the network",
-      "description": "All active boxes of the calling key's network."
+      "description": "Every active box in the calling key's network."
     },
     "POST /core/boxes/available/list/": {
       "summary": "List boxes with a free locker",
-      "description": "Boxes in the network that currently have at least one free locker."
+      "description": "Active boxes in the network that have at least one free compartment (`lockersavailable` is `True`, i.e. `lockersfree` > 0). Availability is a free compartment, not the box's service state."
     },
     "POST /business/boxes/all/": {
       "summary": "List all boxes of the business",
-      "description": "All boxes of the business."
+      "description": "Every box assigned to the business, whatever its service state and whether or not it has a free compartment."
     },
     "POST /business/boxes/assigned/": {
       "summary": "List the boxes assigned to the business",
-      "description": "The boxes assigned to the business (identical to `/business/boxes/all/` for a single-business key)."
+      "description": "The boxes assigned to the business that are in service."
     },
     "POST /business/availableboxes/all/": {
       "summary": "List the business's boxes with a free locker",
-      "description": "The business's boxes that currently have at least one free locker."
+      "description": "The boxes assigned to the business that are in service and have at least one free compartment."
     },
     "POST /business/pendingpickups/": {
       "summary": "List parcels awaiting collection",
@@ -281,19 +281,19 @@
     },
     "POST /business/boxes/city/": {
       "summary": "List the business's boxes by city",
-      "description": "The business's boxes in one city."
+      "description": "The boxes assigned to the business in one city, whatever their service state."
     },
     "POST /business/boxes/state/": {
       "summary": "List the business's boxes by state",
-      "description": "The business's boxes in one state."
+      "description": "The boxes assigned to the business in one state, whatever their service state."
     },
     "POST /business/availableboxes/city/": {
       "summary": "List the business's available boxes by city",
-      "description": "The business's boxes with a free locker, in one city."
+      "description": "The boxes assigned to the business that are in service and have a free compartment, in one city."
     },
     "POST /business/availableboxes/state/": {
       "summary": "List the business's available boxes by state",
-      "description": "The business's boxes with a free locker, in one state."
+      "description": "The boxes assigned to the business that are in service and have a free compartment, in one state."
     },
     "POST /business/cities/all/": {
       "summary": "List the cities of the business network",
@@ -463,7 +463,7 @@
     },
     "POST /business/boxes/info/": {
       "summary": "Boxes Info",
-      "description": "One business box (client-side box lookup)."
+      "description": "One box assigned to the business (business key). For any box in the network, use `/core/boxes/info/` with the application key."
     },
     "POST /business/cities/state/": {
       "summary": "Cities State",
