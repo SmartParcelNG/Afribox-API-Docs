@@ -77,10 +77,12 @@ Deux types de réservation se comportent différemment :
   expire **72 heures** après la création (configurable côté serveur). L'échéance est renvoyée
   dans `expiresat` sur la réponse de création.
 
-Lorsqu'un colis créé n'est jamais déposé avant l'échéance, une tâche horaire le passe au
-statut **8 (Reservation expired)**, libère le casier et **perd les frais de réservation — sans
-remboursement**. Une **annulation** avant l'échéance, en revanche, est une annulation normale
-(statut 5) et **rembourse** les frais.
+Lorsqu'un colis créé n'est jamais déposé avant l'échéance, un balayage d'expiration le passe
+au statut **8 (Reservation expired)**, libère le casier et **perd les frais de réservation —
+sans remboursement**. Une **annulation** avant l'échéance, en revanche, est une annulation
+normale (statut 5) et **rembourse** les frais. Le balayage s'exécute sur le planificateur
+disponible (Elastic Job Azure SQL, tâche planifiée, etc.) et aussi de façon opportuniste à
+chaque création de colis.
 
 ## Barème des frais de réservation (appless) — en vigueur le 23 septembre 2026
 

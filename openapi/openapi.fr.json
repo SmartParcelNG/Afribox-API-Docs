@@ -6744,7 +6744,7 @@
           "expiresat": {
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
-            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the hourly job sets the parcel to status 8, releases the locker and forfeits the fee."
+            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the expiry sweep sets the parcel to status 8, releases the locker and forfeits the fee."
           },
           "expiresatiso": {
             "type": "string"
@@ -10634,7 +10634,7 @@
           "expiresat": {
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
-            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the hourly job sets the parcel to status 8, releases the locker and forfeits the fee."
+            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the expiry sweep sets the parcel to status 8, releases the locker and forfeits the fee."
           },
           "expiresatiso": {
             "type": "string"

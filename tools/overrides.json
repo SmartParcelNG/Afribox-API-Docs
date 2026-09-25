@@ -701,7 +701,7 @@
       "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
     },
     "expiresat": {
-      "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the hourly job sets the parcel to status 8, releases the locker and forfeits the fee."
+      "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the expiry sweep sets the parcel to status 8, releases the locker and forfeits the fee."
     }
   },
   "manualOperations": {

@@ -75,10 +75,12 @@ Two kinds of reservation behave differently:
   expires **72 hours** after creation (configurable server-side). The deadline is returned as
   `expiresat` on the create response.
 
-When a created parcel is never dropped off by its deadline, an hourly job sets it to status
+When a created parcel is never dropped off by its deadline, an expiry sweep sets it to status
 **8 (Reservation expired)**, releases the locker, and **forfeits the reservation fee — there
 is no refund**. A **cancellation** before the deadline, by contrast, is a normal cancel
-(status 5) and **refunds** the fee.
+(status 5) and **refunds** the fee. The sweep runs on whatever scheduler the host provides
+(Azure SQL Elastic Job, a scheduled task, etc.) and also opportunistically whenever a parcel
+is created.
 
 ## Reservation (appless) fee schedule — effective 23 September 2026
 

@@ -52,7 +52,7 @@ sidebar_position: 4
   `errorcode: "INSUFFICIENT_BALANCE"`.
 - Les colis créés en attente de dépôt expirent désormais après **72 h** (configurable) ;
   l'échéance est renvoyée dans `expiresat` sur `/business/parcels/create/` et
-  `/customer/parcels/new/`. Une tâche horaire les passe au statut de colis **8
+  `/customer/parcels/new/`. Un balayage d'expiration les passe au statut de colis **8
   (Reservation expired)**, libère le casier et perd les frais ; l'annulation avant l'échéance
   rembourse toujours.
 
