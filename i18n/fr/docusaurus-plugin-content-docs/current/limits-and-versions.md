@@ -44,6 +44,13 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-07
+
+- **`dispatch` clarifié :** il existe dans le backend mais **ne fait pas encore partie de ce
+  contrat** — la livraison par dispatch sera intégrée plus tard par Afribox, et l'API commence
+  par le **dépôt/retrait** pour limiter le périmètre au lancement. L'introduction ne le liste
+  plus comme domaine et l'indique désormais explicitement.
+
 ### 2026-10-06
 
 - **Métadonnées de paiement et `flowtype` documentés.** `flowtype` est un champ de **niveau

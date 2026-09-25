@@ -7,13 +7,13 @@ sidebar_position: 1
 # API Afribox
 
 L'API Afribox alimente le réseau de casiers intelligents SmartParcel : casiers, colis,
-clients, entreprises, livraison, kiosques et paiements.
+clients, entreprises, kiosques et paiements.
 
 - **URL de base** : `https://afriboxapi.smartparcel.ng/v2`
 - **Format** : JSON en `POST` (quelques points d'accès en `GET`) ; le JSON est servi en `Content-Type: application/json`
 - **Devise** : XOF (Côte d'Ivoire)
 - **Paiements** : Paystack
-- **Spécification OpenAPI** : servie à `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json` (OpenAPI 3.1), versionnée à `https://smartparcelng.github.io/Afribox-API-Docs/openapi-2.0.0.json`. Importez-la dans votre générateur, Postman ou Insomnia.
+- **Spécification OpenAPI** : servie à `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json` (OpenAPI 3.1), chaque version étant archivée à `https://smartparcelng.github.io/Afribox-API-Docs/openapi-<version>.json` (p. ex. `openapi-2.1.5.json`). Importez-la dans votre générateur, Postman ou Insomnia.
 
 :::info Convention de réponse
 Chaque point d'accès JSON renvoie **HTTP 200**. Le résultat se trouve dans le corps :
@@ -39,5 +39,9 @@ ou `99` — ainsi « il n'y a rien » n'est jamais confondu avec « quelque chos
 | `pay` | Paiements de colis + Paystack (initialize/verify/status/webhook) |
 | `parcel` | Instantanés de preuve de livraison |
 | `admin` | Administration des entreprises |
+
+:::note Livraison (dispatch)
+Une famille `dispatch` existe dans le backend mais **ne fait pas encore partie de ce contrat** — la livraison par dispatch sera intégrée plus tard par Afribox ; l'API commence par le **dépôt et le retrait** pour limiter le périmètre au lancement. Elle est exclue de la référence générée en attendant.
+:::
 
 Commencez par [Authentification](./authentication).

@@ -42,6 +42,13 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-07
+
+- **`dispatch` clarified:** it exists in the backend but is **not part of this contract yet** —
+  dispatch delivery is being onboarded by Afribox later, and the API starts with
+  **drop-off/pick-up** to reduce scope on launch. The introduction no longer lists it as a
+  domain and now says so explicitly.
+
 ### 2026-10-06
 
 - **Payment `metadata` and `flowtype` documented.** `flowtype` is a **top-level** field of

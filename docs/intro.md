@@ -7,13 +7,13 @@ sidebar_position: 1
 # Afribox API
 
 The Afribox API powers the SmartParcel smart-locker network: lockers, boxes, parcels,
-customers, businesses, dispatch, kiosks, and payments.
+customers, businesses, kiosks, and payments.
 
 - **Base URL**: `https://afriboxapi.smartparcel.ng/v2`
 - **Format**: JSON over `POST` (a few endpoints are `GET`); JSON is served as `Content-Type: application/json`
 - **Currency**: XOF (Côte d'Ivoire)
 - **Payments**: Paystack
-- **OpenAPI spec**: served at `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json` (OpenAPI 3.1), versioned at `https://smartparcelng.github.io/Afribox-API-Docs/openapi-2.0.0.json`. Import it into your generator, Postman or Insomnia.
+- **OpenAPI spec**: served at `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json` (OpenAPI 3.1), with each release archived at `https://smartparcelng.github.io/Afribox-API-Docs/openapi-<version>.json` (e.g. `openapi-2.1.5.json`). Import it into your generator, Postman or Insomnia.
 
 :::info Response convention
 Every JSON endpoint returns **HTTP 200**. The outcome is in the body:
@@ -39,5 +39,9 @@ also returns `"00"`, with an **empty array** (`[]`) rather than `null` or `99` �
 | `pay` | Parcel payments + Paystack (initialize/verify/status/webhook) |
 | `parcel` | Proof-of-delivery snapshots |
 | `admin` | Business administration |
+
+:::note Dispatch
+A `dispatch` family exists in the backend but is **not part of this contract yet** — dispatch delivery is being onboarded by Afribox later; the API currently starts with **drop-off and pick-up** to keep the launch scope small. It is excluded from the generated reference until then.
+:::
 
 Start with [Authentication](./authentication).
