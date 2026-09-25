@@ -124,6 +124,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "api/read/post-core-lockerstatuses-list",
+          label: "List the locker statuses",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "api/read/post-core-parcels-search",
           label: "Parcels Search",
           className: "api-method post",

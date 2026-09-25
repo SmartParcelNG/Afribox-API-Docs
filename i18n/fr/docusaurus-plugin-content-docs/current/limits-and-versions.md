@@ -34,6 +34,17 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-25
+
+- Le vocabulaire des statuts de colis inclut désormais **7 — Dispatch collected parcel from
+  locker** ; `parcelstatus` sur les réponses de colis n'est jamais vide (repli sur
+  `"Status <id>"`).
+- Ajout de `/core/lockerstatuses/list/` (1 Vacant, 2 Reserved, 3 Occupied).
+- `transactionstatus` documenté comme vocabulaire fermé (`initialized` + les 8 statuts Paystack)
+  avec valeurs terminales/non terminales et consignes de sondage.
+- `transactions[].type` déclaré `Credit`/`Debit` (ensemble complet).
+- Nouvelle page **Listes de référence** énumérant chaque vocabulaire fermé.
+
 ### 2026-09-24
 
 - Prise en charge de `Idempotency-Key` sur les points de création.

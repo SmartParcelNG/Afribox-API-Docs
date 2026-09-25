@@ -34,12 +34,12 @@
     "POST /pay/verify/": {
       "readonly": false,
       "summary": "Verify a Paystack payment",
-      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments. `amount`/`fees` are in XOF francs (major unit); `paidat` is ISO 8601 UTC."
+      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded; replaying a reference is safe (fulfilment happens once). On a non-success status it returns `statuscode` 99 \"Payment not successful\" with `transactionstatus` = Paystack's status. Returns the parcel `collectcode` for parcel payments. `amount`/`fees` are in XOF francs (major unit); `paidat` is ISO 8601 UTC."
     },
     "POST /pay/status/": {
       "readonly": true,
       "summary": "Get payment status by reference",
-      "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `paidat` is ISO 8601 UTC."
+      "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed`, `abandoned`, `reversed` (stop polling), non-terminal are `ongoing`, `pending`, `processing`, `queued`, `initialized`. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC."
     },
     "POST /business/pendingdropoffs/": {
       "summary": "List parcels awaiting drop-off",
@@ -233,7 +233,7 @@
           }
         ]
       },
-      "description": "The parcel-status vocabulary (1 New request … 6 Archived)."
+      "description": "The parcel-status vocabulary (1 New request … 7 Dispatch collected)."
     },
     "POST /business/balance/": {
       "responseExample": {
@@ -596,6 +596,21 @@
     "GET /parcel/snapshot/image/": {
       "summary": "Snapshot Image",
       "description": "Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`)."
+    },
+    "POST /core/lockerstatuses/list/": {
+      "summary": "List the locker statuses",
+      "description": "The locker-status vocabulary: 1 Vacant, 2 Reserved, 3 Occupied.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "lockerstatuses": [
+          {
+            "lockerstatusid": "1",
+            "lockerstatus": "Vacant",
+            "lockerstatusdescription": "Locker is empty. No parcel is in it."
+          }
+        ]
+      }
     }
   },
   "propertyTypes": {
@@ -630,9 +645,38 @@
         "3",
         "4",
         "5",
-        "6"
+        "6",
+        "7"
       ],
-      "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+      "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+    },
+    "parcelstatus": {
+      "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
+    },
+    "transactionstatus": {
+      "enum": [
+        "initialized",
+        "success",
+        "failed",
+        "abandoned",
+        "reversed",
+        "ongoing",
+        "pending",
+        "processing",
+        "queued"
+      ],
+      "description": "`initialized` = created, not yet confirmed; then Paystack's status. Terminal: `success`, `failed`, `abandoned`, `reversed` — stop polling. Non-terminal: `ongoing`, `pending`, `processing`, `queued` — keep polling. `/pay/status/` returns `statuscode` 00 and the value here; poll every ~5 s with backoff, stop on a terminal value."
+    },
+    "lockerstatus": {
+      "enum": [
+        "Vacant",
+        "Reserved",
+        "Occupied"
+      ],
+      "description": "Locker state: Vacant = empty; Reserved = empty but held for a parcel; Occupied = holds a parcel. See /core/lockerstatuses/list/."
+    },
+    "flowtype": {
+      "description": "Informational payment flow, free-form: `web` (B2B/B2C) or `appless` (kiosk). The API does not validate it."
     }
   },
   "manualOperations": {
@@ -841,6 +885,17 @@
         "phone": "0104554198",
         "email": "ama@example.com",
         "password": "secret"
+      }
+    },
+    "LogisticsTransactionHistoryData": {
+      "properties": {
+        "type": {
+          "enum": [
+            "Credit",
+            "Debit"
+          ],
+          "description": "Wallet transaction type: Credit or Debit (complete set). See /core/wallettransactiontypes/list/."
+        }
       }
     }
   }

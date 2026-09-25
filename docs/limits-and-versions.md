@@ -33,6 +33,16 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-25
+
+- Parcel status vocabulary now includes **7 — Dispatch collected parcel from locker**;
+  `parcelstatus` on parcel responses is never empty (falls back to `"Status <id>"`).
+- Added `/core/lockerstatuses/list/` (1 Vacant, 2 Reserved, 3 Occupied).
+- `transactionstatus` documented as a closed vocabulary (`initialized` + Paystack's 8 statuses)
+  with terminal/non-terminal values and polling guidance.
+- `transactions[].type` declared as `Credit`/`Debit` (complete set).
+- New **Reference lists** page enumerating every closed vocabulary.
+
 ### 2026-09-24
 
 - Added `Idempotency-Key` support to creating endpoints.

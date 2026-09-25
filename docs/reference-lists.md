@@ -1,0 +1,91 @@
+---
+id: reference-lists
+title: Reference lists
+sidebar_position: 5
+---
+
+# Reference lists
+
+Every closed vocabulary in the API, with its list endpoint. The labels are served by the
+`/core/*/list/` endpoints; the values below are the complete sets.
+
+## Parcel status — `/core/parcelstatuses/list/`
+
+| `parcelstatusid` | `parcelstatus` | Meaning |
+|---|---|---|
+| 1 | New parcel request | Request created; not yet dropped off |
+| 2 | Dropped parcel in locker | In the locker, awaiting collection |
+| 3 | Enroute to recipient | Collected from the locker by dispatch, travelling to the recipient |
+| 4 | Recipient collected parcel from locker | Collected by the recipient |
+| 5 | Parcel was cancelled | Cancelled |
+| 6 | Archived | Archived / retrieved |
+| 7 | Dispatch collected parcel from locker | Collected from the locker by dispatch; picked-up not yet marked |
+
+`parcelstatus` on parcel responses is never empty: if a label were ever missing it falls back
+to the id (`"Status 7"`).
+
+## Locker status — `/core/lockerstatuses/list/`
+
+| `lockerstatusid` | `lockerstatus` | Meaning |
+|---|---|---|
+| 1 | Vacant | Empty; no parcel in it |
+| 2 | Reserved | Empty but held for a parcel |
+| 3 | Occupied | Holds a parcel |
+
+Returned by the kiosk drop/collect responses as `lockerstatus` (the label).
+
+## Wallet transaction type — `/core/wallettransactiontypes/list/`
+
+`transactions[].type` is **exactly** one of:
+
+| `wallettransactiontypeid` | `wallettransactiontype` |
+|---|---|
+| 1 | Credit |
+| 2 | Debit |
+
+## Wallet fund mode — `/core/walletfundmodes/list/`
+
+| `walletfundmodeid` | `walletfundmode` |
+|---|---|
+| 1 | Online / Card |
+| 2 | Back Office |
+| 3 | Paystack |
+
+## Billing type — `/core/billingtypes/list/`
+
+| `billingtypeid` | `billingtype` |
+|---|---|
+| 1 | Prepaid |
+| 2 | Postpaid |
+
+## Request type — `/core/requesttypes/list/`
+
+`1` Send parcel, `2` Self-storage, `3` Customer to customer, `4` Locker application (appless),
+`5` NIPOST, `6` On-site pickup, `7` Pick up, `8` Doorstep delivery, `9` Locker delivery
+(labels are served in French or English — prefer the id).
+
+## Payment status — `/pay/status/` (`transactionstatus`)
+
+`initialized` (created, not yet confirmed), then Paystack's status:
+
+| value | kind | meaning |
+|---|---|---|
+| `success` | terminal | Payment processed |
+| `failed` | terminal | Payment failed |
+| `abandoned` | terminal | Customer did not complete it |
+| `reversed` | terminal | Refunded / chargeback |
+| `ongoing` | non-terminal | Customer is still acting (OTP, transfer) |
+| `pending` | non-terminal | In progress |
+| `processing` | non-terminal | In progress (direct debit) |
+| `queued` | non-terminal | Queued (bulk charge) |
+
+- `/pay/status/` returns `statuscode` `00` for a known reference — read **`transactionstatus`**.
+- `/pay/verify/` returns `statuscode` `99` "Payment not successful" for a non-success.
+- Polling: no server-enforced interval. Poll every ~5 s with exponential backoff (cap ~30 s),
+  stop on a terminal value, give up after ~5 min. Each `/pay/status/` call self-confirms with
+  Paystack. Prefer the success webhook where available.
+
+## Payment flow — `flowtype` (request field, `/pay/initialize/`)
+
+Informational and free-form — the API does not validate it. The documented values are
+`web` (B2B/B2C web checkout) and `appless` (kiosk appless flow).

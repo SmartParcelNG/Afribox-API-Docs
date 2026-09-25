@@ -1,0 +1,68 @@
+---
+id: post-core-lockerstatuses-list
+title: "Lister les statuts de casier"
+description: "Le vocabulaire des statuts de casier : 1 Vacant, 2 Réservé, 3 Occupé."
+sidebar_label: "Lister les statuts de casier"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVttuGzcQ/ZUBX2IDa12cpI1k5MFtAzSFmxiW3RfDsKjdkcRkRW55UWwIAvoR/Yi4v6E/6Zd0htzNWpadPDSGQa/J4VzOXA5XwlRopVdGvy3EUFTG+evcWLwuTf4RrfPSB4fuulTOi0x4OXNieClYRFxlokCXW1Xxfbp9grA0uZyEUiqLQIcQFXhH35BLp9DCEPrwh8yl9hkcwtnmzqFdbu4yeA7v8zxUm7sOGbo5kMHPSaesquuPeBu3LMrC6PJWDL0NmAmLfwZ0/idT0NYq/kt2i+Y4N9qj9nxEWkqVxzi7Hxw7uxIun+NC8pe/rZBMmckHzDnKyjIqXqFLdxU70Mo5b5WeifU6u2fyspEjVLzyJQueRAxHNYYnDOF6na65ymiX9B/2evxnG8o3eomlqSpGESyBFEpSA3spIbkpsJs+F+icnOF+By40jNvjMRRqOt3cWUKAdYx7vTEoXSiCDIJGQGsxWMb6O+HU2t7FKhOow4JRomAz0evzcsjLc15e8PKSlx94+ZGXV7wMaOnzjT7fGPDeYLBbeGfI+ADbHkKvBy7kOeFyBL3+Qe851HUCEyoU2nsBC+UcuQVThWVBOy8P+n1YylIVMfQjGLwCrj9CpUaDtgYwQ41W5QydsUC/uKj8Laln6x1Bid3KySMlk4ntvronIq2VXObK48J9G+37elTxTVNfS0nqRtogGKkXqZozEVtR0eduk0etsbEJ7HQXXicojqBR0ezAJHiYE8owJbwkVNLmWB5Bo5/k5qYs3JejDowQocsDpruNVZdnULfzMLIt7x7r0ce68RfppVg/dZp69axuUjaIN3JRlfiwzFM1P0i6GKXqm4ZS7Ob7cjd1oi8eJqvNyZOhNolQLiHdgXemxpD3lAbFNXmVJs4L6rGdIXOhP2rzSdMtP4d///qbKtkHqx1Q5cNvo/fvANMYQvikSGRrvIwHg3EG2niQGn49//2E1MwwpuflYxPtQuNNRZVMOY8lYus2+l92j0ennXdvzhvTMVM0yxyZTFjHyd2wSSaoxwPeY5V11op8YZcvYkwja2qABfq5aeiRO1FGanq6SLkoYozJiWBLEp97X7lhtyunVk3MDdFFxy2k9XXd61l3yRNxG7XjJAzU/EXIeRP2lof7gt3iAX3WUuCbtkYbyro3DJSemtgfdb03io9P33LA5GoyeNjpdXq7bpy+hSLARFKsuoDm8t6IAziNARADnZvgoCTWr4zSTPrPZJ5vPlNzU0NUPjJRaBIMp+9H50RoMkwjL6U5C0xGlp8PpO/kWTOEp82xQ5hK5WGpJLEYjFOkRHZSs2m6bqv42ihlHPubfzzSk4MJLy83d+xSS3FZu1+FSRmpsXhG9ixWVpEpE1oJh7ndfPbbEuQj1m8c6oHzU2Ca8SZ8MME6IGaHI/aqJXA+TyzMzmw5zSFtVfpe5OzXkc0IxX1A3wjUw2Yc242rciHj9NNyEYcZFSE1WPnYA+xhblct/3/PB1w9hz31Y7cidZo9jY2wqvunfkXujEjaSI9N5p45dxyJrlYT6fDClus1b1OmLNX35RX3qlVywjV9eUUm5tTFFGTb+z+n6A7O2aGtCbD90mlHwXGs1q/K3h8KXMckPKlfoYvEDFZ+ok1eh4I+TEQ70nDcIxaQehYSYSSd/PMf7QMIDQ==
+sidebar_class_name: "post api-method"
+info_path: docs/current/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Lister les statuts de casier"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/core/lockerstatuses/list/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Le vocabulaire des statuts de casier : 1 Vacant, 2 Réservé, 3 Occupé.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"}},"required":["apikey"],"title":"LockerStatusesList"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."},"statusmessage":{"type":"string"},"lockerstatuses":{"type":"array","items":{"type":"object","properties":{"lockerstatusid":{"type":"string"},"lockerstatus":{"type":"string","enum":["Vacant","Reserved","Occupied"],"description":"Locker state: Vacant = empty; Reserved = empty but held for a parcel; Occupied = holds a parcel. See /core/lockerstatuses/list/."},"lockerstatusdescription":{"type":"string"}},"title":"LockerStatusData"}}},"title":"LockerStatusesListResponse"},"example":{"statuscode":"00","statusmessage":"Successful","lockerstatuses":[{"lockerstatusid":"1","lockerstatus":"Vacant","lockerstatusdescription":"Locker is empty. No parcel is in it."}]}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1908,6 +1908,57 @@
         }
       }
     },
+    "/core/lockerstatuses/list/": {
+      "post": {
+        "operationId": "post_core_lockerstatuses_list",
+        "summary": "List the locker statuses",
+        "tags": [
+          "core"
+        ],
+        "description": "The locker-status vocabulary: 1 Vacant, 2 Reserved, 3 Occupied.",
+        "x-auth": "app_key",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LockerStatusesList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LockerStatusesListResponse"
+                },
+                "example": {
+                  "statuscode": "00",
+                  "statusmessage": "Successful",
+                  "lockerstatuses": [
+                    {
+                      "lockerstatusid": "1",
+                      "lockerstatus": "Vacant",
+                      "lockerstatusdescription": "Locker is empty. No parcel is in it."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
     "/core/parcels/search/": {
       "post": {
         "operationId": "post_core_parcels_search",
@@ -1955,7 +2006,7 @@
         "tags": [
           "core"
         ],
-        "description": "The parcel-status vocabulary (1 New request … 6 Archived).",
+        "description": "The parcel-status vocabulary (1 New request … 7 Dispatch collected).",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -3020,7 +3071,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `paidat` is ISO 8601 UTC.",
+        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed`, `abandoned`, `reversed` (stop polling), non-terminal are `ongoing`, `pending`, `processing`, `queued`, `initialized`. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC.",
         "x-auth": "paystack_dual",
         "x-readonly": true,
         "requestBody": {
@@ -3086,7 +3137,19 @@
             "type": "string"
           },
           "transactionstatus": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "initialized",
+              "success",
+              "failed",
+              "abandoned",
+              "reversed",
+              "ongoing",
+              "pending",
+              "processing",
+              "queued"
+            ],
+            "description": "`initialized` = created, not yet confirmed; then Paystack's status. Terminal: `success`, `failed`, `abandoned`, `reversed` — stop polling. Non-terminal: `ongoing`, `pending`, `processing`, `queued` — keep polling. `/pay/status/` returns `statuscode` 00 and the value here; poll every ~5 s with backoff, stop on a terminal value."
           },
           "amount": {
             "type": "string"
@@ -3219,12 +3282,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "sizename": {
             "type": "string"
@@ -3350,7 +3415,19 @@
             "type": "string"
           },
           "transactionstatus": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "initialized",
+              "success",
+              "failed",
+              "abandoned",
+              "reversed",
+              "ongoing",
+              "pending",
+              "processing",
+              "queued"
+            ],
+            "description": "`initialized` = created, not yet confirmed; then Paystack's status. Terminal: `success`, `failed`, `abandoned`, `reversed` — stop polling. Non-terminal: `ongoing`, `pending`, `processing`, `queued` — keep polling. `/pay/status/` returns `statuscode` 00 and the value here; poll every ~5 s with backoff, stop on a terminal value."
           },
           "amount": {
             "type": "string"
@@ -3378,7 +3455,8 @@
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "flowtype": {
-            "type": "string"
+            "type": "string",
+            "description": "Informational payment flow, free-form: `web` (B2B/B2C) or `appless` (kiosk). The API does not validate it."
           },
           "parceldetailid": {
             "type": "string"
@@ -3467,12 +3545,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "sizename": {
             "type": "string"
@@ -3621,7 +3701,8 @@
             "type": "string"
           },
           "flowtype": {
-            "type": "string"
+            "type": "string",
+            "description": "Informational payment flow, free-form: `web` (B2B/B2C) or `appless` (kiosk). The API does not validate it."
           },
           "metadata": {
             "type": "object",
@@ -4063,7 +4144,8 @@
             "type": "string"
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "sizename": {
             "type": "string"
@@ -4125,7 +4207,13 @@
             "type": "string"
           },
           "lockerstatus": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Vacant",
+              "Reserved",
+              "Occupied"
+            ],
+            "description": "Locker state: Vacant = empty; Reserved = empty but held for a parcel; Occupied = holds a parcel. See /core/lockerstatuses/list/."
           },
           "datecreatediso": {
             "type": "string"
@@ -4207,7 +4295,8 @@
             "type": "string"
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "sizename": {
             "type": "string"
@@ -4266,7 +4355,13 @@
             "type": "string"
           },
           "lockerstatus": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Vacant",
+              "Reserved",
+              "Occupied"
+            ],
+            "description": "Locker state: Vacant = empty; Reserved = empty but held for a parcel; Occupied = holds a parcel. See /core/lockerstatuses/list/."
           },
           "datecreatediso": {
             "type": "string"
@@ -4426,12 +4521,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "sizename": {
             "type": "string"
@@ -4758,12 +4855,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "narration": {
             "type": "string"
@@ -4890,12 +4989,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "sizename": {
             "type": "string"
@@ -7123,12 +7224,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "parcelstatusdescription": {
             "type": "string"
@@ -7136,6 +7239,71 @@
         }
       },
       "ParcelStatusesList": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "LockerStatusesListResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "lockerstatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LockerStatusData"
+            }
+          }
+        }
+      },
+      "LockerStatusData": {
+        "type": "object",
+        "properties": {
+          "lockerstatusid": {
+            "type": "string"
+          },
+          "lockerstatus": {
+            "type": "string",
+            "enum": [
+              "Vacant",
+              "Reserved",
+              "Occupied"
+            ],
+            "description": "Locker state: Vacant = empty; Reserved = empty but held for a parcel; Occupied = holds a parcel. See /core/lockerstatuses/list/."
+          },
+          "lockerstatusdescription": {
+            "type": "string"
+          }
+        }
+      },
+      "LockerStatusesList": {
         "type": "object",
         "properties": {
           "apikey": {
@@ -8156,7 +8324,12 @@
             "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Credit",
+              "Debit"
+            ],
+            "description": "Wallet transaction type: Credit or Debit (complete set). See /core/wallettransactiontypes/list/."
           },
           "amount": {
             "type": "string"
@@ -8275,12 +8448,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "sizeid": {
             "type": "string"
@@ -8613,12 +8788,14 @@
               "3",
               "4",
               "5",
-              "6"
+              "6",
+              "7"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
           },
           "narration": {
             "type": "string"

@@ -343,11 +343,11 @@
     },
     "post_pay_verify": {
       "summary": "Vérifier un paiement Paystack",
-      "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis. `amount`/`fees` sont en francs XOF (unité majeure) ; `paidat` est en ISO 8601 UTC."
+      "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé ; rejouer une référence est sans danger (le traitement n'a lieu qu'une fois). Sur un statut non réussi, renvoie `statuscode` 99 « Payment not successful » avec `transactionstatus` = statut Paystack. Renvoie le `collectcode` du colis pour les paiements de colis. `amount`/`fees` sont en francs XOF (unité majeure) ; `paidat` est en ISO 8601 UTC."
     },
     "post_pay_status": {
       "summary": "Statut du paiement par référence",
-      "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp. `paidat` est en ISO 8601 UTC."
+      "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp. `statuscode` est 00 pour une référence connue — le résultat est dans `transactionstatus` ; valeurs terminales : `success`, `failed`, `abandoned`, `reversed` (arrêter le sondage) ; non terminales : `ongoing`, `pending`, `processing`, `queued`, `initialized`. Aucun intervalle imposé par le serveur : sondez toutes les ~5 s avec repli exponentiel et arrêtez-vous sur une valeur terminale. `paidat` est en ISO 8601 UTC."
     },
     "post_pay_search": {
       "summary": "Rechercher un colis à payer"
@@ -360,7 +360,8 @@
       "description": "Webhook serveur à serveur. Paystack signe le corps brut en HMAC-SHA512 avec la clé secrète ; la signature est envoyée dans l'en-tête `x-paystack-signature` et validée. Gère `charge.success` et `charge.failed`. Renvoie HTTP 200 en cas de succès, 403 si la signature est invalide. Non appelé par les clients."
     },
     "post_core_parcelstatuses_list": {
-      "summary": "Lister les statuts de colis"
+      "summary": "Lister les statuts de colis",
+      "description": "Le vocabulaire des statuts de colis (1 Nouvelle demande … 7 Colis collecté par la messagerie)."
     },
     "post_core_wallettransactiontypes_list": {
       "summary": "Lister les types de transaction du portefeuille"
@@ -376,6 +377,10 @@
     },
     "post_customer_parcels_cancel": {
       "summary": "Annuler un colis du client"
+    },
+    "post_core_lockerstatuses_list": {
+      "summary": "Lister les statuts de casier",
+      "description": "Le vocabulaire des statuts de casier : 1 Vacant, 2 Réservé, 3 Occupé."
     }
   },
   "schemas": {
@@ -384,6 +389,11 @@
     },
     "PaystackVerifyResponse": {
       "description": "Détails de la transaction vérifiée, y compris le code de retrait du colis le cas échéant."
+    },
+    "LogisticsTransactionHistoryData": {
+      "properties": {
+        "type": "Type d'écriture du portefeuille : Credit ou Debit (ensemble complet). Voir /core/wallettransactiontypes/list/."
+      }
     }
   }
 }

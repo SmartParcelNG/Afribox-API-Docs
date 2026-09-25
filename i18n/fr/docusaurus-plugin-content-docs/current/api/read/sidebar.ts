@@ -124,6 +124,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-lockerstatuses-list",
+          label: "Lister les statuts de casier",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-parcels-search",
           label: "Rechercher un colis",
           className: "api-method post",
