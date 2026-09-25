@@ -697,10 +697,10 @@
       "description": "Numeric SYS_Users.UserID of the staff user performing the action; optional on wallet writes (defaults to the business's primary user, or 0). Discover via /business/users/list/."
     },
     "errorcode": {
-      "description": "Stable, language-invariant error identifier (present on business-rule refusals, e.g. `INSUFFICIENT_BALANCE`). Prefer it over `statusmessage`."
+      "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
     },
     "errorfield": {
-      "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
+      "description": "Request field implicated in the error, when applicable (empty otherwise)."
     },
     "expiresat": {
       "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the expiry sweep sets the parcel to status 8, releases the locker and forfeits the fee."

@@ -33,6 +33,21 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-28
+
+- **Empty vs. error:** every **list** endpoint now returns `00` with an empty array (`[]`) when
+  the request is valid and the result is empty; **detail** endpoints return `07` (not found)
+  for a missing resource. `99` is reserved for an unexpected failure.
+- **New status-code meanings** for `05`–`11` (see *Responses & errors*): `04` missing field,
+  `05` invalid value, `06` not an allowed value, `07` not found, `08` conflict, `09`
+  business-rule refusal, `10` insufficient balance, `11` reserved.
+- **Every response now carries `errorcode`, `errorfield` and `retryable`** — a stable,
+  language-invariant identifier, the offending field, and whether a retry may help.
+- Business-rule refusals are no longer `99`: `Payment already used` → `09` +
+  `errorcode PAYMENT_ALREADY_USED`; no locker available → `09 LOCKER_NOT_AVAILABLE`;
+  insufficient balance → `10 INSUFFICIENT_BALANCE`; business credit → `09 CREDIT_ADMIN_ONLY`.
+- Wallet write validation normalized (`04` missing, `05`/`06` invalid).
+
 ### 2026-09-27
 
 - **NIPOST removed** (request type 5 and its legacy procedures/tables/views); it does not

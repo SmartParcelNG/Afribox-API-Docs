@@ -4651,7 +4651,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4761,7 +4761,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4771,6 +4771,22 @@
           },
           "parcel": {
             "$ref": "#/components/schemas/PaySuccessData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -4930,7 +4946,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5028,13 +5044,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "parcel": {
             "$ref": "#/components/schemas/SearchParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5177,7 +5209,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5271,7 +5303,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5281,6 +5313,22 @@
             "items": {
               "$ref": "#/components/schemas/ParcelSnapshotsData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5362,7 +5410,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5372,6 +5420,22 @@
           },
           "snapshoturl": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5410,13 +5474,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "box": {
             "$ref": "#/components/schemas/BoxData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5540,10 +5620,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5632,13 +5728,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "parcel": {
             "$ref": "#/components/schemas/DropParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5783,13 +5895,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "parcel": {
             "$ref": "#/components/schemas/CollectParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5931,13 +6059,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "parcel": {
             "$ref": "#/components/schemas/ApplessVerifyParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6005,13 +6149,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "parcel": {
             "$ref": "#/components/schemas/ApplessReserveParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6181,10 +6341,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6236,10 +6412,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6299,10 +6491,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6348,7 +6556,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6358,6 +6566,22 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelTimelineData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6445,7 +6669,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6464,6 +6688,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6669,7 +6909,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6688,6 +6928,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6735,7 +6991,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6750,6 +7006,22 @@
           },
           "expiresatiso": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6833,7 +7105,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6852,6 +7124,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6899,13 +7187,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "parcel": {
             "$ref": "#/components/schemas/CustomerParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -6950,7 +7254,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6963,6 +7267,22 @@
             "items": {
               "$ref": "#/components/schemas/CustomerParcelTimelineData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7007,7 +7327,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7049,7 +7369,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7154,7 +7474,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7173,6 +7493,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7220,7 +7556,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7239,6 +7575,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7286,7 +7638,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7305,6 +7657,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7352,13 +7720,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "refundedamount": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7383,7 +7767,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7402,6 +7786,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7449,7 +7849,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7468,6 +7868,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7515,10 +7931,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7564,10 +7996,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7610,7 +8058,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7626,6 +8074,22 @@
           },
           "sessionexpires": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7732,13 +8196,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "customer": {
             "$ref": "#/components/schemas/CustomerLoginData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7780,10 +8260,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7823,10 +8319,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7871,13 +8383,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "dashboard": {
             "$ref": "#/components/schemas/CustomerDashboardData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7919,10 +8447,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -7970,10 +8514,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8018,7 +8578,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8028,6 +8588,22 @@
             "items": {
               "$ref": "#/components/schemas/CustomerCardData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8102,13 +8678,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "card": {
             "$ref": "#/components/schemas/CustomerCardData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8153,10 +8745,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8201,13 +8809,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "cardaddurl": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8259,7 +8883,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8269,6 +8893,22 @@
             "items": {
               "$ref": "#/components/schemas/WalletTransactionTypeData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8320,7 +8960,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8330,6 +8970,22 @@
             "items": {
               "$ref": "#/components/schemas/WalletFundModeData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8382,7 +9038,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8392,6 +9048,22 @@
             "items": {
               "$ref": "#/components/schemas/StateData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8450,13 +9122,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "state": {
             "$ref": "#/components/schemas/StateData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8495,7 +9183,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8505,6 +9193,22 @@
             "items": {
               "$ref": "#/components/schemas/SizeData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8560,13 +9264,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "size": {
             "$ref": "#/components/schemas/SizeData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8605,7 +9325,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8615,6 +9335,22 @@
             "items": {
               "$ref": "#/components/schemas/SizeFeesData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8682,7 +9418,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8692,6 +9428,22 @@
             "items": {
               "$ref": "#/components/schemas/RequestTypeData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8741,7 +9493,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8751,6 +9503,22 @@
             "items": {
               "$ref": "#/components/schemas/ParcelStatusData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8812,7 +9580,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8822,6 +9590,22 @@
             "items": {
               "$ref": "#/components/schemas/LockerStatusData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8877,7 +9661,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8887,6 +9671,22 @@
             "items": {
               "$ref": "#/components/schemas/FeesServiceData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -8939,7 +9739,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8949,6 +9749,22 @@
             "items": {
               "$ref": "#/components/schemas/FeesSelfStorageData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9004,13 +9820,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "fees": {
             "$ref": "#/components/schemas/FeesComputeData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9066,7 +9898,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9076,6 +9908,22 @@
             "items": {
               "$ref": "#/components/schemas/FeesApplessData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9128,7 +9976,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9138,6 +9986,22 @@
             "items": {
               "$ref": "#/components/schemas/DeliveryAreaData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9193,7 +10057,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9203,6 +10067,22 @@
             "items": {
               "$ref": "#/components/schemas/CourierData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9249,7 +10129,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9259,6 +10139,22 @@
             "items": {
               "$ref": "#/components/schemas/CityData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9317,13 +10213,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "city": {
             "$ref": "#/components/schemas/CityData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9362,7 +10274,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9372,6 +10284,22 @@
             "items": {
               "$ref": "#/components/schemas/CityData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9410,7 +10338,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9420,6 +10348,22 @@
             "items": {
               "$ref": "#/components/schemas/BoxData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9455,7 +10399,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9480,6 +10424,22 @@
             "items": {
               "$ref": "#/components/schemas/LockerSizeData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9555,7 +10515,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9565,6 +10525,22 @@
             "items": {
               "$ref": "#/components/schemas/BoxData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9603,7 +10579,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9613,6 +10589,22 @@
             "items": {
               "$ref": "#/components/schemas/BoxData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9651,7 +10643,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9664,6 +10656,22 @@
             "items": {
               "$ref": "#/components/schemas/SizeAvailabilityData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9716,7 +10724,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9726,6 +10734,22 @@
             "items": {
               "$ref": "#/components/schemas/BillingTypeData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9772,10 +10796,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9838,7 +10878,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9848,6 +10888,22 @@
             "items": {
               "$ref": "#/components/schemas/BusinessUserData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -9898,7 +10954,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9917,6 +10973,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10000,7 +11072,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10019,6 +11091,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10184,7 +11272,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10203,6 +11291,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10244,7 +11348,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10263,6 +11367,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10304,7 +11424,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10323,6 +11443,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10364,7 +11500,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10374,6 +11510,22 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelTimelineData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10455,13 +11607,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "parcel": {
             "$ref": "#/components/schemas/LogisticsParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10500,7 +11668,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10519,6 +11687,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10566,7 +11750,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10579,6 +11763,22 @@
             "items": {
               "$ref": "#/components/schemas/LogisticsParcelTimelineData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10617,7 +11817,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10627,11 +11827,19 @@
           },
           "errorcode": {
             "type": "string",
-            "description": "Stable, language-invariant error identifier (present on business-rule refusals, e.g. `INSUFFICIENT_BALANCE`). Prefer it over `statusmessage`."
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
           },
           "errorfield": {
             "type": "string",
-            "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "expiresat": {
             "type": "string",
@@ -10704,13 +11912,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "refundedamount": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10735,13 +11959,29 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
           },
           "dashboard": {
             "$ref": "#/components/schemas/LogisticsDashboardData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10821,7 +12061,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10840,6 +12080,22 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10881,7 +12137,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10891,6 +12147,22 @@
           },
           "balanceformatted": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -10967,7 +12239,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10977,6 +12249,22 @@
             "items": {
               "$ref": "#/components/schemas/BusinessData"
             }
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },

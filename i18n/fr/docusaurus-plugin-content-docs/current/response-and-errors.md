@@ -25,10 +25,43 @@ sont servies en `Content-Type: application/json`.
 | `01` | Aucune donnée POST |
 | `02` | Données POST invalides (erreur JSON) |
 | `03` | Données POST nulles |
-| `04` | Champ manquant ou invalide (voir `statusmessage`) |
-| `05`–`11` | Erreurs de validation (par champ) ; la phrase de `statusmessage` nomme le champ |
+| `04` | Champ requis manquant |
+| `05` | Valeur de champ invalide |
+| `06` | Valeur hors de l'ensemble autorisé |
+| `07` | Introuvable |
+| `08` | Conflit (nouvelle tentative possible) |
+| `09` | Refus métier (non réessayable) |
+| `10` | Solde insuffisant |
+| `11` | Réservé |
 | `98` | Échec d'authentification |
-| `99` | Erreur générique |
+| `99` | Erreur serveur inattendue (réessayable) |
+
+## Erreurs : `errorcode`, `errorfield`, `retryable`
+
+Chaque réponse porte aussi :
+
+- **`errorcode`** — un identifiant stable et indépendant de la langue ; vide en cas de succès.
+  Préférez-le à `statusmessage`, qui peut être reformulé ou localisé.
+- **`errorfield`** — le champ de requête concerné, le cas échéant (vide sinon).
+- **`retryable`** — `"True"`/`"False"` : si renvoyer la même requête peut réussir.
+
+`errorcode` est dérivé de `statuscode`, sauf si le point d'accès est plus spécifique :
+
+| `errorcode` | `statuscode` | `retryable` |
+| --- | --- | --- |
+| `MISSING_FIELD` | `04` | False |
+| `INVALID_FIELD` | `05` | False |
+| `NOT_ALLOWED_VALUE` | `06` | False |
+| `NOT_FOUND` | `07` | False |
+| `CONFLICT` | `08` | True |
+| `BUSINESS_RULE` | `09` | False |
+| `INSUFFICIENT_BALANCE` | `10` | False |
+| `RESERVED` | `11` | False |
+| `AUTHENTICATION_FAILED` | `98` | False |
+| `INTERNAL_ERROR` | `99` | True |
+| `PAYMENT_ALREADY_USED` | `09` | False |
+| `LOCKER_NOT_AVAILABLE` | `09` | True |
+| `CREDIT_ADMIN_ONLY` | `09` | False |
 
 ## Résultat vide ou erreur
 

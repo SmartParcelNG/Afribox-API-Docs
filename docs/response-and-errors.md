@@ -25,10 +25,43 @@ JSON endpoints return **HTTP 200** and put the result in the body. Responses are
 | `01` | No post data |
 | `02` | Invalid post data (JSON parse error) |
 | `03` | Null post data |
-| `04` | Missing or invalid field (see `statusmessage`) |
-| `05`–`11` | Validation errors (field-specific); the sentence in `statusmessage` names the field |
+| `04` | Missing required field |
+| `05` | Invalid field value |
+| `06` | Value not in the allowed set |
+| `07` | Not found |
+| `08` | Conflict (may be retried) |
+| `09` | Business-rule refusal (not retryable) |
+| `10` | Insufficient balance |
+| `11` | Reserved |
 | `98` | Authentication failed |
-| `99` | Error occurred (generic) |
+| `99` | Unexpected server error (retryable) |
+
+## Errors: `errorcode`, `errorfield`, `retryable`
+
+Every response also carries:
+
+- **`errorcode`** — a stable, language-invariant identifier; empty on success. Prefer it over
+  `statusmessage`, which may be reworded or localized.
+- **`errorfield`** — the request field implicated, when applicable (empty otherwise).
+- **`retryable`** — `"True"`/`"False"`: whether re-sending the same request may succeed.
+
+`errorcode` is derived from `statuscode` unless the endpoint is more specific:
+
+| `errorcode` | `statuscode` | `retryable` |
+| --- | --- | --- |
+| `MISSING_FIELD` | `04` | False |
+| `INVALID_FIELD` | `05` | False |
+| `NOT_ALLOWED_VALUE` | `06` | False |
+| `NOT_FOUND` | `07` | False |
+| `CONFLICT` | `08` | True |
+| `BUSINESS_RULE` | `09` | False |
+| `INSUFFICIENT_BALANCE` | `10` | False |
+| `RESERVED` | `11` | False |
+| `AUTHENTICATION_FAILED` | `98` | False |
+| `INTERNAL_ERROR` | `99` | True |
+| `PAYMENT_ALREADY_USED` | `09` | False |
+| `LOCKER_NOT_AVAILABLE` | `09` | True |
+| `CREDIT_ADMIN_ONLY` | `09` | False |
 
 ## Empty result vs. error
 

@@ -34,6 +34,23 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-28
+
+- **Vide ou erreur :** chaque point d'accès de **liste** renvoie désormais `00` avec un tableau
+  vide (`[]`) lorsque la requête est valide et le résultat vide ; les points de **détail**
+  renvoient `07` (introuvable) pour une ressource absente. `99` est réservé à un échec
+  inattendu.
+- **Nouvelles significations** pour `05`–`11` (voir *Réponses et erreurs*) : `04` champ
+  manquant, `05` valeur invalide, `06` valeur non autorisée, `07` introuvable, `08` conflit,
+  `09` refus métier, `10` solde insuffisant, `11` réservé.
+- **Chaque réponse porte désormais `errorcode`, `errorfield` et `retryable`** — un identifiant
+  stable et indépendant de la langue, le champ concerné, et si une nouvelle tentative peut
+  aider.
+- Les refus métier ne sont plus `99` : « Payment already used » → `09` +
+  `errorcode PAYMENT_ALREADY_USED` ; aucun casier disponible → `09 LOCKER_NOT_AVAILABLE` ;
+  solde insuffisant → `10 INSUFFICIENT_BALANCE` ; crédit entreprise → `09 CREDIT_ADMIN_ONLY`.
+- Validation des écritures de portefeuille normalisée (`04` manquant, `05`/`06` invalide).
+
 ### 2026-09-27
 
 - **NIPOST supprimé** (type de demande 5 et ses procédures/tables/vues héritées) ; il n'opère

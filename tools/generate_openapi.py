@@ -77,7 +77,7 @@ BOOLEAN_PROPS = {
     "parcelpaid", "processed", "customeractive", "isdefault", "deliverypaid",
     "businessactive", "passwordreset", "deliveryrequested", "lockersavailable",
     "sendwebhook", "sendwebhookonsuccess", "sendwebhookonfailure",
-    "notificationsent", "notificationread", "verified",
+    "notificationsent", "notificationread", "verified", "retryable",
     "courierassigned", "courierdispatchassigned", "boxonline", "boxactive",
     "retrieved", "retrievecompleted", "retrieverequested", "dropcodeused",
     "collectcodeused",
@@ -437,7 +437,7 @@ def main():
                     ps.setdefault("format", "email")
                 if low == "statuscode":
                     ps.setdefault("enum", STATUSCODE_ENUM)
-                    ps.setdefault("description", "Result code: 00 success; 01-03 request body; 04 missing field; 05-11 validation; 98 authentication; 99 generic error or empty result.")
+                    ps.setdefault("description", "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`.")
             for k, v in (ov_props.get(pname) or {}).items():
                 ps[k] = v
             for k, v in ((schema_ov.get("properties") or {}).get(pname) or {}).items():
