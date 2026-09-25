@@ -43,7 +43,8 @@
     },
     "POST /business/pendingdropoffs/": {
       "summary": "List parcels awaiting drop-off",
-      "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1). Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
+      "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1). Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`.",
+      "readonly": true
     },
     "POST /business/retrievedparcels/": {
       "readonly": true,
@@ -67,7 +68,8 @@
     },
     "POST /parcel/snapshots/": {
       "summary": "List a parcel's snapshots",
-      "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `snapshotevent` is `dropoff` or `pickup`; `snapshotsequence` is `1` (at unlock) or `2` (after the door closed). Ordered by `DateCreated` then `SnapshotSequence` (oldest first, 1 before 2 within an event). `imagedatetime`/`datecreated` carry ISO 8601 companions."
+      "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `snapshotevent` is `dropoff` or `pickup`; `snapshotsequence` is `1` (at unlock) or `2` (after the door closed). Ordered by `DateCreated` then `SnapshotSequence` (oldest first, 1 before 2 within an event). `imagedatetime`/`datecreated` carry ISO 8601 companions.",
+      "readonly": true
     },
     "POST /business/parcels/create/": {
       "summary": "Create a business parcel",
@@ -190,7 +192,8 @@
     },
     "POST /kiosk/ping/": {
       "summary": "Box heartbeat",
-      "description": "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope."
+      "description": "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope.",
+      "readonly": false
     },
     "POST /pay/search/": {
       "summary": "Find a parcel for payment",

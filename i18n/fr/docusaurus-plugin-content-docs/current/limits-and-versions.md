@@ -47,6 +47,10 @@ sidebar_position: 4
   associées) n'acceptent plus un `customerid` seul ; un jeton absent/invalide renvoie
   `98 Authentication Failed`. Cela ferme la faille « n'importe qui avec un identifiant client
   (non secret) peut lire codes/OTP/données personnelles ».
+- **Corrections `x-readonly` :** `/business/pendingdropoffs/` et `/parcel/snapshots/` sont des
+  **lectures** (ce sont des listes) et `/kiosk/ping/` est une **écriture** (il enregistre le
+  ping). Ils sont désormais triés dans la bonne barre latérale, et la console interactive n'est
+  activée que là où c'est sûr.
 
 ### 2026-09-28
 

@@ -162,12 +162,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "api/write/post-business-pendingdropoffs",
-          label: "List parcels awaiting drop-off",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "api/write/post-business-wallettransaction-new",
           label: "Create a wallet transaction for the business",
           className: "api-method post",
@@ -214,6 +208,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "api/write/post-kiosk-ping",
+          label: "Box heartbeat",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "api/write/post-kiosk-setup",
           label: "Set up a box from its code",
           className: "api-method post",
@@ -256,22 +256,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/write/post-pay-webhook-paystack",
           label: "Paystack webhook",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "parcel",
-      link: {
-        type: "doc",
-        id: "api/write/parcel",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "api/write/post-parcel-snapshots",
-          label: "List a parcel's snapshots",
           className: "api-method post",
         },
       ],

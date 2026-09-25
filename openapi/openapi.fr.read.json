@@ -25,10 +25,6 @@
       "description": "Comptes entreprises/partenaires : tableau de bord, casiers, colis, portefeuille, historique des transactions."
     },
     {
-      "name": "kiosk",
-      "description": "Opérations du casier/appareil : configuration, ping, dépôt/retrait de colis, réservation/vérification appless, instantanés."
-    },
-    {
       "name": "pay",
       "description": "Paiements : recherche/succès du paiement d'un colis, et les points Paystack initialize/verify/status/return/webhook."
     },
@@ -895,6 +891,46 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LogisticsParcelTimelineResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/business/pendingdropoffs/": {
+      "post": {
+        "operationId": "post_business_pendingdropoffs",
+        "summary": "Dépôts en attente",
+        "tags": [
+          "business"
+        ],
+        "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
+        "x-auth": "business_public",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsPendingDropoffs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsPendingDropoffsResponse"
                 }
               }
             }
@@ -3007,46 +3043,6 @@
         }
       }
     },
-    "/kiosk/ping/": {
-      "post": {
-        "operationId": "post_kiosk_ping",
-        "summary": "Ping du casier",
-        "tags": [
-          "kiosk"
-        ],
-        "description": "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope.",
-        "x-auth": "app_key",
-        "x-readonly": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BoxPing"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BoxPingResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
-          },
-          "500": {
-            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
-          }
-        }
-      }
-    },
     "/parcel/snapshot/image/": {
       "get": {
         "operationId": "get_parcel_snapshot_image",
@@ -3064,6 +3060,46 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SnapshotUploadResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/parcel/snapshots/": {
+      "post": {
+        "operationId": "post_parcel_snapshots",
+        "summary": "Lister les instantanés d'un colis",
+        "tags": [
+          "parcel"
+        ],
+        "description": "Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601.",
+        "x-auth": "app_key",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParcelSnapshots"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParcelSnapshotsResponse"
                 }
               }
             }

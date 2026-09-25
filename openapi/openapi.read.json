@@ -25,10 +25,6 @@
       "description": "Business/partner accounts: dashboard, boxes, parcels, wallet, transaction history."
     },
     {
-      "name": "kiosk",
-      "description": "Locker/device operations: setup, ping, parcel drop/collect, appless reserve/verify, snapshots."
-    },
-    {
       "name": "pay",
       "description": "Payments: parcel payment search/success, and the Paystack initialize/verify/status/return/webhook endpoints."
     },
@@ -895,6 +891,46 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LogisticsParcelTimelineResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/business/pendingdropoffs/": {
+      "post": {
+        "operationId": "post_business_pendingdropoffs",
+        "summary": "List parcels awaiting drop-off",
+        "tags": [
+          "business"
+        ],
+        "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1). Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`.",
+        "x-auth": "business_public",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogisticsPendingDropoffs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogisticsPendingDropoffsResponse"
                 }
               }
             }
@@ -3007,46 +3043,6 @@
         }
       }
     },
-    "/kiosk/ping/": {
-      "post": {
-        "operationId": "post_kiosk_ping",
-        "summary": "Box heartbeat",
-        "tags": [
-          "kiosk"
-        ],
-        "description": "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope.",
-        "x-auth": "app_key",
-        "x-readonly": true,
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BoxPing"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BoxPingResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
-          },
-          "500": {
-            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
-          }
-        }
-      }
-    },
     "/parcel/snapshot/image/": {
       "get": {
         "operationId": "get_parcel_snapshot_image",
@@ -3064,6 +3060,46 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SnapshotUploadResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/parcel/snapshots/": {
+      "post": {
+        "operationId": "post_parcel_snapshots",
+        "summary": "List a parcel's snapshots",
+        "tags": [
+          "parcel"
+        ],
+        "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `snapshotevent` is `dropoff` or `pickup`; `snapshotsequence` is `1` (at unlock) or `2` (after the door closed). Ordered by `DateCreated` then `SnapshotSequence` (oldest first, 1 before 2 within an event). `imagedatetime`/`datecreated` carry ISO 8601 companions.",
+        "x-auth": "app_key",
+        "x-readonly": true,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParcelSnapshots"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParcelSnapshotsResponse"
                 }
               }
             }

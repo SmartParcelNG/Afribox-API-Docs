@@ -414,6 +414,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "api/read/post-business-pendingdropoffs",
+          label: "List parcels awaiting drop-off",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "api/read/post-business-pendingpickups",
           label: "List parcels awaiting collection",
           className: "api-method post",
@@ -458,22 +464,6 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "kiosk",
-      link: {
-        type: "doc",
-        id: "api/read/kiosk",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "api/read/post-kiosk-ping",
-          label: "Box heartbeat",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
       label: "pay",
       link: {
         type: "doc",
@@ -507,6 +497,12 @@ const sidebar: SidebarsConfig = {
           id: "api/read/get-parcel-snapshot-image",
           label: "Snapshot Image",
           className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/read/post-parcel-snapshots",
+          label: "List a parcel's snapshots",
+          className: "api-method post",
         },
       ],
     },

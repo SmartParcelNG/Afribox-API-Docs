@@ -1077,7 +1077,7 @@
         ],
         "description": "Requiert la **clé publique** ; `dropcode`/`collectcode` sont masqués en `\"****\"`.",
         "x-auth": "business_public",
-        "x-readonly": false,
+        "x-readonly": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -4171,7 +4171,7 @@
         ],
         "description": "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope.",
         "x-auth": "app_key",
-        "x-readonly": true,
+        "x-readonly": false,
         "requestBody": {
           "required": true,
           "content": {
@@ -4281,7 +4281,7 @@
         ],
         "description": "Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601.",
         "x-auth": "app_key",
-        "x-readonly": false,
+        "x-readonly": true,
         "requestBody": {
           "required": true,
           "content": {

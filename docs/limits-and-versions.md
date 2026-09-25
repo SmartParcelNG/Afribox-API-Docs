@@ -44,6 +44,9 @@ sidebar_position: 4
 - **Customer reads now require `sessiontoken`:** `/customer/parcels/*` (and related reads) no
   longer accept a bare `customerid`; an absent/invalid token returns `98 Authentication Failed`.
   This closes the "anyone with a (non-secret) customer id can read codes/OTP/PII" hole.
+- **`x-readonly` corrections:** `/business/pendingdropoffs/` and `/parcel/snapshots/` are
+  **read** (they are lists) and `/kiosk/ping/` is **write** (it records the ping). They now sort
+  into the correct sidebar, and the interactive console is enabled only where it is safe.
 
 ### 2026-09-28
 

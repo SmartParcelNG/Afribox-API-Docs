@@ -1077,7 +1077,7 @@
         ],
         "description": "Parcels the business has created and that the sender has not yet dropped into a locker (status 1). Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`.",
         "x-auth": "business_public",
-        "x-readonly": false,
+        "x-readonly": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -4171,7 +4171,7 @@
         ],
         "description": "Records the box's last-seen time (returned as `datelastping` on the box) and returns only the envelope.",
         "x-auth": "app_key",
-        "x-readonly": true,
+        "x-readonly": false,
         "requestBody": {
           "required": true,
           "content": {
@@ -4281,7 +4281,7 @@
         ],
         "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `snapshotevent` is `dropoff` or `pickup`; `snapshotsequence` is `1` (at unlock) or `2` (after the door closed). Ordered by `DateCreated` then `SnapshotSequence` (oldest first, 1 before 2 within an event). `imagedatetime`/`datecreated` carry ISO 8601 companions.",
         "x-auth": "app_key",
-        "x-readonly": false,
+        "x-readonly": true,
         "requestBody": {
           "required": true,
           "content": {

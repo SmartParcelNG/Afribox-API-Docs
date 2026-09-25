@@ -414,6 +414,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-pendingdropoffs",
+          label: "Dépôts en attente",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-pendingpickups",
           label: "Retraits en attente",
           className: "api-method post",
@@ -458,22 +464,6 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "kiosk",
-      link: {
-        type: "doc",
-        id: "fr/docusaurus-plugin-content-docs/current/api/read/kiosk",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-kiosk-ping",
-          label: "Ping du casier",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
       label: "pay",
       link: {
         type: "doc",
@@ -507,6 +497,12 @@ const sidebar: SidebarsConfig = {
           id: "fr/docusaurus-plugin-content-docs/current/api/read/get-parcel-snapshot-image",
           label: "Image d'instantané de colis",
           className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-parcel-snapshots",
+          label: "Lister les instantanés d'un colis",
+          className: "api-method post",
         },
       ],
     },

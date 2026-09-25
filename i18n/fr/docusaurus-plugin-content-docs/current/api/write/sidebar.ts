@@ -162,12 +162,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-pendingdropoffs",
-          label: "Dépôts en attente",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-wallettransaction-new",
           label: "Créer une écriture de portefeuille pour l'entreprise",
           className: "api-method post",
@@ -214,6 +208,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-kiosk-ping",
+          label: "Ping du casier",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-kiosk-setup",
           label: "Configuration du casier",
           className: "api-method post",
@@ -256,22 +256,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-pay-webhook-paystack",
           label: "Webhook Paystack",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "parcel",
-      link: {
-        type: "doc",
-        id: "fr/docusaurus-plugin-content-docs/current/api/write/parcel",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-parcel-snapshots",
-          label: "Lister les instantanés d'un colis",
           className: "api-method post",
         },
       ],
