@@ -824,7 +824,12 @@
       "description": "Paystack initialization result."
     },
     "PaystackVerifyResponse": {
-      "description": "Verified transaction details, including parcel collectcode when applicable."
+      "description": "Verified transaction details, including parcel collectcode when applicable.",
+      "properties": {
+        "fees": {
+          "description": "A **string**: the gateway fee **amount** (XOF), not a fee catalogue. See *Responses & errors*."
+        }
+      }
     },
     "CustomerParcelNew": {
       "required": [
@@ -925,6 +930,69 @@
             "Debit"
           ],
           "description": "Wallet transaction type: Credit or Debit (complete set). See /core/wallettransactiontypes/list/."
+        }
+      }
+    },
+    "FeesComputeResponse": {
+      "properties": {
+        "fees": {
+          "description": "An **object** `{servicefee, storagefee, totalfees}` — unlike the other `/core/fees/*` endpoints, whose `fees` is an **array**. See *Responses & errors*."
+        }
+      }
+    },
+    "FeesServiceResponse": {
+      "properties": {
+        "fees": {
+          "description": "An **array** of service-fee rows (not an object or a string). See *Responses & errors*."
+        }
+      }
+    },
+    "FeesSelfStorageResponse": {
+      "properties": {
+        "fees": {
+          "description": "An **array** of self-storage rows (`storagefeepersixhours`, `storagefeeperhour`). See *Responses & errors*."
+        }
+      }
+    },
+    "FeesApplessResponse": {
+      "properties": {
+        "fees": {
+          "description": "An **array** of appless rows (`applessfee`). See *Responses & errors*."
+        }
+      }
+    },
+    "SizeFeesData": {
+      "properties": {
+        "fees": {
+          "description": "A **string** amount for this size — not a fee catalogue. See *Responses & errors*."
+        }
+      }
+    },
+    "LogisticsDashboardData": {
+      "properties": {
+        "boxes": {
+          "description": "A **string count** of the business boxes (e.g. `\"5\"`) — on the box-list endpoints `boxes` is an **array** instead. See *Responses & errors*."
+        }
+      }
+    },
+    "BoxesListResponse": {
+      "properties": {
+        "boxes": {
+          "description": "An **array** of `BoxData`. See *Responses & errors*."
+        }
+      }
+    },
+    "BoxesListByStateResponse": {
+      "properties": {
+        "boxes": {
+          "description": "An **array** of `BoxData`. See *Responses & errors*."
+        }
+      }
+    },
+    "BoxesListByCityResponse": {
+      "properties": {
+        "boxes": {
+          "description": "An **array** of `BoxData`. See *Responses & errors*."
         }
       }
     }

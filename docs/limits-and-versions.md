@@ -47,6 +47,10 @@ sidebar_position: 4
 - **`x-readonly` corrections:** `/business/pendingdropoffs/` and `/parcel/snapshots/` are
   **read** (they are lists) and `/kiosk/ping/` is **write** (it records the ping). They now sort
   into the correct sidebar, and the interactive console is enabled only where it is safe.
+- **`boxes` / `fees` shape variance documented** as stable and intentional: `boxes` is an array
+  on the box lists but a string count on `/business/dashboard/`; `fees` is an object on
+  `/core/fees/compute/`, an array on the other `/core/fees/*` endpoints, and a string on
+  `/core/sizes/fees/` and `/pay/verify/`. No rename.
 
 ### 2026-09-28
 

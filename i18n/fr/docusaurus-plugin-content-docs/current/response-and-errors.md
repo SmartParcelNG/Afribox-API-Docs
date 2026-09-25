@@ -102,11 +102,19 @@ Le contrat type la plupart des champs en chaînes. Ce qu'elles contiennent :
 - Les **libellés** (tailles, types de demande) peuvent être en français ou en anglais ;
   préférez l'identifiant à côté du libellé (`sizeid`, `requesttypeid`, `courierid`,
   `deliveryareaid`) plutôt qu'une comparaison de texte.
-- **`boxes` et `fees` changent de forme selon le point d'accès.** `boxes` est un **tableau** sur
-  les listes de boîtes mais une **chaîne (nombre)** dans `/business/dashboard/` ; `fees` est un
-  **objet** (`/core/fees/compute/`), un **tableau** (`/core/fees/service/`,
-  `/core/fees/selfstorage/`, `/core/fees/appless/`) ou une **chaîne** (`sizes[].fees`,
-  `/pay/verify/`). Modélisez-les par point d'accès, pas par nom de champ.
+- **`boxes` et `fees` ont une forme propre à chaque point d'accès** (stable, hérité — les noms ne
+  changent pas ; un client typé doit brancher sur le point d'accès, pas sur le nom du champ) :
+
+  | point d'accès | champ | forme |
+  | --- | --- | --- |
+  | les listes de boîtes (p. ex. `/business/boxes/all/`, `/core/boxes/list/`) | `boxes` | **tableau** de `BoxData` |
+  | `/business/dashboard/` | `boxes` | **chaîne** — un nombre, p. ex. `"5"` |
+  | `/core/fees/compute/` | `fees` | **objet** `{servicefee, storagefee, totalfees}` |
+  | `/core/fees/service/` | `fees` | **tableau** de lignes de frais de service |
+  | `/core/fees/selfstorage/` | `fees` | **tableau** de lignes de stockage |
+  | `/core/fees/appless/` | `fees` | **tableau** de lignes appless |
+  | `/core/sizes/fees/` | `sizes[].fees` | **chaîne** — un montant |
+  | `/pay/verify/` | `fees` | **chaîne** — le **montant** des frais de la passerelle (pas un catalogue) |
 
 ## Compteurs de casiers
 

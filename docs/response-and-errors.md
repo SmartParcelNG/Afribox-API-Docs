@@ -99,10 +99,19 @@ The contract types most fields as strings. What the strings contain:
 - **Booleans** are the strings `"True"` / `"False"`.
 - **Labels** (sizes, request types) may be French or English; prefer the id next to the label
   (`sizeid`, `requesttypeid`, `courierid`, `deliveryareaid`) rather than matching on text.
-- **`boxes` and `fees` change shape by endpoint.** `boxes` is an **array** on the box lists but a
-  **string count** in `/business/dashboard/`; `fees` is an **object** (`/core/fees/compute/`), an
-  **array** (`/core/fees/service/`, `/core/fees/selfstorage/`, `/core/fees/appless/`), or a
-  **string** (`sizes[].fees`, `/pay/verify/`). Model them per endpoint, not by field name.
+- **`boxes` and `fees` are shaped per endpoint** (stable, legacy — the names are not changing;
+  a typed client must switch on the endpoint, not on the field name):
+
+  | endpoint | field | shape |
+  | --- | --- | --- |
+  | the box lists (e.g. `/business/boxes/all/`, `/core/boxes/list/`) | `boxes` | **array** of `BoxData` |
+  | `/business/dashboard/` | `boxes` | **string** — a count, e.g. `"5"` |
+  | `/core/fees/compute/` | `fees` | **object** `{servicefee, storagefee, totalfees}` |
+  | `/core/fees/service/` | `fees` | **array** of service-fee rows |
+  | `/core/fees/selfstorage/` | `fees` | **array** of self-storage rows |
+  | `/core/fees/appless/` | `fees` | **array** of appless rows |
+  | `/core/sizes/fees/` | `sizes[].fees` | **string** — an amount |
+  | `/pay/verify/` | `fees` | **string** — the gateway fee **amount** (not a fee catalogue) |
 
 ## Locker counters
 

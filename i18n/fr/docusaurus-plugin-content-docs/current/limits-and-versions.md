@@ -51,6 +51,10 @@ sidebar_position: 4
   **lectures** (ce sont des listes) et `/kiosk/ping/` est une **écriture** (il enregistre le
   ping). Ils sont désormais triés dans la bonne barre latérale, et la console interactive n'est
   activée que là où c'est sûr.
+- **Variation de forme `boxes` / `fees` documentée** comme stable et intentionnelle : `boxes`
+  est un tableau sur les listes de boîtes mais une chaîne (nombre) sur `/business/dashboard/` ;
+  `fees` est un objet sur `/core/fees/compute/`, un tableau sur les autres points
+  `/core/fees/*`, et une chaîne sur `/core/sizes/fees/` et `/pay/verify/`. Aucun renommage.
 
 ### 2026-09-28
 

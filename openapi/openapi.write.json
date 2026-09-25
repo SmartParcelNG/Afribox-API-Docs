@@ -1519,7 +1519,8 @@
             "type": "string"
           },
           "fees": {
-            "type": "string"
+            "type": "string",
+            "description": "A **string**: the gateway fee **amount** (XOF), not a fee catalogue. See *Responses & errors*."
           },
           "currency": {
             "type": "string"
@@ -6214,7 +6215,8 @@
             "type": "string"
           },
           "fees": {
-            "type": "string"
+            "type": "string",
+            "description": "A **string** amount for this size — not a fee catalogue. See *Responses & errors*."
           },
           "sizedescription": {
             "type": "string"
@@ -6511,7 +6513,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FeesServiceData"
-            }
+            },
+            "description": "An **array** of service-fee rows (not an object or a string). See *Responses & errors*."
           },
           "errorcode": {
             "type": "string",
@@ -6589,7 +6592,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FeesSelfStorageData"
-            }
+            },
+            "description": "An **array** of self-storage rows (`storagefeepersixhours`, `storagefeeperhour`). See *Responses & errors*."
           },
           "errorcode": {
             "type": "string",
@@ -6667,7 +6671,8 @@
             "type": "string"
           },
           "fees": {
-            "$ref": "#/components/schemas/FeesComputeData"
+            "$ref": "#/components/schemas/FeesComputeData",
+            "description": "An **object** `{servicefee, storagefee, totalfees}` — unlike the other `/core/fees/*` endpoints, whose `fees` is an **array**. See *Responses & errors*."
           },
           "errorcode": {
             "type": "string",
@@ -6748,7 +6753,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FeesApplessData"
-            }
+            },
+            "description": "An **array** of appless rows (`applessfee`). See *Responses & errors*."
           },
           "errorcode": {
             "type": "string",
@@ -7188,7 +7194,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BoxData"
-            }
+            },
+            "description": "An **array** of `BoxData`. See *Responses & errors*."
           },
           "errorcode": {
             "type": "string",
@@ -7365,7 +7372,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BoxData"
-            }
+            },
+            "description": "An **array** of `BoxData`. See *Responses & errors*."
           },
           "errorcode": {
             "type": "string",
@@ -7429,7 +7437,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BoxData"
-            }
+            },
+            "description": "An **array** of `BoxData`. See *Responses & errors*."
           },
           "errorcode": {
             "type": "string",
@@ -8830,7 +8839,8 @@
         "type": "object",
         "properties": {
           "boxes": {
-            "type": "string"
+            "type": "string",
+            "description": "A **string count** of the business boxes (e.g. `\"5\"`) — on the box-list endpoints `boxes` is an **array** instead. See *Responses & errors*."
           },
           "lockers": {
             "type": "string"
