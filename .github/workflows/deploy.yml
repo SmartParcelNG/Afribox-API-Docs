@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    # Re-sync from the (private) backend weekly
-    - cron: '0 6 * * 1'
 
 permissions:
   contents: read

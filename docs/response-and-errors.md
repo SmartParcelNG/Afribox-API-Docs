@@ -33,6 +33,7 @@ JSON endpoints return **HTTP 200** and put the result in the body. Responses are
 | `09` | Business-rule refusal (not retryable) |
 | `10` | Insufficient balance |
 | `11` | Reserved |
+| `429` | Rate limited — per-key quota exceeded (see `Retry-After`) |
 | `98` | Authentication failed |
 | `99` | Unexpected server error (retryable) |
 
@@ -62,6 +63,8 @@ Every response also carries:
 | `PAYMENT_ALREADY_USED` | `09` | False |
 | `LOCKER_NOT_AVAILABLE` | `09` | True |
 | `CREDIT_ADMIN_ONLY` | `09` | False |
+| `INVALID_RESET_CODE` | `09` | False |
+| `RATE_LIMITED` | `429` | True |
 
 ## Empty result vs. error
 

@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -705,7 +705,7 @@
       "description": "Numeric SYS_Users.UserID of the staff user performing the action; optional on wallet writes (defaults to the business's primary user, or 0). Discover via /business/users/list/."
     },
     "errorcode": {
-      "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."
+      "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
     },
     "errorfield": {
       "description": "Request field implicated in the error, when applicable (empty otherwise)."

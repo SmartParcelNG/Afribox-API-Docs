@@ -96,7 +96,7 @@ EMAIL_PROPS = {
     "recipientemail", "businessemail",
 }
 STATUSCODE_ENUM = ["00", "01", "02", "03", "04", "05", "06", "07", "08",
-                   "09", "10", "11", "98", "99"]
+                   "09", "10", "11", "429", "98", "99"]
 DATE_PATTERN = r"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$"
 
 ACTION = {
@@ -437,7 +437,7 @@ def main():
                     ps.setdefault("format", "email")
                 if low == "statuscode":
                     ps.setdefault("enum", STATUSCODE_ENUM)
-                    ps.setdefault("description", "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`.")
+                    ps.setdefault("description", "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`.")
             for k, v in (ov_props.get(pname) or {}).items():
                 ps[k] = v
             for k, v in ((schema_ov.get("properties") or {}).get(pname) or {}).items():

@@ -8,21 +8,30 @@ sidebar_position: 4
 
 ## Versioning
 
-- The API version is in the path: **`/v2`**.
-- The OpenAPI contract is served at `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json`
-  and at a versioned address, `…/openapi-2.0.0.json`. Import it into your tooling and diff it
-  between releases.
-- Additive changes (new endpoints, new optional fields) may ship without notice. Breaking
-  changes (removing/renaming a field, changing a meaning) are announced here and, where
-  possible, the old name is kept for a transition period.
+- The API version is in the path: **`/v2`**, which we commit to for several years.
+- The contract is versioned with **SemVer** (`2.MINOR.PATCH`); `info.version` is **bumped on
+  every changelog entry below**, and each release is archived immutably at
+  `…/openapi-<version>.json` (e.g. `openapi-2.1.0.json`) while `…/openapi.json` is always the
+  current one — diff two readings or pin one.
+- **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
+  notice**; ignore fields you do not know.
+- **Breaking** changes (removing, renaming or retyping a field, or changing a meaning) are
+  announced in the changelog below and flagged `deprecated` in the spec, and the **old name
+  keeps working for at least 90 days** — both are served during the window where possible.
+  Nothing is removed before the window ends.
+- The spec is generated **on push** from the backend, so the contract cannot change between
+  releases without a changelog entry.
 
 ## Limits
 
-- There is currently **no published per-key quota or rate limit**, and no `Retry-After`
-  header. Treat the API as best-effort and keep client retries idempotent (see
+- **Per-key quota.** Each API key is limited to **600 requests / minute** (application and kiosk
+  keys: **900**), counted in fixed 60-second windows. Exceeding it returns **HTTP 429** with
+  `errorcode RATE_LIMITED` and `retryable: "True"`.
+- Every response carries `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`
+  (UTC epoch seconds); a `429` also carries `Retry-After` (seconds).
+- There is no other quota. Latency is variable; set generous timeouts and **retry creates with
+  an `Idempotency-Key`** so a retry cannot duplicate a parcel or a debit (see
   [Idempotency](./authentication#idempotency)).
-- Latency is variable; set generous timeouts and **retry creates with an `Idempotency-Key`** so
-  a retry cannot duplicate a parcel or a debit.
 - List endpoints grow with usage. Use the optional `page`/`pagesize` (when available) and the
   `total` in the envelope.
 
@@ -32,6 +41,17 @@ sidebar_position: 4
   and quote it (with the UTC timestamp and the endpoint) in support requests.
 
 ## Changelog
+
+### 2026-10-01
+
+- **Per-key quota and rate-limit headers.** Each API key is limited to **600 requests/minute**
+  (application/kiosk keys: **900**), in fixed 60-second windows; exceeding it returns **HTTP
+  429** with `errorcode RATE_LIMITED`. Every response now carries `X-RateLimit-Limit`,
+  `X-RateLimit-Remaining` and `X-RateLimit-Reset`, and a `429` also carries `Retry-After`.
+- **Versioning policy published:** SemVer (`2.MINOR.PATCH`) bumped per release with immutable
+  archived specs (`openapi-<version>.json`); additive changes ship without notice, breaking
+  changes get a `deprecated` flag and a **90-day** dual-serve window. The spec is generated on
+  push only.
 
 ### 2026-09-30
 

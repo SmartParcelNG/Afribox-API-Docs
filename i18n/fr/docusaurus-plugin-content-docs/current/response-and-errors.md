@@ -33,6 +33,7 @@ sont servies en `Content-Type: application/json`.
 | `09` | Refus métier (non réessayable) |
 | `10` | Solde insuffisant |
 | `11` | Réservé |
+| `429` | Limité — quota par clé dépassé (voir `Retry-After`) |
 | `98` | Échec d'authentification |
 | `99` | Erreur serveur inattendue (réessayable) |
 
@@ -62,6 +63,8 @@ Chaque réponse porte aussi :
 | `PAYMENT_ALREADY_USED` | `09` | False |
 | `LOCKER_NOT_AVAILABLE` | `09` | True |
 | `CREDIT_ADMIN_ONLY` | `09` | False |
+| `INVALID_RESET_CODE` | `09` | False |
+| `RATE_LIMITED` | `429` | True |
 
 ## Résultat vide ou erreur
 

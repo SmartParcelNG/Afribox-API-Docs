@@ -8,22 +8,32 @@ sidebar_position: 4
 
 ## Versions
 
-- La version de l'API est dans le chemin : **`/v2`**.
-- Le contrat OpenAPI est servi à `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json`
-  et à une adresse versionnée, `…/openapi-2.0.0.json`. Importez-le dans vos outils et
-  comparez-le entre les versions.
-- Les changements additifs (nouveaux points, nouveaux champs facultatifs) peuvent sortir sans
-  préavis. Les changements cassants (suppression/renommage d'un champ, changement de sens)
-  sont annoncés ici et, dans la mesure du possible, l'ancien nom est conservé le temps d'une
-  transition.
+- La version de l'API est dans le chemin : **`/v2`**, que nous maintenons pendant plusieurs
+  années.
+- Le contrat est versionné en **SemVer** (`2.MINOR.PATCH`) ; `info.version` est **incrémenté à
+  chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
+  `…/openapi-<version>.json` (p. ex. `openapi-2.1.0.json`) tandis que `…/openapi.json` est
+  toujours la version courante — comparez deux relevés ou épinglez-en un.
+- Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
+  tout moment **sans préavis** ; ignorez les champs que vous ne connaissez pas.
+- Les changements **cassants** (suppression, renommage ou changement de type d'un champ, ou de
+  son sens) sont annoncés dans le changelog ci-dessous et marqués `deprecated` dans la
+  spécification, et **l'ancien nom continue de fonctionner au moins 90 jours** — les deux sont
+  servis pendant la fenêtre lorsque c'est possible. Rien n'est retiré avant la fin de la
+  fenêtre.
+- La spécification est générée **au push** depuis le backend : le contrat ne peut donc pas
+  changer entre deux versions sans une entrée de changelog.
 
 ## Limites
 
-- Il n'y a actuellement **aucun quota ni limite de débit publiés**, ni en-tête `Retry-After`.
-  Traitez l'API comme best-effort et rendez les nouvelles tentatives idempotentes (voir
+- **Quota par clé.** Chaque clé d'API est limitée à **600 requêtes / minute** (clés
+  d'application et de casier : **900**), sur des fenêtres fixes de 60 secondes. Le dépassement
+  renvoie **HTTP 429** avec `errorcode RATE_LIMITED` et `retryable: "True"`.
+- Chaque réponse porte `X-RateLimit-Limit`, `X-RateLimit-Remaining` et `X-RateLimit-Reset`
+  (epoch UTC en secondes) ; un `429` porte aussi `Retry-After` (secondes).
+- Aucun autre quota. La latence est variable ; réglez des délais généreux et **rejouez les
+  créations avec un `Idempotency-Key`** pour qu'une reprise ne duplique ni colis ni débit (voir
   [Idempotence](./authentication#idempotence)).
-- La latence est variable ; réglez des délais généreux et **rejouez les créations avec un
-  `Idempotency-Key`** pour qu'une reprise ne duplique ni colis ni débit.
 - Les listes grandissent avec l'usage. Utilisez `page`/`pagesize` (lorsque disponibles) et le
   `total` de l'enveloppe.
 
@@ -33,6 +43,18 @@ sidebar_position: 4
   `X-Request-Id` et citez-le (avec l'horodatage UTC et le point d'accès) dans vos demandes.
 
 ## Changelog
+
+### 2026-10-01
+
+- **Quota par clé et en-têtes de limite.** Chaque clé d'API est limitée à **600 requêtes /
+  minute** (clés d'application et de casier : **900**), sur des fenêtres fixes de 60 secondes ;
+  le dépassement renvoie **HTTP 429** avec `errorcode RATE_LIMITED`. Chaque réponse porte
+  désormais `X-RateLimit-Limit`, `X-RateLimit-Remaining` et `X-RateLimit-Reset`, et un `429`
+  porte aussi `Retry-After`.
+- **Politique de version publiée :** SemVer (`2.MINOR.PATCH`) incrémenté à chaque version, avec
+  des archives immuables (`openapi-<version>.json`) ; les changements additifs sortent sans
+  préavis, les changements cassants portent un marqueur `deprecated` et une fenêtre de double
+  service de **90 jours**. La spécification est générée uniquement au push.
 
 ### 2026-09-30
 
