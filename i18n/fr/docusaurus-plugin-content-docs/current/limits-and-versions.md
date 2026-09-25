@@ -34,6 +34,19 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-30
+
+- **La réinitialisation du mot de passe client se fait désormais par un code à usage unique
+  envoyé par e-mail.** `/customer/forgotpassword/` envoie un **code à 6 chiffres** (expiration
+  10 minutes, 5 tentatives max) et renvoie toujours `00` — l'ancien `99 « Email not found »`
+  disparaît (aucune divulgation de l'existence du compte). L'ancien comportement qui envoyait un
+  **mot de passe en clair** est supprimé.
+- **Changement incompatible :** `/customer/resetpassword/` prend désormais
+  `{email, otp, newpassword}` — `oldpassword` est **retiré** ; utilisez
+  `/customer/changepassword/` pour changer un mot de passe connu en étant connecté.
+- `/customer/otp/verify/` reste l'**activation d'inscription** (sans jeton) — connectez-vous via
+  `/customer/login/` pour un `sessiontoken`. Le même flux s'applique aux points dispatch.
+
 ### 2026-09-29
 
 - **Identité des instantanés au casier :** sur `/kiosk/parcel/snapshot/`, `parceldetailid` est

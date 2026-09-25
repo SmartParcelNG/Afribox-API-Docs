@@ -256,7 +256,8 @@
       "summary": "Modifier le profil"
     },
     "post_customer_forgotpassword": {
-      "summary": "Mot de passe oublié"
+      "summary": "Démarrer une réinitialisation de mot de passe",
+      "description": "Démarre une réinitialisation : envoie par e-mail un **code à 6 chiffres** à l'adresse enregistrée (valide **10 minutes**, **5 tentatives max**). Renvoie toujours `00` — il ne révèle jamais si l'e-mail est enregistré."
     },
     "post_customer_info": {
       "summary": "Informations client"
@@ -268,7 +269,8 @@
       "summary": "Renvoyer l'OTP"
     },
     "post_customer_otp_verify": {
-      "summary": "Vérifier l'OTP"
+      "summary": "Vérifier le code d'inscription",
+      "description": "Vérifie le code d'**inscription** et active le compte. Ne renvoie aucun jeton — connectez-vous via `/customer/login/` pour obtenir un `sessiontoken`. (Les réinitialisations passent par `/customer/forgotpassword/` → `/customer/resetpassword/`.)"
     },
     "post_customer_parcels_all": {
       "summary": "Lister tous les colis du client",
@@ -317,7 +319,8 @@
       "summary": "Chronologie d'un colis"
     },
     "post_customer_resetpassword": {
-      "summary": "Réinitialiser le mot de passe"
+      "summary": "Terminer une réinitialisation de mot de passe",
+      "description": "Termine la réinitialisation avec `{email, otp, newpassword}` : vérifie le code reçu et définit le nouveau mot de passe en une seule étape. Code invalide/expiré → `09 INVALID_RESET_CODE`. Pour changer un mot de passe que vous connaissez en étant connecté, utilisez `/customer/changepassword/`."
     },
     "post_customer_signup": {
       "summary": "Inscription"

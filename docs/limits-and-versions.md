@@ -33,6 +33,17 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-30
+
+- **Customer password reset is now a one-time emailed code.** `/customer/forgotpassword/` emails a
+  **6-digit code** (10-minute expiry, max 5 attempts) and always answers `00` — the old
+  `99 "Email not found"` is gone (no account-existence disclosure). The old behaviour of emailing
+  a new **plaintext password** is removed.
+- **Breaking:** `/customer/resetpassword/` now takes `{email, otp, newpassword}` — `oldpassword`
+  was **removed**; use `/customer/changepassword/` to change a known password while signed in.
+- `/customer/otp/verify/` remains **signup activation** (no token) — sign in via
+  `/customer/login/` for a `sessiontoken`. The same reset flow applies to the dispatch endpoints.
+
 ### 2026-09-29
 
 - **Kiosk snapshot identity:** on `/kiosk/parcel/snapshot/`, `parceldetailid` is

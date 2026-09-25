@@ -5150,8 +5150,9 @@
             "type": "string",
             "format": "email"
           },
-          "oldpassword": {
-            "type": "string"
+          "otp": {
+            "type": "string",
+            "description": "One-time code: signup activation or a password-reset code from `/customer/forgotpassword/` (6 digits, 10-minute expiry)."
           },
           "newpassword": {
             "type": "string"
@@ -6594,7 +6595,8 @@
             "format": "email"
           },
           "otp": {
-            "type": "string"
+            "type": "string",
+            "description": "One-time code: signup activation or a password-reset code from `/customer/forgotpassword/` (6 digits, 10-minute expiry)."
           }
         },
         "required": [

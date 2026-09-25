@@ -1,11 +1,11 @@
 ---
 id: post-customer-otp-verify
-title: "Vérifier l'OTP"
-description: "Verify the signup code and activate the account."
-sidebar_label: "Vérifier l'OTP"
+title: "Vérifier le code d'inscription"
+description: "Vérifie le code d'**inscription** et active le compte. Ne renvoie aucun jeton — connectez-vous via `/customer/login/` pour obtenir un `sessiontoken`. (Les réinitialisations passent par `/customer/forgotpassword/` → `/customer/resetpassword/`.)"
+sidebar_label: "Vérifier le code d'inscription"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Vérifier l'OTP"}
+  children={"Vérifier le code d'inscription"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Verify the signup code and activate the account.
+Vérifie le code d'**inscription** et active le compte. Ne renvoie aucun jeton — connectez-vous via `/customer/login/` pour obtenir un `sessiontoken`. (Les réinitialisations passent par `/customer/forgotpassword/` → `/customer/resetpassword/`.)
 
 <Heading
   id={"request"}
@@ -54,7 +54,7 @@ Verify the signup code and activate the account.
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"},"otp":{"type":"string"}},"required":["apikey"],"title":"OTPVerify"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"},"otp":{"type":"string","description":"One-time code: signup activation or a password-reset code from `/customer/forgotpassword/` (6 digits, 10-minute expiry)."}},"required":["apikey"],"title":"OTPVerify"}}}}}
 >
   
 </RequestSchema>

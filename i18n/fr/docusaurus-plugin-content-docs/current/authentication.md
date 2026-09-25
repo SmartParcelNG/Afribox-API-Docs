@@ -51,6 +51,18 @@ seul ne prouve pas l'identité et n'est plus accepté ; un jeton absent, invalid
 renvoie `98 Authentication Failed`. La session fixe à la fois l'identité et le client, sans
 transporter l'identifiant client (non secret).
 
+## Mots de passe client
+
+- **Activation à l'inscription :** `/customer/signup/` envoie un code au contact enregistré ;
+  `/customer/otp/verify/` le vérifie et active le compte. Aucun jeton n'est renvoyé — appelez
+  `/customer/login/` pour obtenir un `sessiontoken`.
+- **Changement (connecté) :** `/customer/changepassword/` avec `sessiontoken` (ou `customerid`)
+  + `oldpassword` + `newpassword`.
+- **Oublié :** `/customer/forgotpassword/` envoie par e-mail un **code à 6 chiffres** (valide
+  **10 minutes**, **5 tentatives max**) et renvoie toujours `00` (aucune divulgation de
+  l'existence du compte) ; `/customer/resetpassword/` prend `{email, otp, newpassword}` et
+  définit le nouveau mot de passe en une étape.
+
 ## Liens d'instantanés
 
 Les images de preuve de livraison ne se récupèrent **pas** avec une clé. `/parcel/snapshots/`

@@ -50,6 +50,18 @@ alongside the customer profile. **Customer read endpoints require `sessiontoken`
 or expired token returns `98 Authentication Failed`. The session fixes both the identity and
 the customer, so a client does not carry the (non-secret) customer id around.
 
+## Customer passwords
+
+- **Signup activation:** `/customer/signup/` sends a code to the registered contact;
+  `/customer/otp/verify/` verifies it and activates the account. It returns **no token** — call
+  `/customer/login/` to get a `sessiontoken`.
+- **Change (signed in):** `/customer/changepassword/` with `sessiontoken` (or `customerid`) +
+  `oldpassword` + `newpassword`.
+- **Forgotten:** `/customer/forgotpassword/` emails a **6-digit code** (valid **10 minutes**,
+  **max 5 attempts**) and always returns `00` (no account-existence disclosure);
+  `/customer/resetpassword/` takes `{email, otp, newpassword}` and sets the new password in one
+  step.
+
 ## Snapshot links
 
 Proof-of-delivery images are **not** fetched with a key. `/parcel/snapshots/` (application key)

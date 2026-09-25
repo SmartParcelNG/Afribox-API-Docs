@@ -417,8 +417,8 @@
       "description": "Update the customer's display name."
     },
     "POST /customer/forgotpassword/": {
-      "summary": "Customer Forgotpassword",
-      "description": "Start a password reset; the code goes to the registered contact."
+      "summary": "Start a password reset",
+      "description": "Start a password reset: emails a **6-digit code** to the registered address (valid **10 minutes**, **max 5 attempts**). Always returns `00` — it never reveals whether the email is registered."
     },
     "POST /customer/info/": {
       "summary": "Customer Info",
@@ -429,8 +429,8 @@
       "description": "Resend the signup verification code to the **registered** contact (no account-existence disclosure)."
     },
     "POST /customer/otp/verify/": {
-      "summary": "Otp Verify",
-      "description": "Verify the signup code and activate the account."
+      "summary": "Verify the signup code",
+      "description": "Verify the **signup** code and activate the account. It returns no token — sign in with `/customer/login/` to get a `sessiontoken`. (Password resets use `/customer/forgotpassword/` → `/customer/resetpassword/`.)"
     },
     "POST /customer/parcels/hold/": {
       "summary": "Parcels Hold",
@@ -445,8 +445,8 @@
       "description": "The status timeline of one of the customer's parcels."
     },
     "POST /customer/resetpassword/": {
-      "summary": "Customer Resetpassword",
-      "description": "Reset the password. Declares `oldpassword`; for a forgotten password use the OTP flow."
+      "summary": "Complete a password reset",
+      "description": "Complete the reset with `{email, otp, newpassword}`: verifies the emailed code and sets the new password in one step. Invalid/expired code → `09 INVALID_RESET_CODE`. To change a password you already know while signed in, use `/customer/changepassword/`."
     },
     "POST /customer/signup/": {
       "summary": "Customer Signup",
@@ -712,6 +712,9 @@
     },
     "expiresat": {
       "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the expiry sweep sets the parcel to status 8, releases the locker and forfeits the fee."
+    },
+    "otp": {
+      "description": "One-time code: signup activation or a password-reset code from `/customer/forgotpassword/` (6 digits, 10-minute expiry)."
     }
   },
   "manualOperations": {

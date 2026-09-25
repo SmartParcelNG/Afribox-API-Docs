@@ -63,7 +63,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-forgotpassword",
-          label: "Mot de passe oublié",
+          label: "Démarrer une réinitialisation de mot de passe",
           className: "api-method post",
         },
         {
@@ -81,7 +81,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-otp-verify",
-          label: "Vérifier l'OTP",
+          label: "Vérifier le code d'inscription",
           className: "api-method post",
         },
         {
@@ -111,7 +111,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-resetpassword",
-          label: "Réinitialiser le mot de passe",
+          label: "Terminer une réinitialisation de mot de passe",
           className: "api-method post",
         },
         {

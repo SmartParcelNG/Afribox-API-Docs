@@ -1,11 +1,11 @@
 ---
 id: post-customer-otp-verify
-title: "Otp Verify"
-description: "Verify the signup code and activate the account."
-sidebar_label: "Otp Verify"
+title: "Verify the signup code"
+description: "Verify the **signup** code and activate the account. It returns no token — sign in with `/customer/login/` to get a `sessiontoken`. (Password resets use `/customer/forgotpassword/` → `/customer/resetpassword/`.)"
+sidebar_label: "Verify the signup code"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
 info_path: docs/api/write/afribox-api
 custom_edit_url: null
@@ -24,7 +24,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Otp Verify"}
+  children={"Verify the signup code"}
 >
 </Heading>
 
@@ -38,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Verify the signup code and activate the account.
+Verify the **signup** code and activate the account. It returns no token — sign in with `/customer/login/` to get a `sessiontoken`. (Password resets use `/customer/forgotpassword/` → `/customer/resetpassword/`.)
 
 <Heading
   id={"request"}
@@ -54,7 +54,7 @@ Verify the signup code and activate the account.
 
 <RequestSchema
   title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"},"otp":{"type":"string"}},"required":["apikey"],"title":"OTPVerify"}}}}}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string","format":"email"},"otp":{"type":"string","description":"One-time code: signup activation or a password-reset code from `/customer/forgotpassword/` (6 digits, 10-minute expiry)."}},"required":["apikey"],"title":"OTPVerify"}}}}}
 >
   
 </RequestSchema>

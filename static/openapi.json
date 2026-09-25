@@ -3050,11 +3050,11 @@
     "/customer/forgotpassword/": {
       "post": {
         "operationId": "post_customer_forgotpassword",
-        "summary": "Customer Forgotpassword",
+        "summary": "Start a password reset",
         "tags": [
           "customer"
         ],
-        "description": "Start a password reset; the code goes to the registered contact.",
+        "description": "Start a password reset: emails a **6-digit code** to the registered address (valid **10 minutes**, **max 5 attempts**). Always returns `00` — it never reveals whether the email is registered.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -3232,11 +3232,11 @@
     "/customer/otp/verify/": {
       "post": {
         "operationId": "post_customer_otp_verify",
-        "summary": "Otp Verify",
+        "summary": "Verify the signup code",
         "tags": [
           "customer"
         ],
-        "description": "Verify the signup code and activate the account.",
+        "description": "Verify the **signup** code and activate the account. It returns no token — sign in with `/customer/login/` to get a `sessiontoken`. (Password resets use `/customer/forgotpassword/` → `/customer/resetpassword/`.)",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -3872,11 +3872,11 @@
     "/customer/resetpassword/": {
       "post": {
         "operationId": "post_customer_resetpassword",
-        "summary": "Customer Resetpassword",
+        "summary": "Complete a password reset",
         "tags": [
           "customer"
         ],
-        "description": "Reset the password. Declares `oldpassword`; for a forgotten password use the OTP flow.",
+        "description": "Complete the reset with `{email, otp, newpassword}`: verifies the emailed code and sets the new password in one step. Invalid/expired code → `09 INVALID_RESET_CODE`. To change a password you already know while signed in, use `/customer/changepassword/`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -6584,8 +6584,9 @@
             "type": "string",
             "format": "email"
           },
-          "oldpassword": {
-            "type": "string"
+          "otp": {
+            "type": "string",
+            "description": "One-time code: signup activation or a password-reset code from `/customer/forgotpassword/` (6 digits, 10-minute expiry)."
           },
           "newpassword": {
             "type": "string"
@@ -8028,7 +8029,8 @@
             "format": "email"
           },
           "otp": {
-            "type": "string"
+            "type": "string",
+            "description": "One-time code: signup activation or a password-reset code from `/customer/forgotpassword/` (6 digits, 10-minute expiry)."
           }
         },
         "required": [

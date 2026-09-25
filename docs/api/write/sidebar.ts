@@ -63,7 +63,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/write/post-customer-forgotpassword",
-          label: "Customer Forgotpassword",
+          label: "Start a password reset",
           className: "api-method post",
         },
         {
@@ -81,7 +81,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/write/post-customer-otp-verify",
-          label: "Otp Verify",
+          label: "Verify the signup code",
           className: "api-method post",
         },
         {
@@ -111,7 +111,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/write/post-customer-resetpassword",
-          label: "Customer Resetpassword",
+          label: "Complete a password reset",
           className: "api-method post",
         },
         {
