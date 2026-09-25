@@ -65,6 +65,24 @@ discoverable via `/business/users/list/` (`userid`, `fullname`, `email`). It is 
 on the wallet write endpoints: when omitted, `/business/wallettransaction/new/` defaults to
 the business's primary user and the admin endpoint to `0`. If supplied it must be numeric.
 
+## Parcel request types — `/core/requesttypes/list/`
+
+| `requesttypeid` | label | selectable by |
+|---|---|---|
+| 1 | Envoyer un colis | **customer** (`/customer/parcels/new/`; needs recipient + address + `deliveryareaid`) |
+| 2 | Self-stockage | **customer** (needs recipient fields) |
+| 3 | Client à client | **customer** (needs recipient fields) |
+| 4 | Application de casier | kiosk appless flow only |
+| 6 | Ramassage sur place | **business** — `/business/parcels/create/` is fixed to this |
+| 7 | Ramasser | business / dispatch |
+| 8 | Doorstep Delivery | business / dispatch |
+| 9 | Livraison de casier | business / dispatch |
+
+NIPOST (previously id 5) is **removed** — it does not operate in Côte d'Ivoire. Business
+creation always uses type **6** and does not take `requesttypeid`; customer creation accepts
+only **1, 2, 3**. The `/business/draft/*` endpoints are **deprecated** aliases of
+`/core/requesttypes/list/` and `/core/deliveryareas/list/`.
+
 ## Reservations and expiry
 
 Two kinds of reservation behave differently:

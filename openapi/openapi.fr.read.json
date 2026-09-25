@@ -633,9 +633,10 @@
         "tags": [
           "business"
         ],
-        "description": "Delivery areas for the parcel-creation selector.",
+        "description": "**Obsolète** — utilisez `/core/deliveryareas/list/`. Données de référence pour un sélecteur de création de colis.",
         "x-auth": "business_public",
         "x-readonly": true,
+        "deprecated": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -673,9 +674,10 @@
         "tags": [
           "business"
         ],
-        "description": "Parcel request types for the parcel-creation selector.",
+        "description": "**Obsolète** — utilisez `/core/requesttypes/list/`. Données de référence pour un sélecteur de création de colis. La création de colis d'entreprise est fixée au type 6 (Ramassage sur place) ; cette liste est informative.",
         "x-auth": "business_public",
         "x-readonly": true,
+        "deprecated": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -2108,7 +2110,7 @@
         "tags": [
           "core"
         ],
-        "description": "The parcel request types (for example Send parcel, Self storage).",
+        "description": "Le vocabulaire des types de demande de colis. La création **client** peut utiliser `1` (Envoyer un colis), `2` (Self-stockage) et `3` (Client à client) ; la création **entreprise** est fixée à `6` (Ramassage sur place) ; `7`, `8`, `9` relèvent de la logistique entreprise ; `4` est le flux appless du casier. Les libellés sont servis sans espaces superflus.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {

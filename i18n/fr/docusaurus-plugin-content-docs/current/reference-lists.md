@@ -67,6 +67,24 @@ l'action), découvrable via `/business/users/list/` (`userid`, `fullname`, `emai
 prend l'utilisateur principal de l'entreprise et le point d'accès admin prend `0`. S'il est
 fourni, il doit être numérique.
 
+## Types de demande de colis — `/core/requesttypes/list/`
+
+| `requesttypeid` | libellé | sélectionnable par |
+|---|---|---|
+| 1 | Envoyer un colis | **client** (`/customer/parcels/new/` ; requiert destinataire + adresse + `deliveryareaid`) |
+| 2 | Self-stockage | **client** (requiert les champs destinataire) |
+| 3 | Client à client | **client** (requiert les champs destinataire) |
+| 4 | Application de casier | flux appless du casier uniquement |
+| 6 | Ramassage sur place | **entreprise** — `/business/parcels/create/` y est fixé |
+| 7 | Ramasser | entreprise / dispatch |
+| 8 | Doorstep Delivery | entreprise / dispatch |
+| 9 | Livraison de casier | entreprise / dispatch |
+
+NIPOST (anciennement id 5) est **supprimé** — il n'opère pas en Côte d'Ivoire. La création
+d'entreprise utilise toujours le type **6** et ne prend pas `requesttypeid` ; la création
+client n'accepte que **1, 2, 3**. Les points d'accès `/business/draft/*` sont des alias
+**obsolètes** de `/core/requesttypes/list/` et `/core/deliveryareas/list/`.
+
 ## Réservations et expiration
 
 Deux types de réservation se comportent différemment :

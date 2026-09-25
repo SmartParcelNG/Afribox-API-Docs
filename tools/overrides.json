@@ -71,11 +71,11 @@
     },
     "POST /business/parcels/create/": {
       "summary": "Create a business parcel",
-      "description": "Creates a parcel on behalf of the business, reserves a locker, debits the reservation fee from the wallet (prepaid) and sets the drop-off deadline (`expiresat`, default 72 h). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel. For a prepaid business with insufficient balance it returns `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` and message `\"Insufficient balance. Required: <fee>, Available: <balance>\"` — no parcel is created and nothing is debited. If the parcel is never dropped off, the reservation expires (status 8), the locker is released and the fee is forfeited (no refund)."
+      "description": "Creates a parcel on behalf of the business and reserves a locker. The request type is always **6** (Ramassage sur place / appless reservation) — it is not a request field. Debits the reservation fee from the wallet (prepaid) and sets the drop-off deadline (`expiresat`, default 72 h). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel. For a prepaid business with insufficient balance it returns `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` and message `\"Insufficient balance. Required: <fee>, Available: <balance>\"`. If never dropped off, the reservation expires (status 8), the locker is released and the fee is forfeited (no refund)."
     },
     "POST /customer/parcels/new/": {
       "summary": "Create a customer parcel",
-      "description": "Creates a customer parcel and reserves a locker, setting the drop-off deadline (`expiresat`, default 72 h). If it is never dropped off, the reservation expires (status 8) and the locker is released."
+      "description": "Creates a customer parcel and reserves a locker, setting the drop-off deadline (`expiresat`, default 72 h). `requesttypeid` must be `1` (Send parcel — also needs `recipientaddress` and `deliveryareaid`), `2` (Self-storage) or `3` (Customer-to-customer — needs recipient name/phone/email). Other types are refused. If the parcel is never dropped off, the reservation expires (status 8) and the locker is released."
     },
     "POST /customer/parcels/cancel/": {
       "summary": "Cancel a customer parcel",
@@ -344,8 +344,8 @@
       "description": "Find any parcel in the network by `parcelreferencenumber`."
     },
     "POST /core/requesttypes/list/": {
-      "summary": "Requesttypes List",
-      "description": "The parcel request types (for example Send parcel, Self storage)."
+      "summary": "List the request types",
+      "description": "The parcel-request-type vocabulary. **Customer** parcel creation may use `1` (Send parcel), `2` (Self-storage) and `3` (Customer-to-customer); **business** creation is fixed to `6` (Ramassage sur place); `7`, `8`, `9` are business/dispatch; `4` is the kiosk appless flow. Labels are served trimmed."
     },
     "POST /core/sizes/fees/": {
       "summary": "Sizes Fees",
@@ -486,11 +486,13 @@
     },
     "POST /business/draft/deliveryareas/": {
       "summary": "Draft Deliveryareas",
-      "description": "Delivery areas for the parcel-creation selector."
+      "description": "**Deprecated** — use `/core/deliveryareas/list/`. Reference data for a parcel-creation selector.",
+      "deprecated": true
     },
     "POST /business/draft/parceltypes/": {
       "summary": "Draft Parceltypes",
-      "description": "Parcel request types for the parcel-creation selector."
+      "description": "**Deprecated** — use `/core/requesttypes/list/`. Reference data for a parcel-creation selector. Business parcel creation is fixed to request type 6 (Ramassage sur place); this list is informational only.",
+      "deprecated": true
     },
     "POST /business/parcels/info/all/": {
       "summary": "Info All",

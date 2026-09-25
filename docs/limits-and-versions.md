@@ -33,6 +33,16 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-27
+
+- **NIPOST removed** (request type 5 and its legacy procedures/tables/views); it does not
+  operate in Côte d'Ivoire.
+- `/customer/parcels/new/` now accepts only `requesttypeid` **1, 2 or 3** (others are refused).
+- `/business/parcels/create/` is documented as fixed to request type **6**.
+- `/business/draft/parceltypes/` and `/business/draft/deliveryareas/` are **deprecated**;
+  use `/core/requesttypes/list/` and `/core/deliveryareas/list/`.
+- Request-type labels are served trimmed (no embedded CRLF).
+
 ### 2026-09-26
 
 - Wallet writes: `createdby` is now **optional** (numeric `SYS_Users.UserID`; defaults to the

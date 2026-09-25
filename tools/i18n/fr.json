@@ -87,17 +87,19 @@
       "summary": "Tableau de bord de l'entreprise"
     },
     "post_business_draft_deliveryareas": {
-      "summary": "Zones de livraison (brouillon)"
+      "summary": "Zones de livraison (brouillon)",
+      "description": "**Obsolète** — utilisez `/core/deliveryareas/list/`. Données de référence pour un sélecteur de création de colis."
     },
     "post_business_draft_parceltypes": {
-      "summary": "Types de colis (brouillon)"
+      "summary": "Types de colis (brouillon)",
+      "description": "**Obsolète** — utilisez `/core/requesttypes/list/`. Données de référence pour un sélecteur de création de colis. La création de colis d'entreprise est fixée au type 6 (Ramassage sur place) ; cette liste est informative."
     },
     "post_business_parcels_cancel": {
       "summary": "Annuler un colis"
     },
     "post_business_parcels_create": {
       "summary": "Créer un colis d'entreprise",
-      "description": "Crée un colis pour le compte de l'entreprise, réserve un casier, débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif : un rejeu identique renvoie la première réponse sans créer un second colis. Pour une entreprise prépayée avec un solde insuffisant, renvoie `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` et le message « Insufficient balance. Required: <frais>, Available: <solde> » — aucun colis créé, rien débité. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement)."
+      "description": "Crée un colis pour le compte de l'entreprise et réserve un casier. Le type de demande est toujours **6** (Ramassage sur place / réservation appless) — ce n'est pas un champ de la requête. Débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif. Pour une entreprise prépayée avec un solde insuffisant : `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE`. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement)."
     },
     "post_business_parcels_info": {
       "summary": "Détails d'un colis"
@@ -199,7 +201,8 @@
       "summary": "Rechercher un colis"
     },
     "post_core_requesttypes_list": {
-      "summary": "Lister les types de demande"
+      "summary": "Lister les types de demande",
+      "description": "Le vocabulaire des types de demande de colis. La création **client** peut utiliser `1` (Envoyer un colis), `2` (Self-stockage) et `3` (Client à client) ; la création **entreprise** est fixée à `6` (Ramassage sur place) ; `7`, `8`, `9` relèvent de la logistique entreprise ; `4` est le flux appless du casier. Les libellés sont servis sans espaces superflus."
     },
     "post_core_sizes_fees": {
       "summary": "Frais par taille",
@@ -292,7 +295,7 @@
     },
     "post_customer_parcels_new": {
       "summary": "Créer un colis client",
-      "description": "Crée un colis client et réserve un casier, en fixant l'échéance de dépôt (`expiresat`, 72 h par défaut). S'il n'est jamais déposé, la réservation expire (statut 8) et le casier est libéré."
+      "description": "Crée un colis client et réserve un casier, en fixant l'échéance de dépôt (`expiresat`, 72 h par défaut). `requesttypeid` doit être `1` (Envoyer un colis — requiert aussi `recipientaddress` et `deliveryareaid`), `2` (Self-stockage) ou `3` (Client à client — requiert nom/téléphone/email du destinataire). Les autres types sont refusés. S'il n'est jamais déposé, la réservation expire (statut 8) et le casier est libéré."
     },
     "post_customer_parcels_newrequests": {
       "summary": "Nouvelles demandes de colis"

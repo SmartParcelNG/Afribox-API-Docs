@@ -143,7 +143,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/read/post-core-requesttypes-list",
-          label: "Requesttypes List",
+          label: "List the request types",
           className: "api-method post",
         },
         {
@@ -374,13 +374,13 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/read/post-business-draft-deliveryareas",
           label: "Draft Deliveryareas",
-          className: "api-method post",
+          className: "menu__list-item--deprecated api-method post",
         },
         {
           type: "doc",
           id: "api/read/post-business-draft-parceltypes",
           label: "Draft Parceltypes",
-          className: "api-method post",
+          className: "menu__list-item--deprecated api-method post",
         },
         {
           type: "doc",

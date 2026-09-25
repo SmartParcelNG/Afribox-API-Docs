@@ -374,13 +374,13 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-draft-deliveryareas",
           label: "Zones de livraison (brouillon)",
-          className: "api-method post",
+          className: "menu__list-item--deprecated api-method post",
         },
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-draft-parceltypes",
           label: "Types de colis (brouillon)",
-          className: "api-method post",
+          className: "menu__list-item--deprecated api-method post",
         },
         {
           type: "doc",

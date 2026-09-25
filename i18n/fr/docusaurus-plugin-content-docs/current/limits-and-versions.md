@@ -34,6 +34,17 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-09-27
+
+- **NIPOST supprimé** (type de demande 5 et ses procédures/tables/vues héritées) ; il n'opère
+  pas en Côte d'Ivoire.
+- `/customer/parcels/new/` n'accepte désormais que `requesttypeid` **1, 2 ou 3** (les autres
+  sont refusés).
+- `/business/parcels/create/` est documenté comme fixé au type de demande **6**.
+- `/business/draft/parceltypes/` et `/business/draft/deliveryareas/` sont **obsolètes** ;
+  utilisez `/core/requesttypes/list/` et `/core/deliveryareas/list/`.
+- Les libellés des types de demande sont servis sans espaces superflus (plus de CRLF).
+
 ### 2026-09-26
 
 - Écritures de portefeuille : `createdby` est désormais **facultatif** (`SYS_Users.UserID`

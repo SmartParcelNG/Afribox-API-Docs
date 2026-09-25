@@ -633,9 +633,10 @@
         "tags": [
           "business"
         ],
-        "description": "Delivery areas for the parcel-creation selector.",
+        "description": "**Deprecated** — use `/core/deliveryareas/list/`. Reference data for a parcel-creation selector.",
         "x-auth": "business_public",
         "x-readonly": true,
+        "deprecated": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -673,9 +674,10 @@
         "tags": [
           "business"
         ],
-        "description": "Parcel request types for the parcel-creation selector.",
+        "description": "**Deprecated** — use `/core/requesttypes/list/`. Reference data for a parcel-creation selector. Business parcel creation is fixed to request type 6 (Ramassage sur place); this list is informational only.",
         "x-auth": "business_public",
         "x-readonly": true,
+        "deprecated": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -2104,11 +2106,11 @@
     "/core/requesttypes/list/": {
       "post": {
         "operationId": "post_core_requesttypes_list",
-        "summary": "Requesttypes List",
+        "summary": "List the request types",
         "tags": [
           "core"
         ],
-        "description": "The parcel request types (for example Send parcel, Self storage).",
+        "description": "The parcel-request-type vocabulary. **Customer** parcel creation may use `1` (Send parcel), `2` (Self-storage) and `3` (Customer-to-customer); **business** creation is fixed to `6` (Ramassage sur place); `7`, `8`, `9` are business/dispatch; `4` is the kiosk appless flow. Labels are served trimmed.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
