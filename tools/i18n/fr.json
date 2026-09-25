@@ -115,7 +115,8 @@
       "description": "Les colis de l'entreprise dans une plage de dates. `datefrom`/`dateto` acceptent `YYYY-MM-DD` ou `MM/DD/YYYY` (mois d'abord) ; voir *Dates et fuseaux horaires*."
     },
     "post_business_parcels_retrieve": {
-      "summary": "Récupérer un colis"
+      "summary": "Demander la récupération d'un colis déposé",
+      "description": "Demande qu'un **colis de type 6 déposé (statut 2) soit récupéré** de son casier. Requiert la **clé secrète**. Cela pose la demande de récupération et ne change **pas** le statut du colis, **ne libère pas le casier** et **ne rembourse pas les frais** ; **aucun retour arrière**. La récupération s'achève au casier (`/kiosk/parcel/collect/` avec le **`collectcode`** du colis), qui passe le colis au statut 4 (`RetrieveCompleted=1`) et libère le casier — c'est seulement alors qu'il compte dans `parcelsretrieved` et apparaît dans `/business/retrievedparcels/`. Refusé avec `09 PARCEL_NOT_RETRIEVABLE` si le colis n'est pas dans un casier, n'est pas de type 6, ou a déjà été demandé. Renvoie le colis (même contrat que `/business/parcels/info/`), avec le **vrai `collectcode`** (le code que saisit l'agent)."
     },
     "post_business_parcels_timeline": {
       "summary": "Chronologie d'un colis"

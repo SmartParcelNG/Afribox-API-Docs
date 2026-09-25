@@ -157,7 +157,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-parcels-retrieve",
-          label: "Récupérer un colis",
+          label: "Demander la récupération d'un colis déposé",
           className: "api-method post",
         },
         {

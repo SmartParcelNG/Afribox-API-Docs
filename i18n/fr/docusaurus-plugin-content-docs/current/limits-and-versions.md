@@ -44,6 +44,16 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-04
+
+- **`/business/parcels/retrieve/` documenté et corrigé :** c'est une **demande de
+  récupération** (clé secrète) — elle ne change pas le statut du colis, ne libère **pas** le
+  casier et ne rembourse **pas** les frais, et elle est **sans retour arrière**. Elle
+  **renvoie désormais le colis** (même contrat que `/business/parcels/info/`, avec le vrai
+  `collectcode`), et un colis non récupérable est refusé avec `09 PARCEL_NOT_RETRIEVABLE`. La
+  récupération (statut 4, `RetrieveCompleted=1`, casier libéré) s'achève au casier avec le
+  `collectcode` du colis.
+
 ### 2026-10-03
 
 - **Documentation d'authentification clarifiée :** la page liste désormais **les quatre**

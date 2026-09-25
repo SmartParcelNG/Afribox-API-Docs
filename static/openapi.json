@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "servers": [
@@ -951,11 +951,11 @@
     "/business/parcels/retrieve/": {
       "post": {
         "operationId": "post_business_parcels_retrieve",
-        "summary": "Retrieve a dropped-off parcel",
+        "summary": "Request a dropped-off parcel's retrieval",
         "tags": [
           "business"
         ],
-        "description": "Business action to retrieve a parcel that is in a locker (status 2). Requires the secret key.",
+        "description": "Requests that a **dropped-off (status 2) type-6 parcel be retrieved** from its locker. Requires the **secret key**. It sets the retrieval request and does **not** change the parcel status, **does not release the locker** and **does not refund the fee**; there is **no undo**. The retrieval is completed at the kiosk (`/kiosk/parcel/collect/` with the parcel's **`collectcode`**), which sets the parcel to status 4 (`RetrieveCompleted=1`) and frees the locker — only then does it count in `parcelsretrieved` and appear in `/business/retrievedparcels/`. Refused with `09 PARCEL_NOT_RETRIEVABLE` when the parcel is not in a locker, is not type 6, or was already requested. Returns the parcel (same contract as `/business/parcels/info/`), including the **real `collectcode`** (the code the retrieval agent enters).",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {

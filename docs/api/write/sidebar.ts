@@ -157,7 +157,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/write/post-business-parcels-retrieve",
-          label: "Retrieve a dropped-off parcel",
+          label: "Request a dropped-off parcel's retrieval",
           className: "api-method post",
         },
         {

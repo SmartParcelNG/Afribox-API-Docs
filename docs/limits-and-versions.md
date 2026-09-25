@@ -42,6 +42,15 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-04
+
+- **`/business/parcels/retrieve/` documented and fixed:** it is a **retrieval request** (secret
+  key) — it does not change the parcel status, does **not** release the locker and does **not**
+  refund the fee, and it is **one-way**. It now **returns the parcel** (same contract as
+  `/business/parcels/info/`, including the real `collectcode`), and a non-retrievable parcel is
+  refused with `09 PARCEL_NOT_RETRIEVABLE`. Completion (status 4, `RetrieveCompleted=1`, locker
+  released) happens at the kiosk with the parcel's `collectcode`.
+
 ### 2026-10-03
 
 - **Authentication docs clarified:** the page now lists **all four** dual-auth endpoints
