@@ -105,7 +105,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-customer-parcels-new",
-          label: "Créer un colis",
+          label: "Créer un colis client",
           className: "api-method post",
         },
         {

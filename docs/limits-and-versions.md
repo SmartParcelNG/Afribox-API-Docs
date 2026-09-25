@@ -48,6 +48,10 @@ sidebar_position: 4
   no longer error on type 4.
 - `/business/parcels/create/` insufficient-balance refusal now carries
   `errorcode: "INSUFFICIENT_BALANCE"`.
+- Created parcels awaiting drop-off now expire after **72 h** (configurable); the deadline is
+  returned as `expiresat` on `/business/parcels/create/` and `/customer/parcels/new/`. An
+  hourly job moves them to parcel status **8 (Reservation expired)**, releases the locker and
+  forfeits the fee; cancellation before the deadline still refunds.
 
 ### 2026-09-25
 

@@ -20,6 +20,7 @@ les points d'accès `/core/*/list/` ; les valeurs ci-dessous sont les ensembles 
 | 5 | Parcel was cancelled | Annulé |
 | 6 | Archived | Archivé / récupéré |
 | 7 | Dispatch collected parcel from locker | Collecté du casier par la messagerie ; ramassage non encore marqué |
+| 8 | Reservation expired | En attente de dépôt au-delà de l'échéance ; casier libéré, frais perdus |
 
 `parcelstatus` sur les réponses de colis n'est jamais vide : si un libellé manquait, il
 retombe sur l'identifiant (`"Status 7"`).
@@ -65,6 +66,21 @@ l'action), découvrable via `/business/users/list/` (`userid`, `fullname`, `emai
 **facultatif** sur les écritures de portefeuille : omis, `/business/wallettransaction/new/`
 prend l'utilisateur principal de l'entreprise et le point d'accès admin prend `0`. S'il est
 fourni, il doit être numérique.
+
+## Réservations et expiration
+
+Deux types de réservation se comportent différemment :
+
+- **Réservation de paiement** (`/customer/parcels/hold/`, paiement d'abord) : expire en
+  **15 minutes** ; le casier est libéré automatiquement à l'expiration.
+- **Colis créé en attente de dépôt** (`/business/parcels/create/`, `/customer/parcels/new/`) :
+  expire **72 heures** après la création (configurable côté serveur). L'échéance est renvoyée
+  dans `expiresat` sur la réponse de création.
+
+Lorsqu'un colis créé n'est jamais déposé avant l'échéance, une tâche horaire le passe au
+statut **8 (Reservation expired)**, libère le casier et **perd les frais de réservation — sans
+remboursement**. Une **annulation** avant l'échéance, en revanche, est une annulation normale
+(statut 5) et **rembourse** les frais.
 
 ## Barème des frais de réservation (appless) — en vigueur le 23 septembre 2026
 

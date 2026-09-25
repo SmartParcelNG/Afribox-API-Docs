@@ -129,7 +129,7 @@
         "tags": [
           "business"
         ],
-        "description": "Crée un colis pour le compte de l'entreprise, réserve un casier et débite les frais de réservation du portefeuille (prépayé). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif : un rejeu identique renvoie la première réponse sans créer un second colis. Pour une entreprise prépayée avec un solde insuffisant, renvoie `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` et le message « Insufficient balance. Required: <frais>, Available: <solde> » — aucun colis n'est créé et rien n'est débité (les entreprises postpayées ne sont pas contrôlées).",
+        "description": "Crée un colis pour le compte de l'entreprise, réserve un casier, débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif : un rejeu identique renvoie la première réponse sans créer un second colis. Pour une entreprise prépayée avec un solde insuffisant, renvoie `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` et le message « Insufficient balance. Required: <frais>, Available: <solde> » — aucun colis créé, rien débité. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement).",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -751,7 +751,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker.",
+        "description": "Réserve un casier pour une courte fenêtre de paiement d'abord (**15 minutes**) pendant que le payeur termine Paystack ; le casier est libéré automatiquement à l'expiration (tâche de 2 minutes, plus nettoyage opportuniste).",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
@@ -827,11 +827,11 @@
     "/customer/parcels/new/": {
       "post": {
         "operationId": "post_customer_parcels_new",
-        "summary": "Créer un colis",
+        "summary": "Créer un colis client",
         "tags": [
           "customer"
         ],
-        "description": "Creates a parcel for the customer and reserves a locker. Supports an optional `Idempotency-Key` header.",
+        "description": "Crée un colis client et réserve un casier, en fixant l'échéance de dépôt (`expiresat`, 72 h par défaut). S'il n'est jamais déposé, la réservation expire (statut 8) et le casier est libéré.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1691,9 +1691,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -1954,9 +1955,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -2930,9 +2932,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -3264,9 +3267,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -3398,9 +3402,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -3622,6 +3627,14 @@
           },
           "parcel": {
             "$ref": "#/components/schemas/CustomerParcelData"
+          },
+          "expiresat": {
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the hourly job sets the parcel to status 8, releases the locker and forfeits the fee."
+          },
+          "expiresatiso": {
+            "type": "string"
           }
         }
       },
@@ -5638,9 +5651,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -6928,9 +6942,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -7268,9 +7283,10 @@
               "4",
               "5",
               "6",
-              "7"
+              "7",
+              "8"
             ],
-            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+            "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
           },
           "parcelstatus": {
             "type": "string",
@@ -7501,6 +7517,14 @@
           "errorfield": {
             "type": "string",
             "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "expiresat": {
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the hourly job sets the parcel to status 8, releases the locker and forfeits the fee."
+          },
+          "expiresatiso": {
+            "type": "string"
           }
         }
       },

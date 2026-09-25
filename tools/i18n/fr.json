@@ -97,7 +97,7 @@
     },
     "post_business_parcels_create": {
       "summary": "Créer un colis d'entreprise",
-      "description": "Crée un colis pour le compte de l'entreprise, réserve un casier et débite les frais de réservation du portefeuille (prépayé). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif : un rejeu identique renvoie la première réponse sans créer un second colis. Pour une entreprise prépayée avec un solde insuffisant, renvoie `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` et le message « Insufficient balance. Required: <frais>, Available: <solde> » — aucun colis n'est créé et rien n'est débité (les entreprises postpayées ne sont pas contrôlées)."
+      "description": "Crée un colis pour le compte de l'entreprise, réserve un casier, débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif : un rejeu identique renvoie la première réponse sans créer un second colis. Pour une entreprise prépayée avec un solde insuffisant, renvoie `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` et le message « Insufficient balance. Required: <frais>, Available: <solde> » — aucun colis créé, rien débité. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement)."
     },
     "post_business_parcels_info": {
       "summary": "Détails d'un colis"
@@ -275,7 +275,8 @@
       "summary": "Colis en route vers le destinataire"
     },
     "post_customer_parcels_hold": {
-      "summary": "Mettre un colis en attente (paiement Paystack)"
+      "summary": "Mettre un colis en attente (paiement Paystack)",
+      "description": "Réserve un casier pour une courte fenêtre de paiement d'abord (**15 minutes**) pendant que le payeur termine Paystack ; le casier est libéré automatiquement à l'expiration (tâche de 2 minutes, plus nettoyage opportuniste)."
     },
     "post_customer_parcels_hold_release": {
       "summary": "Lever la mise en attente"
@@ -290,7 +291,8 @@
       "summary": "Colis en casier"
     },
     "post_customer_parcels_new": {
-      "summary": "Créer un colis"
+      "summary": "Créer un colis client",
+      "description": "Crée un colis client et réserve un casier, en fixant l'échéance de dépôt (`expiresat`, 72 h par défaut). S'il n'est jamais déposé, la réservation expire (statut 8) et le casier est libéré."
     },
     "post_customer_parcels_newrequests": {
       "summary": "Nouvelles demandes de colis"

@@ -85,7 +85,7 @@ BOOLEAN_PROPS = {
 # Fields served as server-local strings: M/d/yyyy h:mm:ss AM/PM, no timezone (UTC+1).
 DATE_PROPS = {
     "datecreated", "dropdate", "collectdate", "paidat", "expiry", "imagedatetime",
-    "datelastping", "dateexpires", "dateactivated", "datelastlogin",
+    "datelastping", "dateexpires", "dateactivated", "datelastlogin", "expiresat",
     "retrievedate", "retrievecompletedate", "deliveryrequesteddate",
     "courierassigneddate", "courierdispatchdate", "pickedupdate", "delivereddate",
     "verifieddate", "datecreatedshortdate", "datecreatedshorttime",

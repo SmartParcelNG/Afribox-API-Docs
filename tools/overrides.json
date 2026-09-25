@@ -71,11 +71,11 @@
     },
     "POST /business/parcels/create/": {
       "summary": "Create a business parcel",
-      "description": "Creates a parcel on behalf of the business, reserves a locker and debits the reservation fee from the wallet (prepaid). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel. For a prepaid business with insufficient balance it returns `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` and message `\"Insufficient balance. Required: <fee>, Available: <balance>\"` — no parcel is created and nothing is debited (postpaid businesses are not balance-checked)."
+      "description": "Creates a parcel on behalf of the business, reserves a locker, debits the reservation fee from the wallet (prepaid) and sets the drop-off deadline (`expiresat`, default 72 h). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel. For a prepaid business with insufficient balance it returns `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` and message `\"Insufficient balance. Required: <fee>, Available: <balance>\"` — no parcel is created and nothing is debited. If the parcel is never dropped off, the reservation expires (status 8), the locker is released and the fee is forfeited (no refund)."
     },
     "POST /customer/parcels/new/": {
       "summary": "Create a customer parcel",
-      "description": "Creates a parcel for the customer and reserves a locker. Supports an optional `Idempotency-Key` header."
+      "description": "Creates a customer parcel and reserves a locker, setting the drop-off deadline (`expiresat`, default 72 h). If it is never dropped off, the reservation expires (status 8) and the locker is released."
     },
     "POST /customer/parcels/cancel/": {
       "summary": "Cancel a customer parcel",
@@ -225,7 +225,7 @@
           }
         ]
       },
-      "description": "The parcel-status vocabulary (1 New request … 7 Dispatch collected)."
+      "description": "The parcel-status vocabulary (1 New request … 8 Reservation expired)."
     },
     "POST /business/balance/": {
       "responseExample": {
@@ -431,7 +431,7 @@
     },
     "POST /customer/parcels/hold/": {
       "summary": "Parcels Hold",
-      "description": "Pay-first checkout: holds a locker and opens a Paystack transaction. The hold is converted to a parcel by `/pay/verify/`; `/customer/parcels/hold/release/` frees the locker."
+      "description": "Reserves a locker for a short pay-first window (**15 minutes**) while the payer completes Paystack; the locker is released automatically when the hold expires (hourly/2-minute job, plus opportunistic cleanup)."
     },
     "POST /customer/parcels/hold/release/": {
       "summary": "Hold Release",
@@ -658,9 +658,10 @@
         "4",
         "5",
         "6",
-        "7"
+        "7",
+        "8"
       ],
-      "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker. See /core/parcelstatuses/list/."
+      "description": "1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."
     },
     "parcelstatus": {
       "description": "Label of `parcelstatusid`; never empty — falls back to the id if a label is missing. See /core/parcelstatuses/list/."
@@ -698,6 +699,9 @@
     },
     "errorfield": {
       "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
+    },
+    "expiresat": {
+      "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the hourly job sets the parcel to status 8, releases the locker and forfeits the fee."
     }
   },
   "manualOperations": {

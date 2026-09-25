@@ -20,6 +20,7 @@ Every closed vocabulary in the API, with its list endpoint. The labels are serve
 | 5 | Parcel was cancelled | Cancelled |
 | 6 | Archived | Archived / retrieved |
 | 7 | Dispatch collected parcel from locker | Collected from the locker by dispatch; picked-up not yet marked |
+| 8 | Reservation expired | Awaiting drop-off past the deadline; locker released, fee forfeited |
 
 `parcelstatus` on parcel responses is never empty: if a label were ever missing it falls back
 to the id (`"Status 7"`).
@@ -63,6 +64,21 @@ Manual adjustments should use `2` (Back Office). `3` (Paystack) is set automatic
 discoverable via `/business/users/list/` (`userid`, `fullname`, `email`). It is **optional**
 on the wallet write endpoints: when omitted, `/business/wallettransaction/new/` defaults to
 the business's primary user and the admin endpoint to `0`. If supplied it must be numeric.
+
+## Reservations and expiry
+
+Two kinds of reservation behave differently:
+
+- **Checkout hold** (`/customer/parcels/hold/`, pay-first): expires in **15 minutes**; the
+  locker is released automatically when the hold expires.
+- **Created parcel awaiting drop-off** (`/business/parcels/create/`, `/customer/parcels/new/`):
+  expires **72 hours** after creation (configurable server-side). The deadline is returned as
+  `expiresat` on the create response.
+
+When a created parcel is never dropped off by its deadline, an hourly job sets it to status
+**8 (Reservation expired)**, releases the locker, and **forfeits the reservation fee — there
+is no refund**. A **cancellation** before the deadline, by contrast, is a normal cancel
+(status 5) and **refunds** the fee.
 
 ## Reservation (appless) fee schedule — effective 23 September 2026
 
