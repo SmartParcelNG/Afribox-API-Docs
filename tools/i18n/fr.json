@@ -104,7 +104,8 @@
       "summary": "Détails d'un colis et son historique"
     },
     "post_business_parcels_reports": {
-      "summary": "Rapports de colis"
+      "summary": "Rapports de colis",
+      "description": "Les colis de l'entreprise dans une plage de dates. `datefrom`/`dateto` acceptent `YYYY-MM-DD` ou `MM/DD/YYYY` (mois d'abord) ; voir *Dates et fuseaux horaires*."
     },
     "post_business_parcels_retrieve": {
       "summary": "Récupérer un colis"
@@ -289,7 +290,8 @@
       "summary": "Nouvelles demandes de colis"
     },
     "post_customer_parcels_reports": {
-      "summary": "Rapports de colis"
+      "summary": "Rapports de colis",
+      "description": "Les colis du client créés dans une plage de dates. `datefrom`/`dateto` acceptent `YYYY-MM-DD` ou `MM/DD/YYYY` (mois d'abord) ; voir *Dates et fuseaux horaires*."
     },
     "post_customer_parcels_timeline": {
       "summary": "Chronologie d'un colis"
@@ -328,7 +330,8 @@
       "summary": "Image d'instantané de colis"
     },
     "post_parcel_snapshots": {
-      "summary": "Lister les instantanés de colis"
+      "summary": "Lister les instantanés de colis",
+      "description": "Renvoie les instantanés de preuve de livraison d'un `parceldetailid`, chacun avec un `snapshoturl`. `imagedatetime`/`datecreated` ont des companions ISO 8601."
     },
     "get_pay_return": {
       "summary": "Page de retour de paiement",
@@ -340,11 +343,11 @@
     },
     "post_pay_verify": {
       "summary": "Vérifier un paiement Paystack",
-      "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis."
+      "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis. `paidat` est en ISO 8601 UTC."
     },
     "post_pay_status": {
       "summary": "Statut du paiement par référence",
-      "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp."
+      "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp. `paidat` est en ISO 8601 UTC."
     },
     "post_pay_search": {
       "summary": "Rechercher un colis à payer"

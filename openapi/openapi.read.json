@@ -793,7 +793,7 @@
         "tags": [
           "business"
         ],
-        "description": "The business's parcels within a date range (`datefrom`/`dateto`, MM/DD/YYYY).",
+        "description": "The business's parcels within a date range. `datefrom`/`dateto` accept `YYYY-MM-DD` or `MM/DD/YYYY` (month first); see *Dates and time zones*.",
         "x-auth": "business_public",
         "x-readonly": true,
         "requestBody": {
@@ -2830,7 +2830,7 @@
         "tags": [
           "customer"
         ],
-        "description": "The customer's parcels created within a date range (`datefrom`/`dateto`, MM/DD/YYYY).",
+        "description": "The customer's parcels created within a date range. `datefrom`/`dateto` accept `YYYY-MM-DD` or `MM/DD/YYYY` (month first); see *Dates and time zones*.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -3020,7 +3020,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot.",
+        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `paidat` is ISO 8601 UTC.",
         "x-auth": "paystack_dual",
         "x-readonly": true,
         "requestBody": {
@@ -3104,6 +3104,9 @@
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
             "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
+          },
+          "paidatiso": {
+            "type": "string"
           },
           "authorizationcode": {
             "type": "string"
@@ -3294,6 +3297,9 @@
           },
           "deliveryarea": {
             "type": "string"
+          },
+          "datecreatediso": {
+            "type": "string"
           }
         }
       },
@@ -3359,6 +3365,9 @@
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
             "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
+          },
+          "paidatiso": {
+            "type": "string"
           },
           "processed": {
             "type": "string",
@@ -3522,6 +3531,9 @@
               "False"
             ],
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "datecreatediso": {
+            "type": "string"
           }
         }
       },
@@ -3700,6 +3712,12 @@
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
             "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
+          },
+          "imagedatetimeiso": {
+            "type": "string"
+          },
+          "datecreatediso": {
+            "type": "string"
           }
         }
       },
@@ -3872,6 +3890,12 @@
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
             "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
+          },
+          "datecreatediso": {
+            "type": "string"
+          },
+          "datelastpingiso": {
+            "type": "string"
           }
         }
       },
@@ -4102,6 +4126,9 @@
           },
           "lockerstatus": {
             "type": "string"
+          },
+          "datecreatediso": {
+            "type": "string"
           }
         }
       },
@@ -4239,6 +4266,9 @@
             "type": "string"
           },
           "lockerstatus": {
+            "type": "string"
+          },
+          "datecreatediso": {
             "type": "string"
           }
         }
@@ -4451,6 +4481,9 @@
             "type": "string"
           },
           "boxlockernumber": {
+            "type": "string"
+          },
+          "datecreatediso": {
             "type": "string"
           }
         }
@@ -4739,6 +4772,9 @@
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
             "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
+          },
+          "datecreatediso": {
+            "type": "string"
           }
         }
       },
@@ -4947,6 +4983,9 @@
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "authorizationotp": {
+            "type": "string"
+          },
+          "datecreatediso": {
             "type": "string"
           }
         }
@@ -8136,6 +8175,9 @@
           },
           "reference": {
             "type": "string"
+          },
+          "datecreatediso": {
+            "type": "string"
           }
         }
       },
@@ -8307,6 +8349,15 @@
             "type": "string"
           },
           "elapsed": {
+            "type": "string"
+          },
+          "datecreatediso": {
+            "type": "string"
+          },
+          "dropdateiso": {
+            "type": "string"
+          },
+          "collectdateiso": {
             "type": "string"
           }
         }
@@ -8576,6 +8627,9 @@
             "type": "string",
             "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
             "description": "Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."
+          },
+          "datecreatediso": {
+            "type": "string"
           }
         }
       },

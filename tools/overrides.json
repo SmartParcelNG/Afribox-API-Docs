@@ -34,12 +34,12 @@
     "POST /pay/verify/": {
       "readonly": false,
       "summary": "Verify a Paystack payment",
-      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments."
+      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments. `paidat` is ISO 8601 UTC."
     },
     "POST /pay/status/": {
       "readonly": true,
       "summary": "Get payment status by reference",
-      "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot."
+      "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `paidat` is ISO 8601 UTC."
     },
     "POST /business/pendingdropoffs/": {
       "summary": "List parcels awaiting drop-off",
@@ -67,7 +67,7 @@
     },
     "POST /parcel/snapshots/": {
       "summary": "List a parcel's snapshots",
-      "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`."
+      "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `imagedatetime`/`datecreated` carry ISO 8601 companions."
     },
     "POST /business/parcels/create/": {
       "summary": "Create a business parcel",
@@ -190,7 +190,7 @@
     },
     "POST /customer/parcels/reports/": {
       "summary": "Report the customer's parcels in a date range",
-      "description": "The customer's parcels created within a date range (`datefrom`/`dateto`, MM/DD/YYYY)."
+      "description": "The customer's parcels created within a date range. `datefrom`/`dateto` accept `YYYY-MM-DD` or `MM/DD/YYYY` (month first); see *Dates and time zones*."
     },
     "POST /kiosk/setup/": {
       "summary": "Set up a box from its code",
@@ -510,7 +510,7 @@
     },
     "POST /business/parcels/reports/": {
       "summary": "Parcels Reports",
-      "description": "The business's parcels within a date range (`datefrom`/`dateto`, MM/DD/YYYY)."
+      "description": "The business's parcels within a date range. `datefrom`/`dateto` accept `YYYY-MM-DD` or `MM/DD/YYYY` (month first); see *Dates and time zones*."
     },
     "POST /business/parcels/timeline/": {
       "summary": "Parcels Timeline",

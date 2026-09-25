@@ -59,10 +59,8 @@ Le contrat type la plupart des champs en chaînes. Ce qu'elles contiennent :
 - Les **montants** sont en **XOF** (sans unité mineure). Certains sont formatés pour
   l'affichage (`"7,400.00"`, solde), d'autres sont des entiers nus (`"250"`, écritures).
   Analysez-les avec prudence.
-- Les **dates** sont servies au format `M/d/yyyy h:mm:ss AM/PM`, **sans fuseau** ; le serveur
-  est à **UTC+1** (Lagos). Un colis créé tard le soir à Abidjan peut être daté du lendemain.
-  Les **saisies** de date (ex. rapports de colis) sont en `MM/DD/YYYY` ; `YYYY-MM-DD` est
-  aussi accepté.
+- Les **dates** — formats, fuseau et companions ISO 8601 : voir *Dates et fuseaux horaires*
+  ci-dessous.
 - Les **booléens** sont les chaînes `"True"` / `"False"`.
 - Les **libellés** (tailles, types de demande) peuvent être en français ou en anglais ;
   préférez l'identifiant à côté du libellé (`sizeid`, `requesttypeid`, `courierid`,
@@ -72,6 +70,24 @@ Le contrat type la plupart des champs en chaînes. Ce qu'elles contiennent :
   **objet** (`/core/fees/compute/`), un **tableau** (`/core/fees/service/`,
   `/core/fees/selfstorage/`, `/core/fees/appless/`) ou une **chaîne** (`sizes[].fees`,
   `/pay/verify/`). Modélisez-les par point d'accès, pas par nom de champ.
+
+## Dates et fuseaux horaires
+
+- **Fuseau.** Toutes les dates sont à l'**heure locale du serveur**, sans décalage dans la valeur.
+  Sur l'hôte actuel : **Lagos (UTC+1)** ; le service est transféré en **Côte d'Ivoire (Abidjan,
+  UTC+0)**, après quoi les mêmes champs liront une heure plus tôt. Ne déduisez pas le fuseau de
+  la valeur : utilisez les champs ISO.
+- **Format humain.** `M/d/yyyy h:mm:ss AM/PM` (`8/27/2026 5:27:26 PM`), mois d'abord. Il est figé
+  (`en-US`) et ne changera pas avec les paramètres régionaux de l'hôte.
+- **Companions ISO 8601.** Chaque champ de date possède aussi une valeur ISO 8601 portant le
+  décalage : `datecreatediso`, `dropdateiso`, `collectdateiso`, `datelastpingiso`,
+  `imagedatetimeiso` (ex. `2026-08-27T17:27:26+01:00`, puis `+00:00` après le transfert).
+  Préférez-les pour l'analyse et les calculs.
+- **`paidat`** est en ISO 8601 **UTC** (`2026-09-17T18:30:03Z`), tel que renvoyé par Paystack ;
+  `paidatiso` est identique.
+- **Saisies de dates** (fenêtres de rapport) : `YYYY-MM-DD`, l'ancien `MM/DD/YYYY` (mois d'abord :
+  `01/08/2026` = 8 janvier, pas le 1er août) et les horodatages ISO 8601. `DD/MM/YYYY` n'est
+  **pas** accepté ; l'erreur indique les formats valides. Préférez `YYYY-MM-DD`.
 
 ## Conventions
 
