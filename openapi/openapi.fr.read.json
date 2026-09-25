@@ -3046,29 +3046,57 @@
     "/parcel/snapshot/image/": {
       "get": {
         "operationId": "get_parcel_snapshot_image",
-        "summary": "Image d'instantané de colis",
+        "summary": "Récupérer une image d'instantané (lien signé)",
+        "description": "Renvoie l'image de preuve de livraison (`image/jpeg`) pour un **lien signé et expirant** : `?snapshotid=…&expires=…&sig=…`, où `sig` est un HMAC-SHA256 sur `snapshotid|expires` (émis par `/parcel/snapshots/` ou `/business/parcels/snapshots/`, expiration 30 jours). Il n'y a **pas de récupération par `apikey`** — une clé d'application ne peut pas énumérer les preuves par identifiant. Les erreurs sont l'enveloppe JSON : `04` paramètre manquant, `07` introuvable, `98` lien invalide ou expiré, `429` limité.",
         "tags": [
           "parcel"
         ],
-        "description": "Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`).",
-        "x-auth": "app_key",
         "x-readonly": true,
+        "x-auth": "none",
+        "parameters": [
+          {
+            "name": "snapshotid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expires",
+            "in": "query",
+            "required": true,
+            "description": "Unix timestamp of expiry, issued by the server",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sig",
+            "in": "query",
+            "required": true,
+            "description": "HMAC-SHA256 over `snapshotid|expires`",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "description": "The image bytes (`image/jpeg`) on success; otherwise the JSON envelope.",
             "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SnapshotUploadResponse"
                 }
               }
             }
-          },
-          "404": {
-            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
-          },
-          "500": {
-            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -3080,7 +3108,7 @@
         "tags": [
           "parcel"
         ],
-        "description": "Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601.",
+        "description": "Liste les instantanés de preuve de livraison d'un colis (clé d'application). Chaque élément porte une `snapshoturl` **signée et expirante** pour `/parcel/snapshot/image/`.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -4005,20 +4033,6 @@
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
-      },
-      "SnapshotFetch": {
-        "type": "object",
-        "properties": {
-          "apikey": {
-            "type": "string"
-          },
-          "snapshotid": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "apikey"
-        ]
       },
       "BoxesSetupResponse": {
         "type": "object",

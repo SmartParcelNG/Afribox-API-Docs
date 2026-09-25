@@ -1,11 +1,11 @@
 ---
 id: get-parcel-snapshot-image
-title: "Snapshot Image"
-description: "Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`)."
-sidebar_label: "Snapshot Image"
+title: "Fetch a snapshot image (signed link)"
+description: "Returns the proof-of-delivery image (`image/jpeg`) for a **signed, expiring** link: `?snapshotid=…&expires=…&sig=…`, where `sig` is HMAC-SHA256 over `snapshotid|expires` (issued by `/parcel/snapshots/` or `/business/parcels/snapshots/`, 30-day expiry). There is **no `apikey` fetch** — an application key cannot enumerate proofs by id. Errors are the JSON envelope: `04` missing parameter, `07` not found, `98` invalid or expired link, `429` rate-limited."
+sidebar_label: "Fetch a snapshot image (signed link)"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "get api-method"
 info_path: docs/api/read/afribox-api
 custom_edit_url: null
@@ -23,7 +23,7 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Snapshot Image"}
+  children={"Fetch a snapshot image (signed link)"}
 >
 </Heading>
 
@@ -37,9 +37,19 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`).
+Returns the proof-of-delivery image (`image/jpeg`) for a **signed, expiring** link: `?snapshotid=…&expires=…&sig=…`, where `sig` is HMAC-SHA256 over `snapshotid|expires` (issued by `/parcel/snapshots/` or `/business/parcels/snapshots/`, 30-day expiry). There is **no `apikey` fetch** — an application key cannot enumerate proofs by id. Errors are the JSON envelope: `04` missing parameter, `07` not found, `98` invalid or expired link, `429` rate-limited.
 
-<ParamsDetails>
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"snapshotid","in":"query","required":true,"schema":{"type":"string"}},{"name":"expires","in":"query","required":true,"description":"Unix timestamp of expiry, issued by the server","schema":{"type":"string"}},{"name":"sig","in":"query","required":true,"description":"HMAC-SHA256 over `snapshotid|expires`","schema":{"type":"string"}}]}
+>
   
 </ParamsDetails>
 
@@ -50,7 +60,7 @@ Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a 
 </RequestSchema>
 
 <StatusCodes
-  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"},"errorcode":{"type":"string","description":"Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."},"errorfield":{"type":"string","description":"Request field implicated in the error, when applicable (empty otherwise)."},"retryable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."}},"title":"SnapshotUploadResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+  responses={{"200":{"description":"The image bytes (`image/jpeg`) on success; otherwise the JSON envelope.","content":{"image/jpeg":{"schema":{"type":"string","format":"binary"}},"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","98","99"],"description":"Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."},"statusmessage":{"type":"string"},"snapshotid":{"type":"string"},"snapshoturl":{"type":"string"},"errorcode":{"type":"string","description":"Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY)."},"errorfield":{"type":"string","description":"Request field implicated in the error, when applicable (empty otherwise)."},"retryable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."}},"title":"SnapshotUploadResponse"}}}}}}
 >
   
 </StatusCodes>

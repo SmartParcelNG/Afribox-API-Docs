@@ -18,7 +18,7 @@ détermine lequel est attendu.
 
 | Clé | Utilisée pour | Identifie |
 | --- | --- | --- |
-| **Clé d'application** | `core`, `customer`, `kiosk`, `dispatch`, `pay` (B2C) | L'application/le canal ; définit `NetworkID` |
+| **Clé d'application** | `core`, `customer`, `kiosk`, `parcel`, `dispatch`, `pay` (B2C) | L'application/le canal ; définit `NetworkID` |
 | **Clé publique d'entreprise** | la plupart des points `business` (**lecture** ; codes d'ouverture masqués) | L'entreprise |
 | **Clé secrète d'entreprise** | `business/parcels/create`, `business/parcels/cancel`, `business/parcels/retrieve`, `business/wallettransaction/new`, `pay` (B2B) | L'entreprise |
 | **Clé d'administration** | `admin/*` | Le réseau (ou tous les réseaux) |
@@ -50,6 +50,17 @@ plus du profil. **Les points de lecture `customer` exigent `sessiontoken`** — 
 seul ne prouve pas l'identité et n'est plus accepté ; un jeton absent, invalide ou expiré
 renvoie `98 Authentication Failed`. La session fixe à la fois l'identité et le client, sans
 transporter l'identifiant client (non secret).
+
+## Liens d'instantanés
+
+Les images de preuve de livraison ne se récupèrent **pas** avec une clé. `/parcel/snapshots/`
+(clé d'application) renvoie, par instantané, une **`snapshoturl` signée HMAC-SHA256 et
+expirante** (`/parcel/snapshot/image/?snapshotid=…&expires=…&sig=…`). Le `sig` porte sur
+`snapshotid|expires`, avec un secret serveur, et le lien expire après **30 jours**. Le point
+d'image n'accepte **que** ce lien signé — il n'y a pas de récupération par `apikey`, donc une
+clé d'application ne peut pas énumérer les preuves par identifiant. Une entreprise peut lister
+les instantanés de **ses propres** colis avec sa **clé publique** sur
+`/business/parcels/snapshots/` (contrôle de propriété), qui renvoie les mêmes liens signés.
 
 ## Idempotence
 

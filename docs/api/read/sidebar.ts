@@ -495,7 +495,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/read/get-parcel-snapshot-image",
-          label: "Snapshot Image",
+          label: "Fetch a snapshot image (signed link)",
           className: "api-method get",
         },
         {

@@ -347,11 +347,12 @@
       "summary": "Configuration du casier"
     },
     "get_parcel_snapshot_image": {
-      "summary": "Image d'instantané de colis"
+      "summary": "Récupérer une image d'instantané (lien signé)",
+      "description": "Renvoie l'image de preuve de livraison (`image/jpeg`) pour un **lien signé et expirant** : `?snapshotid=…&expires=…&sig=…`, où `sig` est un HMAC-SHA256 sur `snapshotid|expires` (émis par `/parcel/snapshots/` ou `/business/parcels/snapshots/`, expiration 30 jours). Il n'y a **pas de récupération par `apikey`** — une clé d'application ne peut pas énumérer les preuves par identifiant. Les erreurs sont l'enveloppe JSON : `04` paramètre manquant, `07` introuvable, `98` lien invalide ou expiré, `429` limité."
     },
     "post_parcel_snapshots": {
       "summary": "Lister les instantanés d'un colis",
-      "description": "Renvoie les instantanés de preuve de livraison pour un `parceldetailid`, chacun avec une `snapshoturl`. `snapshotevent` est `dropoff` ou `pickup` ; `snapshotsequence` est `1` (à l'ouverture) ou `2` (après fermeture de la porte). Trié par `DateCreated` puis `SnapshotSequence` (du plus ancien au plus récent, 1 avant 2 au sein d'un événement). `imagedatetime`/`datecreated` ont des companions ISO 8601."
+      "description": "Liste les instantanés de preuve de livraison d'un colis (clé d'application). Chaque élément porte une `snapshoturl` **signée et expirante** pour `/parcel/snapshot/image/`."
     },
     "get_pay_return": {
       "summary": "Page de retour de paiement",
@@ -405,6 +406,10 @@
     "post_business_users_list": {
       "summary": "Lister les utilisateurs du personnel de l'entreprise",
       "description": "Les utilisateurs actifs (`SYS_Users`) de l'entreprise — `userid`, `fullname`, `email`. Utilisez un `userid` comme `createdby` sur les écritures de portefeuille. Requiert la **clé publique** de l'entreprise."
+    },
+    "post_business_parcels_snapshots": {
+      "summary": "Lister les instantanés d'un colis de l'entreprise",
+      "description": "Les instantanés de preuve de livraison d'un des **colis de l'entreprise**. `{apikey}` est la **clé publique** de l'entreprise ; `parceldetailid` sélectionne le colis. **Contrôle de propriété** — un colis d'une autre entreprise renvoie `07`. Chaque élément porte une `snapshoturl` signée et expirante."
     }
   },
   "schemas": {

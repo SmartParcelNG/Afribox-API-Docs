@@ -1,14 +1,15 @@
 ---
-id: post-parcel-snapshots
-title: "Lister les instantanés d'un colis"
-description: "Liste les instantanés de preuve de livraison d'un colis (clé d'application). Chaque élément porte une `snapshoturl` **signée et expirante** pour `/parcel/snapshot/image/`."
-sidebar_label: "Lister les instantanés d'un colis"
+id: post-business-parcels-snapshots
+title: "Lister les instantanés d'un colis de l'entreprise"
+description: "Les instantanés de preuve de livraison d'un des **colis de l'entreprise**. `{apikey}` est la **clé publique** de l'entreprise ; `parceldetailid` sélectionne le colis. **Contrôle de propriété** — un colis d'une autre entreprise renvoie `07`. Chaque élément porte une `snapshoturl` signée et expirante."
+sidebar_label: "Lister les instantanés d'un colis de l'entreprise"
 hide_title: true
 hide_table_of_contents: true
-api: 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
+api: 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
 sidebar_class_name: "post api-method"
-info_path: docs/current/api/read/afribox-api
+info_path: docs/current/api/write/afribox-api
 custom_edit_url: null
+hide_send_button: true
 ---
 
 import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
@@ -23,13 +24,13 @@ import Translate from "@docusaurus/Translate";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Lister les instantanés d'un colis"}
+  children={"Lister les instantanés d'un colis de l'entreprise"}
 >
 </Heading>
 
 <MethodEndpoint
   method={"post"}
-  path={"/parcel/snapshots/"}
+  path={"/business/parcels/snapshots/"}
   context={"endpoint"}
 >
   
@@ -37,7 +38,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Liste les instantanés de preuve de livraison d'un colis (clé d'application). Chaque élément porte une `snapshoturl` **signée et expirante** pour `/parcel/snapshot/image/`.
+Les instantanés de preuve de livraison d'un des **colis de l'entreprise**. `{apikey}` est la **clé publique** de l'entreprise ; `parceldetailid` sélectionne le colis. **Contrôle de propriété** — un colis d'une autre entreprise renvoie `07`. Chaque élément porte une `snapshoturl` signée et expirante.
 
 <Heading
   id={"request"}

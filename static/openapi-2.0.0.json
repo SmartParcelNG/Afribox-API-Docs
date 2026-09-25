@@ -1028,6 +1028,46 @@
         }
       }
     },
+    "/business/parcels/snapshots/": {
+      "post": {
+        "operationId": "post_business_parcels_snapshots",
+        "summary": "List a business parcel's snapshots",
+        "tags": [
+          "business"
+        ],
+        "description": "The proof-of-delivery snapshots for one of the **business's own** parcels. `{apikey}` is the **business public key**; `parceldetailid` selects the parcel. **Ownership-checked** — a parcel of another business returns `07`. Each item carries a signed, expiring `snapshoturl`.",
+        "x-auth": "business_public",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParcelSnapshots"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParcelSnapshotsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
     "/business/parcels/timeline/": {
       "post": {
         "operationId": "post_business_parcels_timeline",
@@ -4245,29 +4285,57 @@
     "/parcel/snapshot/image/": {
       "get": {
         "operationId": "get_parcel_snapshot_image",
-        "summary": "Snapshot Image",
+        "summary": "Fetch a snapshot image (signed link)",
+        "description": "Returns the proof-of-delivery image (`image/jpeg`) for a **signed, expiring** link: `?snapshotid=…&expires=…&sig=…`, where `sig` is HMAC-SHA256 over `snapshotid|expires` (issued by `/parcel/snapshots/` or `/business/parcels/snapshots/`, 30-day expiry). There is **no `apikey` fetch** — an application key cannot enumerate proofs by id. Errors are the JSON envelope: `04` missing parameter, `07` not found, `98` invalid or expired link, `429` rate-limited.",
         "tags": [
           "parcel"
         ],
-        "description": "Fetch a snapshot image: a signed link (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated request (`?apikey=..&snapshotid=..`).",
-        "x-auth": "app_key",
         "x-readonly": true,
+        "x-auth": "none",
+        "parameters": [
+          {
+            "name": "snapshotid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expires",
+            "in": "query",
+            "required": true,
+            "description": "Unix timestamp of expiry, issued by the server",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sig",
+            "in": "query",
+            "required": true,
+            "description": "HMAC-SHA256 over `snapshotid|expires`",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.",
+            "description": "The image bytes (`image/jpeg`) on success; otherwise the JSON envelope.",
             "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SnapshotUploadResponse"
                 }
               }
             }
-          },
-          "404": {
-            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
-          },
-          "500": {
-            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
           }
         }
       }
@@ -4279,7 +4347,7 @@
         "tags": [
           "parcel"
         ],
-        "description": "Returns the proof-of-delivery snapshots for a `parceldetailid`, each with a `snapshoturl`. `snapshotevent` is `dropoff` or `pickup`; `snapshotsequence` is `1` (at unlock) or `2` (after the door closed). Ordered by `DateCreated` then `SnapshotSequence` (oldest first, 1 before 2 within an event). `imagedatetime`/`datecreated` carry ISO 8601 companions.",
+        "description": "List a parcel's proof-of-delivery snapshots (application key). Each item carries a **signed, expiring** `snapshoturl` for `/parcel/snapshot/image/`.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -5439,20 +5507,6 @@
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
-      },
-      "SnapshotFetch": {
-        "type": "object",
-        "properties": {
-          "apikey": {
-            "type": "string"
-          },
-          "snapshotid": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "apikey"
-        ]
       },
       "BoxesSetupResponse": {
         "type": "object",

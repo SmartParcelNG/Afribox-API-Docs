@@ -36,6 +36,16 @@ sidebar_position: 4
 
 ### 2026-09-29
 
+- **Les images d'instantanés se servent uniquement via un lien signé.**
+  `/parcel/snapshot/image/` n'accepte plus que le lien signé HMAC et expirant
+  (`?snapshotid=…&expires=…&sig=…`, expiration réduite à **30 jours**) ; la récupération par
+  `apikey`/POST a été retirée, donc une clé d'application ne peut plus énumérer les preuves par
+  identifiant, et le schéma `SnapshotFetch` devenu inutile a été supprimé. Les erreurs sont
+  renvoyées en `application/json`.
+- **Ajout de `/business/parcels/snapshots/`** — une entreprise liste les instantanés de **ses
+  propres** colis avec sa **clé publique** (contrôle de propriété), avec les mêmes
+  `snapshoturl` signées.
+- Le secret de signature des instantanés a été **renouvelé**.
 - **Durcissement de la clé publique d'entreprise :** les codes d'ouverture de casier
   (`dropcode`/`collectcode`) sont désormais masqués en `"****"` aussi sur
   `/business/parcels/info/` et `/business/parcels/info/all/` (ils l'étaient déjà sur les cinq

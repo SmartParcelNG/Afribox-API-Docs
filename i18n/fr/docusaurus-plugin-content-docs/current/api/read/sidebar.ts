@@ -495,7 +495,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/get-parcel-snapshot-image",
-          label: "Image d'instantané de colis",
+          label: "Récupérer une image d'instantané (lien signé)",
           className: "api-method get",
         },
         {

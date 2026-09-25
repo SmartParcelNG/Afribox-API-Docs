@@ -35,6 +35,13 @@ sidebar_position: 4
 
 ### 2026-09-29
 
+- **Snapshot images are signed-link only.** `/parcel/snapshot/image/` now accepts only the
+  HMAC-signed, expiring link (`?snapshotid=…&expires=…&sig=…`, TTL reduced to **30 days**); the
+  `apikey`/POST fetch was removed so an application key cannot enumerate proofs by id, and the
+  now-unused `SnapshotFetch` schema was dropped. Errors are returned as `application/json`.
+- **Added `/business/parcels/snapshots/`** — a business lists its **own** parcels' snapshots
+  with its **public key** (ownership-checked), receiving the same signed `snapshoturl`s.
+- The snapshot signature secret was **rotated**.
 - **Business public key hardening:** the locker opening codes (`dropcode`/`collectcode`) are
   now masked as `"****"` on `/business/parcels/info/` and `/business/parcels/info/all/` too
   (they were already masked on the five list endpoints). Real codes are returned only under

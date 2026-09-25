@@ -198,6 +198,46 @@
         }
       }
     },
+    "/business/parcels/snapshots/": {
+      "post": {
+        "operationId": "post_business_parcels_snapshots",
+        "summary": "Lister les instantanés d'un colis de l'entreprise",
+        "tags": [
+          "business"
+        ],
+        "description": "Les instantanés de preuve de livraison d'un des **colis de l'entreprise**. `{apikey}` est la **clé publique** de l'entreprise ; `parceldetailid` sélectionne le colis. **Contrôle de propriété** — un colis d'une autre entreprise renvoie `07`. Chaque élément porte une `snapshoturl` signée et expirante.",
+        "x-auth": "business_public",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParcelSnapshots"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParcelSnapshotsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
     "/business/wallettransaction/new/": {
       "post": {
         "operationId": "post_business_wallettransaction_new",
@@ -2280,20 +2320,6 @@
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
-      },
-      "SnapshotFetch": {
-        "type": "object",
-        "properties": {
-          "apikey": {
-            "type": "string"
-          },
-          "snapshotid": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "apikey"
-        ]
       },
       "BoxesSetupResponse": {
         "type": "object",
