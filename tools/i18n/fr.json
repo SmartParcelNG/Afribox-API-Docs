@@ -338,7 +338,8 @@
       "summary": "Dépôt de colis"
     },
     "post_kiosk_parcel_snapshot": {
-      "summary": "Téléverser un instantané de colis"
+      "summary": "Instantané de colis",
+      "description": "Téléverse un instantané de preuve de livraison (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2). `parceldetailid` est **l'identifiant autoritaire** : le serveur résout le colis et vérifie que les autres identifiants concordent (discordance → `09 PARCEL_IDENTIFIERS_MISMATCH`, colis inconnu → `07`). Rejouer le même `(parceldetailid, snapshotevent, snapshotsequence)` est **idempotent** — renvoie l'instantané existant au lieu d'un doublon ou d'une nouvelle notification."
     },
     "post_kiosk_ping": {
       "summary": "Ping du casier"

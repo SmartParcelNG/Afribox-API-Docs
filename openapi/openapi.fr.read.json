@@ -4285,19 +4285,24 @@
             "type": "string"
           },
           "boxid": {
-            "type": "string"
+            "type": "string",
+            "description": "Must match the box of the parcel identified by `parceldetailid`."
           },
           "parcelid": {
-            "type": "string"
+            "type": "string",
+            "description": "Must match the parcel identified by `parceldetailid`."
           },
           "parceldetailid": {
-            "type": "string"
+            "type": "string",
+            "description": "**Authoritative.** The server resolves the parcel from this id and verifies `parcelid`, `parcelreferencenumber`, `boxid` (and `boxlockernumber` when supplied) agree with it. Not found → `07`; a mismatch → `09 PARCEL_IDENTIFIERS_MISMATCH`."
           },
           "parcelreferencenumber": {
-            "type": "string"
+            "type": "string",
+            "description": "Must match the parcel identified by `parceldetailid`."
           },
           "boxlockernumber": {
-            "type": "string"
+            "type": "string",
+            "description": "Optional. When supplied it must match the parcel’s current locker."
           },
           "snapshotevent": {
             "type": "string",

@@ -203,7 +203,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-kiosk-parcel-snapshot",
-          label: "Téléverser un instantané de colis",
+          label: "Instantané de colis",
           className: "api-method post",
         },
         {

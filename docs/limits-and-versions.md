@@ -35,6 +35,12 @@ sidebar_position: 4
 
 ### 2026-09-29
 
+- **Kiosk snapshot identity:** on `/kiosk/parcel/snapshot/`, `parceldetailid` is
+  **authoritative** — the server now verifies `parcelid`, `parcelreferencenumber`, `boxid` and
+  `boxlockernumber` agree with it (`09 PARCEL_IDENTIFIERS_MISMATCH` on conflict, `07` if the
+  parcel is unknown), and a retry of the same `(parceldetailid, snapshotevent,
+  snapshotsequence)` is **idempotent** (a unique key prevents duplicate rows).
+
 - **Snapshot images are signed-link only.** `/parcel/snapshot/image/` now accepts only the
   HMAC-signed, expiring link (`?snapshotid=…&expires=…&sig=…`, TTL reduced to **30 days**); the
   `apikey`/POST fetch was removed so an application key cannot enumerate proofs by id, and the

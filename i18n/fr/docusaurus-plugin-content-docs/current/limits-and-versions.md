@@ -36,6 +36,12 @@ sidebar_position: 4
 
 ### 2026-09-29
 
+- **Identité des instantanés au casier :** sur `/kiosk/parcel/snapshot/`, `parceldetailid` est
+  **autoritaire** — le serveur vérifie désormais que `parcelid`, `parcelreferencenumber`,
+  `boxid` et `boxlockernumber` concordent (`09 PARCEL_IDENTIFIERS_MISMATCH` en cas de
+  discordance, `07` si le colis est inconnu), et rejouer le même `(parceldetailid,
+  snapshotevent, snapshotsequence)` est **idempotent** (une clé unique empêche les doublons).
+
 - **Les images d'instantanés se servent uniquement via un lien signé.**
   `/parcel/snapshot/image/` n'accepte plus que le lien signé HMAC et expirant
   (`?snapshotid=…&expires=…&sig=…`, expiration réduite à **30 jours**) ; la récupération par

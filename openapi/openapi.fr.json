@@ -4165,11 +4165,11 @@
     "/kiosk/parcel/snapshot/": {
       "post": {
         "operationId": "post_kiosk_parcel_snapshot",
-        "summary": "Téléverser un instantané de colis",
+        "summary": "Instantané de colis",
         "tags": [
           "kiosk"
         ],
-        "description": "Upload a proof-of-delivery snapshot (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2).",
+        "description": "Téléverse un instantané de preuve de livraison (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2). `parceldetailid` est **l'identifiant autoritaire** : le serveur résout le colis et vérifie que les autres identifiants concordent (discordance → `09 PARCEL_IDENTIFIERS_MISMATCH`, colis inconnu → `07`). Rejouer le même `(parceldetailid, snapshotevent, snapshotsequence)` est **idempotent** — renvoie l'instantané existant au lieu d'un doublon ou d'une nouvelle notification.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -5719,19 +5719,24 @@
             "type": "string"
           },
           "boxid": {
-            "type": "string"
+            "type": "string",
+            "description": "Must match the box of the parcel identified by `parceldetailid`."
           },
           "parcelid": {
-            "type": "string"
+            "type": "string",
+            "description": "Must match the parcel identified by `parceldetailid`."
           },
           "parceldetailid": {
-            "type": "string"
+            "type": "string",
+            "description": "**Authoritative.** The server resolves the parcel from this id and verifies `parcelid`, `parcelreferencenumber`, `boxid` (and `boxlockernumber` when supplied) agree with it. Not found → `07`; a mismatch → `09 PARCEL_IDENTIFIERS_MISMATCH`."
           },
           "parcelreferencenumber": {
-            "type": "string"
+            "type": "string",
+            "description": "Must match the parcel identified by `parceldetailid`."
           },
           "boxlockernumber": {
-            "type": "string"
+            "type": "string",
+            "description": "Optional. When supplied it must match the parcel’s current locker."
           },
           "snapshotevent": {
             "type": "string",
