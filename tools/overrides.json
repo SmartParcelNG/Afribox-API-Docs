@@ -22,7 +22,7 @@
     "POST /pay/initialize/": {
       "readonly": false,
       "summary": "Initialize a Paystack payment",
-      "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units (XOF). Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup).",
+      "description": "Creates a Paystack transaction. Authentication accepts **either** a Business secret key (B2B) **or** an Application API key plus an optional `customerid` (B2C). `amount` is in major units — XOF francs; the gateway's `×100` is applied internally. Use `metadata.parcelreference` to mark a parcel paid, or `metadata.fulfil=\"wallet\"` to credit a business wallet. The response includes `authorizationurl` (hosted checkout) and `accesscode` (for the Paystack popup).",
       "responseExample": {
         "statuscode": "00",
         "statusmessage": "Successful",
@@ -34,7 +34,7 @@
     "POST /pay/verify/": {
       "readonly": false,
       "summary": "Verify a Paystack payment",
-      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments. `paidat` is ISO 8601 UTC."
+      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded. Returns the parcel `collectcode` for parcel payments. `amount`/`fees` are in XOF francs (major unit); `paidat` is ISO 8601 UTC."
     },
     "POST /pay/status/": {
       "readonly": true,

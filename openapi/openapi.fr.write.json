@@ -1292,7 +1292,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure (XOF). Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil=\"wallet\"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack).",
+        "description": "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure — francs XOF ; le `×100` de la passerelle est appliqué en interne. Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil=\"wallet\"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack).",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
@@ -1379,7 +1379,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis. `paidat` est en ISO 8601 UTC.",
+        "description": "Vérifie un paiement par `reference`, l'enregistre et exécute le traitement (colis payé / crédit portefeuille) de façon idempotente. Un succès déjà enregistré n'est jamais rétrogradé. Renvoie le `collectcode` du colis pour les paiements de colis. `amount`/`fees` sont en francs XOF (unité majeure) ; `paidat` est en ISO 8601 UTC.",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
@@ -7551,6 +7551,9 @@
             "type": "string"
           },
           "balance": {
+            "type": "string"
+          },
+          "balanceformatted": {
             "type": "string"
           }
         }

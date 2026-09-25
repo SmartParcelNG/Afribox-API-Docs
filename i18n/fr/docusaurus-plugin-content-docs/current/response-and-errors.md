@@ -56,9 +56,13 @@ réservé à un échec réel.
 
 Le contrat type la plupart des champs en chaînes. Ce qu'elles contiennent :
 
-- Les **montants** sont en **XOF** (sans unité mineure). Certains sont formatés pour
-  l'affichage (`"7,400.00"`, solde), d'autres sont des entiers nus (`"250"`, écritures).
-  Analysez-les avec prudence.
+- Les **montants** sont en **unité majeure — francs XOF** (sans unité mineure), en entrée comme
+  en sortie, y compris `/pay/initialize/` et `/pay/verify/` (`amount`/`fees`). Le `×100` évoqué
+  dans ce guide est la convention de la passerelle Paystack (elle s'applique aussi à XOF — docs :
+  « developers must multiply the amount by 100 regardless ») et l'API l'applique en interne ;
+  vous ne multipliez jamais. Les champs de montant machine sont des **chaînes entières non
+  formatées** (`"250"`, `"7400"`) ; seuls les champs d'affichage sont formatés
+  (`balanceformatted` = `"7,400.00"`, `sizedescription`).
 - Les **dates** — formats, fuseau et companions ISO 8601 : voir *Dates et fuseaux horaires*
   ci-dessous.
 - Les **booléens** sont les chaînes `"True"` / `"False"`.

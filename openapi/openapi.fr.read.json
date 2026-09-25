@@ -9085,6 +9085,9 @@
           },
           "balance": {
             "type": "string"
+          },
+          "balanceformatted": {
+            "type": "string"
           }
         }
       },

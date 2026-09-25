@@ -56,8 +56,12 @@ actual failure.
 
 The contract types most fields as strings. What the strings contain:
 
-- **Amounts** are in **XOF** (no minor unit). Some are formatted for display (`"7,400.00"`,
-  balance) and others are bare integers (`"250"`, ledger amounts). Parse defensively.
+- **Amounts** are in the **major unit — XOF francs** (no minor unit), on input and output,
+  including `/pay/initialize/` and `/pay/verify/` (`amount`/`fees`). The `×100` mentioned in
+  this guide is Paystack's gateway convention (it applies to XOF too — their docs: "developers
+  must multiply the amount by 100 regardless") and the API applies it internally; you never
+  multiply. Machine amount fields are **unformatted integer strings** (`"250"`, `"7400"`);
+  display-only fields are formatted (`balanceformatted` = `"7,400.00"`, `sizedescription`).
 - **Dates** — formats, time zone and the ISO 8601 companions are in *Dates and time zones* below.
 - **Booleans** are the strings `"True"` / `"False"`.
 - **Labels** (sizes, request types) may be French or English; prefer the id next to the label
