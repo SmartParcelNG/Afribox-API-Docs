@@ -408,6 +408,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-snapshots",
+          label: "Lister les instantanés d'un colis de l'entreprise",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-business-parcels-timeline",
           label: "Entreprise: Chronologie d'un colis",
           className: "api-method post",

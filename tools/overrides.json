@@ -626,7 +626,8 @@
     },
     "POST /business/parcels/snapshots/": {
       "summary": "List a business parcel's snapshots",
-      "description": "The proof-of-delivery snapshots for one of the **business's own** parcels. `{apikey}` is the **business public key**; `parceldetailid` selects the parcel. **Ownership-checked** — a parcel of another business returns `07`. Each item carries a signed, expiring `snapshoturl`."
+      "description": "The proof-of-delivery snapshots for one of the **business's own** parcels. `{apikey}` is the **business public key**; `parceldetailid` selects the parcel. **Ownership-checked** — a parcel of another business returns `07`. Each item carries a signed, expiring `snapshoturl`.",
+      "readonly": true
     }
   },
   "propertyTypes": {

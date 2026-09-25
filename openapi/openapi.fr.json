@@ -1037,7 +1037,7 @@
         ],
         "description": "Les instantanés de preuve de livraison d'un des **colis de l'entreprise**. `{apikey}` est la **clé publique** de l'entreprise ; `parceldetailid` sélectionne le colis. **Contrôle de propriété** — un colis d'une autre entreprise renvoie `07`. Chaque élément porte une `snapshoturl` signée et expirante.",
         "x-auth": "business_public",
-        "x-readonly": false,
+        "x-readonly": true,
         "requestBody": {
           "required": true,
           "content": {

@@ -162,12 +162,6 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-parcels-snapshots",
-          label: "Lister les instantanés d'un colis de l'entreprise",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-business-wallettransaction-new",
           label: "Créer une écriture de portefeuille pour l'entreprise",
           className: "api-method post",

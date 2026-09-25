@@ -408,6 +408,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "api/read/post-business-parcels-snapshots",
+          label: "List a business parcel's snapshots",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "api/read/post-business-parcels-timeline",
           label: "Business: Parcels Timeline",
           className: "api-method post",
