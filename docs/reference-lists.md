@@ -64,6 +64,38 @@ discoverable via `/business/users/list/` (`userid`, `fullname`, `email`). It is 
 on the wallet write endpoints: when omitted, `/business/wallettransaction/new/` defaults to
 the business's primary user and the admin endpoint to `0`. If supplied it must be numeric.
 
+## Reservation (appless) fee schedule — effective 23 September 2026
+
+The business parcel reservation fee is charged from `FEE_ApplessFees` at
+`/business/parcels/create/` (request type 6). The same schedule is published by
+`/core/fees/appless/`, `/core/fees/compute/?requesttypeid=6` and
+`/core/sizes/fees/?requesttypeid=6` (request type **4** returns the same schedule).
+
+| size | fee (XOF) |
+|---|---|
+| Petit | 500 |
+| Moyen | 750 |
+| Grand | 1250 |
+| XGrand | 2000 |
+
+This schedule took effect on **23 September 2026** (proposed by the Afribox team) and
+**supersedes** the historical 250 / 600 / 1000 schedule that was labelled *"Parcel
+reservation fee"*. The current debit is labelled **`Parcel booking Ref: <reference>`** —
+that label wins; the old one is retired.
+
+## Insufficient balance — `/business/parcels/create/`
+
+For a **prepaid** business (`billingtypeid` 1) whose wallet balance is below the fee, the
+create call returns:
+
+```json
+{ "statuscode": "99", "errorcode": "INSUFFICIENT_BALANCE",
+  "statusmessage": "Insufficient balance. Required: 500, Available: 200" }
+```
+
+No parcel is created and nothing is debited. **Postpaid** businesses (`billingtypeid` 2)
+are not balance-checked at create.
+
 ## Snapshots — `snapshotevent` / `snapshotsequence`
 
 Upload (`/kiosk/parcel/snapshot/`) validates:

@@ -107,7 +107,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/read/post-core-fees-compute",
-          label: "Calculer les frais",
+          label: "Calcul des frais",
           className: "api-method post",
         },
         {

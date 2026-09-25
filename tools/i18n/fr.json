@@ -96,7 +96,8 @@
       "summary": "Annuler un colis"
     },
     "post_business_parcels_create": {
-      "summary": "Créer un colis"
+      "summary": "Créer un colis d'entreprise",
+      "description": "Crée un colis pour le compte de l'entreprise, réserve un casier et débite les frais de réservation du portefeuille (prépayé). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif : un rejeu identique renvoie la première réponse sans créer un second colis. Pour une entreprise prépayée avec un solde insuffisant, renvoie `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` et le message « Insufficient balance. Required: <frais>, Available: <solde> » — aucun colis n'est créé et rien n'est débité (les entreprises postpayées ne sont pas contrôlées)."
     },
     "post_business_parcels_info": {
       "summary": "Détails d'un colis"
@@ -181,10 +182,12 @@
       "summary": "Lister les zones de livraison"
     },
     "post_core_fees_appless": {
-      "summary": "Frais appless"
+      "summary": "Frais appless",
+      "description": "Frais de réservation appless par taille — le barème que `/business/parcels/create/` débite. Barème actuel (en vigueur le 23 septembre 2026) : Petit 500, Moyen 750, Grand 1250, XGrand 2000. Remplace l'ancien barème 250/600/1000 « Parcel reservation fee »."
     },
     "post_core_fees_compute": {
-      "summary": "Calculer les frais"
+      "summary": "Calcul des frais",
+      "description": "Calcule les frais pour un type de demande et une taille. Les **types de demande 4** (Application de casier) et **6** (Ramassage sur place) renvoient les frais de réservation appless que `/business/parcels/create/` débitera."
     },
     "post_core_fees_selfstorage": {
       "summary": "Frais de self-stockage"
@@ -199,7 +202,8 @@
       "summary": "Lister les types de demande"
     },
     "post_core_sizes_fees": {
-      "summary": "Frais par taille"
+      "summary": "Frais par taille",
+      "description": "Frais par taille pour une boîte et un type de demande (**les types 4 et 6** renvoient les frais de réservation appless)."
     },
     "post_core_sizes_info": {
       "summary": "Détails d'une taille"

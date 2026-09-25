@@ -44,6 +44,12 @@ sidebar_position: 4
 - `/parcel/snapshots/` est désormais trié par `DateCreated` puis `SnapshotSequence`
   (séquence 1 avant 2 au sein d'un événement) ; `snapshotevent`/`snapshotsequence` documentés
   sur la page des listes de référence.
+- Barème des frais de réservation (appless) publié par taille, en vigueur le **23 septembre
+  2026** : Petit 500, Moyen 750, Grand 1250, XGrand 2000 (remplace le barème 250/600/1000).
+  Les types de demande **4 et 6** le renvoient tous deux ; `/core/fees/compute/` et
+  `/core/sizes/fees/` ne renvoient plus d'erreur pour le type 4.
+- Le refus pour solde insuffisant de `/business/parcels/create/` porte désormais
+  `errorcode: "INSUFFICIENT_BALANCE"`.
 
 ### 2026-09-25
 

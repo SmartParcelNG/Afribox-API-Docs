@@ -125,11 +125,11 @@
     "/business/parcels/create/": {
       "post": {
         "operationId": "post_business_parcels_create",
-        "summary": "Entreprise: Créer un colis",
+        "summary": "Créer un colis d'entreprise",
         "tags": [
           "business"
         ],
-        "description": "Creates a parcel on behalf of the business, reserves a locker and debits the reservation fee from the wallet (prepaid). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel.",
+        "description": "Crée un colis pour le compte de l'entreprise, réserve un casier et débite les frais de réservation du portefeuille (prépayé). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif : un rejeu identique renvoie la première réponse sans créer un second colis. Pour une entreprise prépayée avec un solde insuffisant, renvoie `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` et le message « Insufficient balance. Required: <frais>, Available: <solde> » — aucun colis n'est créé et rien n'est débité (les entreprises postpayées ne sont pas contrôlées).",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -138,14 +138,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/LogisticsParcelNew"
-              },
-              "example": {
-                "apikey": "<business secret key>",
-                "boxid": "4",
-                "sizeid": "1",
-                "recipientname": "Ama",
-                "recipientphone": "0104554198",
-                "recipientemail": "ama@example.com"
               }
             }
           }
@@ -835,7 +827,7 @@
     "/customer/parcels/new/": {
       "post": {
         "operationId": "post_customer_parcels_new",
-        "summary": "Client: Créer un colis",
+        "summary": "Créer un colis",
         "tags": [
           "customer"
         ],
@@ -7501,6 +7493,14 @@
           },
           "parcel": {
             "$ref": "#/components/schemas/LogisticsParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (present on business-rule refusals, e.g. `INSUFFICIENT_BALANCE`). Prefer it over `statusmessage`."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
           }
         }
       },

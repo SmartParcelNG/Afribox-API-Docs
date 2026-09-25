@@ -1806,7 +1806,7 @@
         "tags": [
           "core"
         ],
-        "description": "Walk-in (appless) reservation fee per size.",
+        "description": "Walk-in (appless) reservation fee per size — the schedule `/business/parcels/create/` debits. Current schedule (effective 23 September 2026): Petit 500, Moyen 750, Grand 1250, XGrand 2000. Supersedes the historical 250/600/1000 \"Parcel reservation fee\" schedule.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -1846,7 +1846,7 @@
         "tags": [
           "core"
         ],
-        "description": "Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit.",
+        "description": "Compute the fee for a request type and size. **Request type 4** (Application de casier) and **6** (business 'Ramassage sur place') return the appless reservation fee that `/business/parcels/create/` will debit.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -2148,7 +2148,7 @@
         "tags": [
           "core"
         ],
-        "description": "Fees by size for a box and request type (**type 6** returns the appless fees).",
+        "description": "Fees by size for a box and request type (**types 4 and 6** return the appless reservation fees).",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -9136,6 +9136,14 @@
           },
           "parcel": {
             "$ref": "#/components/schemas/LogisticsParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (present on business-rule refusals, e.g. `INSUFFICIENT_BALANCE`). Prefer it over `statusmessage`."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
           }
         }
       },

@@ -793,7 +793,7 @@
         "tags": [
           "business"
         ],
-        "description": "Creates a parcel on behalf of the business, reserves a locker and debits the reservation fee from the wallet (prepaid). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel.",
+        "description": "Creates a parcel on behalf of the business, reserves a locker and debits the reservation fee from the wallet (prepaid). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel. For a prepaid business with insufficient balance it returns `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` and message `\"Insufficient balance. Required: <fee>, Available: <balance>\"` — no parcel is created and nothing is debited (postpaid businesses are not balance-checked).",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -802,14 +802,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/LogisticsParcelNew"
-              },
-              "example": {
-                "apikey": "<business secret key>",
-                "boxid": "4",
-                "sizeid": "1",
-                "recipientname": "Ama",
-                "recipientphone": "0104554198",
-                "recipientemail": "ama@example.com"
               }
             }
           }
@@ -2054,7 +2046,7 @@
         "tags": [
           "core"
         ],
-        "description": "Walk-in (appless) reservation fee per size.",
+        "description": "Walk-in (appless) reservation fee per size — the schedule `/business/parcels/create/` debits. Current schedule (effective 23 September 2026): Petit 500, Moyen 750, Grand 1250, XGrand 2000. Supersedes the historical 250/600/1000 \"Parcel reservation fee\" schedule.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -2094,7 +2086,7 @@
         "tags": [
           "core"
         ],
-        "description": "Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit.",
+        "description": "Compute the fee for a request type and size. **Request type 4** (Application de casier) and **6** (business 'Ramassage sur place') return the appless reservation fee that `/business/parcels/create/` will debit.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -2396,7 +2388,7 @@
         "tags": [
           "core"
         ],
-        "description": "Fees by size for a box and request type (**type 6** returns the appless fees).",
+        "description": "Fees by size for a box and request type (**types 4 and 6** return the appless reservation fees).",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -10614,6 +10606,14 @@
           },
           "parcel": {
             "$ref": "#/components/schemas/LogisticsParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (present on business-rule refusals, e.g. `INSUFFICIENT_BALANCE`). Prefer it over `statusmessage`."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
           }
         }
       },

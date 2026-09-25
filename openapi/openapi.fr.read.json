@@ -1806,7 +1806,7 @@
         "tags": [
           "core"
         ],
-        "description": "Walk-in (appless) reservation fee per size.",
+        "description": "Frais de réservation appless par taille — le barème que `/business/parcels/create/` débite. Barème actuel (en vigueur le 23 septembre 2026) : Petit 500, Moyen 750, Grand 1250, XGrand 2000. Remplace l'ancien barème 250/600/1000 « Parcel reservation fee ».",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -1842,11 +1842,11 @@
     "/core/fees/compute/": {
       "post": {
         "operationId": "post_core_fees_compute",
-        "summary": "Calculer les frais",
+        "summary": "Calcul des frais",
         "tags": [
           "core"
         ],
-        "description": "Compute the fee for a request type and size. **Request type 6** (business 'Ramassage sur place') returns the appless reservation fee that `/business/parcels/create/` will debit.",
+        "description": "Calcule les frais pour un type de demande et une taille. Les **types de demande 4** (Application de casier) et **6** (Ramassage sur place) renvoient les frais de réservation appless que `/business/parcels/create/` débitera.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -2148,7 +2148,7 @@
         "tags": [
           "core"
         ],
-        "description": "Fees by size for a box and request type (**type 6** returns the appless fees).",
+        "description": "Frais par taille pour une boîte et un type de demande (**les types 4 et 6** renvoient les frais de réservation appless).",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -9136,6 +9136,14 @@
           },
           "parcel": {
             "$ref": "#/components/schemas/LogisticsParcelData"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (present on business-rule refusals, e.g. `INSUFFICIENT_BALANCE`). Prefer it over `statusmessage`."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Name of the request field implicated in the error, when applicable (empty otherwise)."
           }
         }
       },

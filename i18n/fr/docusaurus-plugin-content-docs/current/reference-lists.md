@@ -66,6 +66,38 @@ l'action), découvrable via `/business/users/list/` (`userid`, `fullname`, `emai
 prend l'utilisateur principal de l'entreprise et le point d'accès admin prend `0`. S'il est
 fourni, il doit être numérique.
 
+## Barème des frais de réservation (appless) — en vigueur le 23 septembre 2026
+
+Les frais de réservation d'un colis d'entreprise sont prélevés depuis `FEE_ApplessFees` à
+`/business/parcels/create/` (type de demande 6). Le même barème est publié par
+`/core/fees/appless/`, `/core/fees/compute/?requesttypeid=6` et
+`/core/sizes/fees/?requesttypeid=6` (le type de demande **4** renvoie le même barème).
+
+| taille | frais (XOF) |
+|---|---|
+| Petit | 500 |
+| Moyen | 750 |
+| Grand | 1250 |
+| XGrand | 2000 |
+
+Ce barème est en vigueur depuis le **23 septembre 2026** (proposé par l'équipe Afribox) et
+**remplace** l'ancien barème 250 / 600 / 1000 libellé *« Parcel reservation fee »*. Le débit
+actuel est libellé **`Parcel booking Ref: <reference>`** — c'est ce libellé qui l'emporte ;
+l'ancien est retiré.
+
+## Solde insuffisant — `/business/parcels/create/`
+
+Pour une entreprise **prépayée** (`billingtypeid` 1) dont le solde du portefeuille est
+inférieur aux frais, l'appel de création renvoie :
+
+```json
+{ "statuscode": "99", "errorcode": "INSUFFICIENT_BALANCE",
+  "statusmessage": "Insufficient balance. Required: 500, Available: 200" }
+```
+
+Aucun colis n'est créé et rien n'est débité. Les entreprises **postpayées** (`billingtypeid`
+2) ne sont pas contrôlées à la création.
+
 ## Instantanés — `snapshotevent` / `snapshotsequence`
 
 Le dépôt (`/kiosk/parcel/snapshot/`) valide :

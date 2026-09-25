@@ -42,6 +42,12 @@ sidebar_position: 4
 - `/parcel/snapshots/` is now ordered by `DateCreated` then `SnapshotSequence` (sequence 1
   before 2 within an event); `snapshotevent`/`snapshotsequence` documented on the reference
   lists page.
+- Reservation (appless) fee schedule published by size, effective **23 September 2026**:
+  Petit 500, Moyen 750, Grand 1250, XGrand 2000 (supersedes the 250/600/1000 schedule).
+  Request types **4 and 6** both return it; `/core/fees/compute/` and `/core/sizes/fees/`
+  no longer error on type 4.
+- `/business/parcels/create/` insufficient-balance refusal now carries
+  `errorcode: "INSUFFICIENT_BALANCE"`.
 
 ### 2026-09-25
 
