@@ -44,6 +44,16 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-05
+
+- **Les colis de type 6 n'ont plus qu'un seul débit, à l'avance.** Les frais de réservation
+  débités à `/business/parcels/create/` sont le **seul** débit ; les frais de durée facturés à
+  la collecte (`FEE_BusinessFees` libre/forfait/horaire, narration « Parcel … stayed in locker
+  for … ») ont été retirés de `/kiosk/parcel/collect/` (`SQL/AfriboxFixParcelCollectFee.sql`).
+  La collecte passe toujours le colis au statut 4 et libère le casier, mais ne débite plus le
+  portefeuille. Les types 2/3 (et les autres) sont inchangés — ils facturent au premier
+  paiement du client.
+
 ### 2026-10-04
 
 - **`/business/parcels/retrieve/` documenté et corrigé :** c'est une **demande de

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.3",
+    "version": "2.1.4",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "servers": [
@@ -125,7 +125,7 @@
         "tags": [
           "business"
         ],
-        "description": "Creates a parcel on behalf of the business and reserves a locker. The request type is always **6** (Ramassage sur place / appless reservation) — it is not a request field. Debits the reservation fee from the wallet (prepaid) and sets the drop-off deadline (`expiresat`, default 72 h). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel. For a prepaid business with insufficient balance it returns `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` and message `\"Insufficient balance. Required: <fee>, Available: <balance>\"`. If never dropped off, the reservation expires (status 8), the locker is released and the fee is forfeited (no refund).",
+        "description": "Creates a parcel on behalf of the business and reserves a locker. The request type is always **6** (Ramassage sur place / appless reservation) — it is not a request field. Debits the reservation fee from the wallet (prepaid) and sets the drop-off deadline (`expiresat`, default 72 h). Requires the **Business secret key**. Supports an optional `Idempotency-Key` header: an identical replay returns the first response and does not create a second parcel. For a prepaid business with insufficient balance it returns `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE` and message `\"Insufficient balance. Required: <fee>, Available: <balance>\"`. If never dropped off, the reservation expires (status 8), the locker is released and the fee is forfeited (no refund). The reservation fee debited here is the **single charge** for a type-6 parcel — collection does not charge again.",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -1040,7 +1040,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`.",
+        "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`. Collection sets the parcel to status 4 (or, for a requested retrieval, `RetrieveCompleted=1`) and frees the locker. It does **not** charge: a type-6 parcel's reservation fee was already debited at creation.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {

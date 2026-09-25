@@ -100,7 +100,7 @@
     },
     "post_business_parcels_create": {
       "summary": "Créer un colis d'entreprise",
-      "description": "Crée un colis pour le compte de l'entreprise et réserve un casier. Le type de demande est toujours **6** (Ramassage sur place / réservation appless) — ce n'est pas un champ de la requête. Débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif. Pour une entreprise prépayée avec un solde insuffisant : `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE`. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement)."
+      "description": "Crée un colis pour le compte de l'entreprise et réserve un casier. Le type de demande est toujours **6** (Ramassage sur place / réservation appless) — ce n'est pas un champ de la requête. Débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif. Pour une entreprise prépayée avec un solde insuffisant : `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE`. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement). Les frais de réservation débités ici sont le **seul débit** pour un colis de type 6 — la collecte ne facture pas de nouveau."
     },
     "post_business_parcels_info": {
       "summary": "Info colis",
@@ -336,7 +336,8 @@
       "summary": "Vérifier la disponibilité et le tarif (appless)"
     },
     "post_kiosk_parcel_collect": {
-      "summary": "Retrait de colis"
+      "summary": "Retrait de colis",
+      "description": "Ouvre un casier pour collecter un colis ; `unlockcode` est le `collectcode` du colis. La collecte passe le colis au statut 4 (ou, pour une récupération demandée, `RetrieveCompleted=1`) et libère le casier. Elle ne facture **pas** : les frais de réservation d'un colis de type 6 ont déjà été débités à la création."
     },
     "post_kiosk_parcel_drop": {
       "summary": "Dépôt de colis"

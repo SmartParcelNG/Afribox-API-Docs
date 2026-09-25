@@ -42,6 +42,15 @@ sidebar_position: 4
 
 ## Changelog
 
+### 2026-10-05
+
+- **Type-6 parcels now have a single upfront charge.** The reservation fee debited at
+  `/business/parcels/create/` is the **only** charge; the collect-time duration fee
+  (`FEE_BusinessFees` free/lump/hourly, narrated "Parcel … stayed in locker for …") has been
+  removed from `/kiosk/parcel/collect/` (`SQL/AfriboxFixParcelCollectFee.sql`). Collection still
+  sets the parcel to status 4 and frees the locker, but no longer debits the wallet. Types 2/3
+  (and the rest) are unchanged — they charge when the customer first pays.
+
 ### 2026-10-04
 
 - **`/business/parcels/retrieve/` documented and fixed:** it is a **retrieval request** (secret
