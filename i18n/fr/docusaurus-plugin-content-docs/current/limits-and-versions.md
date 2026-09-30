@@ -47,7 +47,10 @@ sidebar_position: 4
 
 ## Changelog
 
-### 2026-09-30
+Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-09-30 (2.1.8)
+
 
 - **Paiement client corrigé et réponse du hold complétée.** `/customer/parcels/hold/` ne
   compilait pas et renvoyait `99 "Request failed"` avant d'atteindre Paystack ; c'est corrigé et
@@ -57,7 +60,10 @@ sidebar_position: 4
   `ServiceFee` vaut `0`, le tarif standard par taille s'applique à `/customer/parcels/hold/`,
   `/customer/parcels/new/` et `/core/fees/compute/` — l'aperçu égale le débit.
 
-### 2026-10-08
+### 2026-09-25 (2.0.0 → 2.1.7)
+
+#### 2.1.7
+
 
 - **Cartes enregistrées documentées :** ajouter une carte (`/customer/cards/add/`) est une
   **vérification de carte de 1 XOF** qui la tokenise (`metadata.purpose="AddCard"`) — cela **ne
@@ -65,14 +71,16 @@ sidebar_position: 4
   renvoyé** (les réponses de cartes portent uniquement `first6digits`, `last4digits`, `type`,
   `expiry`, `isdefault`). Voir *Authentification* → **Cartes enregistrées**.
 
-### 2026-10-07
+#### 2.1.6
+
 
 - **`dispatch` clarifié :** il existe dans le backend mais **ne fait pas encore partie de ce
   contrat** — la livraison par dispatch sera intégrée plus tard par Afribox, et l'API commence
   par le **dépôt/retrait** pour limiter le périmètre au lancement. L'introduction ne le liste
   plus comme domaine et l'indique désormais explicitement.
 
-### 2026-10-06
+#### 2.1.5
+
 
 - **Métadonnées de paiement et `flowtype` documentés.** `flowtype` est un champ de **niveau
   supérieur** de `/pay/initialize/` (recopié dans `metadata.flow`) ; les clés de contexte du flux
@@ -81,7 +89,8 @@ sidebar_position: 4
   `metadata` traitée par le serveur (`parcelreference`, `fulfil`, `holdtoken`, `returnurl`,
   `narration`).
 
-### 2026-10-05
+#### 2.1.4
+
 
 - **Les colis de type 6 n'ont plus qu'un seul débit, à l'avance.** Les frais de réservation
   débités à `/business/parcels/create/` sont le **seul** débit ; les frais de durée facturés à
@@ -91,7 +100,8 @@ sidebar_position: 4
   portefeuille. Les types 2/3 (et les autres) sont inchangés — ils facturent au premier
   paiement du client.
 
-### 2026-10-04
+#### 2.1.3
+
 
 - **`/business/parcels/retrieve/` documenté et corrigé :** c'est une **demande de
   récupération** (clé secrète) — elle ne change pas le statut du colis, ne libère **pas** le
@@ -101,7 +111,8 @@ sidebar_position: 4
   récupération (statut 4, `RetrieveCompleted=1`, casier libéré) s'achève au casier avec le
   `collectcode` du colis.
 
-### 2026-10-03
+#### 2.1.2
+
 
 - **Documentation d'authentification clarifiée :** la page liste désormais **les quatre**
   points à double authentification (`/pay/initialize/`, `/pay/verify/`, `/pay/status/`,
@@ -110,7 +121,8 @@ sidebar_position: 4
   l'entreprise**, et consigne le contexte d'application codé en dur dans les procédures
   d'authentification d'entreprise comme reliquat connu.
 
-### 2026-10-02
+#### 2.1.1
+
 
 - **Cas limites du transport :** un chemin inconnu renvoie désormais l'enveloppe JSON avec
   **HTTP 404** au lieu d'une page HTML, et un `GET` sur un chemin inconnu est un `404` (seule
@@ -119,7 +131,8 @@ sidebar_position: 4
   CORS, **port 80 → 301 HTTPS**, aucun `User-Agent` de navigateur requis, et `X-RateLimit-*`
   sur chaque réponse.
 
-### 2026-10-01
+#### 2.1.0
+
 
 - **Quota par clé et en-têtes de limite.** Chaque clé d'API est limitée à **600 requêtes /
   minute** (clés d'application et de casier : **900**), sur des fenêtres fixes de 60 secondes ;
@@ -131,7 +144,10 @@ sidebar_position: 4
   préavis, les changements cassants portent un marqueur `deprecated` et une fenêtre de double
   service de **90 jours**. La spécification est générée uniquement au push.
 
-### 2026-09-30
+#### Avant SemVer (contrat 2.0.0)
+
+##### Réinitialisation du mot de passe client
+
 
 - **La réinitialisation du mot de passe client se fait désormais par un code à usage unique
   envoyé par e-mail.** `/customer/forgotpassword/` envoie un **code à 6 chiffres** (expiration
@@ -144,7 +160,8 @@ sidebar_position: 4
 - `/customer/otp/verify/` reste l'**activation d'inscription** (sans jeton) — connectez-vous via
   `/customer/login/` pour un `sessiontoken`. Le même flux s'applique aux points dispatch.
 
-### 2026-09-29
+##### Instantanés et durcissement de la clé publique
+
 
 - **Identité des instantanés au casier :** sur `/kiosk/parcel/snapshot/`, `parceldetailid` est
   **autoritaire** — le serveur vérifie désormais que `parcelid`, `parcelreferencenumber`,
@@ -182,7 +199,8 @@ sidebar_position: 4
   `fees` est un objet sur `/core/fees/compute/`, un tableau sur les autres points
   `/core/fees/*`, et une chaîne sur `/core/sizes/fees/` et `/pay/verify/`. Aucun renommage.
 
-### 2026-09-28
+##### Vide vs. erreur, et l'enveloppe
+
 
 - **Vide ou erreur :** chaque point d'accès de **liste** renvoie désormais `00` avec un tableau
   vide (`[]`) lorsque la requête est valide et le résultat vide ; les points de **détail**
@@ -199,7 +217,8 @@ sidebar_position: 4
   solde insuffisant → `10 INSUFFICIENT_BALANCE` ; crédit entreprise → `09 CREDIT_ADMIN_ONLY`.
 - Validation des écritures de portefeuille normalisée (`04` manquant, `05`/`06` invalide).
 
-### 2026-09-27
+##### NIPOST supprimé
+
 
 - **NIPOST supprimé** (type de demande 5 et ses procédures/tables/vues héritées) ; il n'opère
   pas en Côte d'Ivoire.
@@ -210,7 +229,8 @@ sidebar_position: 4
   utilisez `/core/requesttypes/list/` et `/core/deliveryareas/list/`.
 - Les libellés des types de demande sont servis sans espaces superflus (plus de CRLF).
 
-### 2026-09-26
+##### Écritures portefeuille, frais et expiration des réservations
+
 
 - Écritures de portefeuille : `createdby` est désormais **facultatif** (`SYS_Users.UserID`
   numérique ; défaut : utilisateur principal de l'entreprise) ; `wallettransactiontypeid` et
@@ -232,7 +252,8 @@ sidebar_position: 4
   (Reservation expired)**, libère le casier et perd les frais ; l'annulation avant l'échéance
   rembourse toujours.
 
-### 2026-09-25
+##### Vocabulaires fermés publiés
+
 
 - Le vocabulaire des statuts de colis inclut désormais **7 — Dispatch collected parcel from
   locker** ; `parcelstatus` sur les réponses de colis n'est jamais vide (repli sur
@@ -244,6 +265,7 @@ sidebar_position: 4
 - Nouvelle page **Listes de référence** énumérant chaque vocabulaire fermé.
 
 ### 2026-09-24
+
 
 - Prise en charge de `Idempotency-Key` sur les points de création.
 - `POST /customer/login/` renvoie désormais un `sessiontoken` révocable ; les points de lecture

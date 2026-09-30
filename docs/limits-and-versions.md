@@ -44,7 +44,10 @@ sidebar_position: 4
 
 ## Changelog
 
-### 2026-09-30
+Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-09-30 (2.1.8)
+
 
 - **Customer payment fixed and the hold response completed.** `/customer/parcels/hold/` failed to
   compile and returned `99 "Request failed"` before reaching Paystack; it is fixed and verified end
@@ -54,7 +57,10 @@ sidebar_position: 4
   `ServiceFee` is `0`, the standard per-size amount applies to `/customer/parcels/hold/`,
   `/customer/parcels/new/` and `/core/fees/compute/` — the preview equals the debit.
 
-### 2026-10-08
+### 2026-09-25 (2.0.0 → 2.1.7)
+
+#### 2.1.7
+
 
 - **Saved cards documented:** adding a card (`/customer/cards/add/`) is a **1-XOF card
   verification** that tokenises it (`metadata.purpose="AddCard"`) — it does **not** debit. A
@@ -62,14 +68,16 @@ sidebar_position: 4
   carry only `first6digits`, `last4digits`, `type`, `expiry`, `isdefault`). See *Authentication*
   → **Saved cards**.
 
-### 2026-10-07
+#### 2.1.6
+
 
 - **`dispatch` clarified:** it exists in the backend but is **not part of this contract yet** —
   dispatch delivery is being onboarded by Afribox later, and the API starts with
   **drop-off/pick-up** to reduce scope on launch. The introduction no longer lists it as a
   domain and now says so explicitly.
 
-### 2026-10-06
+#### 2.1.5
+
 
 - **Payment `metadata` and `flowtype` documented.** `flowtype` is a **top-level** field of
   `/pay/initialize/` (mirrored to `metadata.flow`); the appless locker flow's context keys are
@@ -77,7 +85,8 @@ sidebar_position: 4
   section in *Reference lists* lists every server-acted `metadata` key (`parcelreference`,
   `fulfil`, `holdtoken`, `returnurl`, `narration`).
 
-### 2026-10-05
+#### 2.1.4
+
 
 - **Type-6 parcels now have a single upfront charge.** The reservation fee debited at
   `/business/parcels/create/` is the **only** charge; the collect-time duration fee
@@ -86,7 +95,8 @@ sidebar_position: 4
   sets the parcel to status 4 and frees the locker, but no longer debits the wallet. Types 2/3
   (and the rest) are unchanged — they charge when the customer first pays.
 
-### 2026-10-04
+#### 2.1.3
+
 
 - **`/business/parcels/retrieve/` documented and fixed:** it is a **retrieval request** (secret
   key) — it does not change the parcel status, does **not** release the locker and does **not**
@@ -95,7 +105,8 @@ sidebar_position: 4
   refused with `09 PARCEL_NOT_RETRIEVABLE`. Completion (status 4, `RetrieveCompleted=1`, locker
   released) happens at the kiosk with the parcel's `collectcode`.
 
-### 2026-10-03
+#### 2.1.2
+
 
 - **Authentication docs clarified:** the page now lists **all four** dual-auth endpoints
   (`/pay/initialize/`, `/pay/verify/`, `/pay/status/`, `/customer/parcels/hold/`), states that
@@ -103,7 +114,8 @@ sidebar_position: 4
   `/business/boxes/info/` is **business-scoped**, and records the hard-coded application
   context in the business auth procedures as a known leftover.
 
-### 2026-10-02
+#### 2.1.1
+
 
 - **Transport edges:** an unknown path now returns the JSON envelope with **HTTP 404** instead
   of an HTML page, and a `GET` on an unknown path is a `404` (only an existing `POST` route
@@ -111,7 +123,8 @@ sidebar_position: 4
   Confirmed live: JSON `Content-Type`, `Strict-Transport-Security`, CORS, **port 80 → 301
   HTTPS**, no browser `User-Agent` required, and `X-RateLimit-*` on every response.
 
-### 2026-10-01
+#### 2.1.0
+
 
 - **Per-key quota and rate-limit headers.** Each API key is limited to **600 requests/minute**
   (application/kiosk keys: **900**), in fixed 60-second windows; exceeding it returns **HTTP
@@ -122,7 +135,10 @@ sidebar_position: 4
   changes get a `deprecated` flag and a **90-day** dual-serve window. The spec is generated on
   push only.
 
-### 2026-09-30
+#### Before SemVer (contract 2.0.0)
+
+##### Customer password reset
+
 
 - **Customer password reset is now a one-time emailed code.** `/customer/forgotpassword/` emails a
   **6-digit code** (10-minute expiry, max 5 attempts) and always answers `00` — the old
@@ -133,7 +149,8 @@ sidebar_position: 4
 - `/customer/otp/verify/` remains **signup activation** (no token) — sign in via
   `/customer/login/` for a `sessiontoken`. The same reset flow applies to the dispatch endpoints.
 
-### 2026-09-29
+##### Snapshots and public-key hardening
+
 
 - **Kiosk snapshot identity:** on `/kiosk/parcel/snapshot/`, `parceldetailid` is
   **authoritative** — the server now verifies `parcelid`, `parcelreferencenumber`, `boxid` and
@@ -165,7 +182,8 @@ sidebar_position: 4
   `/core/fees/compute/`, an array on the other `/core/fees/*` endpoints, and a string on
   `/core/sizes/fees/` and `/pay/verify/`. No rename.
 
-### 2026-09-28
+##### Empty vs. error, and the envelope
+
 
 - **Empty vs. error:** every **list** endpoint now returns `00` with an empty array (`[]`) when
   the request is valid and the result is empty; **detail** endpoints return `07` (not found)
@@ -180,7 +198,8 @@ sidebar_position: 4
   insufficient balance → `10 INSUFFICIENT_BALANCE`; business credit → `09 CREDIT_ADMIN_ONLY`.
 - Wallet write validation normalized (`04` missing, `05`/`06` invalid).
 
-### 2026-09-27
+##### NIPOST removed
+
 
 - **NIPOST removed** (request type 5 and its legacy procedures/tables/views); it does not
   operate in Côte d'Ivoire.
@@ -190,7 +209,8 @@ sidebar_position: 4
   use `/core/requesttypes/list/` and `/core/deliveryareas/list/`.
 - Request-type labels are served trimmed (no embedded CRLF).
 
-### 2026-09-26
+##### Wallet writes, fees and reservation expiry
+
 
 - Wallet writes: `createdby` is now **optional** (numeric `SYS_Users.UserID`; defaults to the
   business's primary user); `wallettransactiontypeid` and `walletfundmodeid` are validated
@@ -210,7 +230,8 @@ sidebar_position: 4
   expiry sweep moves them to parcel status **8 (Reservation expired)**, releases the locker
   and forfeits the fee; cancellation before the deadline still refunds.
 
-### 2026-09-25
+##### Closed vocabularies published
+
 
 - Parcel status vocabulary now includes **7 — Dispatch collected parcel from locker**;
   `parcelstatus` on parcel responses is never empty (falls back to `"Status <id>"`).
@@ -221,6 +242,7 @@ sidebar_position: 4
 - New **Reference lists** page enumerating every closed vocabulary.
 
 ### 2026-09-24
+
 
 - Added `Idempotency-Key` support to creating endpoints.
 - `POST /customer/login/` now returns a revocable `sessiontoken`; customer read endpoints
