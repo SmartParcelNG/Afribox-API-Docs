@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.7",
+    "version": "2.1.8",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -4232,6 +4232,22 @@
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "holdtoken": {
             "type": "string"

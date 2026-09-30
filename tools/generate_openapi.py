@@ -464,11 +464,16 @@ def main():
             present_tags.append(ep["tag"])
     present_tags.sort(key=lambda t: tag_order.index(t) if t in tag_order else 99)
 
-    info = overrides.get("info") or {
-        "title": "Afribox API",
-        "version": "2.0.0",
-        "description": "Afribox backend API (SmartParcel). Response envelope: HTTP 200 with `statuscode`/`statusmessage`.",
-    }
+    # info comes from tools/overrides.json. There is deliberately no silent default for
+    # the version: a missing one must fail loudly rather than publish "2.0.0".
+    info = dict(overrides.get("info") or {})
+    if not str(info.get("version", "")).strip():
+        raise SystemExit("generate_openapi.py: tools/overrides.json needs info.version")
+    info.setdefault("title", "Afribox API")
+    info.setdefault(
+        "description",
+        "Afribox backend API (SmartParcel). Response envelope: HTTP 200 with `statuscode`/`statusmessage`.",
+    )
 
     paths = OrderedDict()
     excluded = set(overrides.get("excludeEndpoints", []))

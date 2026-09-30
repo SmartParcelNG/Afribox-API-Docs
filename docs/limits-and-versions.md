@@ -11,8 +11,10 @@ sidebar_position: 4
 - The API version is in the path: **`/v2`**, which we commit to for several years.
 - The contract is versioned with **SemVer** (`2.MINOR.PATCH`); `info.version` is **bumped on
   every changelog entry below**, and each release is archived immutably at
-  `…/openapi-<version>.json` (e.g. `openapi-2.1.0.json`) while `…/openapi.json` is always the
-  current one — diff two readings or pin one.
+  `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
+  readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
+  (currently **2.1.8**); the other `openapi-<version>.json` files are past releases, not
+  alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
 - **Breaking** changes (removing, renaming or retyping a field, or changing a meaning) are
@@ -41,6 +43,16 @@ sidebar_position: 4
   and quote it (with the UTC timestamp and the endpoint) in support requests.
 
 ## Changelog
+
+### 2026-09-30
+
+- **Customer payment fixed and the hold response completed.** `/customer/parcels/hold/` failed to
+  compile and returned `99 "Request failed"` before reaching Paystack; it is fixed and verified end
+  to end (mobile money → `verify` → paid parcel). The hold response now carries the standard
+  envelope fields **`errorcode`**, **`errorfield`** and **`retryable`**.
+- **`Envoyer un colis` (type 1) is no longer blocked by an unset service-fee schedule.** When
+  `ServiceFee` is `0`, the standard per-size amount applies to `/customer/parcels/hold/`,
+  `/customer/parcels/new/` and `/core/fees/compute/` — the preview equals the debit.
 
 ### 2026-10-08
 

@@ -12,8 +12,11 @@ sidebar_position: 4
   années.
 - Le contrat est versionné en **SemVer** (`2.MINOR.PATCH`) ; `info.version` est **incrémenté à
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
-  `…/openapi-<version>.json` (p. ex. `openapi-2.1.0.json`) tandis que `…/openapi.json` est
-  toujours la version courante — comparez deux relevés ou épinglez-en un.
+  `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
+  comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
+  `…/openapi.json`** (actuellement **2.1.8**) ; les autres fichiers `openapi-<version>.json`
+  sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
+  n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
   tout moment **sans préavis** ; ignorez les champs que vous ne connaissez pas.
 - Les changements **cassants** (suppression, renommage ou changement de type d'un champ, ou de
@@ -43,6 +46,16 @@ sidebar_position: 4
   `X-Request-Id` et citez-le (avec l'horodatage UTC et le point d'accès) dans vos demandes.
 
 ## Changelog
+
+### 2026-09-30
+
+- **Paiement client corrigé et réponse du hold complétée.** `/customer/parcels/hold/` ne
+  compilait pas et renvoyait `99 "Request failed"` avant d'atteindre Paystack ; c'est corrigé et
+  vérifié de bout en bout (argent mobile → `verify` → colis payé). La réponse du hold porte
+  désormais les champs d'enveloppe **`errorcode`**, **`errorfield`** et **`retryable`**.
+- **`Envoyer un colis` (type 1) n'est plus bloqué par une grille de frais de service vide.** Si
+  `ServiceFee` vaut `0`, le tarif standard par taille s'applique à `/customer/parcels/hold/`,
+  `/customer/parcels/new/` et `/core/fees/compute/` — l'aperçu égale le débit.
 
 ### 2026-10-08
 

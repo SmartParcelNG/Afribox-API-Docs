@@ -13,7 +13,7 @@ clients, entreprises, kiosques et paiements.
 - **Format** : JSON en `POST` (quelques points d'accès en `GET`) ; le JSON est servi en `Content-Type: application/json`
 - **Devise** : XOF (Côte d'Ivoire)
 - **Paiements** : Paystack
-- **Spécification OpenAPI** : servie à `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json` (OpenAPI 3.1), chaque version étant archivée à `https://smartparcelng.github.io/Afribox-API-Docs/openapi-<version>.json` (p. ex. `openapi-2.1.5.json`). Importez-la dans votre générateur, Postman ou Insomnia.
+- **Spécification OpenAPI** : servie à `https://smartparcelng.github.io/Afribox-API-Docs/openapi.json` (OpenAPI 3.1), chaque version étant archivée à `https://smartparcelng.github.io/Afribox-API-Docs/openapi-<version>.json` (aujourd'hui : `openapi-2.1.8.json`). Importez-la dans votre générateur, Postman ou Insomnia. **`openapi.json` est toujours le contrat faisant foi** — les fichiers numérotés sont d'anciennes versions.
 
 :::info Convention de réponse
 Chaque point d'accès JSON renvoie **HTTP 200**. Le résultat se trouve dans le corps :
