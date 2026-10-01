@@ -236,6 +236,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "api/write/post-pay-refund",
+          label: "Refund a cancelled paid parcel",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "api/write/post-pay-success",
           label: "Confirm a parcel payment",
           className: "api-method post",

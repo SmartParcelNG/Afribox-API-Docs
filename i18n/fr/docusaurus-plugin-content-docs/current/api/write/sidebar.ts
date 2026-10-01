@@ -236,6 +236,12 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/write/post-pay-refund",
+          label: "Refund a cancelled paid parcel",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "fr/docusaurus-plugin-content-docs/current/api/write/post-pay-success",
           label: "Confirmer le paiement d'un colis",
           className: "api-method post",

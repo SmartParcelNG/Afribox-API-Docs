@@ -20,7 +20,8 @@
     "business_public": "clé publique d'entreprise",
     "business_secret": "clé secrète d'entreprise",
     "paystack_dual": "clé secrète d'entreprise ou clé d'application",
-    "none": "aucune (webhook signé)"
+    "none": "aucune (webhook signé)",
+    "admin_key": "clé d'administration"
   },
   "tagLabels": {
     "core": "Référentiel",

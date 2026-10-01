@@ -14,7 +14,7 @@ sidebar_position: 4
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
   `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
   comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
-  `…/openapi.json`** (actuellement **2.1.8**) ; les autres fichiers `openapi-<version>.json`
+  `…/openapi.json`** (actuellement **2.1.9**) ; les autres fichiers `openapi-<version>.json`
   sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
   n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
@@ -48,6 +48,17 @@ sidebar_position: 4
 ## Changelog
 
 Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-10-01 (2.1.9)
+
+- **Remboursements des colis payés annulés.** Un colis payé via Paystack est désormais remboursé
+  **via Paystack** sur le moyen de paiement d'origine du client lorsqu'il est annulé — le montant
+  complet, au plus une fois par colis. Nouveau `POST /pay/refund/` (clé admin) renvoyant
+  `refundstatus`, `refundamount` et `refundreference`. Le client est prévenu par e-mail et par SMS
+  au moment de la demande puis lorsque Paystack confirme le remboursement.
+- **`/customer/parcels/cancel/` renvoie aussi `refundstatus` et `refundreference`.**
+- **Les lectures client acceptent de nouveau `customerid`** lorsqu'aucun `sessiontoken` n'est
+  envoyé (la transition promue dans *Authentification*) ; un jeton fourni reste prioritaire.
 
 ### 2026-09-30 (2.1.8)
 

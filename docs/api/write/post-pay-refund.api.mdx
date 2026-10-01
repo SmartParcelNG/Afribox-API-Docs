@@ -1,0 +1,69 @@
+---
+id: post-pay-refund
+title: "Refund a cancelled paid parcel"
+description: "Refunds the customer's Paystack payment for a **cancelled** parcel, through Paystack, back to the original payment method (card or mobile money). Requires the **admin key**. Idempotent: a parcel is refunded at most once, and repeating the call reports the existing refund. Returns `refundstatus` (`pending`/`processing`/`processed`/`failed`/`manual`/`not_applicable`), `refundamount` and `refundreference`. `not_applicable` means there is no Paystack payment to refund (unpaid, or paid from a business wallet — those are credited by the cancellation itself)."
+sidebar_label: "Refund a cancelled paid parcel"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Refund a cancelled paid parcel"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/pay/refund/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Refunds the customer's Paystack payment for a **cancelled** parcel, through Paystack, back to the original payment method (card or mobile money). Requires the **admin key**. Idempotent: a parcel is refunded at most once, and repeating the call reports the existing refund. Returns `refundstatus` (`pending`/`processing`/`processed`/`failed`/`manual`/`not_applicable`), `refundamount` and `refundreference`. `not_applicable` means there is no Paystack payment to refund (unpaid, or paid from a business wallet — those are credited by the cancellation itself).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"parceldetailid":{"type":"string"},"reference":{"type":"string"}},"required":["apikey"],"title":"PaystackRefund"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","429","98","99"],"description":"Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."},"statusmessage":{"type":"string"},"errorcode":{"type":"string","description":"Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."},"errorfield":{"type":"string","description":"Request field implicated in the error, when applicable (empty otherwise)."},"retryable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."},"refundstatus":{"type":"string"},"refundamount":{"type":"string"},"refundreference":{"type":"string"},"refundnote":{"type":"string"}},"title":"PaystackRefundResponse"}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+>
+  
+</StatusCodes>
+
+
+      

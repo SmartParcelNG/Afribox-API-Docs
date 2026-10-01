@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.8**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.9**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,17 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-10-01 (2.1.9)
+
+- **Refunds for cancelled paid parcels.** A parcel paid through Paystack is now refunded **through
+  Paystack** to the customer's original payment method when it is cancelled — the full amount, at
+  most once per parcel. New `POST /pay/refund/` (admin key) returns `refundstatus`,
+  `refundamount` and `refundreference`. The customer is notified by email and SMS when the refund
+  is requested and again when Paystack confirms it.
+- **`/customer/parcels/cancel/` also returns `refundstatus` and `refundreference`.**
+- **Customer reads accept `customerid` again** when no `sessiontoken` is sent (the transition
+  promised in *Authentication*); a supplied token still takes precedence.
 
 ### 2026-09-30 (2.1.8)
 

@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.8",
+    "version": "2.1.9",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -628,6 +628,11 @@
       "summary": "List a business parcel's snapshots",
       "description": "The proof-of-delivery snapshots for one of the **business's own** parcels. `{apikey}` is the **business public key**; `parceldetailid` selects the parcel. **Ownership-checked** — a parcel of another business returns `07`. Each item carries a signed, expiring `snapshoturl`.",
       "readonly": true
+    },
+    "POST /pay/refund/": {
+      "readonly": false,
+      "summary": "Refund a cancelled paid parcel",
+      "description": "Refunds the customer's Paystack payment for a **cancelled** parcel, through Paystack, back to the original payment method (card or mobile money). Requires the **admin key**. Idempotent: a parcel is refunded at most once, and repeating the call reports the existing refund. Returns `refundstatus` (`pending`/`processing`/`processed`/`failed`/`manual`/`not_applicable`), `refundamount` and `refundreference`. `not_applicable` means there is no Paystack payment to refund (unpaid, or paid from a business wallet — those are credited by the cancellation itself)."
     }
   },
   "propertyTypes": {

@@ -213,6 +213,8 @@ RES_RE = re.compile(r"Dim\s+ResponseObject\s+As\s+New\s+([A-Za-z0-9_]+)")
 
 
 def detect_auth(txt):
+    if "Authenticate_AdminKey" in txt:
+        return "admin_key"
     if "ResolvePaystackAuth" in txt:
         return "paystack_dual"
     if "WS_API_Authenticate_Business_APISecretKey" in txt:
