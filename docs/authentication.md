@@ -24,12 +24,14 @@ All endpoints authenticate with an `apikey` sent **in the JSON request body**
 
 ## Getting a key
 
-- The **application key** and the **admin key** are issued by the Afribox team; they are not
-  self-service and are not shown in the dashboard. Contact your Afribox integration contact to
-  obtain or rotate one.
+- The **application key** and the **admin key** are issued by the Afribox team — they are not
+  self-service. An administrator reads a network's application key in the console at
+  **Admin → Networks → *network* → API access**: read-only, masked with a reveal/copy action, and
+  visible to Super Administrators only. To obtain or rotate one, contact your Afribox integration
+  contact — a renewed key is published there for collection rather than sent by chat or e-mail.
 - The **business public** and **business secret** keys are on the business record
-  (`BusinessDetails.aspx` in the dashboard). The public key is shown as "public"; keep the
-  **secret key** server-side.
+  (`BusinessDetails.aspx`). Both are shown masked with a reveal/copy action, visible to Super
+  Administrators only — keep the **secret key** server-side.
 
 :::warning Keep the right key in the right place
 - The **secret key** must never live in a client (web, mobile, locker app).

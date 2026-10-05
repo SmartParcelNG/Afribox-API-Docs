@@ -25,11 +25,15 @@ détermine lequel est attendu.
 
 ## Obtenir une clé
 
-- La **clé d'application** et la **clé d'administration** sont délivrées par l'équipe Afribox ;
-  elles ne sont pas en libre-service et n'apparaissent pas dans le tableau de bord. Contactez
-  votre interlocuteur d'intégration Afribox pour les obtenir ou les renouveler.
+- La **clé d'application** et la **clé d'administration** sont délivrées par l'équipe Afribox —
+  elles ne sont pas en libre-service. Un administrateur lit la clé d'application d'un réseau dans
+  la console à **Administration → Réseaux → *réseau* → Accès API** : en lecture seule, masquée avec
+  une action révéler/copier, et visible des Super Administrateurs uniquement. Pour en obtenir une ou
+  la renouveler, contactez votre interlocuteur d'intégration Afribox — une clé renouvelée y est
+  publiée pour retrait plutôt qu'envoyée par messagerie ou e-mail.
 - Les clés **publique** et **secrète** d'entreprise figurent sur la fiche de l'entreprise
-  (`BusinessDetails.aspx`). Gardez la **clé secrète** côté serveur.
+  (`BusinessDetails.aspx`). Les deux sont affichées **masquées** avec une action révéler/copier,
+  visibles des Super Administrateurs uniquement — gardez la **clé secrète** côté serveur.
 
 :::warning La bonne clé au bon endroit
 - La **clé secrète** ne doit jamais se trouver dans un client (web, mobile, application casier).
