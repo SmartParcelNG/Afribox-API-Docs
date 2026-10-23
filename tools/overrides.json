@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.9",
+    "version": "2.1.10",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -962,8 +962,35 @@
         "apikey",
         "boxid",
         "sizeid",
+        "amount",
+        "boxlockernumber",
+        "senderphone",
+        "recipientphone",
         "paymentreference"
-      ]
+      ],
+      "properties": {
+        "amount": {
+          "description": "Amount paid for the reservation (FCFA). Must match the Paystack transaction amount."
+        },
+        "boxlockernumber": {
+          "description": "Locker number inside the box that will store the parcel."
+        },
+        "senderphone": {
+          "description": "Sender phone number, 10 digits."
+        },
+        "senderemail": {
+          "description": "Optional. Must be a valid email address when supplied."
+        },
+        "recipientphone": {
+          "description": "Recipient phone number, 10 digits."
+        },
+        "recipientemail": {
+          "description": "Optional. Must be a valid email address when supplied."
+        },
+        "paymentreference": {
+          "description": "Paystack reference of the successful payment for this reservation. Single use: it funds exactly one reservation."
+        }
+      }
     },
     "CustomerLogin": {
       "required": [

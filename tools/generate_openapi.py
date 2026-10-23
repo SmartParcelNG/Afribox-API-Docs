@@ -221,6 +221,12 @@ def detect_auth(txt):
         return "business_secret"
     if "Authenticate_Business_APIPublicKey" in txt:
         return "business_public"
+    if "ResolveBusinessAuth(" in txt:
+        # Business endpoints now use the shared helper: the third argument allows the
+        # secret key (True) or only the public key / business session (False).
+        if re.search(r"ResolveBusinessAuth\([^)]*,\s*True\s*\)", txt):
+            return "business_secret"
+        return "business_public"
     if "Authenticate_APIKey(" in txt:
         return "app_key"
     return "none"
@@ -228,7 +234,7 @@ def detect_auth(txt):
 
 WRITE_HINTS = (
     "/new", "/create", "/add", "/delete", "setdefault", "cancel", "retrieve",
-    "edit", "changepassword", "resetpassword", "signup", "login", "otp",
+    "edit", "changepassword", "resetpassword", "signup", "login", "logout", "otp",
     "forgotpassword", "reserve", "drop", "collect", "initialize", "verify",
     "success", "webhook", "support", "wallettransaction", "hold", "release",
     "snapshot", "setup",

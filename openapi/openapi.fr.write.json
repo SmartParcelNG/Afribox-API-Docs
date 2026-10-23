@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.9",
+    "version": "2.1.10",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -65,6 +65,86 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BusinessWalletTransactionInsertResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/business/login/": {
+      "post": {
+        "operationId": "post_business_login",
+        "summary": "Log in business",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessLoginResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/business/logout/": {
+      "post": {
+        "operationId": "post_business_logout",
+        "summary": "Business logout",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessLogout"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessLogoutResponse"
                 }
               }
             }
@@ -185,6 +265,46 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LogisticsParcelInfoResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."
+          },
+          "500": {
+            "description": "Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."
+          }
+        }
+      }
+    },
+    "/business/resetpassword/": {
+      "post": {
+        "operationId": "post_business_resetpassword",
+        "summary": "Reset the password of business",
+        "tags": [
+          "business"
+        ],
+        "description": "Authentification : **clé d'application** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
+        "x-auth": "app_key",
+        "x-readonly": false,
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessResetPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Enveloppe de résultat (statuscode/statusmessage). Un `statuscode` différent de `00` indique une erreur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessResetPasswordResponse"
                 }
               }
             }
@@ -2068,6 +2188,9 @@
           },
           "parcelreferencenumber": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -2344,6 +2467,9 @@
             "type": "string"
           },
           "parceldetailid": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -3244,39 +3370,50 @@
             "type": "string"
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "description": "Montant payé pour la réservation (FCFA). Doit correspondre au montant de la transaction Paystack."
           },
           "boxlockernumber": {
-            "type": "string"
+            "type": "string",
+            "description": "Numéro du casier dans la boîte qui stockera le colis."
           },
           "sendername": {
             "type": "string"
           },
           "senderphone": {
-            "type": "string"
+            "type": "string",
+            "description": "Numéro de téléphone de l'expéditeur, 10 chiffres."
           },
           "senderemail": {
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "description": "Facultatif. Doit être une adresse email valide lorsqu'il est fourni."
           },
           "recipientname": {
             "type": "string"
           },
           "recipientphone": {
-            "type": "string"
+            "type": "string",
+            "description": "Numéro de téléphone du destinataire, 10 chiffres."
           },
           "recipientemail": {
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "description": "Facultatif. Doit être une adresse email valide lorsqu'il est fourni."
           },
           "paymentreference": {
-            "type": "string"
+            "type": "string",
+            "description": "Référence Paystack du paiement réussi pour cette réservation. Usage unique : elle finance exactement une réservation."
           }
         },
         "required": [
           "apikey",
           "boxid",
           "sizeid",
+          "amount",
+          "boxlockernumber",
+          "senderphone",
+          "recipientphone",
           "paymentreference"
         ]
       },
@@ -4727,6 +4864,9 @@
           "refundreference": {
             "type": "string"
           },
+          "refundamount": {
+            "type": "string"
+          },
           "errorcode": {
             "type": "string",
             "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
@@ -6113,6 +6253,9 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -6256,6 +6399,9 @@
         "type": "object",
         "properties": {
           "apikey": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -6489,6 +6635,9 @@
         "type": "object",
         "properties": {
           "apikey": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -7065,6 +7214,9 @@
           },
           "statename": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -7223,6 +7375,9 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -7350,6 +7505,9 @@
           },
           "stateid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -7412,6 +7570,9 @@
         "type": "object",
         "properties": {
           "apikey": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -7530,6 +7691,9 @@
           },
           "boxid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -7596,6 +7760,9 @@
           },
           "stateid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -7661,6 +7828,9 @@
             "type": "string"
           },
           "cityid": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -7977,6 +8147,9 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -8095,6 +8268,9 @@
             "type": "string"
           },
           "pagesize": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -8297,6 +8473,75 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "BusinessResetPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "429",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          }
+        }
+      },
+      "BusinessResetPassword": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "oldpassword": {
+            "type": "string"
+          },
+          "newpassword": {
+            "type": "string"
           }
         },
         "required": [
@@ -8373,6 +8618,9 @@
             "type": "string"
           },
           "pagesize": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -8451,6 +8699,9 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -8527,6 +8778,9 @@
             "type": "string"
           },
           "pagesize": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -8636,6 +8890,9 @@
           },
           "parceldetailid": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -8697,6 +8954,9 @@
             "type": "string"
           },
           "parceldetailid": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -8781,6 +9041,9 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -8848,6 +9111,9 @@
             "type": "string"
           },
           "parceldetailid": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },
@@ -8932,6 +9198,9 @@
           "recipientemail": {
             "type": "string",
             "format": "email"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -8998,6 +9267,187 @@
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
+      },
+      "BusinessLogoutResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "429",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          }
+        }
+      },
+      "BusinessLogout": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
+      },
+      "BusinessLoginResponse": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "string",
+            "enum": [
+              "00",
+              "01",
+              "02",
+              "03",
+              "04",
+              "05",
+              "06",
+              "07",
+              "08",
+              "09",
+              "10",
+              "11",
+              "429",
+              "98",
+              "99"
+            ],
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+          },
+          "statusmessage": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/BusinessLoginUserData"
+          },
+          "business": {
+            "$ref": "#/components/schemas/BusinessLoginData"
+          },
+          "sessiontoken": {
+            "type": "string"
+          },
+          "sessionexpires": {
+            "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          }
+        }
+      },
+      "BusinessLoginData": {
+        "type": "object",
+        "properties": {
+          "businessid": {
+            "type": "string"
+          },
+          "businessname": {
+            "type": "string"
+          },
+          "businesscode": {
+            "type": "string"
+          },
+          "businessbalance": {
+            "type": "string"
+          },
+          "billingtype": {
+            "type": "string"
+          },
+          "networkid": {
+            "type": "string"
+          },
+          "networkname": {
+            "type": "string"
+          }
+        }
+      },
+      "BusinessLoginUserData": {
+        "type": "object",
+        "properties": {
+          "userid": {
+            "type": "string"
+          },
+          "fullname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "roleid": {
+            "type": "string"
+          },
+          "rolename": {
+            "type": "string"
+          }
+        }
+      },
+      "BusinessLogin": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey"
+        ]
       },
       "LogisticsDashboardResponse": {
         "type": "object",
@@ -9097,6 +9547,9 @@
         "properties": {
           "apikey": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -9174,6 +9627,9 @@
           },
           "pagesize": {
             "type": "string"
+          },
+          "sessiontoken": {
+            "type": "string"
           }
         },
         "required": [
@@ -9235,6 +9691,9 @@
         "type": "object",
         "properties": {
           "apikey": {
+            "type": "string"
+          },
+          "sessiontoken": {
             "type": "string"
           }
         },

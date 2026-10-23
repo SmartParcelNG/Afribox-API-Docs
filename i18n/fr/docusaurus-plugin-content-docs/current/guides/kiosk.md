@@ -31,7 +31,11 @@ L'appareil casier utilise les points `kiosk` avec la **clé d'application**.
      `flow`). Envoyer un **`phone`** fait envoyer le lien de paiement par SMS.
    - Affichez `authorizationurl` en QR ; le client paie.
    - Sondez `POST /pay/status` jusqu'à `transactionstatus == "success"`.
-3. `POST /kiosk/parcel/appless/reserve` avec `paymentreference`.
+3. `POST /kiosk/parcel/appless/reserve` avec le corps complet : **`apikey`**, **`boxid`**,
+   **`sizeid`**, **`amount`** (doit correspondre au paiement), **`boxlockernumber`**,
+   **`senderphone`**, **`recipientphone`** et **`paymentreference`**. `senderemail` /
+   `recipientemail` sont **facultatifs** — envoyez-les si le client souhaite une confirmation
+   par email.
 
 ### La réservation est adossée à un paiement
 

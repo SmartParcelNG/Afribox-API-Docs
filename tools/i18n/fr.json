@@ -432,6 +432,17 @@
       "properties": {
         "type": "Type d'écriture du portefeuille : Credit ou Debit (ensemble complet). Voir /core/wallettransactiontypes/list/."
       }
+    },
+    "ApplessReserve": {
+      "properties": {
+        "amount": "Montant payé pour la réservation (FCFA). Doit correspondre au montant de la transaction Paystack.",
+        "boxlockernumber": "Numéro du casier dans la boîte qui stockera le colis.",
+        "senderphone": "Numéro de téléphone de l'expéditeur, 10 chiffres.",
+        "senderemail": "Facultatif. Doit être une adresse email valide lorsqu'il est fourni.",
+        "recipientphone": "Numéro de téléphone du destinataire, 10 chiffres.",
+        "recipientemail": "Facultatif. Doit être une adresse email valide lorsqu'il est fourni.",
+        "paymentreference": "Référence Paystack du paiement réussi pour cette réservation. Usage unique : elle finance exactement une réservation."
+      }
     }
   }
 }

@@ -30,7 +30,10 @@ The locker device uses the `kiosk` endpoints with the **application key**.
      **`phone`** makes the server SMS the payment link.
    - Show `authorizationurl` as a QR; the customer pays.
    - Poll `POST /pay/status` until `transactionstatus == "success"`.
-3. `POST /kiosk/parcel/appless/reserve` with `paymentreference`.
+3. `POST /kiosk/parcel/appless/reserve` with the full body: **`apikey`**, **`boxid`**,
+   **`sizeid`**, **`amount`** (must match the payment), **`boxlockernumber`**,
+   **`senderphone`**, **`recipientphone`** and **`paymentreference`**. `senderemail` /
+   `recipientemail` are **optional** — send them when the customer wants a confirmation by email.
 
 ### Reservation is payment-backed
 

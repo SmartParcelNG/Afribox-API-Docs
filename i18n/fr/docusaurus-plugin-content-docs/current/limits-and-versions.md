@@ -14,7 +14,7 @@ sidebar_position: 4
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
   `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
   comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
-  `…/openapi.json`** (actuellement **2.1.9**) ; les autres fichiers `openapi-<version>.json`
+  `…/openapi.json`** (actuellement **2.1.10**) ; les autres fichiers `openapi-<version>.json`
   sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
   n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
@@ -48,6 +48,21 @@ sidebar_position: 4
 ## Changelog
 
 Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-10-23 (2.1.10)
+
+- **`/kiosk/parcel/appless/reserve/` — champs obligatoires documentés corrigés.** Le corps de la requête exige
+  `apikey`, `boxid`, `sizeid`, `amount`, `boxlockernumber`, `senderphone`, `recipientphone` et
+  `paymentreference` ; `amount`, `boxlockernumber` et les deux numéros de téléphone manquaient dans la liste
+  précédente. `senderemail` et `recipientemail` restent **facultatifs** et doivent être des adresses email
+  valides lorsqu'ils sont fournis. Les descriptions des champs et le guide kiosque le précisent désormais.
+- **Les champs obligatoires manquants sont signalés de façon cohérente.** Un champ absent du corps JSON renvoie
+  désormais `04 Missing Field` (certains renvoyaient auparavant `05 Invalid Field` car la valeur manquante était
+  nulle plutôt qu'une chaîne vide). Aucun autre comportement ne change.
+- **Documentation synchronisée avec le backend déployé.** Les points de session de l'application web entreprise
+  `POST /business/login/`, `/business/logout/` et `/business/resetpassword/` figurent désormais dans le contrat,
+  les schémas de lecture client/entreprise incluent `sessiontoken`, et `/customer/parcels/cancel/` inclut
+  `refundamount` dans sa réponse.
 
 ### 2026-10-01 (2.1.9)
 
