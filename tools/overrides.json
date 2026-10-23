@@ -16,7 +16,8 @@
   "excludeEndpoints": [
     "/customer/cards/add/complete/",
     "/pay/return/",
-    "/pay/webhook/paystack/"
+    "/pay/webhook/paystack/",
+    "/health/"
   ],
   "operations": {
     "POST /pay/initialize/": {

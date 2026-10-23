@@ -466,8 +466,11 @@ def main():
 
     # tag order
     tag_order = ["core", "customer", "business", "kiosk", "pay", "parcel", "admin"]
+    excluded = set(overrides.get("excludeEndpoints", []))
     present_tags = []
     for ep in endpoints:
+        if ep["path"] in excluded:
+            continue
         if ep["tag"] not in present_tags:
             present_tags.append(ep["tag"])
     present_tags.sort(key=lambda t: tag_order.index(t) if t in tag_order else 99)
@@ -484,7 +487,6 @@ def main():
     )
 
     paths = OrderedDict()
-    excluded = set(overrides.get("excludeEndpoints", []))
     for ep in endpoints:
         if ep["path"] in excluded:
             continue
