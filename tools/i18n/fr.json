@@ -101,7 +101,7 @@
     },
     "post_business_parcels_create": {
       "summary": "Créer un colis d'entreprise",
-      "description": "Crée un colis pour le compte de l'entreprise et réserve un casier. Le type de demande est toujours **6** (Ramassage sur place / réservation appless) — ce n'est pas un champ de la requête. Débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 72 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif. Pour une entreprise prépayée avec un solde insuffisant : `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE`. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement). Les frais de réservation débités ici sont le **seul débit** pour un colis de type 6 — la collecte ne facture pas de nouveau."
+      "description": "Crée un colis pour le compte de l'entreprise et réserve un casier. Le type de demande est toujours **6** (Ramassage sur place / réservation appless) — ce n'est pas un champ de la requête. Débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 48 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif. Pour une entreprise prépayée avec un solde insuffisant : `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE`. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement). Les frais de réservation débités ici sont le **seul débit** pour un colis de type 6 — la collecte ne facture pas de nouveau."
     },
     "post_business_parcels_info": {
       "summary": "Info colis",
@@ -310,7 +310,7 @@
     },
     "post_customer_parcels_new": {
       "summary": "Créer un colis client",
-      "description": "Crée un colis client et réserve un casier, en fixant l'échéance de dépôt (`expiresat`, 72 h par défaut). `requesttypeid` doit être `1` (Envoyer un colis — requiert aussi `recipientaddress` et `deliveryareaid`), `2` (Self-stockage) ou `3` (Client à client — requiert nom/téléphone/email du destinataire). Les autres types sont refusés. S'il n'est jamais déposé, la réservation expire (statut 8) et le casier est libéré."
+      "description": "Crée un colis client et réserve un casier, en fixant l'échéance de dépôt (`expiresat`, 48 h par défaut). `requesttypeid` doit être `1` (Envoyer un colis — requiert aussi `recipientaddress` et `deliveryareaid`), `2` (Self-stockage) ou `3` (Client à client — requiert nom/téléphone/email du destinataire). Les autres types sont refusés. S'il n'est jamais déposé, la réservation expire (statut 8) et le casier est libéré."
     },
     "post_customer_parcels_newrequests": {
       "summary": "Nouvelles demandes de colis"

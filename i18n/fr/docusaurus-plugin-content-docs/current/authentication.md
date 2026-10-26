@@ -39,9 +39,9 @@ détermine lequel est attendu.
 - La **clé secrète** ne doit jamais se trouver dans un client (web, mobile, application casier).
 - La **clé publique d'entreprise n'est pas une clé client** : traitez-la comme côté serveur.
   Elle lit les colis et le portefeuille de l'entreprise et ne doit pas être embarquée dans un
-  navigateur. Elle ne renvoie **jamais** les codes d'ouverture de casier — `dropcode`/
-  `collectcode` sont servis en `"****"` sous la clé publique (les vrais codes ne reviennent que
-  sous la clé secrète, p. ex. la réponse de création).
+  navigateur. Les lectures de colis renvoient les codes d'ouverture (`dropcode`/`collectcode`)
+  uniquement pour l'**entreprise propriétaire du colis** ; un colis d'une autre entreprise
+  renvoie `07` (introuvable), et les listes continuent de les masquer en `"****"`.
 - La **clé d'application** est celle destinée aux applications et appareils clients. Elle est
   liée à l'application/réseau, pas à un client en particulier. Les coordonnées sont masquées sur
   `/core/parcels/search/` pour cette clé.

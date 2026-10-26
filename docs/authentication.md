@@ -36,9 +36,10 @@ All endpoints authenticate with an `apikey` sent **in the JSON request body**
 :::warning Keep the right key in the right place
 - The **secret key** must never live in a client (web, mobile, locker app).
 - The **business public key is not a client key**: treat it as server-side. It reads the
-  business's parcels and wallet and must not be shipped in a browser bundle. It never returns
-  the locker opening codes — `dropcode`/`collectcode` are served as `"****"` under the public
-  key (the real codes come back only under the secret key, e.g. the create response).
+  business's parcels and wallet and must not be shipped in a browser bundle. Parcel reads return
+  the locker opening codes (`dropcode`/`collectcode`) only for the **business that owns the
+  parcel**; another business's parcel returns `07` (not found), and the list endpoints keep
+  masking them as `"****"`.
 - The **application key** is the one intended for client apps and devices. It is scoped to the
   application/network, not to a single customer. Contact details are masked on
   `/core/parcels/search/` for this key.

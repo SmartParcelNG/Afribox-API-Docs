@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.10**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.11**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,19 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-10-24 (2.1.11)
+
+- **Business parcel reads return the opening codes to the owning business.** `/business/parcels/info/` and
+  `/business/parcels/info/all/` now return the real `dropcode`/`collectcode` when the parcel belongs to the
+  calling business; a request for another business's parcel returns `07` (not found). The list endpoints keep
+  masking them as `"****"`.
+- **`/business/parcels/create/` accepts `parceldescription`.** The description is now stored and returned by
+  `/business/parcels/search/` (previously accepted but discarded).
+- **Created parcels awaiting drop-off now expire after 48 hours** (was 72; configurable via
+  `Parcel_Dropoff_Expiry_Hours`). The deadline is still returned as `expiresat`.
+- **Prepaid business parcels are marked paid** once the reservation fee is taken from the wallet, so they no
+  longer show as "Unpaid" after creation.
 
 ### 2026-10-23 (2.1.10)
 

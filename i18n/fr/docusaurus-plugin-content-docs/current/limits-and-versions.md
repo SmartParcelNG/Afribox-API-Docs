@@ -14,7 +14,7 @@ sidebar_position: 4
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
   `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
   comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
-  `…/openapi.json`** (actuellement **2.1.10**) ; les autres fichiers `openapi-<version>.json`
+  `…/openapi.json`** (actuellement **2.1.11**) ; les autres fichiers `openapi-<version>.json`
   sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
   n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
@@ -48,6 +48,19 @@ sidebar_position: 4
 ## Changelog
 
 Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-10-24 (2.1.11)
+
+- **Les lectures de colis d'entreprise renvoient les codes d'ouverture à l'entreprise propriétaire.**
+  `/business/parcels/info/` et `/business/parcels/info/all/` renvoient désormais les vrais
+  `dropcode`/`collectcode` lorsque le colis appartient à l'entreprise appelante ; un colis d'une autre
+  entreprise renvoie `07` (introuvable). Les listes continuent de les masquer en `"****"`.
+- **`/business/parcels/create/` accepte `parceldescription`.** La description est désormais enregistrée et
+  renvoyée par `/business/parcels/search/` (elle était auparavant acceptée puis ignorée).
+- **Les colis créés en attente de dépôt expirent désormais après 48 heures** (au lieu de 72 ; configurable
+  via `Parcel_Dropoff_Expiry_Hours`). L'échéance reste renvoyée dans `expiresat`.
+- **Les colis d'entreprise prépayés sont marqués comme payés** dès que les frais de réservation sont prélevés
+  du portefeuille ; ils ne s'affichent donc plus comme « Unpaid » après la création.
 
 ### 2026-10-23 (2.1.10)
 

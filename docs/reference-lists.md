@@ -90,7 +90,7 @@ Two kinds of reservation behave differently:
 - **Checkout hold** (`/customer/parcels/hold/`, pay-first): expires in **15 minutes**; the
   locker is released automatically when the hold expires.
 - **Created parcel awaiting drop-off** (`/business/parcels/create/`, `/customer/parcels/new/`):
-  expires **72 hours** after creation (configurable server-side). The deadline is returned as
+  expires **48 hours** after creation (configurable server-side). The deadline is returned as
   `expiresat` on the create response.
 
 When a created parcel is never dropped off by its deadline, an expiry sweep sets it to status

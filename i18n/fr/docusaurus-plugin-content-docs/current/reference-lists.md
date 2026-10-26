@@ -92,7 +92,7 @@ Deux types de réservation se comportent différemment :
 - **Réservation de paiement** (`/customer/parcels/hold/`, paiement d'abord) : expire en
   **15 minutes** ; le casier est libéré automatiquement à l'expiration.
 - **Colis créé en attente de dépôt** (`/business/parcels/create/`, `/customer/parcels/new/`) :
-  expire **72 heures** après la création (configurable côté serveur). L'échéance est renvoyée
+  expire **48 heures** après la création (configurable côté serveur). L'échéance est renvoyée
   dans `expiresat` sur la réponse de création.
 
 Lorsqu'un colis créé n'est jamais déposé avant l'échéance, un balayage d'expiration le passe
