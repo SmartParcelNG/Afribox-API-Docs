@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.11",
+    "version": "2.1.12",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -3188,7 +3188,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Looks a parcel up by `parcelreferencenumber` for the payment flow. `/core/parcels/search/` returns any parcel; this one is the payment-scoped search.",
+        "description": "Recherche un colis par `parcelreferencenumber` pour le flux de paiement — précisément un **colis appless (type 4) non payé et dans le casier (statut 2)**. Les coordonnées expéditeur et destinataire sont masquées (`\"****\"`), comme sur `/core/parcels/search/` ; seuls les champs de suivi sont renvoyés.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {

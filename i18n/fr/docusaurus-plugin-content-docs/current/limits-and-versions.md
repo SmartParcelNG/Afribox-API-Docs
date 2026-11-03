@@ -14,7 +14,7 @@ sidebar_position: 4
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
   `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
   comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
-  `…/openapi.json`** (actuellement **2.1.11**) ; les autres fichiers `openapi-<version>.json`
+  `…/openapi.json`** (actuellement **2.1.12**) ; les autres fichiers `openapi-<version>.json`
   sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
   n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
@@ -48,6 +48,12 @@ sidebar_position: 4
 ## Changelog
 
 Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-11-03 (2.1.12)
+
+- **`/pay/search/` masque les coordonnées de l'expéditeur et du destinataire.** La recherche liée au paiement (colis appless non payés dans le casier) renvoie désormais `"****"` pour le nom, le téléphone et l'email de l'expéditeur et du destinataire, comme `/core/parcels/search/`.
+- **Le endpoint appless `/kiosk/parcel/appless/verify/` renvoie `09 BUSINESS_RULE`** pour une taille ou un casier invalide, des frais manquants ou aucun casier libre (auparavant `99`), de la même façon que `/kiosk/parcel/appless/reserve/`.
+- **En ligne/hors ligne des casiers selon la règle des 15 minutes.** Un casier sans ping pendant plus de 15 minutes est signalé hors ligne ; le moniteur de casiers du console actualise cela à l'ouverture.
 
 ### 2026-10-24 (2.1.11)
 

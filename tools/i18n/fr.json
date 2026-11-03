@@ -380,7 +380,8 @@
       "description": "Renvoie le statut enregistré pour une référence, en confirmant auprès de Paystack si nécessaire. Destiné au sondage par l'application casier et le bot WhatsApp. `statuscode` est 00 pour une référence connue — le résultat est dans `transactionstatus` ; valeurs terminales : `success`, `failed`, `abandoned`, `reversed` (arrêter le sondage) ; non terminales : `ongoing`, `pending`, `processing`, `queued`, `initialized`. Aucun intervalle imposé par le serveur : sondez toutes les ~5 s avec repli exponentiel et arrêtez-vous sur une valeur terminale. `paidat` est en ISO 8601 UTC."
     },
     "post_pay_search": {
-      "summary": "Rechercher un colis à payer"
+      "summary": "Rechercher un colis à payer",
+      "description": "Recherche un colis par `parcelreferencenumber` pour le flux de paiement — précisément un **colis appless (type 4) non payé et dans le casier (statut 2)**. Les coordonnées expéditeur et destinataire sont masquées (`\"****\"`), comme sur `/core/parcels/search/` ; seuls les champs de suivi sont renvoyés."
     },
     "post_pay_success": {
       "summary": "Confirmer le paiement d'un colis"

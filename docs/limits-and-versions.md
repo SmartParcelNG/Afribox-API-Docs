@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.11**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.12**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,12 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-03 (2.1.12)
+
+- **`/pay/search/` masks sender/recipient contact details.** The payment-scoped search (unpaid appless parcels in the locker) now returns `"****"` for sender/recipient name, phone and email, the same as `/core/parcels/search/`.
+- **Appless `/kiosk/parcel/appless/verify/` returns `09 BUSINESS_RULE`** for an invalid size/box, missing fees, or no free locker (previously `99`), matching `/kiosk/parcel/appless/reserve/`.
+- **Box online/offline follows the 15-minute ping rule.** A box with no ping for more than 15 minutes is reported offline; the console box monitor refreshes this when opened.
 
 ### 2026-10-24 (2.1.11)
 
