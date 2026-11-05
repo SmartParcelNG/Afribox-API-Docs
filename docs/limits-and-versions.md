@@ -50,7 +50,7 @@ Each entry is dated when the work shipped; the number in brackets is the contrac
 
 - **`/pay/verify/` returns `expiresat` / `expiresatiso`** for a paid parcel, so the web app can show the exact 48-hour drop-off deadline on the payment-success screen.
 - **Web-app history and amounts follow the page language**: timeline dates are 24-hour and localised, remaining English narrations are translated, and the Pro wallet/parcel pages format amounts consistently.
-- **Pro parcel detail shows the description** and labels a new booking as **Reserved**.
+- **Pro parcel detail shows the description** (`parcelsubdescription` is now returned by `/business/parcels/info/` and `/info/all/`) and labels a new booking as **Reserved**.
 - **Password reset UI now accepts the emailed 6-digit code** for both customer and Pro accounts; the backend already supported OTP. Reset-code emails now show the expiry time with its timezone.
 - **Pro Team** shows each member's role (Administrator / Operator); roles remain managed by AfriBox in the console.
 

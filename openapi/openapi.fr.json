@@ -12110,6 +12110,9 @@
           "parcelamount": {
             "type": "string"
           },
+          "parcelsubdescription": {
+            "type": "string"
+          },
           "elapsed": {
             "type": "string"
           },
