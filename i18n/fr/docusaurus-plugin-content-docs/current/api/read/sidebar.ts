@@ -528,6 +528,22 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: "category",
+      label: "track",
+      link: {
+        type: "doc",
+        id: "fr/docusaurus-plugin-content-docs/current/api/read/track",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "fr/docusaurus-plugin-content-docs/current/api/read/post-track",
+          label: "Track a parcel (public)",
+          className: "api-method post",
+        },
+      ],
+    },
   ],
 };
 

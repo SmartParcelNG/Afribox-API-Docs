@@ -33,6 +33,7 @@ JSON endpoints return **HTTP 200** and put the result in the body. Responses are
 | `09` | Business-rule refusal (not retryable) |
 | `10` | Insufficient balance |
 | `11` | Reserved |
+| `12` | Forbidden — the signed-in staff role is not allowed to do this |
 | `429` | Rate limited — per-key quota exceeded (see `Retry-After`) |
 | `98` | Authentication failed |
 | `99` | Unexpected server error (retryable) |
@@ -58,6 +59,7 @@ Every response also carries:
 | `BUSINESS_RULE` | `09` | False |
 | `INSUFFICIENT_BALANCE` | `10` | False |
 | `RESERVED` | `11` | False |
+| `FORBIDDEN` | `12` | False |
 | `AUTHENTICATION_FAILED` | `98` | False |
 | `INTERNAL_ERROR` | `99` | True |
 | `PAYMENT_ALREADY_USED` | `09` | False |

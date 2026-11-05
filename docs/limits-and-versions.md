@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.12**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.13**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,14 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-05 (2.1.13)
+
+- **`/track/` — public parcel tracking.** Takes the parcel `reference` plus the last four digits of the recipient's phone (`phone4`) and returns only the current status and its history. Names, phone numbers, addresses and opening codes are never returned; a wrong reference and a wrong phone both return `07`.
+- **`/business/parcels/create/bulk/` — up to 100 parcels per call.** Each line is validated and created independently; the response carries one result per line. The wallet is debited only for parcels that were actually created.
+- **`/business/forgotpassword/` and OTP reset for business staff.** A six-digit emailed code lets a Pro user reset a forgotten password; signed-in users can still change it with their current password.
+- **Business staff roles (`admin` / `operator`).** All staff share the business wallet. Operators can create and view parcels; cancelling a refund moves money, so it requires the `admin` role (API keys keep their existing access). `/business/login/` and `/business/users/list/` return `businessrole`. A refused action returns `12 FORBIDDEN`.
+- **Audit trail.** Parcel and wallet rows store the acting staff `userid` in `CreatedBy`; cancellations now record the acting user on the refund line too.
 
 ### 2026-11-03 (2.1.12)
 

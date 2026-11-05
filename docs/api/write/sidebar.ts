@@ -144,8 +144,32 @@ const sidebar: SidebarsConfig = {
       items: [
         {
           type: "doc",
+          id: "api/write/post-business-forgotpassword",
+          label: "Start a business password reset (emailed code)",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/write/post-business-login",
+          label: "Log in business",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/write/post-business-logout",
+          label: "Business logout",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
           id: "api/write/post-business-parcels-cancel",
           label: "Cancel a business parcel",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/write/post-business-parcels-create-bulk",
+          label: "Create up to 100 business parcels in one call",
           className: "api-method post",
         },
         {
@@ -158,6 +182,12 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/write/post-business-parcels-retrieve",
           label: "Request a dropped-off parcel's retrieval",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/write/post-business-resetpassword",
+          label: "Change or reset a business password",
           className: "api-method post",
         },
         {

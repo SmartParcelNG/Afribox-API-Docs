@@ -9,7 +9,8 @@
     "kiosk": "Opérations du casier/appareil : configuration, ping, dépôt/retrait de colis, réservation/vérification appless, instantanés.",
     "pay": "Paiements : recherche/succès du paiement d'un colis, et les points Paystack initialize/verify/status/return/webhook.",
     "parcel": "Preuves de livraison (instantanés) : liste, récupération, image.",
-    "admin": "Opérations d'administration : liste des entreprises et transactions de portefeuille."
+    "admin": "Opérations d'administration : liste des entreprises et transactions de portefeuille.",
+    "track": "Suivi public des colis : référence + quatre derniers chiffres du téléphone."
   },
   "templates": {
     "operationDescription": "Authentification : **{auth}** (voir le guide d'authentification). La réponse est en HTTP 200 ; le résultat se trouve dans le champ `statuscode` du corps.",
@@ -30,7 +31,8 @@
     "kiosk": "Kiosque",
     "pay": "Paiement",
     "parcel": "Colis",
-    "admin": "Administration"
+    "admin": "Administration",
+    "track": "Suivi"
   },
   "operations": {
     "post_admin_businesses_list": {
@@ -414,12 +416,28 @@
       "description": "Le vocabulaire des statuts de casier : 1 Vacant, 2 Réservé, 3 Occupé."
     },
     "post_business_users_list": {
-      "summary": "Lister les utilisateurs du personnel de l'entreprise",
-      "description": "Les utilisateurs actifs (`SYS_Users`) de l'entreprise — `userid`, `fullname`, `email`. Utilisez un `userid` comme `createdby` sur les écritures de portefeuille. Requiert la **clé publique** de l'entreprise."
+      "summary": "Lister les utilisateurs et rôles du personnel de l'entreprise",
+      "description": "Les utilisateurs actifs (`SYS_Users`) de l'entreprise — `userid`, `fullname`, `email`, `businessrole` (`admin` ou `operator`). Tout le personnel partage le portefeuille de l'entreprise. Les administrateurs peuvent annuler/rembourser un colis ; les opérateurs peuvent créer et consulter les colis. Utilisez un `userid` comme `createdby` sur les écritures de portefeuille. Requiert la **clé publique** de l'entreprise."
     },
     "post_business_parcels_snapshots": {
       "summary": "Lister les instantanés d'un colis de l'entreprise",
       "description": "Les instantanés de preuve de livraison d'un des **colis de l'entreprise**. `{apikey}` est la **clé publique** de l'entreprise ; `parceldetailid` sélectionne le colis. **Contrôle de propriété** — un colis d'une autre entreprise renvoie `07`. Chaque élément porte une `snapshoturl` signée et expirante."
+    },
+    "post_track": {
+      "summary": "Suivre un colis (public)",
+      "description": "Suivi public pour l'application web et le site AfriBox. Requiert la `reference` du colis **et** les quatre derniers chiffres du téléphone du destinataire (`phone4`). Une mauvaise référence et un mauvais numéro renvoient tous deux `07` (le point d'accès ne confirme jamais qu'une référence existe). Ne renvoie que le statut actuel et son historique (statut + date) — noms, adresses, téléphones, numéros de casier et codes d'ouverture ne sont jamais renvoyés. Limité en débit ; ne pas utiliser pour énumérer des références."
+    },
+    "post_business_forgotpassword": {
+      "summary": "Démarrer la réinitialisation du mot de passe entreprise (code par e-mail)",
+      "description": "Démarre la réinitialisation du mot de passe Pro. Envoie un code à usage unique à six chiffres à l'adresse du compte ; le code expire après 10 minutes et n'est accepté qu'une fois. Renvoie `00` même si l'adresse est inconnue, afin de ne pas révéler les comptes. Terminer avec `POST /business/resetpassword/` en envoyant `otp` + `newpassword`."
+    },
+    "post_business_parcels_create_bulk": {
+      "summary": "Créer jusqu'à 100 colis d'entreprise en un appel",
+      "description": "Version groupée de `/business/parcels/create/`. `parcels` est un tableau de **100** lignes maximum (mêmes champs : `boxid`, `sizeid`, `recipientname`, `recipientphone`, `recipientemail`, `parceldescription` facultatif). Chaque ligne est validée et créée indépendamment ; `results` contient un résultat par ligne (`index`, `statuscode`, `statusmessage`, et en cas de succès `parceldetailid`, `parcelreferencenumber`, `boxlockernumber`). Le portefeuille n'est débité **que** pour les colis réellement créés ; une ligne en échec n'annule pas les autres. Le `statuscode` global est `00` si au moins un colis a été créé, sinon `99`."
+    },
+    "post_business_resetpassword": {
+      "summary": "Changer ou réinitialiser un mot de passe entreprise",
+      "description": "Deux modes. Changement connecté : envoyer `email` + `oldpassword` + `newpassword` (le mot de passe actuel est vérifié). Mot de passe oublié : envoyer `email` + `otp` + `newpassword`, où `otp` est le code envoyé par `POST /business/forgotpassword/`. Un code invalide ou expiré renvoie `09` avec `errorcode` `INVALID_RESET_CODE`."
     }
   },
   "schemas": {

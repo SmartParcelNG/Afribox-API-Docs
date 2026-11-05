@@ -1,0 +1,69 @@
+---
+id: post-business-parcels-create-bulk
+title: "Create up to 100 business parcels in one call"
+description: "Bulk version of `/business/parcels/create/`. `parcels` is an array of up to **100** lines (same fields as the single create: `boxid`, `sizeid`, `recipientname`, `recipientphone`, `recipientemail`, optional `parceldescription`). Each line is validated and created independently; the response `results` array carries one entry per input line (`index`, `statuscode`, `statusmessage`, and on success `parceldetailid`, `parcelreferencenumber`, `boxlockernumber`). The wallet is debited **only** for parcels that were actually created; a failed line does not roll back the others. Overall `statuscode` is `00` when at least one parcel was created, otherwise `99`."
+sidebar_label: "Create up to 100 business parcels in one call"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/write/afribox-api
+custom_edit_url: null
+hide_send_button: true
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create up to 100 business parcels in one call"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/business/parcels/create/bulk/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Bulk version of `/business/parcels/create/`. `parcels` is an array of up to **100** lines (same fields as the single create: `boxid`, `sizeid`, `recipientname`, `recipientphone`, `recipientemail`, optional `parceldescription`). Each line is validated and created independently; the response `results` array carries one entry per input line (`index`, `statuscode`, `statusmessage`, and on success `parceldetailid`, `parcelreferencenumber`, `boxlockernumber`). The wallet is debited **only** for parcels that were actually created; a failed line does not roll back the others. Overall `statuscode` is `00` when at least one parcel was created, otherwise `99`.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"sessiontoken":{"type":"string"},"parcels":{"type":"array","items":{"type":"object","properties":{"boxid":{"type":"string"},"sizeid":{"type":"string"},"recipientname":{"type":"string"},"recipientphone":{"type":"string"},"recipientemail":{"type":"string","format":"email"},"parceldescription":{"type":"string"}},"title":"BusinessBulkParcelLine"}}},"required":["apikey"],"title":"BusinessBulkParcelNew"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","429","98","99"],"description":"Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."},"statusmessage":{"type":"string"},"results":{"type":"array","items":{"type":"object","properties":{"index":{"type":"integer","format":"int32"},"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","429","98","99"],"description":"Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."},"statusmessage":{"type":"string"},"parceldetailid":{"type":"string"},"parcelreferencenumber":{"type":"string"},"boxlockernumber":{"type":"string"}},"title":"BusinessBulkParcelResult"}},"errorcode":{"type":"string","description":"Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."},"retryable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."}},"title":"BusinessBulkParcelNewResponse"},"example":{"statuscode":"00","statusmessage":"2 of 2 parcels created","results":[{"index":0,"statuscode":"00","statusmessage":"Created","parceldetailid":"1234","parcelreferencenumber":"AB1234567890","boxlockernumber":"L-04"},{"index":1,"statuscode":"00","statusmessage":"Created","parceldetailid":"1235","parcelreferencenumber":"AB1234567891","boxlockernumber":"L-07"}]}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+>
+  
+</StatusCodes>
+
+
+      

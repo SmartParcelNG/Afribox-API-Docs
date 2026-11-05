@@ -1,0 +1,68 @@
+---
+id: post-track
+title: "Track a parcel (public)"
+description: "Public parcel tracking for the web app and the AfriBox website. Requires the parcel `reference` **and** the last four digits of the recipient's phone (`phone4`) as a second factor; a wrong reference and a wrong phone both return `07` (the endpoint never confirms whether a reference exists). Returns only the current status and its history (status + timestamp) — names, addresses, phone numbers, locker numbers and opening codes are never returned. Staff and business names are not disclosed. Rate-limited; do not use it to enumerate references."
+sidebar_label: "Track a parcel (public)"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api/read/afribox-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Track a parcel (public)"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/track/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Public parcel tracking for the web app and the AfriBox website. Requires the parcel `reference` **and** the last four digits of the recipient's phone (`phone4`) as a second factor; a wrong reference and a wrong phone both return `07` (the endpoint never confirms whether a reference exists). Returns only the current status and its history (status + timestamp) — names, addresses, phone numbers, locker numbers and opening codes are never returned. Staff and business names are not disclosed. Rate-limited; do not use it to enumerate references.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"apikey":{"type":"string"},"reference":{"type":"string"},"phone4":{"type":"string"}},"required":["apikey"],"title":"TrackParcel"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  responses={{"200":{"description":"Result envelope (`statuscode`/`statusmessage`). `00` = success; a valid request with no results is `00` with an empty array (not `99`/`null`). Any other `statuscode` (e.g. `04`, `98`, `99`) indicates a failure.","content":{"application/json":{"schema":{"type":"object","properties":{"statuscode":{"type":"string","enum":["00","01","02","03","04","05","06","07","08","09","10","11","429","98","99"],"description":"Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."},"statusmessage":{"type":"string"},"status":{"type":"string"},"parcelstatusid":{"type":"string","enum":["1","2","3","4","5","6","7","8"],"description":"1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."},"timeline":{"type":"array","items":{"type":"object","properties":{"parcelstatusid":{"type":"string","enum":["1","2","3","4","5","6","7","8"],"description":"1 New parcel request; 2 Dropped parcel in locker; 3 Enroute to recipient; 4 Recipient collected parcel from locker; 5 Cancelled; 6 Archived; 7 Dispatch collected parcel from locker; 8 Reservation expired (awaiting drop-off past the deadline; locker released, fee forfeited). See /core/parcelstatuses/list/."},"status":{"type":"string"},"datecreated":{"type":"string","pattern":"^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$","description":"Date/time as served: M/d/yyyy h:mm:ss AM/PM, no timezone (server is UTC+1)."},"datecreatediso":{"type":"string"}},"title":"TrackTimelineItem"}},"errorcode":{"type":"string","description":"Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."},"retryable":{"type":"string","enum":["True","False"],"description":"Boolean serialized by the server as the string \"True\" or \"False\"."}},"title":"TrackParcelResponse"},"example":{"statuscode":"00","statusmessage":"Successful","status":"In locker","parcelstatusid":"2","timeline":[{"parcelstatusid":"1","status":"Awaiting drop-off","datecreated":"11/5/2026 9:15:00 AM","datecreatediso":"2026-11-05T08:15:00Z"},{"parcelstatusid":"2","status":"In locker","datecreated":"11/5/2026 1:40:00 PM","datecreatediso":"2026-11-05T12:40:00Z"}]}}}},"404":{"description":"Unknown path — returns the JSON envelope with `statuscode` `99`, not an HTML page."},"500":{"description":"Unexpected server error — returns the JSON envelope with `statuscode` `99`, not an ASP.NET page."}}}
+>
+  
+</StatusCodes>
+
+
+      

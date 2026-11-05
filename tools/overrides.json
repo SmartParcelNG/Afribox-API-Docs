@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.12",
+    "version": "2.1.13",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -11,6 +11,7 @@
     "kiosk": "Locker/device operations: setup, ping, parcel drop/collect, appless reserve/verify, snapshots.",
     "pay": "Payments: parcel payment search/success, and the Paystack initialize/verify/status/return/webhook endpoints.",
     "parcel": "Parcel proof-of-delivery snapshots (list, fetch, image).",
+    "track": "Public parcel tracking (reference + last four phone digits).",
     "admin": "Administrative operations: businesses list and wallet transactions."
   },
   "excludeEndpoints": [
@@ -20,6 +21,67 @@
     "/health/"
   ],
   "operations": {
+    "POST /track/": {
+      "readonly": true,
+      "summary": "Track a parcel (public)",
+      "description": "Public parcel tracking for the web app and the AfriBox website. Requires the parcel `reference` **and** the last four digits of the recipient's phone (`phone4`) as a second factor; a wrong reference and a wrong phone both return `07` (the endpoint never confirms whether a reference exists). Returns only the current status and its history (status + timestamp) — names, addresses, phone numbers, locker numbers and opening codes are never returned. Staff and business names are not disclosed. Rate-limited; do not use it to enumerate references.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Successful",
+        "status": "In locker",
+        "parcelstatusid": "2",
+        "timeline": [
+          {
+            "parcelstatusid": "1",
+            "status": "Awaiting drop-off",
+            "datecreated": "11/5/2026 9:15:00 AM",
+            "datecreatediso": "2026-11-05T08:15:00Z"
+          },
+          {
+            "parcelstatusid": "2",
+            "status": "In locker",
+            "datecreated": "11/5/2026 1:40:00 PM",
+            "datecreatediso": "2026-11-05T12:40:00Z"
+          }
+        ]
+      }
+    },
+    "POST /business/forgotpassword/": {
+      "readonly": false,
+      "summary": "Start a business password reset (emailed code)",
+      "description": "Starts the Pro (business staff) password reset. Sends a six-digit one-time code to the account email; the code expires after 10 minutes and is accepted once. Returns `00` even when the email is unknown, so the endpoint cannot be used to discover accounts. Finish with `POST /business/resetpassword/` using `otp` + `newpassword`.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "If the email exists, a reset code has been sent"
+      }
+    },
+    "POST /business/parcels/create/bulk/": {
+      "readonly": false,
+      "summary": "Create up to 100 business parcels in one call",
+      "description": "Bulk version of `/business/parcels/create/`. `parcels` is an array of up to **100** lines (same fields as the single create: `boxid`, `sizeid`, `recipientname`, `recipientphone`, `recipientemail`, optional `parceldescription`). Each line is validated and created independently; the response `results` array carries one entry per input line (`index`, `statuscode`, `statusmessage`, and on success `parceldetailid`, `parcelreferencenumber`, `boxlockernumber`). The wallet is debited **only** for parcels that were actually created; a failed line does not roll back the others. Overall `statuscode` is `00` when at least one parcel was created, otherwise `99`.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "2 of 2 parcels created",
+        "results": [
+          {
+            "index": 0,
+            "statuscode": "00",
+            "statusmessage": "Created",
+            "parceldetailid": "1234",
+            "parcelreferencenumber": "AB1234567890",
+            "boxlockernumber": "L-04"
+          },
+          {
+            "index": 1,
+            "statuscode": "00",
+            "statusmessage": "Created",
+            "parceldetailid": "1235",
+            "parcelreferencenumber": "AB1234567891",
+            "boxlockernumber": "L-07"
+          }
+        ]
+      }
+    },
     "POST /pay/initialize/": {
       "readonly": false,
       "summary": "Initialize a Paystack payment",
@@ -610,9 +672,18 @@
         ]
       }
     },
+    "POST /business/resetpassword/": {
+      "readonly": false,
+      "summary": "Change or reset a business password",
+      "description": "Two modes. Signed-in change: send `email` + `oldpassword` + `newpassword` (the current password is verified). Forgotten password: send `email` + `otp` + `newpassword`, where `otp` is the code emailed by `POST /business/forgotpassword/`. An invalid or expired code returns `09` with `errorcode` `INVALID_RESET_CODE`.",
+      "responseExample": {
+        "statuscode": "00",
+        "statusmessage": "Reset password successful"
+      }
+    },
     "POST /business/users/list/": {
-      "summary": "List the business's staff users",
-      "description": "The active staff users (`SYS_Users`) of the business — `userid`, `fullname`, `email`. Use a `userid` as `createdby` on wallet writes. Requires the **business public key**.",
+      "summary": "List the business's staff users and roles",
+      "description": "The active staff users (`SYS_Users`) of the business — `userid`, `fullname`, `email`, `businessrole` (`admin` or `operator`). All staff share the business's wallet. Admins can cancel/refund a parcel; operators can create and view parcels. Use a `userid` as `createdby` on wallet writes. Requires the **business public key**.",
       "responseExample": {
         "statuscode": "00",
         "statusmessage": "Successful",
@@ -620,7 +691,8 @@
           {
             "userid": "1",
             "fullname": "Ama Diallo",
-            "email": "ama@afribox.ci"
+            "email": "ama@afribox.ci",
+            "businessrole": "admin"
           }
         ]
       }

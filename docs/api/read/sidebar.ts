@@ -463,7 +463,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "api/read/post-business-users-list",
-          label: "List the business's staff users",
+          label: "List the business's staff users and roles",
           className: "api-method post",
         },
       ],
@@ -524,6 +524,22 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api/read/post-admin-businesses-list",
           label: "Businesses List",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "track",
+      link: {
+        type: "doc",
+        id: "api/read/track",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api/read/post-track",
+          label: "Track a parcel (public)",
           className: "api-method post",
         },
       ],
