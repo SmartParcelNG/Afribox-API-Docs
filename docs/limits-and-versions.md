@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.15**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.16**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,15 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-06 (2.1.16)
+
+- **`/customer/support/` now stores the ticket** and returns `ticketid`; support email replies use the customer address as `Reply-To`. The console has a **Support tickets** page.
+- **SMS wording is ASCII-safe**: no accents, `Numero` instead of `N°`, `support.afriboxlockers.com` instead of the `@` address, and “Code de depot”.
+- **Legacy SmartParcel branding in request types is corrected to AfriBox.**
+- **Console exports are real CSV files** with UTF-8 BOM and dates in Africa/Abidjan; Recent payments includes the Authorization Code column.
+- **Wallet credit requires a 50,000 FCFA minimum and a bank-transfer or cash receipt reference.**
+- **Business details no longer shows empty placeholder tabs.**
 
 ### 2026-11-06 (2.1.15)
 
