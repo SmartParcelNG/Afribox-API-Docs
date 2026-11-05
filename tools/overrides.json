@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.13",
+    "version": "2.1.14",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -97,12 +97,12 @@
     "POST /pay/verify/": {
       "readonly": false,
       "summary": "Verify a Paystack payment",
-      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded; replaying a reference is safe (fulfilment happens once). On a non-success status it returns `statuscode` 99 \"Payment not successful\" with `transactionstatus` = Paystack's status. Returns the parcel `collectcode` for parcel payments. `amount`/`fees` are in XOF francs (major unit); `paidat` is ISO 8601 UTC."
+      "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded; replaying a reference is safe (fulfilment happens once). On a non-success status it returns `09 PAYMENT_NOT_SUCCESSFUL` with `errorcode`, `errorfield` and `retryable`, and `transactionstatus` = `pending` while Paystack still reports the checkout as initialized/ongoing/abandoned. Returns the parcel `collectcode` for parcel payments. `amount`/`fees` are in XOF francs (major unit); `paidat` is ISO 8601 UTC."
     },
     "POST /pay/status/": {
       "readonly": true,
       "summary": "Get payment status by reference",
-      "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed`, `abandoned`, `reversed` (stop polling), non-terminal are `ongoing`, `pending`, `processing`, `queued`, `initialized`. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC."
+      "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed` and `reversed` (stop polling). A checkout that has not been paid yet is reported as `pending` (Paystack's `initialized`/`ongoing`/`abandoned` are collapsed to `pending`), so a new checkout never looks terminal before payment. An unknown/scoped-out reference returns `07 NOT_FOUND`. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC."
     },
     "POST /business/pendingdropoffs/": {
       "summary": "List parcels awaiting drop-off",
@@ -610,7 +610,7 @@
     },
     "POST /business/wallettransaction/new/": {
       "summary": "Create a wallet transaction for the business",
-      "description": "Insert a wallet movement for the business. Requires the **secret key**. `wallettransactiontypeid` 2 = Debit only — **Credit is admin-only** (`99` otherwise). `walletfundmodeid` 1/2/3; manual adjustments use 2 (Back Office). `createdby` is optional (numeric user id; defaults to the business's primary user)."
+      "description": "Insert a wallet movement for the business. Requires the **secret key**. `wallettransactiontypeid` 2 = Debit only — **Credit is admin-only** (`09 CREDIT_ADMIN_ONLY`). `walletfundmodeid` 1/2/3; manual adjustments use 2 (Back Office). `createdby` is optional (numeric user id; defaults to the business's primary user)."
     },
     "POST /kiosk/parcel/appless/reserve/": {
       "summary": "Appless Reserve",
@@ -1168,6 +1168,7 @@
       }
     },
     "SnapshotUpload": {
+      "required": ["apikey", "boxid", "parcelid", "parceldetailid", "parcelreferencenumber", "snapshotevent", "snapshotsequence", "image"],
       "properties": {
         "parceldetailid": {
           "description": "**Authoritative.** The server resolves the parcel from this id and verifies `parcelid`, `parcelreferencenumber`, `boxid` (and `boxlockernumber` when supplied) agree with it. Not found → `07`; a mismatch → `09 PARCEL_IDENTIFIERS_MISMATCH`."

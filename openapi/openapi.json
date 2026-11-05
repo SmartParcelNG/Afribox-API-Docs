@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.13",
+    "version": "2.1.14",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "servers": [
@@ -1701,7 +1701,7 @@
         "tags": [
           "business"
         ],
-        "description": "Insert a wallet movement for the business. Requires the **secret key**. `wallettransactiontypeid` 2 = Debit only — **Credit is admin-only** (`99` otherwise). `walletfundmodeid` 1/2/3; manual adjustments use 2 (Back Office). `createdby` is optional (numeric user id; defaults to the business's primary user).",
+        "description": "Insert a wallet movement for the business. Requires the **secret key**. `wallettransactiontypeid` 2 = Debit only — **Credit is admin-only** (`09 CREDIT_ADMIN_ONLY`). `walletfundmodeid` 1/2/3; manual adjustments use 2 (Back Office). `createdby` is optional (numeric user id; defaults to the business's primary user).",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -4749,7 +4749,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed`, `abandoned`, `reversed` (stop polling), non-terminal are `ongoing`, `pending`, `processing`, `queued`, `initialized`. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC.",
+        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed` and `reversed` (stop polling). A checkout that has not been paid yet is reported as `pending` (Paystack's `initialized`/`ongoing`/`abandoned` are collapsed to `pending`), so a new checkout never looks terminal before payment. An unknown/scoped-out reference returns `07 NOT_FOUND`. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC.",
         "x-auth": "paystack_dual",
         "x-readonly": true,
         "requestBody": {
@@ -4829,7 +4829,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded; replaying a reference is safe (fulfilment happens once). On a non-success status it returns `statuscode` 99 \"Payment not successful\" with `transactionstatus` = Paystack's status. Returns the parcel `collectcode` for parcel payments. `amount`/`fees` are in XOF francs (major unit); `paidat` is ISO 8601 UTC.",
+        "description": "Verifies a payment by `reference`, records it, and fulfils (parcel paid / wallet credit) idempotently. A previously-recorded success is never downgraded; replaying a reference is safe (fulfilment happens once). On a non-success status it returns `09 PAYMENT_NOT_SUCCESSFUL` with `errorcode`, `errorfield` and `retryable`, and `transactionstatus` = `pending` while Paystack still reports the checkout as initialized/ongoing/abandoned. Returns the parcel `collectcode` for parcel payments. `amount`/`fees` are in XOF francs (major unit); `paidat` is ISO 8601 UTC.",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "requestBody": {
@@ -5240,6 +5240,22 @@
               "False"
             ],
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         },
         "description": "Verified transaction details, including parcel collectcode when applicable."
@@ -5531,6 +5547,22 @@
           },
           "customerid": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         }
       },
@@ -5832,6 +5864,22 @@
           },
           "accesscode": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           }
         },
         "description": "Paystack initialization result."
@@ -6316,7 +6364,14 @@
           }
         },
         "required": [
-          "apikey"
+          "apikey",
+          "boxid",
+          "parcelid",
+          "parceldetailid",
+          "parcelreferencenumber",
+          "snapshotevent",
+          "snapshotsequence",
+          "image"
         ]
       },
       "DropParcelResponse": {

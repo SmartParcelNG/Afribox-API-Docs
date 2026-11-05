@@ -66,6 +66,14 @@ Every response also carries:
 | `LOCKER_NOT_AVAILABLE` | `09` | True |
 | `CREDIT_ADMIN_ONLY` | `09` | False |
 | `INVALID_RESET_CODE` | `09` | False |
+| `PAYMENT_NOT_SUCCESSFUL` | `09` | False |
+| `INVALID_SIZE` | `09` | False |
+| `INVALID_BOX` | `09` | False |
+| `BOX_NOT_ALLOWED` | `09` | False |
+| `BUSINESS_NOT_FOUND` | `09` | False |
+| `LOCKER_NOT_AVAILABLE` | `09` | True |
+| `IDEMPOTENCY_KEY_REUSED` | `08` | False |
+| `ACCOUNT_INACTIVE` | `98` | False |
 | `RATE_LIMITED` | `429` | True |
 
 ## Empty result vs. error

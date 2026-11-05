@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.13**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.14**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,17 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-06 (2.1.14)
+
+- **Business refusals use `09` with a specific `errorcode`** instead of `99`: invalid size/box, box not assigned to the business, and no free locker (`LOCKER_NOT_AVAILABLE`).
+- **Invalid customer login returns `98 AUTHENTICATION_FAILED`** (inactive account: `98 ACCOUNT_INACTIVE`) instead of `99`.
+- **`/pay/verify/` on an unpaid reference returns `09 PAYMENT_NOT_SUCCESSFUL`**, with `errorcode`, `errorfield` and `retryable`. `/pay/status/` reports `pending` for an initialized/abandoned checkout instead of `abandoned`.
+- **Idempotency-Key body mismatch returns `08 IDEMPOTENCY_KEY_REUSED`** instead of silently replaying the first response. The same body still replays the first response.
+- **Snapshot required fields documented**: `boxid`, `parcelid`, `parceldetailid`, `parcelreferencenumber`, `snapshotevent`, `snapshotsequence` and `image` are required in addition to `apikey`.
+- **Wallet-credit refusal corrected in the docs** to `09 CREDIT_ADMIN_ONLY`.
+- **Notifications are attributed to the parcel in the current request**, not a value left in session by an earlier page. This prevents a notification from appearing under another parcel's history.
+- **Business parcel cancellation now notifies the recipient**, matching customer cancellations.
 
 ### 2026-11-05 (2.1.13)
 
