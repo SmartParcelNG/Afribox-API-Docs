@@ -3233,7 +3233,7 @@
         "tags": [
           "pay"
         ],
-        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed` and `reversed` (stop polling). A checkout that has not been paid yet is reported as `pending` (Paystack's `initialized`/`ongoing`/`abandoned` are collapsed to `pending`), so a new checkout never looks terminal before payment. An unknown/scoped-out reference returns `07 NOT_FOUND`. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC.",
+        "description": "Returns the recorded status for a reference, self-confirming with Paystack if still pending. Intended for polling by the locker app and WhatsApp bot. `statuscode` is 00 for a known reference — the outcome is `transactionstatus`; terminal values are `success`, `failed` and `reversed` (stop polling). A checkout that has not been paid yet is reported as `pending` (Paystack's `initialized`/`ongoing`/`abandoned` are collapsed to `pending`), so a new checkout never looks terminal before payment. An unknown/scoped-out reference returns `07 NOT_FOUND`. Scope: a payment initialized with a **business key** is readable with that business key; a payment initialized with an **application key** (the web app) is readable only with that same application key — use it for web-app payments. No server-enforced interval: poll every ~5 s with backoff and stop on a terminal value. `paidat` is ISO 8601 UTC.",
         "x-auth": "paystack_dual",
         "x-readonly": true,
         "requestBody": {
@@ -9551,7 +9551,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LockerSizeData"
-            }
+            },
+            "description": "Canonical locker-size list for the box."
           },
           "lockers": {
             "type": "array",
@@ -9563,7 +9564,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LockerSizeData"
-            }
+            },
+            "description": "Deprecated lower-case alias of `lockerSizes`, kept for older clients. New integrations should read `lockerSizes`."
           },
           "errorcode": {
             "type": "string",

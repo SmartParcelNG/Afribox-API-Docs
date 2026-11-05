@@ -7963,7 +7963,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LockerSizeData"
-            }
+            },
+            "description": "Canonical locker-size list for the box."
           },
           "lockers": {
             "type": "array",
@@ -7975,7 +7976,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LockerSizeData"
-            }
+            },
+            "description": "Deprecated lower-case alias of `lockerSizes`, kept for older clients. New integrations should read `lockerSizes`."
           },
           "errorcode": {
             "type": "string",
