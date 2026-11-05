@@ -74,6 +74,7 @@ Every response also carries:
 | `LOCKER_NOT_AVAILABLE` | `09` | True |
 | `IDEMPOTENCY_KEY_REUSED` | `08` | False |
 | `ACCOUNT_INACTIVE` | `98` | False |
+| `METHOD_NOT_ALLOWED` | `99` | False |
 | `RATE_LIMITED` | `429` | True |
 
 ## Empty result vs. error
