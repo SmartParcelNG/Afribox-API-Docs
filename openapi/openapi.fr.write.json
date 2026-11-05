@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.14",
+    "version": "2.1.15",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -1948,6 +1948,14 @@
               "False"
             ],
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "expiresat": {
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the expiry sweep sets the parcel to status 8, releases the locker and forfeits the fee."
+          },
+          "expiresatiso": {
+            "type": "string"
           },
           "errorcode": {
             "type": "string",

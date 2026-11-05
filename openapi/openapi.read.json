@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.14",
+    "version": "2.1.15",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "servers": [
@@ -3536,6 +3536,14 @@
               "False"
             ],
             "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "expiresat": {
+            "type": "string",
+            "pattern": "^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)$",
+            "description": "Reservation deadline for a parcel awaiting drop-off (server-local; `expiresatiso` is the ISO 8601 form). After it passes, the expiry sweep sets the parcel to status 8, releases the locker and forfeits the fee."
+          },
+          "expiresatiso": {
+            "type": "string"
           },
           "errorcode": {
             "type": "string",
