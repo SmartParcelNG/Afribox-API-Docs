@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.18**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.19**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,12 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-07 (2.1.19)
+
+- **Unpaid customer parcels cannot be dropped off.** `/kiosk/parcel/drop/` refuses a customer parcel with `ParcelPaid = 0`; business and appless parcels are unchanged.
+- **`POST /customer/logout/` added.** It revokes the customer session token and always returns `00`, so it cannot be used to probe token validity. Customer sessions remain 30 days.
+- **Business parcel codes are masked for the public key.** `/business/parcels/info/` and `/info/all/` return real drop/collect codes only for the business **secret key** or a staff session; the public key now gets `"****"`.
 
 ### 2026-11-07 (2.1.18)
 
