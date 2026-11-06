@@ -50,7 +50,7 @@ Each entry is dated when the work shipped; the number in brackets is the contrac
 
 - **Unpaid customer parcels cannot be dropped off.** `/kiosk/parcel/drop/` refuses a customer parcel with `ParcelPaid = 0`; business and appless parcels are unchanged.
 - **`POST /customer/logout/` added.** It revokes the customer session token and always returns `00`, so it cannot be used to probe token validity. Customer sessions remain 30 days.
-- **Business parcel codes are masked for the public key.** `/business/parcels/info/` and `/info/all/` return real drop/collect codes only for the business **secret key** or a staff session; the public key now gets `"****"`.
+- **Business parcel codes are masked for the public key.** `/business/parcels/info/` and `/info/all/` return real drop/collect codes only for a signed-in staff session; the public key now gets `"****"`. The secret key is not accepted on these read endpoints (unchanged).
 
 ### 2026-11-07 (2.1.18)
 
