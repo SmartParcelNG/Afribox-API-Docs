@@ -11,7 +11,7 @@ const guidesSidebar = [
   {
     type: 'category' as const,
     label: 'Guides',
-    items: ['guides/paystack-b2b', 'guides/paystack-b2c', 'guides/kiosk', 'guides/webhook'],
+    items: ['guides/paystack-b2b', 'guides/paystack-b2c', 'guides/kiosk', 'guides/kiosk-operations', 'guides/webhook'],
   },
 ];
 
