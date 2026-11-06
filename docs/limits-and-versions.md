@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.17**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.18**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,13 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-07 (2.1.18)
+
+- **Appless payments are no longer consumed by `/pay/verify/` or the Paystack webhook.** They remain available until `/kiosk/parcel/appless/reserve/` claims them, removing the first-reserve `PAYMENT_ALREADY_USED` failure after a fresh payment.
+- **Console parser errors fixed** in the Business Admin dashboard, Courier dashboard, Box Owner dashboard, the four Logistics Analytics pages and Logistics Parcel Reports.
+- **Business user details show the staff role** (Administrator / Operator).
+- **Pro parcel detail shows the locker number.**
 
 ### 2026-11-06 (2.1.17)
 
