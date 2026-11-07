@@ -320,7 +320,10 @@ def build_operation(ep, classes, name_map, overrides):
         op["deprecated"] = True
 
     if ep["method"] == "post" and ep["request"]:
-        media = {"schema": {"$ref": f'#/components/schemas/{ref_name(ep["request"], name_map)}'}}
+        if o.get("requestSchema") is not None:
+            media = {"schema": o["requestSchema"]}
+        else:
+            media = {"schema": {"$ref": f'#/components/schemas/{ref_name(ep["request"], name_map)}'}}
         if o.get("example") is not None:
             media["example"] = o["example"]
         op["requestBody"] = {"required": True, "content": {"application/json": media}}

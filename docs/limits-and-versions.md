@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.19**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.20**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,10 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-07 (2.1.20)
+
+- **`sessiontoken` removed from the `/core/boxes/info/` and `/core/boxes/availability/` request schemas.** These endpoints are authenticated by the application `apikey` only and take `apikey` + `boxid`; the field was a leftover and was never read. Session tokens are issued by `/customer/login/` (customer, 30 days) and `/business/login/` (business staff, 7 days) and are used only by the customer and business endpoints.
 
 ### 2026-11-07 (2.1.19)
 

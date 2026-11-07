@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.19",
+    "version": "2.1.20",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -185,6 +185,21 @@
       "description": "Marks a parcel paid only when a successful payment bound to that parcel is found. The parcel and its `collectcode` are returned **only** when the payment is confirmed."
     },
     "POST /core/boxes/info/": {
+      "requestSchema": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey",
+          "boxid"
+        ]
+      },
       "responseExample": {
         "statuscode": "00",
         "statusmessage": "Successful",
@@ -366,6 +381,21 @@
       "description": "Billing types used by businesses (for example Prepaid, Postpaid)."
     },
     "POST /core/boxes/availability/": {
+      "requestSchema": {
+        "type": "object",
+        "properties": {
+          "apikey": {
+            "type": "string"
+          },
+          "boxid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apikey",
+          "boxid"
+        ]
+      },
       "summary": "Boxes Availability",
       "description": "Free lockers by size for a box (counts only, no locker numbers)."
     },
