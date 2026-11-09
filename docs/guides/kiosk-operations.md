@@ -18,6 +18,25 @@ after a timeout or network cut.
 - The API marks a box offline after **15 minutes** without a ping.
 - A box that has never pinged is not reliable for booking.
 
+## Application key scope
+
+A locker should use an application key with **scope `kiosk`**. That scope is limited to the
+locker surface: every `/kiosk/` operation plus the read and payment endpoints the locker needs.
+Any other endpoint returns `98 Authentication Failed`.
+
+| Allowed for a `kiosk` key | Purpose |
+|---|---|
+| `/kiosk/*` | setup, ping, drop, collect, appless reserve/verify, snapshots |
+| `/core/boxes/info/` | box, lockers, service state |
+| `/core/boxes/availability/` | free lockers by size |
+| `/core/boxes/list/` | active boxes in the key's network only |
+| `/core/fees/appless/` | walk-in fee schedule |
+| `/pay/initialize/` | start the walk-in payment |
+| `/pay/status/` | poll the payment |
+
+Business, customer, admin and other core endpoints are not available to a `kiosk` key.
+`/core/boxes/list/` is network-scoped: a Network 3 key sees only Network 3 boxes.
+
 ## Drop: `/kiosk/parcel/drop/`
 
 The request carries `boxid` and the 4-character `unlockcode` (the drop code).

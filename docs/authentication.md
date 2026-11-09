@@ -43,6 +43,10 @@ All endpoints authenticate with an `apikey` sent **in the JSON request body**
 - The **application key** is the one intended for client apps and devices. It is scoped to the
   application/network, not to a single customer. Contact details are masked on
   `/core/parcels/search/` for this key.
+- An application key can also be **scoped to a kiosk**. A `kiosk` key may call every `/kiosk/`
+  operation plus `/core/boxes/info/`, `/core/boxes/availability/`, `/core/boxes/list/`,
+  `/core/fees/appless/`, `/pay/initialize/` and `/pay/status/`; any other endpoint returns `98`.
+  See [Kiosk operating rules](./guides/kiosk-operations#application-key-scope).
 :::
 
 ## Customer session token

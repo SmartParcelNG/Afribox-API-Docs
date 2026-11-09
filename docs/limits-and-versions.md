@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.20**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.21**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,12 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-09 (2.1.21)
+
+- **Kiosk-scoped application keys now reach the whole locker surface.** Besides `/kiosk/*`, a `kiosk` key may call `/core/boxes/info/`, `/core/boxes/availability/`, `/core/boxes/list/`, `/core/fees/appless/`, `/pay/initialize/` and `/pay/status/`. Everything else still returns `98`. `/core/boxes/list/` is network-scoped, so a Network 3 key sees only Network 3 boxes.
+- **Business API keys resolve the business's own network.** `/business/*` authentication previously read the network from a hard-coded Network 2 application, so a business on Network 3 (Manufacturer) received an empty network context and `/business/boxes/*` returned no boxes even when the box was assigned. The network now comes from `BUS_Businesses.NetworkID`; Network 2 behaviour is unchanged.
+- **BOX006 stored capacity corrected to 10** to match its 10 physical compartments (free/in-use counts already came from the locker rows).
 
 ### 2026-11-07 (2.1.20)
 
