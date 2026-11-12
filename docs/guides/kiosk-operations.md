@@ -68,6 +68,33 @@ The request carries `boxid` and the 4-character collect code.
    and the existing parcel payload.
 5. If the door does not open, follow the same maintenance/retry rule as drop.
 
+## Snapshot upload: `/kiosk/parcel/snapshot/`
+
+The locker uploads four proof photos per parcel: `dropoff` / `1`, `dropoff` / `2`,
+`pickup` / `1`, `pickup` / `2`. `image` is a **raw base64 JPEG** (no `data:` URI
+prefix), and the decoded image must be **2 MB or less**.
+
+- Take the parcel identifiers (`parcelid`, `parceldetailid`,
+  `parcelreferencenumber`) from the drop or collect response. `boxid` is the
+  numeric id returned by `/kiosk/setup/`, not the `boxcode` (`BOX006`).
+- Use a **read timeout of at least 30–60 seconds** for the snapshot call. The
+  image upload is much larger than the other calls; a 5-second timeout will
+  abort a request the server is still processing.
+- On a timeout or network cut, **retry the same request**. The API is idempotent
+  for the same `parceldetailid` + `snapshotevent` + `snapshotsequence`: the retry
+  returns the existing snapshot, stores no duplicate and does not send the proof
+  notification again.
+- `imagedatetime` is server local time in `M/d/yyyy h:mm:ss AM/PM` format. Keep
+  the box clock synchronised with NTP and make the time zone a setting. The
+  server is currently UTC+1 and is moving to UTC+0.
+- The API stores the image file and the snapshot metadata. The base64 image is
+  redacted from the API-call log.
+
+Retry the upload when there is no answer, when `retryable` is `"True"`, or when
+`statuscode` is `"99"`. Do not retry on `04`, `05`, `07` or `09` until the
+request is corrected; those are validation, not-found or business-rule
+refusals.
+
 ## Network cuts and offline behaviour
 
 - Do **not** open the door before the API confirms a drop or collect.
@@ -103,6 +130,8 @@ messages. In a test network the server records the notification with
 | Area | Owner |
 |---|---|
 | Code validation and record of drop/collect | API |
+| Snapshot storage, validation and idempotent replay | API |
+| Camera capture, JPEG base64 encoding, upload timeout/retry | Locker |
 | Door motor, door sensor, timeout, jam detection | Locker |
 | Box ping cadence and offline display | Locker |
 | Application key and API base URL | Locker configuration |
