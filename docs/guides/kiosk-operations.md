@@ -129,10 +129,10 @@ messages. In a test network the server records the notification with
 
 ## Logging
 
-The platform API-call log is redacted. It keeps the endpoint, time,
+New platform API-call log entries are redacted. They keep the endpoint, time,
 `statuscode`, `errorcode`, parcel reference/identifiers, door and result, but
 never the application key, opening codes, payment credentials, names, phone
-numbers or e-mail addresses.
+numbers or e-mail addresses. Entries written before this rule are unchanged.
 
 On the locker, keep only the parcel reference, the compartment, the time and
 the result of each operation. Never keep opening codes, names or phone numbers
