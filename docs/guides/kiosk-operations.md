@@ -53,9 +53,18 @@ Sequence:
 5. If the door still does not open, keep the parcel reserved for maintenance and
    raise an alert. Do not issue or accept a new drop code for that parcel.
 
+**Replay window.** The replay answer is limited to a short window after the first
+successful drop: **2 minutes** by default, configurable with
+`KioskReplayWindowMinutes`. Inside the window the same `boxid` + `unlockcode`
+returns `00` with the original payload. After the window it returns
+`07 NOT_FOUND`; the locker must not open the door. The window is measured from the
+first success and is not extended by retries.
+
 Door-open timeout and “door left open” handling are **locker responsibilities**. The
 API has no door sensor. The locker must close the door after its configured timeout
-and report the fault locally.
+and report the fault locally. The locker should only retry a code while its own
+door-fault handling is still in progress; once the door has been seen open and
+closed, a repeated code must not reopen it.
 
 ## Collect: `/kiosk/parcel/collect/`
 
@@ -64,9 +73,11 @@ The request carries `boxid` and the 4-character collect code.
 1. Send the collect request.
 2. `00` means the collection is recorded and the parcel is no longer in the locker.
 3. Open the door after `00`.
-4. A retry with the same code returns `00` with `statusmessage = "Already collected"`
-   and the existing parcel payload.
-5. If the door does not open, follow the same maintenance/retry rule as drop.
+4. A retry with the same code within the replay window returns `00` with
+   `statusmessage = "Already collected"` and the existing parcel payload.
+5. After the window, the same code returns `07 NOT_FOUND` and must not reopen the
+   door.
+6. If the door does not open, follow the same maintenance/retry rule as drop.
 
 ## Snapshot upload: `/kiosk/parcel/snapshot/`
 
@@ -100,7 +111,8 @@ refusals.
 - Do **not** open the door before the API confirms a drop or collect.
 - If the API is unreachable, keep the request queued and retry with the **same code**.
 - Do not invent a new code or a new parcel to get around a timeout.
-- The API is idempotent for the same `boxid` + `unlockcode`; the retry is safe.
+- The API is idempotent for the same `boxid` + `unlockcode` only inside the replay
+  window (2 minutes by default). A retry after the window returns `07 NOT_FOUND`.
 - If the locker cannot reach the API for an extended period, put itself in a safe
   state: no new drops, no collections, display a clear “offline” message.
 
@@ -120,10 +132,10 @@ messages. In a test network the server records the notification with
 | Case | What the locker should do |
 |---|---|
 | `00` | Proceed with the door action |
-| `07` | Code not found for this box: show “invalid or expired code” |
+| `07` | Code not found for this box, or the replay window has expired: show “invalid or expired code” and do not open the door |
 | `98` | Authentication failed: do not retry until configuration is fixed |
 | `99` | Transient server error: retry the same request with backoff |
-| timeout / no response | Retry the same request; the action may already have been recorded |
+| timeout / no response | Retry the same request within the replay window; the action may already have been recorded |
 
 ## Responsibilities
 
