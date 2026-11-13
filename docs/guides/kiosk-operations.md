@@ -127,6 +127,18 @@ When notifications are enabled, drop/collect actions queue SMS, email and WhatsA
 messages. In a test network the server records the notification with
 `Suppressed = 1` and does not deliver it.
 
+## Logging
+
+The platform API-call log is redacted. It keeps the endpoint, time,
+`statuscode`, `errorcode`, parcel reference/identifiers, door and result, but
+never the application key, opening codes, payment credentials, names, phone
+numbers or e-mail addresses.
+
+On the locker, keep only the parcel reference, the compartment, the time and
+the result of each operation. Never keep opening codes, names or phone numbers
+in the local log. If a masked code is needed for support, keep only its first
+character. The platform can trace the operation from the parcel reference.
+
 ## Error handling
 
 | Case | What the locker should do |
