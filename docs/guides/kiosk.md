@@ -46,6 +46,21 @@ The locker device uses the `kiosk` endpoints with the **application key**.
 
 A reference can fund **one** reservation. Replays are rejected (`"Payment already used"`).
 
+### Codes and door opening
+
+The reservation records the parcel as already dropped (status 2): the walk-in customer is at
+the box and the compartment is allocated immediately. Open the compartment on the reservation
+`00`.
+
+The response carries two codes:
+
+- `dropcode` — a fallback for the replay window. Use it only if the compartment did not open on
+  the reservation `00`; the code stops working after the window (see *Kiosk operating rules*).
+- `collectcode` — the recipient's collection code.
+
+Both are real 4-character codes. They must not be written to the locker's local log. The
+platform API-call log masks them.
+
 ## Drop / collect
 
 - `POST /kiosk/parcel/drop/` — drop a parcel. Body: `{ apikey, boxid, unlockcode }`, where

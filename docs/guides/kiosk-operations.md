@@ -66,6 +66,11 @@ and report the fault locally. The locker should only retry a code while its own
 door-fault handling is still in progress; once the door has been seen open and
 closed, a repeated code must not reopen it.
 
+**Walk-in (appless) reservations.** `/kiosk/parcel/appless/reserve/` records the parcel as
+already dropped (status 2). Open the compartment on the reservation `00`. The response returns
+both `dropcode` and `collectcode`; `dropcode` is only the replay-window fallback if the door did
+not open, and `collectcode` is the recipient's code. Do not log either code.
+
 ## Collect: `/kiosk/parcel/collect/`
 
 The request carries `boxid` and the 4-character collect code.
@@ -108,11 +113,12 @@ refusals.
 
 ## Network cuts and offline behaviour
 
-- Do **not** open the door before the API confirms a drop or collect.
+- Do **not** open the door before the API confirms a drop, a collect, or a walk-in
+  reservation.
 - If the API is unreachable, keep the request queued and retry with the **same code**.
 - Do not invent a new code or a new parcel to get around a timeout.
 - The API is idempotent for the same `boxid` + `unlockcode` only inside the replay
-  window (2 minutes by default). A retry after the window returns `07 NOT_FOUND`.
+  window (2 minutes by default, 5 on staging). A retry after the window returns `07 NOT_FOUND`.
 - If the locker cannot reach the API for an extended period, put itself in a safe
   state: no new drops, no collections, display a clear “offline” message.
 

@@ -657,7 +657,7 @@
     },
     "POST /kiosk/parcel/appless/reserve/": {
       "summary": "Appless Reserve",
-      "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use)."
+      "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use). The reservation records the parcel as already dropped (status 2): open the compartment on the `00`. The response returns the real `dropcode` (a replay-window fallback if the door did not open) and `collectcode` (the recipient's code); the platform API-call log masks both."
     },
     "POST /kiosk/parcel/appless/verify/": {
       "summary": "Appless Verify",
@@ -1237,6 +1237,16 @@
         },
         "boxlockernumber": {
           "description": "Optional. When supplied it must match the parcel’s current locker."
+        }
+      }
+    },
+    "ApplessReserveParcelData": {
+      "properties": {
+        "dropcode": {
+          "description": "The drop code. A walk-in reservation records the parcel as already dropped, so this code is a replay/reopen fallback valid only inside the replay window: use it only if the compartment did not open on the reservation `00`. The platform API-call log masks it. The recipient uses `collectcode`."
+        },
+        "collectcode": {
+          "description": "The collect code for the recipient. The platform API-call log masks it."
         }
       }
     }
