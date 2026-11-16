@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.21",
+    "version": "2.1.22",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -19,6 +19,19 @@
     "/pay/return/",
     "/pay/webhook/paystack/",
     "/health/"
+  ],
+  "idempotentEndpoints": [
+    "POST /admin/businesses/wallettransaction/new/",
+    "POST /business/parcels/create/",
+    "POST /business/wallettransaction/new/",
+    "POST /customer/cards/add/",
+    "POST /customer/parcels/hold/",
+    "POST /customer/parcels/new/",
+    "POST /customer/signup/",
+    "POST /customer/support/",
+    "POST /kiosk/parcel/appless/reserve/",
+    "POST /kiosk/parcel/snapshot/",
+    "POST /pay/initialize/"
   ],
   "operations": {
     "POST /track/": {
@@ -592,11 +605,11 @@
     },
     "POST /business/parcels/info/all/": {
       "summary": "Info All",
-      "description": "One business parcel **plus its `timelines`**, by `parceldetailid`. Requires the **business public key**; `dropcode`/`collectcode` are masked as `\"****\"`."
+      "description": "One business parcel **plus its `timelines`**, by `parceldetailid`. The **business public key** gets `dropcode`/`collectcode` masked as `\"****\"`. A signed-in **staff session** (`/business/login/` → `sessiontoken`) gets the real codes. The secret key is not accepted on this read endpoint."
     },
     "POST /business/parcels/info/": {
       "summary": "Parcels Info",
-      "description": "One business parcel, by `parceldetailid`. Requires the **business public key**; the opening codes `dropcode`/`collectcode` are served as `\"****\"` (real codes are returned only under the secret key, e.g. the create response)."
+      "description": "One business parcel, by `parceldetailid`. The **business public key** gets `dropcode`/`collectcode` masked as `\"****\"`. A signed-in **staff session** (`/business/login/` → `sessiontoken`) gets the real codes. The secret key is not accepted on this read endpoint."
     },
     "POST /business/parcels/reports/": {
       "summary": "Parcels Reports",

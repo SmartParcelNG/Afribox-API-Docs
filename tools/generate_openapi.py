@@ -319,6 +319,18 @@ def build_operation(ep, classes, name_map, overrides):
     if o.get("deprecated"):
         op["deprecated"] = True
 
+    idempotent = key in set(overrides.get("idempotentEndpoints") or [])
+    if idempotent:
+        op["parameters"] = [OrderedDict([
+            ("name", "Idempotency-Key"),
+            ("in", "header"),
+            ("required", False),
+            ("description", "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days."),
+            ("schema", OrderedDict([("type", "string"), ("maxLength", 200)])),
+        ])]
+        if "IDEMPOTENCY_KEY_REUSED" not in desc:
+            op["description"] = desc.rstrip() + " **Idempotency:** send an `Idempotency-Key` header; a replay with the same body returns the first response, a different body returns `08 IDEMPOTENCY_KEY_REUSED`, and keys are kept for 7 days."
+
     if ep["method"] == "post" and ep["request"]:
         if o.get("requestSchema") is not None:
             media = {"schema": o["requestSchema"]}

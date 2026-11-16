@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.21",
+    "version": "2.1.22",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -96,6 +96,18 @@
         "description": "Insère un mouvement de portefeuille pour une entreprise. Requiert la **clé admin** ; refuse les entreprises hors de son réseau. `wallettransactiontypeid` 1 = Credit, 2 = Debit ; `walletfundmodeid` 1/2/3. `createdby` est facultatif (identifiant utilisateur numérique ; défaut : 0).",
         "x-auth": "admin_key",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -988,6 +1000,18 @@
         "description": "Crée un colis pour le compte de l'entreprise et réserve un casier. Le type de demande est toujours **6** (Ramassage sur place / réservation appless) — ce n'est pas un champ de la requête. Débite les frais de réservation du portefeuille (prépayé) et fixe l'échéance de dépôt (`expiresat`, 48 h par défaut). Requiert la **clé secrète** de l'entreprise. Prend en charge un en-tête `Idempotency-Key` facultatif. Pour une entreprise prépayée avec un solde insuffisant : `statuscode` 99, `errorcode` `INSUFFICIENT_BALANCE`. Si le colis n'est jamais déposé, la réservation expire (statut 8), le casier est libéré et les frais sont perdus (pas de remboursement). Les frais de réservation débités ici sont le **seul débit** pour un colis de type 6 — la collecte ne facture pas de nouveau.",
         "x-auth": "business_secret",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1704,6 +1728,18 @@
         "description": "Insère un mouvement de portefeuille pour l'entreprise. Requiert la **clé secrète**. `wallettransactiontypeid` 2 = Debit uniquement — **Credit réservé à l'admin** (`99` sinon). `walletfundmodeid` 1/2/3 ; les ajustements manuels utilisent 2 (Back Office). `createdby` est facultatif (identifiant utilisateur numérique ; défaut : utilisateur principal de l'entreprise).",
         "x-auth": "business_secret",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -2986,6 +3022,18 @@
         "description": "Démarre une **vérification de carte** pour la tokeniser : initialise une transaction Paystack de **1 XOF** (`metadata.purpose=\"AddCard\"`) et renvoie `cardaddurl` ; le client la complète dans le navigateur, puis appelez `/customer/cards/add/complete/`. Cela **ne débite pas** le client. Max **3** cartes.",
         "x-auth": "app_key",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -3818,6 +3866,18 @@
         "description": "Réserve un casier pour une courte fenêtre de paiement d'abord (**15 minutes**) pendant que le payeur termine Paystack ; le casier est libéré automatiquement à l'expiration (tâche de 2 minutes, plus nettoyage opportuniste).",
         "x-auth": "paystack_dual",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4018,6 +4078,18 @@
         "description": "Crée un colis client et réserve un casier, en fixant l'échéance de dépôt (`expiresat`, 48 h par défaut). `requesttypeid` doit être `1` (Envoyer un colis — requiert aussi `recipientaddress` et `deliveryareaid`), `2` (Self-stockage) ou `3` (Client à client — requiert nom/téléphone/email du destinataire). Les autres types sont refusés. S'il n'est jamais déposé, la réservation expire (statut 8) et le casier est libéré.",
         "x-auth": "app_key",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4215,9 +4287,21 @@
         "tags": [
           "customer"
         ],
-        "description": "Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists.",
+        "description": "Register a customer; sends a one-time code. The response does **not** contain the code, and does not reveal whether the number already exists. **Idempotency:** send an `Idempotency-Key` header; a replay with the same body returns the first response, a different body returns `08 IDEMPOTENCY_KEY_REUSED`, and keys are kept for 7 days.",
         "x-auth": "app_key",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4255,9 +4339,21 @@
         "tags": [
           "customer"
         ],
-        "description": "Submit a support request for the customer.",
+        "description": "Submit a support request for the customer. **Idempotency:** send an `Idempotency-Key` header; a replay with the same body returns the first response, a different body returns `08 IDEMPOTENCY_KEY_REUSED`, and keys are kept for 7 days.",
         "x-auth": "app_key",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4295,9 +4391,21 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use).",
+        "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use). **Idempotency:** send an `Idempotency-Key` header; a replay with the same body returns the first response, a different body returns `08 IDEMPOTENCY_KEY_REUSED`, and keys are kept for 7 days.",
         "x-auth": "app_key",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4471,6 +4579,18 @@
         "description": "Téléverse un instantané de preuve de livraison (`snapshotevent` dropoff/pickup, `snapshotsequence` 1/2). `parceldetailid` est **l'identifiant autoritaire** : le serveur résout le colis et vérifie que les autres identifiants concordent (discordance → `09 PARCEL_IDENTIFIERS_MISMATCH`, colis inconnu → `07`). Rejouer le même `(parceldetailid, snapshotevent, snapshotsequence)` est **idempotent** — renvoie l'instantané existant au lieu d'un doublon ou d'une nouvelle notification.",
         "x-auth": "app_key",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -4689,6 +4809,18 @@
         "description": "Crée une transaction Paystack. L'authentification accepte **soit** une clé secrète d'entreprise (B2B), **soit** une clé d'application avec un `customerid` facultatif (B2C). Le `amount` est en unité majeure — francs XOF ; le `×100` de la passerelle est appliqué en interne. Utilisez `metadata.parcelreference` pour marquer un colis payé, ou `metadata.fulfil=\"wallet\"` pour créditer le portefeuille d'une entreprise. La réponse contient `authorizationurl` (paiement hébergé) et `accesscode` (popup Paystack). `flowtype` est un champ de **niveau supérieur** (pas dans `metadata`) ; il est recopié dans `metadata.flow` et renvoyé comme `flowtype` de la transaction. Clés `metadata` traitées par le serveur : `parcelreference` (marquer un colis payé), `fulfil: \"wallet\"` (créditer le portefeuille), `holdtoken` (finaliser une réservation), `returnurl` (redirection depuis `/pay/return/`) et `narration` (libellé du crédit) ; le serveur remplit aussi `applicationid`/`businessid`/`customerid`. Avec `flowtype: \"appless\"` et un `phone` de niveau supérieur, le serveur envoie le lien de paiement par SMS.",
         "x-auth": "paystack_dual",
         "x-readonly": false,
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional. Repeat the same request body with the same key and the server returns the first response instead of performing the operation again. A different body with the same key returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Keys are kept for 7 days.",
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {

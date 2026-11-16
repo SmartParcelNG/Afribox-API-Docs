@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.21**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.22**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -45,6 +45,15 @@ sidebar_position: 4
 ## Changelog
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
+
+### 2026-11-16 (2.1.22)
+
+- **Kiosk replay window documented and set to 5 minutes on staging.** A used drop/collect code returns `00` with the original payload only inside `KioskReplayWindowMinutes` (default **2**, staging **5**); after the window it returns `07` and the locker must not open the door. Retries do not extend the window.
+- **Unpaid customer drop guard kept with the replay window.** The replay-window version of `/kiosk/parcel/drop/` now also refuses a customer parcel with `ParcelPaid = 0`, so the 2.1.19 protection is not lost when the window is enabled.
+- **Kiosk collect logs no longer store opening codes.** The API call log for `/kiosk/parcel/collect/` now masks `unlockcode` and records only the envelope and parcel identifiers, matching `/kiosk/parcel/drop/`.
+- **`Idempotency-Key` declared in the contract.** Every endpoint that accepts it now shows the header parameter and `08 IDEMPOTENCY_KEY_REUSED`. A replay with the same body returns the first response; a different body returns `08`; keys are kept for **7 days**. Bulk creation does **not** accept the header today.
+- **Business parcel code visibility corrected in the docs.** `/business/parcels/info/` and `/info/all/` return real `dropcode`/`collectcode` only to a signed-in **staff session**; the public key gets `"****"` and the secret key is refused on those reads.
+- **Applications page documented.** The Authentication page now describes creating, deactivating and rotating an application key in **Applications** instead of contacting an integration contact.
 
 ### 2026-11-09 (2.1.21)
 

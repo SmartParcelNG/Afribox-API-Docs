@@ -54,8 +54,8 @@ Sequence:
    raise an alert. Do not issue or accept a new drop code for that parcel.
 
 **Replay window.** The replay answer is limited to a short window after the first
-successful drop: **2 minutes** by default, configurable with
-`KioskReplayWindowMinutes`. Inside the window the same `boxid` + `unlockcode`
+successful drop: **5 minutes on staging** (default **2**), configurable with
+`KioskReplayWindowMinutes` in the console. Inside the window the same `boxid` + `unlockcode`
 returns `00` with the original payload. After the window it returns
 `07 NOT_FOUND`; the locker must not open the door. The window is measured from the
 first success and is not extended by retries.

@@ -25,10 +25,10 @@ All endpoints authenticate with an `apikey` sent **in the JSON request body**
 ## Getting a key
 
 - The **application key** and the **admin key** are issued by the Afribox team — they are not
-  self-service. An administrator reads a network's application key in the console at
-  **Admin → Networks → *network* → API access**: read-only, masked with a reveal/copy action, and
-  visible to Super Administrators only. To obtain or rotate one, contact your Afribox integration
-  contact — a renewed key is published there for collection rather than sent by chat or e-mail.
+  self-service for production. In the console, **Applications** (Super Administrators) creates an
+  application, shows its key masked with a reveal/copy action, and lets you **deactivate** it or
+  **rotate** its key. A trial or staging key can be created there without a support request; for
+  production, Afribox creates the key and hands it over once.
 - The **business public** and **business secret** keys are on the business record
   (`BusinessDetails.aspx`). Both are shown masked with a reveal/copy action, visible to Super
   Administrators only — keep the **secret key** server-side.
@@ -36,10 +36,11 @@ All endpoints authenticate with an `apikey` sent **in the JSON request body**
 :::warning Keep the right key in the right place
 - The **secret key** must never live in a client (web, mobile, locker app).
 - The **business public key is not a client key**: treat it as server-side. It reads the
-  business's parcels and wallet and must not be shipped in a browser bundle. Parcel reads return
-  the locker opening codes (`dropcode`/`collectcode`) only for the **business that owns the
-  parcel**; another business's parcel returns `07` (not found), and the list endpoints keep
-  masking them as `"****"`.
+  business's parcels and wallet and must not be shipped in a browser bundle. `/business/parcels/info/`
+  and `/info/all/` return `dropcode`/`collectcode` masked as `"****"` to the **public key**. The real
+  codes are returned only to a signed-in **staff session** (`/business/login/` with a staff
+  email/password and a valid `sessiontoken`); the **secret key is refused** on those read endpoints.
+  Another business's parcel returns `07` (not found), and the list endpoints keep masking the codes.
 - The **application key** is the one intended for client apps and devices. It is scoped to the
   application/network, not to a single customer. Contact details are masked on
   `/core/parcels/search/` for this key.
@@ -93,8 +94,13 @@ proofs by id. A business can list its **own** parcels' snapshots with its **publ
 
 Creating endpoints (`business/parcels/create`, `customer/parcels/new`, `pay/initialize`,
 `kiosk/parcel/appless/reserve`, and others) accept an optional **`Idempotency-Key`** header.
-Repeat the same call with the same key and the server returns the first response instead of
-creating a second parcel/locker/debit. Use a fresh UUID per logical operation.
+Repeat the same call with the same key **and the same request body** and the server returns the
+first response instead of creating a second parcel/locker/debit. A request with the same key but a
+**different body** returns `08` with `errorcode` `IDEMPOTENCY_KEY_REUSED`. Use a fresh UUID per
+logical operation. Keys are kept for **seven days**, after which the same key may be used again.
+
+Bulk creation (`/business/parcels/create/bulk/`) does **not** accept `Idempotency-Key` today.
+The endpoints that do are listed in the contract with the header parameter.
 
 ## Dual-auth endpoints
 
@@ -116,9 +122,8 @@ business. `/customer/parcels/hold/` is the pay-first checkout: it returns a Pays
 - `/business/boxes/info/` is **business-scoped**: it returns a box only if it is assigned to
   the calling business (`BUS_BusinessBoxes`). The owner's any-box lookup is `/core/boxes/info/`
   with the application key.
-- Known leftover: the business authentication procedures resolve the request's application
-  context through a hard-coded application key. It is harmless today (endpoints use the
-  business's own network) and is slated for cleanup.
+- Business authentication resolves the network from the **business's own network**, so a business
+  on a non-Afribox network (for example a Manufacturer test business) sees only its own boxes.
 :::
 
 ## Paystack webhook
