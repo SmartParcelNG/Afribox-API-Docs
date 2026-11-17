@@ -53,6 +53,10 @@ Sequence:
 5. If the door still does not open, keep the parcel reserved for maintenance and
    raise an alert. Do not issue or accept a new drop code for that parcel.
 
+**Expired reservations.** A parcel whose drop-off deadline (`DateExpires`) has passed
+is refused even if the expiry sweep has not yet released the locker. The API returns
+`07`; do not open the door. The scheduled sweep releases the locker within five minutes.
+
 **Replay window.** The replay answer is limited to a short window after the first
 successful drop: **5 minutes on staging** (default **2**), configurable with
 `KioskReplayWindowMinutes` in the console. Inside the window the same `boxid` + `unlockcode`

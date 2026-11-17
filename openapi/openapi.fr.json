@@ -4391,7 +4391,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use). The reservation records the parcel as already dropped (status 2): open the compartment on the `00`. The response returns the real `dropcode` (a replay-window fallback if the door did not open) and `collectcode` (the recipient's code); the platform API-call log masks both. **Idempotency:** send an `Idempotency-Key` header; a replay with the same body returns the first response, a different body returns `08 IDEMPOTENCY_KEY_REUSED`, and keys are kept for 7 days.",
+        "description": "Reserve a walk-in locker against a paid reference. The backend verifies the payment and claims it (single use). The reservation records the parcel as already dropped (status 2): open the compartment on the `00`. The parcel is marked paid and the payment is linked to it. The response returns the real `dropcode` (a replay-window fallback if the door did not open) and `collectcode` (the recipient's code); the platform API-call log masks both. **Idempotency:** send an `Idempotency-Key` header; a replay with the same body returns the first response, a different body returns `08 IDEMPOTENCY_KEY_REUSED`, and keys are kept for 7 days.",
         "x-auth": "app_key",
         "x-readonly": false,
         "parameters": [
@@ -4536,7 +4536,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`.",
+        "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
