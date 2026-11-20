@@ -32,8 +32,9 @@ The locker device uses the `kiosk` endpoints with the **application key**.
    - Poll `POST /pay/status` until `transactionstatus == "success"`.
 3. `POST /kiosk/parcel/appless/reserve` with the full body: **`apikey`**, **`boxid`**,
    **`sizeid`**, **`amount`** (must match the payment), **`boxlockernumber`**,
-   **`senderphone`**, **`recipientphone`** and **`paymentreference`**. `senderemail` /
-   `recipientemail` are **optional** — send them when the customer wants a confirmation by email.
+   **`senderphone`**, **`recipientphone`** and **`paymentreference`**. `sendername`,
+   `recipientname`, `senderemail` and `recipientemail` are **optional** — send them when
+   the customer wants a name on the record or a confirmation by email.
 
 ### Reservation is payment-backed
 
@@ -59,7 +60,13 @@ The response carries two codes:
 - `collectcode` — the recipient's collection code.
 
 Both are real 4-character codes. They must not be written to the locker's local log. The
-platform API-call log masks them.
+platform API-call log masks them. The reservation reply keeps both codes; the later drop
+and collect replies mask them.
+
+A failed reservation releases its payment claim (contract 2.1.18). If the reservation is
+refused after payment, correct the request and retry with the **same** `paymentreference`.
+The size check does not hold a door: open the `boxlockernumber` returned by the
+**reservation reply**, not the one from the size check.
 
 ## Drop / collect
 

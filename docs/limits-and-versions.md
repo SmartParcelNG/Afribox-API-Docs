@@ -46,6 +46,13 @@ sidebar_position: 4
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
 
+### 2026-11-20 (2.1.22)
+
+- **Box online status follows the 15-minute ping rule.** API box responses compute `boxonline` from `DateLastPing`; a scheduled `JOB_BoxOnline_Check` keeps the stored flag and console alerts current. A box cannot remain `boxonline: "True"` after 15 minutes without a ping.
+- **Drop and collect replies return the state after the operation.** The first drop no longer returns the pre-drop “New parcel request / Reserved” values; the reply shows “Dropped parcel in locker / Occupied”. Collection replies show the collected state. A repeat inside the replay window adds `"replayed": "True"`.
+- **Drop and collect replies mask personal data and the used code.** Sender/recipient names, phone numbers and e-mail addresses, plus the used `dropcode`/`collectcode`, are returned as `"****"`; parcel reference/IDs, locker, status and amount remain. The reservation reply keeps the real codes for the screen.
+- **Kiosk guide covers the remaining walk-in and retry rules.** Optional `sendername`/`recipientname`, the 30-second drop/collect read timeout, opening on a repeated `00`, retrying the same payment reference after a refused reservation, and opening the `boxlockernumber` from the reservation reply.
+
 ### 2026-11-16 (2.1.22)
 
 - **Kiosk replay window documented and set to 5 minutes on staging.** A used drop/collect code returns `00` with the original payload only inside `KioskReplayWindowMinutes` (default **2**, staging **5**); after the window it returns `07` and the locker must not open the door. Retries do not extend the window. Verified live on staging: an immediate repeat returned `00`, and the same code returned `07` after 5 minutes.

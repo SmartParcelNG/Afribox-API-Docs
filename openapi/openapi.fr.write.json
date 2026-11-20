@@ -1458,7 +1458,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door.",
+        "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door. The reply shows the state after the drop; a repeat inside the replay window returns `00` with `replayed: \"True\"` and the door must open if it was not seen open/closed. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -3293,6 +3293,10 @@
           "parcel": {
             "$ref": "#/components/schemas/DropParcelData"
           },
+          "replayed": {
+            "type": "string",
+            "description": "True when this is a replay of an earlier successful drop inside the replay window. Open the door on this 00 if it was not seen open/closed; after the window the call returns 07."
+          },
           "errorcode": {
             "type": "string",
             "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
@@ -3461,6 +3465,10 @@
           },
           "parcel": {
             "$ref": "#/components/schemas/CollectParcelData"
+          },
+          "replayed": {
+            "type": "string",
+            "description": "True when this is a replay of an earlier successful collection inside the replay window. The collection is already recorded; do not treat it as a new collection."
           },
           "errorcode": {
             "type": "string",

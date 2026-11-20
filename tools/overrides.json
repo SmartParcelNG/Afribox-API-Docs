@@ -678,11 +678,11 @@
     },
     "POST /kiosk/parcel/collect/": {
       "summary": "Parcel Collect",
-      "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`. Collection sets the parcel to status 4 (or, for a requested retrieval, `RetrieveCompleted=1`) and frees the locker. It does **not** charge: a type-6 parcel's reservation fee was already debited at creation."
+      "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`. Collection sets the parcel to status 4 (or, for a requested retrieval, `RetrieveCompleted=1`) and frees the locker. It does **not** charge: a type-6 parcel's reservation fee was already debited at creation. The reply shows the state after collection; a repeat inside the replay window returns `00` with `replayed: \"True\"`. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`."
     },
     "POST /kiosk/parcel/drop/": {
       "summary": "Parcel Drop",
-      "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door."
+      "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door. The reply shows the state after the drop; a repeat inside the replay window returns `00` with `replayed: \"True\"` and the door must open if it was not seen open/closed. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`."
     },
     "POST /kiosk/parcel/snapshot/": {
       "summary": "Parcel Snapshot",
@@ -1247,6 +1247,20 @@
         },
         "collectcode": {
           "description": "The collect code for the recipient. The platform API-call log masks it."
+        }
+      }
+    },
+    "DropParcelResponse": {
+      "properties": {
+        "replayed": {
+          "description": "True when this is a replay of an earlier successful drop inside the replay window. Open the door on this 00 if it was not seen open/closed; after the window the call returns 07."
+        }
+      }
+    },
+    "CollectParcelResponse": {
+      "properties": {
+        "replayed": {
+          "description": "True when this is a replay of an earlier successful collection inside the replay window. The collection is already recorded; do not treat it as a new collection."
         }
       }
     }
