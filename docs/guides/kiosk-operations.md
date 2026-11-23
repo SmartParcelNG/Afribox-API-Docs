@@ -49,8 +49,8 @@ Sequence:
 3. After `00`, the locker may open the door.
 4. If the door does not open, retry the **same** request with the same code.
    The API now returns `00` with `statusmessage = "Already dropped"`, `replayed = "True"`
-   and the parcel payload after the first drop. It does not create a second drop or
-   resend notifications. **Open the door on this `00` if the door was not seen open
+   and the parcel payload returned by the first successful call. It does not create a
+   second drop or resend notifications. **Open the door on this `00` if the door was not seen open
    and closed.** Use a read timeout of at least **30 seconds** for drop and collect;
    5 seconds is too short.
 5. If the door still does not open, keep the parcel reserved for maintenance and
@@ -69,7 +69,7 @@ collection codes because the screen must show them.
 **Replay window.** The replay answer is limited to a short window after the first
 successful drop: **5 minutes on staging** (default **2**), configurable with
 `KioskReplayWindowMinutes` in the console. Inside the window the same `boxid` + `unlockcode`
-returns `00` with the original payload. After the window it returns
+returns `00` with the parcel payload returned by the first successful call. After the window it returns
 `07 NOT_FOUND`; the locker must not open the door. The window is measured from the
 first success and is not extended by retries.
 

@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.22**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.23**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -46,12 +46,13 @@ sidebar_position: 4
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
 
-### 2026-11-20 (2.1.22)
+### 2026-11-20 (2.1.23)
 
 - **Box online status follows the 15-minute ping rule.** API box responses compute `boxonline` from `DateLastPing`; a scheduled `JOB_BoxOnline_Check` keeps the stored flag and console alerts current. A box cannot remain `boxonline: "True"` after 15 minutes without a ping.
 - **Drop and collect replies return the state after the operation.** The first drop no longer returns the pre-drop “New parcel request / Reserved” values; the reply shows “Dropped parcel in locker / Occupied”. Collection replies show the collected state. A repeat inside the replay window adds `"replayed": "True"`.
 - **Drop and collect replies mask personal data and the used code.** Sender/recipient names, phone numbers and e-mail addresses, plus the used `dropcode`/`collectcode`, are returned as `"****"`; parcel reference/IDs, locker, status and amount remain. The reservation reply keeps the real codes for the screen.
 - **Kiosk guide covers the remaining walk-in and retry rules.** Optional `sendername`/`recipientname`, the 30-second drop/collect read timeout, opening on a repeated `00`, retrying the same payment reference after a refused reservation, and opening the `boxlockernumber` from the reservation reply.
+- **Signed photo links are shorter-lived.** API and console list links are regenerated on every call and expire after **1 hour**; proof links sent once by notification expire after **7 days**. This is a separate version from the 16 November batch: 2.1.23.
 
 ### 2026-11-16 (2.1.22)
 

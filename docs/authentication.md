@@ -85,7 +85,8 @@ for future charges.
 Proof-of-delivery images are **not** fetched with a key. `/parcel/snapshots/` (application key)
 returns, per snapshot, an **HMAC-SHA256 signed, expiring `snapshoturl`**
 (`/parcel/snapshot/image/?snapshotid=…&expires=…&sig=…`). The `sig` is over `snapshotid|expires`
-keyed by a server secret, and the link expires after **30 days**. The image endpoint accepts
+keyed by a server secret. API and console list links are regenerated on every call and expire
+after **1 hour**; proof links sent once by notification expire after **7 days**. The image endpoint accepts
 **only** that signed link — there is no `apikey` fetch, so an application key cannot enumerate
 proofs by id. A business can list its **own** parcels' snapshots with its **public key** at
 `/business/parcels/snapshots/` (ownership-checked), which returns the same signed links.

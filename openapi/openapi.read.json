@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.22",
+    "version": "2.1.23",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "servers": [
@@ -3116,7 +3116,7 @@
       "get": {
         "operationId": "get_parcel_snapshot_image",
         "summary": "Fetch a snapshot image (signed link)",
-        "description": "Returns the proof-of-delivery image (`image/jpeg`) for a **signed, expiring** link: `?snapshotid=…&expires=…&sig=…`, where `sig` is HMAC-SHA256 over `snapshotid|expires` (issued by `/parcel/snapshots/` or `/business/parcels/snapshots/`, 30-day expiry). There is **no `apikey` fetch** — an application key cannot enumerate proofs by id. Errors are the JSON envelope: `04` missing parameter, `07` not found, `98` invalid or expired link, `429` rate-limited.",
+        "description": "Returns the proof-of-delivery image (`image/jpeg`) for a **signed, expiring** link: `?snapshotid=…&expires=…&sig=…`, where `sig` is HMAC-SHA256 over `snapshotid|expires` (issued by `/parcel/snapshots/` or `/business/parcels/snapshots/`). API/console list links expire after **1 hour**; proof links sent once by notification expire after **7 days**. There is **no `apikey` fetch** — an application key cannot enumerate proofs by id. Errors are the JSON envelope: `04` missing parameter, `07` not found, `98` invalid or expired link, `429` rate-limited.",
         "tags": [
           "parcel"
         ],
