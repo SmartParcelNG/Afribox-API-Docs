@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.23**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.24**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -53,6 +53,12 @@ Each entry is dated when the work shipped; the number in brackets is the contrac
 - **Drop and collect replies mask personal data and the used code.** Sender/recipient names, phone numbers and e-mail addresses, plus the used `dropcode`/`collectcode`, are returned as `"****"`; parcel reference/IDs, locker, status and amount remain. The reservation reply keeps the real codes for the screen.
 - **Kiosk guide covers the remaining walk-in and retry rules.** Optional `sendername`/`recipientname`, the 30-second drop/collect read timeout, opening on a repeated `00`, retrying the same payment reference after a refused reservation, and opening the `boxlockernumber` from the reservation reply.
 - The 20 November deployment was served while `info.version` still said **2.1.22**; the 2.1.23 contract was published on 23 November.
+
+### 2026-11-25 (2.1.24)
+
+- **Opening codes are compared exactly and are case-sensitive.** Drop/collect lookups now use a case-sensitive collation; a variant with different case no longer matches. Any length other than 4 is still refused with `05` before lookup.
+- **Retrieval replies mask the drop-off code and expose the retrieval state.** `/business/parcels/retrieve/` and `/business/parcels/info/` return `dropcode` as `"****"` and add `retrieverequested`, `retrievecompleted`, `retrievecompleteddate`. Only the `collectcode`/retrieval code is usable.
+- **Snapshot listing is network-scoped.** `/parcel/snapshots/` returns `07 NOT_FOUND` for a parcel outside the key's network; an empty `00` means the parcel is in the network but has no photos yet.
 
 ### 2026-11-23 (2.1.23)
 

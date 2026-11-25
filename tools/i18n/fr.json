@@ -119,7 +119,7 @@
     },
     "post_business_parcels_retrieve": {
       "summary": "Demander la récupération d'un colis déposé",
-      "description": "Demande qu'un **colis de type 6 déposé (statut 2) soit récupéré** de son casier. Requiert la **clé secrète**. Cela pose la demande de récupération et ne change **pas** le statut du colis, **ne libère pas le casier** et **ne rembourse pas les frais** ; **aucun retour arrière**. La récupération s'achève au casier (`/kiosk/parcel/collect/` avec le **`collectcode`** du colis), qui passe le colis au statut 4 (`RetrieveCompleted=1`) et libère le casier — c'est seulement alors qu'il compte dans `parcelsretrieved` et apparaît dans `/business/retrievedparcels/`. Refusé avec `09 PARCEL_NOT_RETRIEVABLE` si le colis n'est pas dans un casier, n'est pas de type 6, ou a déjà été demandé. Renvoie le colis (même contrat que `/business/parcels/info/`), avec le **vrai `collectcode`** (le code que saisit l'agent)."
+      "description": "Demande qu'un **colis de type 6 déposé (statut 2) soit récupéré** de son casier. Requiert la **clé secrète**. Cela pose la demande de récupération et ne change **pas** le statut du colis, **ne libère pas le casier** et **ne rembourse pas les frais** ; **aucun retour arrière**. La récupération s'achève au casier (`/kiosk/parcel/collect/` avec le **`collectcode`** du colis), qui passe le colis au statut 4 (`RetrieveCompleted=1`) et libère le casier — c'est seulement alors qu'il compte dans `parcelsretrieved` et apparaît dans `/business/retrievedparcels/`. Refusé avec `09 PARCEL_NOT_RETRIEVABLE` si le colis n'est pas dans un casier, n'est pas de type 6, ou a déjà été demandé. Renvoie le colis (même contrat que `/business/parcels/info/`) avec `dropcode` masqué en `\"****\"`, le **vrai `collectcode`** (le code que saisit l'agent) et `retrieverequested`, `retrievecompleted`, `retrievecompleteddate`."
     },
     "post_business_parcels_timeline": {
       "summary": "Chronologie d'un colis"
@@ -342,10 +342,11 @@
     },
     "post_kiosk_parcel_collect": {
       "summary": "Retrait de colis",
-      "description": "Ouvre un casier pour collecter un colis ; `unlockcode` est le `collectcode` du colis. La collecte passe le colis au statut 4 (ou, pour une récupération demandée, `RetrieveCompleted=1`) et libère le casier. Elle ne facture **pas** : les frais de réservation d'un colis de type 6 ont déjà été débités à la création."
+      "description": "Ouvre un casier pour collecter un colis ; `unlockcode` est le `collectcode` du colis. Les codes sont comparés exactement et sont **sensibles à la casse** ; toute longueur autre que 4 est refusée avec `05` avant la recherche. La collecte passe le colis au statut 4 (ou, pour une récupération demandée, `RetrieveCompleted=1`) et libère le casier. Elle ne facture **pas** : les frais de réservation d'un colis de type 6 ont déjà été débités à la création. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée."
     },
     "post_kiosk_parcel_drop": {
-      "summary": "Dépôt de colis"
+      "summary": "Dépôt de colis",
+      "description": "Ouvre un casier pour déposer un colis ; `unlockcode` est le `dropcode` du colis. Les codes sont comparés exactement et sont **sensibles à la casse** ; toute longueur autre que 4 est refusée avec `05` avant la recherche. Un colis dont l'échéance de dépôt (`DateExpires`) est passée est refusé avec `07` même si le balayage n'a pas encore libéré le casier ; n'ouvrez pas la porte. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas."
     },
     "post_kiosk_parcel_snapshot": {
       "summary": "Instantané de colis",
@@ -363,7 +364,7 @@
     },
     "post_parcel_snapshots": {
       "summary": "Lister les instantanés d'un colis",
-      "description": "Liste les instantanés de preuve de livraison d'un colis (clé d'application). Chaque élément porte une `snapshoturl` **signée et expirante** pour `/parcel/snapshot/image/`."
+      "description": "Liste les instantanés de preuve de livraison d'un colis (clé d'application). Chaque élément porte une `snapshoturl` **signée et expirante** pour `/parcel/snapshot/image/`. La liste est **limitée au réseau** : un colis d'un autre réseau renvoie `07 NOT_FOUND` ; un `00` avec une liste vide signifie que le colis est dans le réseau mais n'a pas encore de photos."
     },
     "get_pay_return": {
       "summary": "Page de retour de paiement",

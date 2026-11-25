@@ -19,7 +19,7 @@ voir [Limits, versions & changelog](/docs/limits-and-versions).
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
   `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
   comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
-  `…/openapi.json`** (actuellement **2.1.23**) ; les autres fichiers `openapi-<version>.json`
+  `…/openapi.json`** (actuellement **2.1.24**) ; les autres fichiers `openapi-<version>.json`
   sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
   n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
@@ -53,6 +53,12 @@ voir [Limits, versions & changelog](/docs/limits-and-versions).
 ## Changelog
 
 Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-11-25 (2.1.24)
+
+- **Les codes d'ouverture sont comparés exactement et sont sensibles à la casse.** Les recherches de dépôt/retrait utilisent désormais une collation sensible à la casse ; une variante avec une casse différente ne correspond plus. Toute longueur autre que 4 est toujours refusée avec `05` avant la recherche.
+- **La réponse de récupération masque le code de dépôt et expose l'état de récupération.** `/business/parcels/retrieve/` et `/business/parcels/info/` renvoient `dropcode` en `"****"` et ajoutent `retrieverequested`, `retrievecompleted`, `retrievecompleteddate`. Seul le `collectcode`/code de récupération est utilisable.
+- **La liste des instantanés est limitée au réseau.** `/parcel/snapshots/` renvoie `07 NOT_FOUND` pour un colis d'un autre réseau ; un `00` avec une liste vide signifie que le colis est dans le réseau mais n'a pas encore de photos.
 
 ### 2026-11-23 (2.1.23)
 
