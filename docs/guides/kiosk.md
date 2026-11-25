@@ -90,6 +90,5 @@ WhatsApp, with the collect code — only when the parcel is dropped off at the b
   - `image` — the image payload; provide the media type your camera produces.
   - several parcel identifiers are accepted; `parceldetailid` is authoritative.
 - `POST /parcel/snapshots/` — list a parcel's snapshots (`snapshoturl` per snapshot).
-- `GET /parcel/snapshot/image/` — fetch an image: a signed link
-  (`?snapshotid=..&expires=..&sig=..`) or a plain authenticated
-  `?apikey=..&snapshotid=..`.
+- `GET /parcel/snapshot/image/` — fetch an image only through a signed link
+  (`?snapshotid=..&expires=..&sig=..`). There is no `apikey` fetch.

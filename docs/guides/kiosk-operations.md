@@ -14,8 +14,8 @@ after a timeout or network cut.
 
 - `boxcode` format is **`BOX` + three digits**, for example `BOX006`.
 - The box is configured once with `POST /kiosk/setup/` using its `boxcode`.
-- Send `POST /kiosk/ping/` **every 10 minutes** with the `boxid`.
-- The API marks a box offline after **15 minutes** without a ping.
+- Send `POST /kiosk/ping/` **every 5 minutes** with the `boxid`.
+- The API marks a box offline after **15 minutes** without a ping. A 5-minute cadence leaves room for one lost ping.
 - A box that has never pinged is not reliable for booking.
 
 ## Application key scope
@@ -39,7 +39,8 @@ Business, customer, admin and other core endpoints are not available to a `kiosk
 
 ## Drop: `/kiosk/parcel/drop/`
 
-The request carries `boxid` and the 4-character `unlockcode` (the drop code).
+The request carries `boxid` and the 4-character `unlockcode` (the drop code). Codes are
+compared exactly and are **case-sensitive**.
 
 Sequence:
 
@@ -50,9 +51,10 @@ Sequence:
 4. If the door does not open, retry the **same** request with the same code.
    The API now returns `00` with `statusmessage = "Already dropped"`, `replayed = "True"`
    and the parcel payload returned by the first successful call. It does not create a
-   second drop or resend notifications. **Open the door on this `00` if the door was not seen open
-   and closed.** Use a read timeout of at least **30 seconds** for drop and collect;
-   5 seconds is too short.
+   second drop or resend notifications. **On this replayed `00`, open the door only if this
+   parcel's door was not seen open and then closed.** Once the door has been seen open and
+   closed, a repeated code must not reopen it. Use a read timeout of at least **30 seconds**
+   for drop and collect; 5 seconds is too short.
 5. If the door still does not open, keep the parcel reserved for maintenance and
    raise an alert. Do not issue or accept a new drop code for that parcel.
 
@@ -86,13 +88,15 @@ not open, and `collectcode` is the recipient's code. Do not log either code.
 
 ## Collect: `/kiosk/parcel/collect/`
 
-The request carries `boxid` and the 4-character collect code.
+The request carries `boxid` and the 4-character collect code. Codes are compared exactly
+and are **case-sensitive**.
 
 1. Send the collect request.
 2. `00` means the collection is recorded and the parcel is no longer in the locker.
 3. Open the door after `00`.
 4. A retry with the same code within the replay window returns `00` with
-   `statusmessage = "Already collected"` and the existing parcel payload.
+   `statusmessage = "Already collected"` and the existing parcel payload. **On this replayed
+   `00`, open the door only if this parcel's door was not seen open and then closed.**
 5. After the window, the same code returns `07 NOT_FOUND` and must not reopen the
    door.
 6. If the door does not open, follow the same maintenance/retry rule as drop.
@@ -118,6 +122,9 @@ prefix), and the decoded image must be **2 MB or less**.
   server is currently UTC+1 and is moving to UTC+0.
 - The API stores the image file and the snapshot metadata. The base64 image is
   redacted from the API-call log.
+- Snapshot listing is **network-scoped**. `/parcel/snapshots/` returns `07 NOT_FOUND`
+  for a parcel in another network; an empty `00` means the parcel is in your network
+  but has no photos yet. `/business/parcels/snapshots/` follows the same rule.
 
 Retry the upload when there is no answer, when `retryable` is `"True"`, or when
 `statuscode` is `"99"`. Do not retry on `04`, `05`, `07` or `09` until the
@@ -131,7 +138,8 @@ refusals.
 - If the API is unreachable, keep the request queued and retry with the **same code**.
 - Do not invent a new code or a new parcel to get around a timeout.
 - The API is idempotent for the same `boxid` + `unlockcode` only inside the replay
-  window (2 minutes by default, 5 on staging). A retry after the window returns `07 NOT_FOUND`.
+  window (**5 minutes in production and staging**; `KioskReplayWindowMinutes`). A retry
+  after the window returns `07 NOT_FOUND`.
 - If the locker cannot reach the API for an extended period, put itself in a safe
   state: no new drops, no collections, display a clear “offline” message.
 

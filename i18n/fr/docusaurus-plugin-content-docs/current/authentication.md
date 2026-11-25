@@ -82,7 +82,8 @@ réponses de cartes n'exposent que `first6digits`, `last4digits`, `type`, `expir
 Les images de preuve de livraison ne se récupèrent **pas** avec une clé. `/parcel/snapshots/`
 (clé d'application) renvoie, par instantané, une **`snapshoturl` signée HMAC-SHA256 et
 expirante** (`/parcel/snapshot/image/?snapshotid=…&expires=…&sig=…`). Le `sig` porte sur
-`snapshotid|expires`, avec un secret serveur, et le lien expire après **30 jours**. Le point
+`snapshotid|expires`, avec un secret serveur. Les liens API/console expirent après **1 heure** ;
+les liens envoyés une fois par notification expirent après **7 jours**. Le point
 d'image n'accepte **que** ce lien signé — il n'y a pas de récupération par `apikey`, donc une
 clé d'application ne peut pas énumérer les preuves par identifiant. Une entreprise peut lister
 les instantanés de **ses propres** colis avec sa **clé publique** sur

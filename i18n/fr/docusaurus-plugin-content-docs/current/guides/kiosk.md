@@ -71,6 +71,5 @@ e-mail et WhatsApp, avec le code de retrait — qu'au dépôt du colis dans la b
   - `image` — la charge de l'image ; fournissez le type média produit par votre caméra.
   - plusieurs identifiants de colis sont acceptés ; `parceldetailid` fait foi.
 - `POST /parcel/snapshots/` — lister les instantanés d'un colis (`snapshoturl` par instantané).
-- `GET /parcel/snapshot/image/` — récupérer une image : lien signé
-  (`?snapshotid=..&expires=..&sig=..`) ou requête authentifiée simple
-  (`?apikey=..&snapshotid=..`).
+- `GET /parcel/snapshot/image/` — récupérer une image uniquement avec un lien signé
+  (`?snapshotid=..&expires=..&sig=..`). Il n'y a pas de récupération par `apikey`.

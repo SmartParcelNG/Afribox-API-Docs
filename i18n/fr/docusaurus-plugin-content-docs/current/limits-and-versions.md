@@ -6,6 +6,11 @@ sidebar_position: 4
 
 # Limites, versions et changelog
 
+:::warning
+La version anglaise est la version faisant foi. Cette page française peut être en retard ;
+voir [Limits, versions & changelog](/docs/limits-and-versions).
+:::
+
 ## Versions
 
 - La version de l'API est dans le chemin : **`/v2`**, que nous maintenons pendant plusieurs
@@ -14,7 +19,7 @@ sidebar_position: 4
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
   `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
   comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
-  `…/openapi.json`** (actuellement **2.1.12**) ; les autres fichiers `openapi-<version>.json`
+  `…/openapi.json`** (actuellement **2.1.23**) ; les autres fichiers `openapi-<version>.json`
   sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
   n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
@@ -48,6 +53,11 @@ sidebar_position: 4
 ## Changelog
 
 Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-11-23 (2.1.23)
+
+- **Liens photos signés plus courts.** Les liens API/console expirent après **1 heure** ; les liens envoyés une fois par notification expirent après **7 jours**.
+- Le lot du 20 novembre (règle hors ligne de 15 minutes, état après l'opération, masquage, guide casier) a été déployé alors que le contrat affichait encore **2.1.22** ; le contrat **2.1.23** a été publié le 23 novembre.
 
 ### 2026-11-03 (2.1.12)
 

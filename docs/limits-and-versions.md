@@ -46,13 +46,17 @@ sidebar_position: 4
 
 Each entry is dated when the work shipped; the number in brackets is the contract version it produced (`info.version`), which is the authoritative version.
 
-### 2026-11-20 (2.1.23)
+### 2026-11-20 — 20 November batch (contract remained 2.1.22)
 
 - **Box online status follows the 15-minute ping rule.** API box responses compute `boxonline` from `DateLastPing`; a scheduled `JOB_BoxOnline_Check` keeps the stored flag and console alerts current. A box cannot remain `boxonline: "True"` after 15 minutes without a ping.
 - **Drop and collect replies return the state after the operation.** The first drop no longer returns the pre-drop “New parcel request / Reserved” values; the reply shows “Dropped parcel in locker / Occupied”. Collection replies show the collected state. A repeat inside the replay window adds `"replayed": "True"`.
 - **Drop and collect replies mask personal data and the used code.** Sender/recipient names, phone numbers and e-mail addresses, plus the used `dropcode`/`collectcode`, are returned as `"****"`; parcel reference/IDs, locker, status and amount remain. The reservation reply keeps the real codes for the screen.
 - **Kiosk guide covers the remaining walk-in and retry rules.** Optional `sendername`/`recipientname`, the 30-second drop/collect read timeout, opening on a repeated `00`, retrying the same payment reference after a refused reservation, and opening the `boxlockernumber` from the reservation reply.
-- **Signed photo links are shorter-lived.** API and console list links are regenerated on every call and expire after **1 hour**; proof links sent once by notification expire after **7 days**. This is a separate version from the 16 November batch: 2.1.23.
+- The 20 November deployment was served while `info.version` still said **2.1.22**; the 2.1.23 contract was published on 23 November.
+
+### 2026-11-23 (2.1.23)
+
+- **Signed photo links are shorter-lived.** API and console list links are regenerated on every call and expire after **1 hour**; proof links sent once by notification expire after **7 days**. This is the first deployment served as 2.1.23; it also carries the 20 November batch above.
 
 ### 2026-11-16 (2.1.22)
 

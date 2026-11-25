@@ -359,7 +359,7 @@
     },
     "get_parcel_snapshot_image": {
       "summary": "Récupérer une image d'instantané (lien signé)",
-      "description": "Renvoie l'image de preuve de livraison (`image/jpeg`) pour un **lien signé et expirant** : `?snapshotid=…&expires=…&sig=…`, où `sig` est un HMAC-SHA256 sur `snapshotid|expires` (émis par `/parcel/snapshots/` ou `/business/parcels/snapshots/`, expiration 30 jours). Il n'y a **pas de récupération par `apikey`** — une clé d'application ne peut pas énumérer les preuves par identifiant. Les erreurs sont l'enveloppe JSON : `04` paramètre manquant, `07` introuvable, `98` lien invalide ou expiré, `429` limité."
+      "description": "Renvoie l'image de preuve de livraison (`image/jpeg`) pour un **lien signé et expirant** : `?snapshotid=…&expires=…&sig=…`, où `sig` est un HMAC-SHA256 sur `snapshotid|expires` (émis par `/parcel/snapshots/` ou `/business/parcels/snapshots/`) ; les liens API/console expirent après **1 heure** et les liens envoyés une fois par notification après **7 jours**. Il n'y a **pas de récupération par `apikey`** — une clé d'application ne peut pas énumérer les preuves par identifiant. Les erreurs sont l'enveloppe JSON : `04` paramètre manquant, `07` introuvable, `98` lien invalide ou expiré, `429` limité."
     },
     "post_parcel_snapshots": {
       "summary": "Lister les instantanés d'un colis",
