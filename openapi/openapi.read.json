@@ -3177,7 +3177,7 @@
         "tags": [
           "parcel"
         ],
-        "description": "List a parcel's proof-of-delivery snapshots (application key). Each item carries a **signed, expiring** `snapshoturl` for `/parcel/snapshot/image/`.",
+        "description": "List a parcel's proof-of-delivery snapshots (application key). Each item carries a **signed, expiring** `snapshoturl` for `/parcel/snapshot/image/`. Listing is **network-scoped**: a parcel outside the key's network returns `07 NOT_FOUND`; an empty `00` means the parcel is in the key's network but has no photos yet.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -10507,6 +10507,25 @@
             "type": "string"
           },
           "elapsed": {
+            "type": "string"
+          },
+          "retrieverequested": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "retrievecompleted": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "retrievecompleteddate": {
             "type": "string"
           },
           "datecreatediso": {

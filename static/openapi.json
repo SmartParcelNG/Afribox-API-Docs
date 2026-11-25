@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.23",
+    "version": "2.1.24",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "servers": [
@@ -1169,7 +1169,7 @@
         "tags": [
           "business"
         ],
-        "description": "Requests that a **dropped-off (status 2) type-6 parcel be retrieved** from its locker. Requires the **secret key**. It sets the retrieval request and does **not** change the parcel status, **does not release the locker** and **does not refund the fee**; there is **no undo**. The retrieval is completed at the kiosk (`/kiosk/parcel/collect/` with the parcel's **`collectcode`**), which sets the parcel to status 4 (`RetrieveCompleted=1`) and frees the locker — only then does it count in `parcelsretrieved` and appear in `/business/retrievedparcels/`. Refused with `09 PARCEL_NOT_RETRIEVABLE` when the parcel is not in a locker, is not type 6, or was already requested. Returns the parcel (same contract as `/business/parcels/info/`), including the **real `collectcode`** (the code the retrieval agent enters).",
+        "description": "Requests that a **dropped-off (status 2) type-6 parcel be retrieved** from its locker. Requires the **secret key**. It sets the retrieval request and does **not** change the parcel status, **does not release the locker** and **does not refund the fee**; there is **no undo**. The retrieval is completed at the kiosk (`/kiosk/parcel/collect/` with the parcel's **`collectcode`**), which sets the parcel to status 4 (`RetrieveCompleted=1`) and frees the locker — only then does it count in `parcelsretrieved` and appear in `/business/retrievedparcels/`. Refused with `09 PARCEL_NOT_RETRIEVABLE` when the parcel is not in a locker, is not type 6, or was already requested. Returns the parcel (same contract as `/business/parcels/info/`) with `dropcode` masked as `\"****\"`, the **real `collectcode`** (the code the retrieval agent enters), and `retrieverequested`, `retrievecompleted`, `retrievecompleteddate`.",
         "x-auth": "business_secret",
         "x-readonly": false,
         "requestBody": {
@@ -4496,7 +4496,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`. Collection sets the parcel to status 4 (or, for a requested retrieval, `RetrieveCompleted=1`) and frees the locker. It does **not** charge: a type-6 parcel's reservation fee was already debited at creation. The reply shows the state after collection; a repeat inside the replay window returns `00` with `replayed: \"True\"`. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`.",
+        "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`. Codes are compared exactly and are **case-sensitive**; any length other than 4 is refused with `05` before lookup. Collection sets the parcel to status 4 (or, for a requested retrieval, `RetrieveCompleted=1`) and frees the locker. It does **not** charge: a type-6 parcel's reservation fee was already debited at creation. The reply shows the state after collection; a repeat inside the replay window returns `00` with `replayed: \"True\"` — open the door only if this parcel's door was not seen open and then closed. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -4536,7 +4536,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door. The reply shows the state after the drop; a repeat inside the replay window returns `00` with `replayed: \"True\"` and the door must open if it was not seen open/closed. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`.",
+        "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. Codes are compared exactly and are **case-sensitive**; any length other than 4 is refused with `05` before lookup. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door. The reply shows the state after the drop; a repeat inside the replay window returns `00` with `replayed: \"True\"` — open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -4766,7 +4766,7 @@
         "tags": [
           "parcel"
         ],
-        "description": "List a parcel's proof-of-delivery snapshots (application key). Each item carries a **signed, expiring** `snapshoturl` for `/parcel/snapshot/image/`.",
+        "description": "List a parcel's proof-of-delivery snapshots (application key). Each item carries a **signed, expiring** `snapshoturl` for `/parcel/snapshot/image/`. Listing is **network-scoped**: a parcel outside the key's network returns `07 NOT_FOUND`; an empty `00` means the parcel is in the key's network but has no photos yet.",
         "x-auth": "app_key",
         "x-readonly": true,
         "requestBody": {
@@ -12383,6 +12383,25 @@
             "type": "string"
           },
           "elapsed": {
+            "type": "string"
+          },
+          "retrieverequested": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "retrievecompleted": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
+          },
+          "retrievecompleteddate": {
             "type": "string"
           },
           "datecreatediso": {
