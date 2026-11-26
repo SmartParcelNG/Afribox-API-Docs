@@ -86,6 +86,27 @@ already dropped (status 2). Open the compartment on the reservation `00`. The re
 both `dropcode` and `collectcode`; `dropcode` is only the replay-window fallback if the door did
 not open, and `collectcode` is the recipient's code. Do not log either code.
 
+## Photo-confirmed drop — pilot only
+
+This process is enabled only after AFRIBOX's written approval and the pilot
+setup. It is not active by default.
+
+- The PIN/drop call leaves the parcel **pending**; it does not yet complete the
+  drop.
+- Photo 1 marks the door opened and the code used; photo 2 completes the parcel
+  (status 2, `DropDate`, notifications).
+- If photo 2 has not arrived within **5 minutes**, the console pending view and
+  an e-mail alert the network operator. Mike from AFRIBOX watches during the
+  pilot.
+- The operator checks the locker/photo and uses **Resolve pending** with a reason
+  and audit trail. If photo 1 never arrived but the parcel is inside, the
+  operator marks it dropped manually; if it is not inside, the operator cancels
+  or returns it. The platform cannot see the door.
+- The 5-minute **replay** window still applies; the pending state does not extend
+  it. After the window a repeat returns `07`; open the door only under the replay
+  rule above.
+- Winnsen W11 covers whether the operator can read the locker log remotely.
+
 ## Collect: `/kiosk/parcel/collect/`
 
 The request carries `boxid` and the 4-character collect code. Codes are compared exactly
@@ -128,8 +149,9 @@ prefix), and the decoded image must be **2 MB or less**.
 
 Retry the upload when there is no answer, when `retryable` is `"True"`, or when
 `statuscode` is `"99"`. Do not retry on `04`, `05`, `07` or `09` until the
-request is corrected; those are validation, not-found or business-rule
-refusals.
+request is corrected — **unless `retryable` is `"True"`**. For `BOX_OFFLINE`
+(09, retryable `"True"`), retry at most once after 5 minutes, and never with a
+new payment.
 
 ## Network cuts and offline behaviour
 
@@ -142,6 +164,11 @@ refusals.
   after the window returns `07 NOT_FOUND`.
 - If the locker cannot reach the API for an extended period, put itself in a safe
   state: no new drops, no collections, display a clear “offline” message.
+- A box with `boxonline:"False"` (no ping for 15 minutes) is out of service for
+  **online** bookings: customer/business holds and creations are refused with
+  `09 BOX_OFFLINE` (`errorfield:"boxid"`, retryable `"True"`). Kiosk calls touch
+  `DateLastPing` and are not refused because a ping was late. Drop, collect and
+  retrieve remain allowed.
 
 ## What `00` means
 

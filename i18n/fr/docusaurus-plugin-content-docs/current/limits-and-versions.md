@@ -19,7 +19,7 @@ voir [Limits, versions & changelog](/docs/limits-and-versions).
   chaque entrée de changelog ci-dessous**, et chaque version est archivée de façon immuable à
   `…/openapi-<version>.json` tandis que `…/openapi.json` est toujours la version courante —
   comparez deux relevés ou épinglez-en un. **La version faisant foi est le `info.version` de
-  `…/openapi.json`** (actuellement **2.1.24**) ; les autres fichiers `openapi-<version>.json`
+  `…/openapi.json`** (actuellement **2.1.25**) ; les autres fichiers `openapi-<version>.json`
   sont d'anciennes versions, pas des alternatives, et tout numéro plus ancien cité dans un guide
   n'est qu'un exemple.
 - Les changements **additifs** (nouveaux points, nouveaux champs facultatifs) peuvent sortir à
@@ -53,6 +53,23 @@ voir [Limits, versions & changelog](/docs/limits-and-versions).
 ## Changelog
 
 Chaque entrée porte la date de livraison du travail ; le nombre entre crochets est la version du contrat produite (`info.version`), qui est la version faisant foi.
+
+### 2026-11-26 (2.1.25)
+
+- **Codes d'ouverture byte-exacts.** `unlockcode` doit faire exactement 4 caractères tel que reçu, sinon `05 INVALID_FIELD` ; il est ensuite comparé byte-exact, sensible à la casse, sans trim ni correspondance partielle ; sinon `07`. Les codes générés sont en majuscules et chiffres ; les minuscules ne sont pas générées.
+- **Rejeu de retrait et porte.** Sur un `00` rejoué, n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas.
+- **Fenêtre de rejeu en production : 5 minutes**, écrite dans le contrat, pas seulement dans le guide.
+- **`BOX_OFFLINE`.** Un casier hors ligne (aucun ping depuis 15 minutes) refuse les réservations client/entreprise avec `09`, `errorcode:"BOX_OFFLINE"`, `errorfield:"boxid"`, `retryable:"True"`. Les appels du casier touchent `DateLastPing` et ne sont pas refusés pour un ping en retard. Dépôt, retrait et récupération restent autorisés.
+- **E-mail manquant sur une mise en attente.** `/customer/parcels/hold/` renvoie `04 MISSING_FIELD`, `errorfield:"email"`, `retryable:"False"` sans client et sans e-mail ; avec un `customerid`, l'e-mail du client est utilisé.
+- **Précision des appels API.** `SYS_APICalls.RequestDate/ResponseDate` passent à `datetime2(3)`.
+
+### Change list (P7)
+
+| Date | Version | Élément | Statut |
+|---|---|---|---|
+| 2026-11-25 | 2.1.24 | S3, P9a, P9c, P10 | déployé |
+| 2026-11-26 | 2.1.25 | S3 détail + test, S5, P1, P8, P11, S4, S6, P4–P6 | en cours |
+| à venir | suivant | P9b, P1–P3, P2 | décision/design |
 
 ### 2026-11-25 (2.1.24)
 

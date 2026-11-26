@@ -13,7 +13,7 @@ sidebar_position: 4
   every changelog entry below**, and each release is archived immutably at
   `…/openapi-<version>.json` while `…/openapi.json` is always the current one — diff two
   readings or pin one. **The authoritative version is the `info.version` of `…/openapi.json`**
-  (currently **2.1.24**); the other `openapi-<version>.json` files are past releases, not
+  (currently **2.1.25**); the other `openapi-<version>.json` files are past releases, not
   alternatives, and any older number quoted in a guide is only an example.
 - **Additive** changes (new endpoints, new optional fields) may ship at any time with **no
   notice**; ignore fields you do not know.
@@ -53,6 +53,27 @@ Each entry is dated when the work shipped; the number in brackets is the contrac
 - **Drop and collect replies mask personal data and the used code.** Sender/recipient names, phone numbers and e-mail addresses, plus the used `dropcode`/`collectcode`, are returned as `"****"`; parcel reference/IDs, locker, status and amount remain. The reservation reply keeps the real codes for the screen.
 - **Kiosk guide covers the remaining walk-in and retry rules.** Optional `sendername`/`recipientname`, the 30-second drop/collect read timeout, opening on a repeated `00`, retrying the same payment reference after a refused reservation, and opening the `boxlockernumber` from the reservation reply.
 - The 20 November deployment was served while `info.version` still said **2.1.22**; the 2.1.23 contract was published on 23 November.
+
+### 2026-11-26 (2.1.25)
+
+- **Opening codes are byte-exact.** `unlockcode` must be exactly 4 characters as received, otherwise `05 INVALID_FIELD`. It is then compared byte-exactly, case-sensitively, with no trimming and no prefix/partial match; a code that does not match gets `07`. Generated codes use uppercase letters and digits; lowercase is not generated. The drop/collect, update, business drop/collect and code-uniqueness procs all use `VARBINARY` comparison. Regression result: pending.
+- **Collection replay and the door.** On a replayed collection `00`, open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen. This is now in the collection response, the contract and the guide.
+- **The production replay window is 5 minutes.** It is written in the contract, not only the guide; retries do not extend it.
+- **`BOX_OFFLINE`.** A box with `boxonline:"False"` (no ping for 15 minutes) is out of service. Online customer/business bookings are refused with `09`, `errorcode:"BOX_OFFLINE"`, `errorfield:"boxid"`, `retryable:"True"`. Kiosk calls touch `DateLastPing` and are not refused because a ping was late. Drop, collect and retrieve remain allowed.
+- **Missing e-mail on a hold.** `/customer/parcels/hold/` returns `04 MISSING_FIELD`, `errorfield:"email"`, `retryable:"False"` when there is no customer and no e-mail. With a `customerid`, the customer's e-mail is used. The contract marks `email` required only when `customerid` is absent.
+- **API-call timing precision.** `SYS_APICalls.RequestDate`/`ResponseDate` use `datetime2(3)`. A response-flush timestamp is a follow-up.
+- **Platform summary.** The session export and API-call report show `replayed` and the received code length, not the code.
+- **Documentation.** P4–P6 corrections are applied; the French pages are updated, the changelog dates are split, and the kiosk guide no longer shows an `apikey` snapshot fetch.
+
+### Change list (P7)
+
+| Date | Version | Item | Status |
+|---|---|---|---|
+| 2026-11-25 | 2.1.24 | S3 code rule, P9a, P9c, P10 | deployed |
+| 2026-11-26 | 2.1.25 | S3 detail + regression, S5, P1, P8, P11, S4 timing, S6 summary, P4–P6 docs | in progress |
+| pending | next | P9b retrieval design and cost | design |
+| pending | next | P1–P3 photo model | approved with conditions; implementation after docs/alert |
+| after W4 | next | P2 collection extension | decision |
 
 ### 2026-11-25 (2.1.24)
 

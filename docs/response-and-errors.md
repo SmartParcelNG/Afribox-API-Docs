@@ -30,7 +30,7 @@ JSON endpoints return **HTTP 200** and put the result in the body. Responses are
 | `06` | Value not in the allowed set |
 | `07` | Not found |
 | `08` | Conflict (may be retried) |
-| `09` | Business-rule refusal (not retryable) |
+| `09` | Business-rule refusal (not retryable unless `retryable` is `True`) |
 | `10` | Insufficient balance |
 | `11` | Reserved |
 | `12` | Forbidden — the signed-in staff role is not allowed to do this |
@@ -64,6 +64,7 @@ Every response also carries:
 | `INTERNAL_ERROR` | `99` | True |
 | `PAYMENT_ALREADY_USED` | `09` | False |
 | `LOCKER_NOT_AVAILABLE` | `09` | True |
+| `BOX_OFFLINE` | `09` | True |
 | `CREDIT_ADMIN_ONLY` | `09` | False |
 | `INVALID_RESET_CODE` | `09` | False |
 | `PAYMENT_NOT_SUCCESSFUL` | `09` | False |

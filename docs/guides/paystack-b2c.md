@@ -30,7 +30,10 @@ All of them use the **Application key** (no provider secret in the client).
 3. On success, call `POST /pay/verify` `{ "reference": "<ref>" }` and show the
    returned `collectcode`.
 
-For anonymous payers, collect **email** (required by Paystack) and phone first.
+For anonymous payers, collect **email** (required by Paystack) and phone first. On
+`/customer/parcels/hold/`, `email` is required when `customerid` is absent; the
+platform returns `04 MISSING_FIELD` with `errorfield:"email"`. With a
+`customerid`, the platform uses the customer's e-mail.
 
 `amount` is in **XOF major units** (`"1000"` = 1,000 F); XOF has no minor unit and no factor
 of 100 applies on the way in or out.

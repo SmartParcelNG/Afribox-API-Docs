@@ -296,7 +296,7 @@
     },
     "post_customer_parcels_hold": {
       "summary": "Mettre un colis en attente (paiement Paystack)",
-      "description": "Réserve un casier pour une courte fenêtre de paiement d'abord (**15 minutes**) pendant que le payeur termine Paystack ; le casier est libéré automatiquement à l'expiration (tâche de 2 minutes, plus nettoyage opportuniste)."
+      "description": "Réserve un casier pour une courte fenêtre de paiement d'abord (**15 minutes**) pendant que le payeur termine Paystack ; le casier est libéré automatiquement à l'expiration (tâche de 2 minutes, plus nettoyage opportuniste). Si `customerid` est absent, **`email` est requis** ; avec un identifiant client, la plateforme utilise l'e-mail du client. Un casier hors ligne (aucun ping depuis 15 minutes) est refusé avec `09 BOX_OFFLINE` (`errorfield:\"boxid\"`, `retryable:\"True\"`)."
     },
     "post_customer_parcels_hold_release": {
       "summary": "Lever la mise en attente"
@@ -342,11 +342,11 @@
     },
     "post_kiosk_parcel_collect": {
       "summary": "Retrait de colis",
-      "description": "Ouvre un casier pour collecter un colis ; `unlockcode` est le `collectcode` du colis. Les codes sont comparés exactement et sont **sensibles à la casse** ; toute longueur autre que 4 est refusée avec `05` avant la recherche. La collecte passe le colis au statut 4 (ou, pour une récupération demandée, `RetrieveCompleted=1`) et libère le casier. Elle ne facture **pas** : les frais de réservation d'un colis de type 6 ont déjà été débités à la création. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée."
+      "description": "Ouvre un casier pour collecter un colis ; `unlockcode` est le `collectcode` du colis. Les codes sont vérifiés tels que reçus, sans trim, et comparés exactement, **sensibles à la casse**, sans correspondance partielle ; toute longueur autre que 4 est refusée avec `05` avant la recherche. La collecte passe le colis au statut 4 (ou, pour une récupération demandée, `RetrieveCompleted=1`) et libère le casier. Elle ne facture **pas** : les frais de réservation d'un colis de type 6 ont déjà été débités à la création. La fenêtre de rejeu en production est de **5 minutes**. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas."
     },
     "post_kiosk_parcel_drop": {
       "summary": "Dépôt de colis",
-      "description": "Ouvre un casier pour déposer un colis ; `unlockcode` est le `dropcode` du colis. Les codes sont comparés exactement et sont **sensibles à la casse** ; toute longueur autre que 4 est refusée avec `05` avant la recherche. Un colis dont l'échéance de dépôt (`DateExpires`) est passée est refusé avec `07` même si le balayage n'a pas encore libéré le casier ; n'ouvrez pas la porte. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas."
+      "description": "Ouvre un casier pour déposer un colis ; `unlockcode` est le `dropcode` du colis. Les codes sont vérifiés tels que reçus, sans trim, et comparés exactement, **sensibles à la casse**, sans correspondance partielle ; toute longueur autre que 4 est refusée avec `05` avant la recherche. La fenêtre de rejeu en production est de **5 minutes**. Un colis dont l'échéance de dépôt (`DateExpires`) est passée est refusé avec `07` même si le balayage n'a pas encore libéré le casier ; n'ouvrez pas la porte. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas."
     },
     "post_kiosk_parcel_snapshot": {
       "summary": "Instantané de colis",
@@ -462,6 +462,20 @@
         "recipientphone": "Numéro de téléphone du destinataire, 10 chiffres.",
         "recipientemail": "Facultatif. Doit être une adresse email valide lorsqu'il est fourni.",
         "paymentreference": "Référence Paystack du paiement réussi pour cette réservation. Usage unique : elle finance exactement une réservation."
+      }
+    },
+    "CollectParcelResponse": {
+      "properties": {
+        "replayed": {
+          "description": "True lorsqu'il s'agit d'un rejeu d'un retrait réussi dans la fenêtre de 5 minutes. Le retrait est déjà enregistré ; ne le traitez pas comme un nouveau retrait. Sur ce `00` rejoué, n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas."
+        }
+      }
+    },
+    "DropParcelResponse": {
+      "properties": {
+        "replayed": {
+          "description": "True lorsqu'il s'agit d'un rejeu d'un dépôt réussi dans la fenêtre de 5 minutes. Sur ce `00` rejoué, n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas. Après la fenêtre, l'appel renvoie `07`."
+        }
       }
     }
   }

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Afribox API",
-    "version": "2.1.24",
+    "version": "2.1.25",
     "description": "API du backend Afribox (SmartParcel). Tous les points d'accès acceptent du JSON en POST (sauf indication contraire). L'authentification se fait via un `apikey` dans le corps de la requête : une clé d'application, une clé publique d'entreprise ou une clé secrète d'entreprise. Le statut HTTP est toujours 200 ; le résultat est indiqué dans le corps via `statuscode` (`00` = succès) et `statusmessage`."
   },
   "servers": [
@@ -1025,7 +1025,7 @@
         "tags": [
           "customer"
         ],
-        "description": "Réserve un casier pour une courte fenêtre de paiement d'abord (**15 minutes**) pendant que le payeur termine Paystack ; le casier est libéré automatiquement à l'expiration (tâche de 2 minutes, plus nettoyage opportuniste).",
+        "description": "Réserve un casier pour une courte fenêtre de paiement d'abord (**15 minutes**) pendant que le payeur termine Paystack ; le casier est libéré automatiquement à l'expiration (tâche de 2 minutes, plus nettoyage opportuniste). Si `customerid` est absent, **`email` est requis** ; avec un identifiant client, la plateforme utilise l'e-mail du client. Un casier hors ligne (aucun ping depuis 15 minutes) est refusé avec `09 BOX_OFFLINE` (`errorfield:\"boxid\"`, `retryable:\"True\"`).",
         "x-auth": "paystack_dual",
         "x-readonly": false,
         "parameters": [
@@ -1418,7 +1418,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Ouvre un casier pour collecter un colis ; `unlockcode` est le `collectcode` du colis. Les codes sont comparés exactement et sont **sensibles à la casse** ; toute longueur autre que 4 est refusée avec `05` avant la recherche. La collecte passe le colis au statut 4 (ou, pour une récupération demandée, `RetrieveCompleted=1`) et libère le casier. Elle ne facture **pas** : les frais de réservation d'un colis de type 6 ont déjà été débités à la création. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée.",
+        "description": "Ouvre un casier pour collecter un colis ; `unlockcode` est le `collectcode` du colis. Les codes sont vérifiés tels que reçus, sans trim, et comparés exactement, **sensibles à la casse**, sans correspondance partielle ; toute longueur autre que 4 est refusée avec `05` avant la recherche. La collecte passe le colis au statut 4 (ou, pour une récupération demandée, `RetrieveCompleted=1`) et libère le casier. Elle ne facture **pas** : les frais de réservation d'un colis de type 6 ont déjà été débités à la création. La fenêtre de rejeu en production est de **5 minutes**. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1458,7 +1458,7 @@
         "tags": [
           "kiosk"
         ],
-        "description": "Ouvre un casier pour déposer un colis ; `unlockcode` est le `dropcode` du colis. Les codes sont comparés exactement et sont **sensibles à la casse** ; toute longueur autre que 4 est refusée avec `05` avant la recherche. Un colis dont l'échéance de dépôt (`DateExpires`) est passée est refusé avec `07` même si le balayage n'a pas encore libéré le casier ; n'ouvrez pas la porte. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas.",
+        "description": "Ouvre un casier pour déposer un colis ; `unlockcode` est le `dropcode` du colis. Les codes sont vérifiés tels que reçus, sans trim, et comparés exactement, **sensibles à la casse**, sans correspondance partielle ; toute longueur autre que 4 est refusée avec `05` avant la recherche. La fenêtre de rejeu en production est de **5 minutes**. Un colis dont l'échéance de dépôt (`DateExpires`) est passée est refusé avec `07` même si le balayage n'a pas encore libéré le casier ; n'ouvrez pas la porte. Un rejeu dans la fenêtre renvoie `00` avec `replayed: \"True\"` — n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas.",
         "x-auth": "app_key",
         "x-readonly": false,
         "requestBody": {
@@ -1936,7 +1936,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2048,7 +2048,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2188,7 +2188,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2375,7 +2375,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2494,7 +2494,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2664,7 +2664,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2739,7 +2739,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2851,7 +2851,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -2963,7 +2963,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -3015,7 +3015,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -3163,7 +3163,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -3285,7 +3285,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -3295,7 +3295,9 @@
           },
           "replayed": {
             "type": "string",
-            "description": "True when this is a replay of an earlier successful drop inside the replay window. Open the door on this 00 if it was not seen open/closed; after the window the call returns 07."
+            "description": {
+              "description": "True lorsqu'il s'agit d'un rejeu d'un dépôt réussi dans la fenêtre de 5 minutes. Sur ce `00` rejoué, n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas. Après la fenêtre, l'appel renvoie `07`."
+            }
           },
           "errorcode": {
             "type": "string",
@@ -3458,7 +3460,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -3468,7 +3470,9 @@
           },
           "replayed": {
             "type": "string",
-            "description": "True when this is a replay of an earlier successful collection inside the replay window. The collection is already recorded; do not treat it as a new collection."
+            "description": {
+              "description": "True lorsqu'il s'agit d'un rejeu d'un retrait réussi dans la fenêtre de 5 minutes. Le retrait est déjà enregistré ; ne le traitez pas comme un nouveau retrait. Sur ce `00` rejoué, n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas."
+            }
           },
           "errorcode": {
             "type": "string",
@@ -3628,7 +3632,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -3720,7 +3724,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -3927,7 +3931,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4003,7 +4007,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4084,7 +4088,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4152,7 +4156,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4267,7 +4271,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4509,7 +4513,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4593,7 +4597,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4709,7 +4713,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4793,7 +4797,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4862,7 +4866,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4937,7 +4941,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -4981,7 +4985,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5104,7 +5108,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5188,7 +5192,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5272,7 +5276,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5356,7 +5360,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5414,7 +5418,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5498,7 +5502,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5582,7 +5586,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5650,7 +5654,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5714,7 +5718,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5774,7 +5778,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5914,7 +5918,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -5980,7 +5984,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6041,7 +6045,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6107,7 +6111,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6173,7 +6177,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6242,7 +6246,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6308,7 +6312,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6410,7 +6414,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6479,7 +6483,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6545,7 +6549,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6621,7 +6625,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6700,7 +6704,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6780,7 +6784,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6869,7 +6873,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -6932,7 +6936,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7018,7 +7022,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7081,7 +7085,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7177,7 +7181,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7257,7 +7261,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7346,7 +7350,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7429,7 +7433,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7510,7 +7514,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7594,7 +7598,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7675,7 +7679,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7756,7 +7760,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7842,7 +7846,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -7916,7 +7920,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8005,7 +8009,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8068,7 +8072,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8137,7 +8141,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8204,7 +8208,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8327,7 +8331,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8397,7 +8401,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8467,7 +8471,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8550,7 +8554,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8624,7 +8628,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8708,7 +8712,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8792,7 +8796,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -8915,7 +8919,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9142,7 +9146,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9213,7 +9217,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9294,7 +9298,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9375,7 +9379,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9456,7 +9460,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9568,7 +9572,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9634,7 +9638,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9721,7 +9725,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9793,7 +9797,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9896,7 +9900,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -9948,10 +9952,26 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
+          },
+          "errorcode": {
+            "type": "string",
+            "description": "Stable, language-invariant error identifier (empty on success). Derived from `statuscode`: MISSING_FIELD, INVALID_FIELD, NOT_ALLOWED_VALUE, NOT_FOUND, CONFLICT, BUSINESS_RULE, INSUFFICIENT_BALANCE, RESERVED, AUTHENTICATION_FAILED, INTERNAL_ERROR; specific codes are used where meaningful (e.g. PAYMENT_ALREADY_USED, LOCKER_NOT_AVAILABLE, CREDIT_ADMIN_ONLY, INVALID_RESET_CODE, RATE_LIMITED)."
+          },
+          "errorfield": {
+            "type": "string",
+            "description": "Request field implicated in the error, when applicable (empty otherwise)."
+          },
+          "retryable": {
+            "type": "string",
+            "enum": [
+              "True",
+              "False"
+            ],
+            "description": "Boolean serialized by the server as the string \"True\" or \"False\"."
           },
           "parceldetailid": {
             "type": "string"
@@ -10031,7 +10051,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10080,7 +10100,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10140,7 +10160,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10266,7 +10286,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10327,7 +10347,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10435,7 +10455,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10516,7 +10536,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"
@@ -10623,7 +10643,7 @@
               "98",
               "99"
             ],
-            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
+            "description": "Result code: 00 success; 01 no post data; 02 invalid post data (JSON parse error); 03 null post data; 04 missing required field; 05 invalid field value; 06 value not in the allowed set; 07 not found; 08 conflict; 09 business-rule refusal (not retryable unless `retryable` is `True`); 10 insufficient balance; 11 reserved; 12 forbidden (role not allowed); 429 rate limited (per-key quota); 98 authentication failed; 99 unexpected server error (retryable). See `errorcode` for a stable identifier and `retryable`."
           },
           "statusmessage": {
             "type": "string"

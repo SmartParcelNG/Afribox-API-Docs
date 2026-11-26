@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "Afribox API",
-    "version": "2.1.24",
+    "version": "2.1.25",
     "description": "Afribox backend API (SmartParcel). All endpoints accept JSON over POST (unless noted). Authentication is via an `apikey` in the request body: an Application API key, a Business public key, a Business secret key, or (for `/admin/`) a dedicated admin key. Customer read endpoints also accept a `sessiontoken` returned by `/customer/login/`. The HTTP status is 200 (JSON responses are served as `application/json`); the outcome is reported in the body via `statuscode` (`00` = success) and `statusmessage`. A valid request with no results returns `00` with an empty array. Dates are served as `M/d/yyyy h:mm:ss AM/PM` with no timezone (the server is UTC+1); boolean fields are the strings `\"True\"`/`\"False\"`."
   },
   "tags": {
@@ -540,7 +540,7 @@
     },
     "POST /customer/parcels/hold/": {
       "summary": "Parcels Hold",
-      "description": "Reserves a locker for a short pay-first window (**15 minutes**) while the payer completes Paystack; the locker is released automatically when the hold expires (hourly/2-minute job, plus opportunistic cleanup)."
+      "description": "Reserves a locker for a short pay-first window (**15 minutes**) while the payer completes Paystack; the locker is released automatically when the hold expires (hourly/2-minute job, plus opportunistic cleanup). If `customerid` is omitted, **`email` is required**; with a customer id the platform uses the customer's e-mail. A box that is offline under the 15-minute ping rule is refused with `09 BOX_OFFLINE` (`errorfield:\"boxid\"`, retryable `\"True\"`)."
     },
     "POST /customer/parcels/hold/release/": {
       "summary": "Hold Release",
@@ -678,11 +678,11 @@
     },
     "POST /kiosk/parcel/collect/": {
       "summary": "Parcel Collect",
-      "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`. Codes are compared exactly and are **case-sensitive**; any length other than 4 is refused with `05` before lookup. Collection sets the parcel to status 4 (or, for a requested retrieval, `RetrieveCompleted=1`) and frees the locker. It does **not** charge: a type-6 parcel's reservation fee was already debited at creation. The reply shows the state after collection; a repeat inside the replay window returns `00` with `replayed: \"True\"` — open the door only if this parcel's door was not seen open and then closed. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`."
+      "description": "Open a locker to collect a parcel; `unlockcode` is the parcel's `collectcode`. Codes are checked as received, not trimmed, and are compared exactly and **case-sensitively** with no prefix or partial match; any length other than 4 is refused with `05` before lookup. Collection sets the parcel to status 4 (or, for a requested retrieval, `RetrieveCompleted=1`) and frees the locker. It does **not** charge: a type-6 parcel's reservation fee was already debited at creation. The production replay window is **5 minutes**. The reply shows the state after collection; a repeat inside the replay window returns `00` with `replayed: \"True\"` — open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`."
     },
     "POST /kiosk/parcel/drop/": {
       "summary": "Parcel Drop",
-      "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. Codes are compared exactly and are **case-sensitive**; any length other than 4 is refused with `05` before lookup. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door. The reply shows the state after the drop; a repeat inside the replay window returns `00` with `replayed: \"True\"` — open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`."
+      "description": "Open a locker to drop a parcel; `unlockcode` is the parcel's `dropcode`. Codes are checked as received, not trimmed, and are compared exactly and **case-sensitively** with no prefix or partial match; any length other than 4 is refused with `05` before lookup. A parcel whose drop-off deadline (`DateExpires`) has passed is refused with `07` even if the expiry sweep has not yet released the locker; do not open the door. The production replay window is **5 minutes**. The reply shows the state after the drop; a repeat inside the replay window returns `00` with `replayed: \"True\"` — open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen. Sender/recipient names, phones, emails and the used code are masked as `\"****\"`."
     },
     "POST /kiosk/parcel/snapshot/": {
       "summary": "Parcel Snapshot",
@@ -1253,14 +1253,14 @@
     "DropParcelResponse": {
       "properties": {
         "replayed": {
-          "description": "True when this is a replay of an earlier successful drop inside the replay window. Open the door on this 00 if it was not seen open/closed; after the window the call returns 07."
+          "description": "True when this is a replay of an earlier successful drop inside the 5-minute replay window. On this replayed 00, open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen. After the window the call returns 07."
         }
       }
     },
     "CollectParcelResponse": {
       "properties": {
         "replayed": {
-          "description": "True when this is a replay of an earlier successful collection inside the replay window. The collection is already recorded; do not treat it as a new collection."
+          "description": "True when this is a replay of an earlier successful collection inside the 5-minute replay window. The collection is already recorded; do not treat it as a new collection. On this replayed 00, open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen."
         }
       }
     }
