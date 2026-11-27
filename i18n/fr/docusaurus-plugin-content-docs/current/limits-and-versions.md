@@ -56,7 +56,7 @@ Chaque entrée porte la date de livraison du travail ; le nombre entre crochets 
 
 ### 2026-11-26 (2.1.25)
 
-- **Codes d'ouverture byte-exacts.** `unlockcode` doit faire exactement 4 caractères tel que reçu, sinon `05 INVALID_FIELD` ; il est ensuite comparé byte-exact, sensible à la casse, sans trim ni correspondance partielle ; sinon `07`. Les codes générés sont en majuscules et chiffres ; les minuscules ne sont pas générées.
+- **Codes d'ouverture byte-exacts.** `unlockcode` doit faire exactement 4 caractères tel que reçu, sinon `05 INVALID_FIELD` ; il est ensuite comparé byte-exact, sensible à la casse, sans trim ni correspondance partielle ; sinon `07`. Les codes générés sont en majuscules et chiffres ; les minuscules ne sont pas générées. Résultat du test : contrôles API et extrait des journaux de la plateforme (`replayed`, longueur du code, type d'instantané et délais) réussis le 2026-11-26 ; le contrôle d'hygiène de `ErrorLog.txt` est en attente.
 - **Rejeu de retrait et porte.** Sur un `00` rejoué, n'ouvrez la porte que si celle de ce colis n'a pas été vue ouverte puis fermée ; une fois vue ouverte et fermée, ne la rouvrez pas.
 - **Fenêtre de rejeu en production : 5 minutes**, écrite dans le contrat, pas seulement dans le guide.
 - **`BOX_OFFLINE`.** Un casier hors ligne (aucun ping depuis 15 minutes) refuse les réservations client/entreprise avec `09`, `errorcode:"BOX_OFFLINE"`, `errorfield:"boxid"`, `retryable:"True"`. Les appels du casier touchent `DateLastPing` et ne sont pas refusés pour un ping en retard. Dépôt, retrait et récupération restent autorisés.
@@ -67,9 +67,46 @@ Chaque entrée porte la date de livraison du travail ; le nombre entre crochets 
 
 | Date | Version | Élément | Statut |
 |---|---|---|---|
-| 2026-11-25 | 2.1.24 | S3, P9a, P9c, P10 | déployé |
-| 2026-11-26 | 2.1.25 | S3 détail + test, S5, P1, P8, P11, S4, S6, P4–P6 | en cours |
-| à venir | suivant | P9b, P1–P3, P2 | décision/design |
+| 2026-11-25 | 2.1.24 | S3 comparaison sensible à la casse | déployé |
+| 2026-11-25 | 2.1.24 | P9a code de dépôt masqué | déployé |
+| 2026-11-25 | 2.1.24 | P9c champs de récupération | déployé |
+| 2026-11-25 | 2.1.24 | P10 instantané hors réseau `07` | déployé |
+| 2026-11-26 | 2.1.25 | S3 byte-exact/sans trim et test API | déployé |
+| 2026-11-26 | 2.1.25 | S4 notification et délai de réponse | déployé |
+| 2026-11-26 | 2.1.25 | S5 formulation de la porte de retrait | déployé |
+| 2026-11-26 | 2.1.25 | S6 résumé `replayed` et longueur du code | déployé |
+| 2026-11-26 | 2.1.25 | P1 fenêtre de 5 minutes en production | déployé |
+| 2026-11-26 | 2.1.25 | P4 corrections de documentation | déployé |
+| 2026-11-26 | 2.1.25 | P5 corrections de documentation | déployé |
+| 2026-11-26 | 2.1.25 | P6 corrections de documentation | déployé |
+| 2026-11-26 | 2.1.25 | P8 `BOX_OFFLINE` | déployé |
+| 2026-11-26 | 2.1.25 | P11 règle e-mail sur la mise en attente | déployé |
+| 2026-11-28 | prochaine (correctif console) | C1 création d'utilisateur | déployé |
+| 2026-11-28 | prochaine (correctif console) | C2 journal d'erreurs | déployé |
+| 2026-11-28 | prochaine (correctif console) | C3 rôles | déployé |
+| à venir | suivant | P9b conception et coût | design |
+| à venir | suivant | P1–P3 modèle photo | approuvé avec conditions ; conditions remplies ; mise en œuvre à venir |
+| après W4 | suivant | P2 extension du retrait | décision |
+
+2.1.24 a été publié avant que P8 et la règle S3 byte-exact ne soient prêts ; 2.1.25 est la version qui les contient. Les versions publiées ne sont pas antidatées et les deux restent archivées.
+
+### 2026-11-28 — Correctif console (P7 C1–C3)
+
+Validé le 26 novembre 2026 et déployé sur staging le 28 novembre 2026.
+
+- **C1 — Les utilisateurs staff peuvent être créés à nouveau.** Les insertions de
+  personnel interne envoyaient un `BusinessRole` vide, refusé par
+  `CK_SYS_Users_BusinessRole` ; la console envoie désormais `NULL`. La modification
+  d'un utilisateur ne force plus RoleID 1.
+- **C2 — Les erreurs de la console sont journalisées et le navigateur reçoit un
+  message générique.** `App_Logs\ErrorLog.txt` est créé/utilisé, la journalisation
+  ne lève jamais d'exception et le détail (y compris les chemins serveur) reste
+  dans le journal. Les pages utilisateur affichent le message générique d'échec.
+- **C3 — Les rôles du personnel sont assignables.** Les pages d'ajout/modification
+  ont un sélecteur de rôle et un sélecteur de réseau pour l'administrateur réseau ;
+  la liste affiche tout le personnel console. Seuls les Super Administrateurs
+  peuvent attribuer les rôles ; le dernier Super Administrateur actif et le compte
+  connecté sont protégés.
 
 ### 2026-11-25 (2.1.24)
 

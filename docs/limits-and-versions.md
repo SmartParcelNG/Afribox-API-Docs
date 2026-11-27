@@ -56,7 +56,7 @@ Each entry is dated when the work shipped; the number in brackets is the contrac
 
 ### 2026-11-26 (2.1.25)
 
-- **Opening codes are byte-exact.** `unlockcode` must be exactly 4 characters as received, otherwise `05 INVALID_FIELD`. It is then compared byte-exactly, case-sensitively, with no trimming and no prefix/partial match; a code that does not match gets `07`. Generated codes use uppercase letters and digits; lowercase is not generated. The drop/collect, update, business drop/collect and code-uniqueness procs all use `VARBINARY` comparison. Regression result: pending.
+- **Opening codes are byte-exact.** `unlockcode` must be exactly 4 characters as received, otherwise `05 INVALID_FIELD`. It is then compared byte-exactly, case-sensitively, with no trimming and no prefix/partial match; a code that does not match gets `07`. Generated codes use uppercase letters and digits; lowercase is not generated. The drop/collect, update, business drop/collect and code-uniqueness procs all use `VARBINARY` comparison. Regression result: API-level checks and the platform-log extract (`replayed`, code length, snapshot type and timing) passed on 2026-11-26; the `ErrorLog.txt` hygiene check is pending.
 - **Collection replay and the door.** On a replayed collection `00`, open the door only if this parcel's door was not seen open and then closed; once seen open and closed, do not reopen. This is now in the collection response, the contract and the guide.
 - **The production replay window is 5 minutes.** It is written in the contract, not only the guide; retries do not extend it.
 - **`BOX_OFFLINE`.** A box with `boxonline:"False"` (no ping for 15 minutes) is out of service. Online customer/business bookings are refused with `09`, `errorcode:"BOX_OFFLINE"`, `errorfield:"boxid"`, `retryable:"True"`. Kiosk calls touch `DateLastPing` and are not refused because a ping was late. Drop, collect and retrieve remain allowed.
@@ -69,11 +69,44 @@ Each entry is dated when the work shipped; the number in brackets is the contrac
 
 | Date | Version | Item | Status |
 |---|---|---|---|
-| 2026-11-25 | 2.1.24 | S3 code rule, P9a, P9c, P10 | deployed |
-| 2026-11-26 | 2.1.25 | S3 detail + regression, S5, P1, P8, P11, S4 timing, S6 summary, P4–P6 docs | in progress |
+| 2026-11-25 | 2.1.24 | S3 case-sensitive code comparison | deployed |
+| 2026-11-25 | 2.1.24 | P9a masked dropcode | deployed |
+| 2026-11-25 | 2.1.24 | P9c retrieval fields | deployed |
+| 2026-11-25 | 2.1.24 | P10 out-of-network snapshot `07` | deployed |
+| 2026-11-26 | 2.1.25 | S3 byte-exact/no-trim and API regression | deployed |
+| 2026-11-26 | 2.1.25 | S4 notification and response timing | deployed |
+| 2026-11-26 | 2.1.25 | S5 collection door wording | deployed |
+| 2026-11-26 | 2.1.25 | S6 summary `replayed` and code length | deployed |
+| 2026-11-26 | 2.1.25 | P1 5-minute production window | deployed |
+| 2026-11-26 | 2.1.25 | P4 documentation corrections | deployed |
+| 2026-11-26 | 2.1.25 | P5 documentation corrections | deployed |
+| 2026-11-26 | 2.1.25 | P6 documentation corrections | deployed |
+| 2026-11-26 | 2.1.25 | P8 `BOX_OFFLINE` | deployed |
+| 2026-11-26 | 2.1.25 | P11 hold e-mail rule | deployed |
+| 2026-11-28 | next (console hotfix) | C1 staff-user creation | deployed |
+| 2026-11-28 | next (console hotfix) | C2 console error log | deployed |
+| 2026-11-28 | next (console hotfix) | C3 staff roles | deployed |
 | pending | next | P9b retrieval design and cost | design |
-| pending | next | P1–P3 photo model | approved with conditions; implementation after docs/alert |
+| pending | next | P1–P3 photo model | approved with conditions; conditions met; implementation next |
 | after W4 | next | P2 collection extension | decision |
+
+2.1.24 was published before P8 and the byte-exact S3 rule were ready; 2.1.25 is the version that contains them. Published versions are not backdated, and both remain archived.
+
+### 2026-11-28 — Console hotfix (P7 C1–C3)
+
+Committed on 26 November 2026 and deployed to staging on 28 November 2026.
+
+- **C1 — Staff users can be created again.** Internal staff inserts sent an empty
+  `BusinessRole` and were rejected by `CK_SYS_Users_BusinessRole`; the console now
+  sends `NULL`. Editing a staff user no longer forces RoleID 1.
+- **C2 — Console errors are logged and the browser gets a generic message.**
+  `App_Logs\ErrorLog.txt` is created/used, logging never throws, and the detail
+  (including server paths) stays in the log only. The user pages show the generic
+  operation-failed message.
+- **C3 — Staff roles are assignable.** The add/edit user pages have a role selector
+  and a network selector for Network Admin; the user list shows all console staff.
+  Only Super Administrators can assign roles; the last active Super Administrator
+  and the signed-in account are protected.
 
 ### 2026-11-25 (2.1.24)
 
